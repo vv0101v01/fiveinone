@@ -1,3 +1,13 @@
 #!/bin/sh
+# Fast, non-executing guard for local commits.  This is intentionally
+# narrower than tools/check_compile.sh and never runs tests or smoke
+# programs.
+set -eu
 
-moon check
+cd "$(git rev-parse --show-toplevel)"
+export PATH="$HOME/.moon/bin:$PATH"
+
+moon fmt --check
+python3 tools/doc_check.py
+python3 tools/arch_check.py
+python3 tools/audit_spec.py --check

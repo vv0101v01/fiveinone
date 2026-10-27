@@ -1,0 +1,46 @@
+// Generated using `moon info`, DON'T EDIT IT
+package "vv0101v01/cubical-hermitian/finalg/port"
+
+// Values
+pub fn count_asserts(String) -> Int32
+
+pub fn extract_functions(String) -> Array[FuncSig]
+
+pub fn extract_test_names(String) -> Array[String]
+
+pub fn generate_skeleton(String, FuncSig) -> String
+
+pub fn map_type(String, String) -> String?
+
+pub fn migrate(String, lang? : String) -> MigrationReport
+
+pub fn parse_params(String) -> Array[Param]
+
+pub fn report_json(MigrationReport) -> String
+
+// Errors
+
+// Types and methods
+pub struct FuncSig {
+  name : String
+  params : Array[Param]
+  ret : String
+  lineno : Int32
+}
+
+pub struct MigrationReport {
+  total : Int32
+  mapped : Int32
+  unmapped : Array[String]
+  sigs : Array[FuncSig]
+  skeleton : String
+}
+
+pub struct Param {
+  name : String
+  ty : String
+}
+
+// Type aliases
+
+// Traits

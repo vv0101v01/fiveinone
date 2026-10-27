@@ -1,0 +1,94 @@
+// Generated using `moon info`, DON'T EDIT IT
+package "vv0101v01/cubical-hermitian/finalg/hott"
+
+import {
+  "vv0101v01/cubical-hermitian/finalg/finite",
+}
+
+// Values
+pub fn ann_sum_law(@finite.FinIdeal, @finite.FinIdeal) -> Bool
+
+pub fn[A] contrapose_holds((A) -> Bool, (A) -> Bool, Array[A]) -> Bool
+
+pub fn coprod_hom_equiv_holds(Int32, Int32, Int32) -> Bool
+
+pub fn crt_equiv_holds(Int32) -> Bool
+
+pub fn crt_forward(Array[Int32], Int32) -> Array[Int32]
+
+pub fn crt_recombine(Array[Int32], Array[Int32]) -> Int32
+
+pub fn curry_equiv_holds(Int32, Int32, Int32) -> Bool
+
+pub fn[A] de_morgan_holds((A) -> Bool, (A) -> Bool, Array[A]) -> Bool
+
+pub fn[A] dne_holds((A) -> Bool, Array[A]) -> Bool
+
+pub fn enumerate_functions(Int32, Int32) -> Array[Array[Int32]]
+
+pub fn[A, B] equiv_symm(Equiv[A, B]) -> Equiv[B, A]
+
+pub fn[A, B, C] equiv_trans(Equiv[A, B], Equiv[B, C]) -> Equiv[A, C]
+
+pub fn[A] funext_finite(Array[A], (A) -> Int32, (A) -> Int32) -> Bool
+
+pub fn[A, B] halfadj_to_qinv(HalfAdj[A, B]) -> Equiv[A, B]
+
+pub fn[A] id_equiv() -> Equiv[A, A]
+
+pub fn[A] iff_pred((A) -> Bool, (A) -> Bool) -> (A) -> Bool
+
+pub fn[A] iff_symm_holds((A) -> Bool, (A) -> Bool, Array[A]) -> Bool
+
+pub fn[A] impl_pred((A) -> Bool, (A) -> Bool) -> (A) -> Bool
+
+pub fn[A] impl_trans_holds((A) -> Bool, (A) -> Bool, (A) -> Bool, Array[A]) -> Bool
+
+pub fn int_refl_unique(Int32) -> Bool
+
+pub fn is_prop_elems(Array[Array[Int32]]) -> Bool
+
+pub fn pi1_s1_equiv() -> Equiv[Int32, Int32]
+
+pub fn[A, B] qinv_to_halfadj(Equiv[A, B], (B, B) -> Bool) -> HalfAdj[A, B]
+
+pub fn quotient_path(@finite.FinAlg, @finite.FinIdeal, Array[Int32], Array[Int32]) -> Bool
+
+pub fn quotient_rec_ok(@finite.FinAlg, @finite.FinIdeal, (Array[Int32]) -> Int32) -> Bool
+
+pub fn s1_concat(Int32, Int32) -> Int32
+
+pub fn s1_groupoid_laws(Int32, Int32, Int32) -> Bool
+
+pub fn s1_inv(Int32) -> Int32
+
+pub fn s1_is_set() -> Bool
+
+pub fn s1_loop(Int32) -> Int32
+
+pub fn s1_refl() -> Int32
+
+pub fn[A, B] transport_pred(Equiv[A, B], (B) -> Bool, A) -> Bool
+
+pub fn[A, B] ua_beta_holds(Equiv[A, B], (B) -> Bool, Array[A]) -> Bool
+
+// Errors
+
+// Types and methods
+pub(all) struct Equiv[A, B] {
+  fwd : (A) -> B
+  bwd : (B) -> A
+}
+pub fn[A, B] Equiv::is_equiv_finite(Self[A, B], (A, A) -> Bool, (B, B) -> Bool, Array[A], Array[B]) -> Bool
+pub fn[A, B] Equiv::retr_ok(Self[A, B], (B, B) -> Bool, B) -> Bool
+pub fn[A, B] Equiv::sect_ok(Self[A, B], (A, A) -> Bool, A) -> Bool
+
+pub(all) struct HalfAdj[A, B] {
+  fwd : (A) -> B
+  bwd : (B) -> A
+  eta : (B) -> Bool
+}
+
+// Type aliases
+
+// Traits

@@ -1,6 +1,16 @@
 # cubical-hermitian Guide (MoonBit implementation)
 
-Language: **English** · [中文](GUIDE.md) · [中文規格](SPEC.md) · [Specification](SPEC.en.md) · [Architecture](ARCHITECTURE.md)
+Language: **English** · [中文](GUIDE.md) · [中文規格](SPEC.md) · [Specification](SPEC.en.md) · [Architecture](ARCHITECTURE.md) · [Status](docs/STATUS.md) · [Engineering gaps](docs/ENGINEERING-GAPS.md)
+
+> This guide covers only the cubical pillar. The repository is published as
+> <https://github.com/vv0101v01/golden>, while the MoonBit module remains
+> `vv0101v01/cubical-hermitian`. See the dedicated documents for `symlib`,
+> `semiring/*`, `finalg`, `catmath`, the single five-member `bridge`. The phase
+> narrative is retained development
+> history; the authoritative current counts are in
+> [STATUS](docs/STATUS.md), and open limitations are in the
+> [gap register](docs/ENGINEERING-GAPS.md). This English guide is a
+> condensed companion, not a line-by-line translation of the Chinese guide.
 
 A set of intertwined concepts made into an **executable, testable computational model**:
 
@@ -22,20 +32,25 @@ A set of intertwined concepts made into an **executable, testable computational 
 - Computational univalence: complete decidable wiring univalence in the finite universe, plus AST `ua`/`pathToEquiv`, `uaβ`, round-trip homotopies and a two-dimensional Glue-square certificate;
 - A general semantic `lemIso` construction giving fiber paths/contractions and automatic adjointification for quasi-inverses, plus internal `IntegerS`, π₃ quotient types and canonical spherical loop representatives (not a classification theorem for arbitrary π₃ elements);
 - Bounded Huet search, a versioned compiled-module byte codec, and BDD sifting/cache growth, watched-literal DPLL and sparse/Karatsuba `QPoly` multiplication;
-- `SPEC.md`/`SPEC.en.md` and bilingual appendices give canonical forms and categorifications for every type, operation, specification and structure; after the three-way federation the appendices contain **5,054 symbols**, while the cubical specification registry remains **101 entries**;
-- A cubical-pillar physical package subgraph `cmd/main → root → algebra` with 13 logical components, now governed together with the other pillars and bridge/apps as **25 packages / 34 components** by `architecture.json` and `tools/arch_check.py`.
+- `SPEC.md`/`SPEC.en.md` and bilingual appendices give canonical forms and categorifications for every type, operation, specification and structure; after the five-way federation the appendices contain **6,259 symbols**, while the cubical specification registry remains **101 entries**;
+- A cubical-pillar physical package subgraph `cmd/main → root → algebra` with 13 logical components, now governed together with the other pillars and bridge/apps as **39 packages / 48 components** by `architecture.json` and `tools/arch_check.py`.
 
 ## Running and acceptance
 
 ```text
-moon check --deny-warn                 # whole project, zero warnings
-moon test --target wasm-gc             # whole repository 336/336 (including 111 cubical root+algebra tests)
-moon test --target native               # whole repository 340/340 (four additional native-only host tests)
-moon run cmd/main                      # theorem registry, expected 90/90
+sh tools/check_compile.sh              # current compile-only gate: format/governance/four targets/test build-only/builds
+GOLDEN_RUN_TESTS=1 sh tools/check_full.sh
+                                       # future runtime stage only
+python3 tools/doc_check.py             # documentation links, index and governance counts
 python3 tools/arch_check.py            # layers, unique file ownership, counts
 moon info && python3 tools/audit_spec.py --check
                                        # bilingual appendices = package interfaces
 ```
+
+The historical three-system baseline is 336 wasm-gc tests (111 cubical)
+and 340 native tests (four extra `semiring/par_host` tests); the current
+five-system tree has not yet been run. Do not add target totals or reuse
+them as five-system evidence.
 
 ## Upgrade highlights
 
@@ -112,7 +127,7 @@ Semantic composition branches are packaged as `DSystem`. `dsystem_canonical` mer
 
 ### Phase 8: architecture governance, cubical algorithms and computational univalence
 
-- **Dependency order**: files inside one MoonBit package have no compilation order; dependency direction is what matters. The cubical pillar retains the physical subgraph `cmd/main → root → algebra`, and `architecture.json` divides its root package into 13 logical components from L0 to L9; the same manifest also governs the symlib, semiring, bridge and application packages (25 packages / 34 components in total). `algebra/` is a separate package; `algebra_imports.mbt` centrally manages names imported into root, and `tools/arch_check.py` fails on unassigned files, duplicate ownership or upward edges. File and line counts are computed by the tool rather than maintained by hand (see `ARCHITECTURE.md`).
+- **Dependency order**: files inside one MoonBit package have no compilation order; dependency direction is what matters. The cubical pillar retains the physical subgraph `cmd/main → root → algebra`, and `architecture.json` divides its root package into 13 logical components from L0 to L9; the same manifest also governs the symlib, semiring, bridge and application packages (39 packages / 48 components in total). `algebra/` is a separate package; `algebra_imports.mbt` centrally manages names imported into root, and `tools/arch_check.py` fails on unassigned files, duplicate ownership or upward edges. File and line counts are computed by the tool rather than maintained by hand (see `ARCHITECTURE.md`).
 - **Cubical algorithms** (`cubical_algorithms.mbt`): `KanBox` packages a type line, system and base; `kan_box_fill`, `kan_box_comp` and `kan_box_pathp` expose the filler/cap. There are transports towards 1 and 0, checked-line transport, filler `PathP`, semantic and closed-term `refl/sym/prefix/segment`, transitivity by an explicit hcomp square, `cong/ap`, `funext`, and `subst/substPathP`. The gate is `check_cubical_algorithms`.
 - **Computational univalence** (`univalence.mbt`): finite `UPath`s convert exactly both ways to wiring `Equiv`s and transport computes in both directions. For a semantic type line, `pathToEquiv` is formed from coe in both directions and filler round-trip paths; `uaβ` unglues the filler along the Glue line; a retraction homotopy and a Glue square witness `pathToEquiv(ua e)=e` and `ua(pathToEquiv L)=L`, packaged as `univalence_equiv_value`. Checked universe paths and closed-term `DMkEquiv` maps are also verified. The gate is `check_univalence`.
 
@@ -195,7 +210,7 @@ Semantic composition branches are packaged as `DSystem`. `dsystem_canonical` mer
 | Phase 13 closure | SelfFamily positivity fixed point/foreign nested-IH functor maps, relevant descent/maximum completion, difference-guided Bool splits/verified square caps, CHDAGBIN shared graphs/CHARTCHN integrity chain, joint irreducibility certificates/four-generator multiquadratic tower/adaptive Jacobi, exact orders to n≤16/DRUP/Tier D, inverse-associativity 3-cells/closed-expression classification, HOU residual solver | `schema_positivity.mbt`, `dsystem_compat.mbt`, `conv_case_split.mbt`, `dterm_dag_binary.mbt`, `algebra/multiquad_tower.mbt`, `phase13_laws.mbt` |
 | Phase 12 closure | Same-spec self-nesting/positivity declarations, simultaneous-IR eliminator compilation, structural agreement + supplementation, Bool case-split and path-valued comp, artifact repository/DAG codecs/version negotiation, irreducibility certificates/cubic-triquadratic towers/cluster-aware Jacobi, subset-DP orders/CDCL deletion+RUP, stratified extensionality, unit-law 3-cells/exact Hopf, three-state pattern MGU | `schema_phase9.mbt`, `schema_positivity.mbt`, `conv_case_split.mbt`, `artifact_repository.mbt`, `algebra/qpoly_certificate.mbt`, `algebra/tower_fields.mbt`, `phase12_laws.mbt` |
 | Package governance | cubical subgraph `cmd/main → root → algebra` (13 cubical components) inside a 25-package / 34-component federation, no upward edges | `architecture.json`, `tools/arch_check.py`, `ARCHITECTURE.md` |
-| Specification registry | 101 cubical entries + 5,054 federation-wide bilingual appendix symbols + multi-package audit | `spec.mbt`, `SPEC*.md`, `SPEC-APPENDIX*.md`, `tools/audit_spec.py` |
+| Specification registry | 101 cubical entries + 6,259 federation-wide bilingual appendix symbols + multi-package audit | `spec.mbt`, `SPEC*.md`, `SPEC-APPENDIX*.md`, `tools/audit_spec.py` |
 
 ## File map
 

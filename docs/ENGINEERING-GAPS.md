@@ -1,0 +1,187 @@
+# 工程缺口、未完善之處與待辦登記
+
+> 最後全面盤點：2026-10-27。本文是全倉缺口的中央索引，不取代各支柱的
+> 詳細限制章節。新增已知限制時先在此登記，再連回擁有該限制的文件或程式。
+> [目前狀態](STATUS.md) 只寫已完成與已驗證的事實。
+
+## 狀態與優先級
+
+| 標記 | 意思 |
+|---|---|
+| `已關閉` | 本次更新已落地並有本倉證據 |
+| `待實作` | 可在本倉內完成，但尚未完成 |
+| `待外部` | 需要儲存倉管理員或其他儲存倉操作 |
+| `已接受` | 有意保留的設計／理論邊界；只能擴展範圍，不能靠換說法消除 |
+| `研究級` | 需要新算法、形式化或研究工作，沒有可信的短工期 |
+
+優先級：`P0` 會阻止可信發佈；`P1` 應在下一個功能期前處理；`P2` 是
+可維護性／規模工作；`P3` 是研究或長期擴展。目前沒有已知的 P0 正確性
+缺陷；「沒有登記」不等於形式證明了不存在缺陷。
+
+## 本次已關閉項目
+
+| ID | 關閉內容 | 證據 |
+|---|---|---|
+| DOC-001 | 主倉推送前敘事已從現行文件移除；首次公開提交由 STATUS 與遷移決策史記錄 | [STATUS](STATUS.md)、[MIGRATION](MIGRATION.md) |
+| DOC-002 | 獨立合併研究快照已濃縮入遷移決策史並從工作樹刪除，現況只由 STATUS 承擔 | [MIGRATION](MIGRATION.md)、[STATUS](STATUS.md) |
+| DOC-003 | 中央文檔索引、現況、缺口登記、貢獻流程與 CHANGELOG 已建立 | [文檔索引](README.md)、[CONTRIBUTING](../CONTRIBUTING.md)、[CHANGELOG](../CHANGELOG.md) |
+| DOC-004 | `AGENTS.md` 已更新為五成員＋唯一 bridge 的直接 3＋2 全圖 | [AGENTS](../AGENTS.md) |
+| ENG-000 | fast／full／slow 檢查入口已腳本化；文檔連結、索引與治理數字有機器閘門 | `tools/check_*.sh`、`tools/doc_check.py` |
+| DOC-005 | MoonBit 模組描述與關鍵字已更新為五系統聯邦 | `moon.mod` |
+| INT-000 | algo 的 12 個 packages、algo4 函式庫與兩者全部 test/wbtest 已機械搬入；finalg 以明確 `pub extend` 取代全域 warning 抑制，catmath executable 已拆至 `cmd/catmath`，五系統接口先集中施工，現已併入唯一 `bridge/` | [BRIDGE](BRIDGE.md)、[MIGRATION](MIGRATION.md) |
+
+## 發佈、歷史與儲存倉治理
+
+| ID | 優先級／狀態 | 缺口與影響 | 證據／下一步與驗收 |
+|---|---|---|---|
+| REL-001 | P1／待外部 | `algorithm01`、`algorithm03` 尚未加入遷移告示，也未在 GitHub Archive；`algo`、`algo4` 亦未貼五系統遷移告示，使用者仍可能在來源倉取得過時入口 | 四倉告示均已在 [LEGACY-ARCHIVE](LEGACY-ARCHIVE.md) 定稿；發布五系統樹後把告示提交四倉，再由管理員決定／執行 Archive，驗收是各倉頂部顯示 `golden` 連結且（若封存）為 read-only |
+| REL-002 | P2／已接受 | `golden` 首次公開是一棵匯出樹的單一 squash 提交；三個來源倉與合併期的細粒度提交史沒有 graft 進來，`git blame` 不能還原完整演進 | provenance 已記來源 SHA；如需可稽核歷史，另建 history-import 方案，不得改寫已公開 `main` 來假裝歷史一向存在 |
+| REL-003 | P1／待實作 | 尚無版本 tag、GitHub Release、簽章、SBOM 或來源 attestation；module 仍是 `0.0.1` | 先定版號策略並發第一個 tag；Release 至少附 commit、工具鏈、測試數字與已知限制，簽章／SBOM 在有外部使用者後再升級 |
+| REL-004 | P1／待外部 | workflow 已入倉，但 branch protection、required checks、Actions 權限、Dependabot 與私密漏洞通報均不在程式碼可控制範圍 | 管理員啟用 required checks 後，以一個故意失敗的 PR 驗證不能合併；未驗證前不得宣稱 CI 是強制閘門 |
+| REL-005 | P2／待外部 | GitHub 倉庫 description、topics、homepage 與 social preview 未納入版本控制 | 在 Settings 設定五系統描述；把最終文字回填 STATUS，避免倉庫頁面與 README 分叉 |
+| SEC-001 | P2／待實作 | 尚無 `SECURITY.md` 或漏洞披露流程；cubical 工件 checksum 只防意外損壞，不是密碼學簽章 | 決定私密通報渠道後新增 SECURITY；需要可信發行時再引入簽章金鑰管理，不得把一般 checksum 升級宣稱為簽章 |
+
+## CI、測試與可重現性
+
+| ID | 優先級／狀態 | 缺口與影響 | 證據／下一步與驗收 |
+|---|---|---|---|
+| ENG-001 | P1／待外部驗證 | `.github/workflows/ci.yml` 的 compile-only job 尚需在 GitHub 主機實跑；本機通過不等於 hosted runner、網路依賴與 timeout 設定已證實；runtime/slow workflow 目前只登記為 manual | 首次發布五系統樹後保存 compile job 成功連結；若失敗，先修 workflow 再更新本項。運行期另保存 manual runtime workflow 的完整成功連結，不以 compile job 全綠代替 |
+| ENG-002 | P1／待實作 | 沒有覆蓋率基線或分套件門檻；舊樹 336／340 只表示舊測試全過，五系統新套件尚無運行覆蓋證據，不表示公共 API 或錯誤分支覆蓋充分 | 運行期先取得全倉通過證據，再用 `moon coverage` 產生分套件基線；先登記不設硬門檻，再為 root、bridge、finalg 與 catmath 定不倒退規則 |
+| ENG-003 | P1／待實作 | CI 以官方安裝腳本取得當時最新版 MoonBit，未鎖定完整 toolchain 版本或驗證下載摘要；上游升級可造成非程式碼變動失敗 | 找出可重現的版本參數／摘要流程，固定與本機驗證相同的 `moon`／`moonc` 組合，並保留手動 latest job 監察上游漂移 |
+| ENG-004 | P2／待實作 | 只有 Linux 實跑證據；macOS、Windows native、不同 CPU 的浮點／路徑／async 檔案行為未驗證 | CI 先加 macOS native check；Windows 需先審 `/tmp` 與 shell 腳本假設，不得用跨編譯 type-check 代替平台實跑 |
+| ENG-005 | P2／待實作 | 全套件耗時長且無分片、flaky 測試清單或時間預算；本機參考約為 wasm-gc 3.5 分鐘、native 8.4 分鐘、`cmd/main` 另約 3.8 分鐘 | 輸出逐 package 時間，識別最慢測試；只把統計上穩定的效能錨點入閘門，計時型斷言須有重跑／隔離政策 |
+| ENG-006 | P2／待實作 | 定律抽樣與差分 oracle 很強，但尚無 fuzz、property-based 生成基建、mutation testing 或 benchmark 趨勢資料庫 | 先為 parser／序列化、矩陣形狀、置換輸入加可種子化 fuzz；benchmark 只保存趨勢與硬體欄案，不以單次毫秒數作發佈門檻 |
+| ENG-007 | P2／已接受 | `arch_check.py` 是唯讀源碼近似推導，不是編譯器型別圖；`observer` 組件可合法星形依賴，不能用它證明任意新邊都合理 | 新 package／跨支柱邊仍須人工裁決；若 MoonBit 提供穩定依賴圖 API，再用編譯器輸出取代匯入掃描 |
+| ENG-008 | P2／待實作 | `.mbti` 與逐符號附錄均入庫，雖有 drift 閘門，但沒有 PR 摘要自動列出公共 API 增刪，審查大型生成 diff 成本高 | 產出按 package／kind 分組的 API diff 摘要供 PR 使用；生成檔本身仍不得手改 |
+
+| ENG-009 | P0／待實作 | 目前五系統樹按負責人指示只做 compile-only：全部 test/wbtest 已保留並可編譯，但**尚未執行任何單元測試、bridge 證書、cmd smoke 或慢報告**；因此不能對五系統作運行正確性宣稱 | 取得運行期授權後執行 `GOLDEN_RUN_TESTS=1 sh tools/check_full.sh`，按 wasm-gc／native 分列實數回填 STATUS；慢報告另以 `GOLDEN_RUN_SMOKE=1` 執行。未完成前不得發佈為已驗證版本 |
+
+## 公共 API、錯誤模型與相容性
+
+| ID | 優先級／狀態 | 缺口與影響 | 證據／下一步與驗收 |
+|---|---|---|---|
+| API-001 | P1／待實作 | 以 `abort(` 文字計，生產碼約 287 處（finalg 131、symlib 98、semiring 25、bridge 23、catmath 9、cmd 1；`unwrap` 等其他 panic 邊未計）；外部呼叫者對形狀錯誤、上限與前提失敗拿不到結構化錯誤 | 先按「不可恢復不變量／使用者輸入／資源上限」分類，再為 bridge 與新 API 提供 `Result` 版本；不得一次機械改寫 6,259 個符號 |
+| API-002 | P1／待實作 | 上限參數、回傳慣例混雜：`Int32 cap`、`Int64` 計數、Option、Bool 驗證器與 abort 並存；超限是否完整、是否部分結果要逐 API 查文檔 | 定義共用 budget／outcome 形狀和命名規則，優先套用到列舉 API；每個新 API 必須明寫完整、截斷或失敗語義 |
+| API-003 | P1／待實作 | 尚無 semantic versioning、deprecation 週期或穩定／實驗 API 分級；逐符號附錄只證明存在，不證明穩定 | 在第一個 tag 前發布相容政策，並在附錄生成器外維護穩定面清單；實驗符號不得默默升格 |
+| API-004 | P2／已接受 | 兩個 `algebra`、兩個 `Graph`、`Rat`、`Mat` 等同名概念造成 alias 負擔 | 聯邦邊界刻意保留；所有跨套件範例必須用完整路徑或 `exact`、`searched`、`weighted` 等語義 alias，索引不可裸寫「algebra」 |
+| API-005 | P2／待實作 | `weighted_graph_report.canonical_encoding` 來自 support 圖與頂點簽名顏色，不是完整加權有向圖標準形；不同邊權結構理論上可碰撞到同一編碼 | 在 [BRIDGE](BRIDGE.md) 已明文降格為診斷鍵；真正 canonical form 需把方向、邊重與缺邊編入顏色／編碼並加差分測試 |
+| SEC-002 | P1／待實作 | `semiring/par_host` 以可預測 `/tmp/semiring_shard_{k}.txt` 寫分片並忽略寫入結果；並行程序可碰撞，Unix 慣例也不適合 Windows | 改唯一臨時目錄／檔案、傳播 IO 錯誤並清理；驗收包括兩個程序並行運行不互相覆寫 |
+
+## cubical 根套件與精確 `algebra/`
+
+以下不是漏測，而是可執行語義模型的明文理論邊界；詳細理由以
+[SPEC §4「誠實邊界」](../SPEC.md) 為準。
+
+| ID | 優先級／狀態 | 缺口與影響 | 下一步／驗收方向 |
+|---|---|---|---|
+| CUB-001 | P3／研究級 | inductive schema 的正性仍是受信不透明欄位，受驗 lambda 只是較小函子片斷；同時歸納—遞歸兩條路線與惰性 union 路線不完備 | 需把正性檢查、嚴格函子與 kernel 規則做成可判定證書；在完成前只能稱「受信 schema＋已驗證片斷」 |
+| CUB-002 | P2／已接受 | DSystem 相關支撐、最大相容完成與 Bool 差異切分仍可指數增長；最大完成本質是最大團，budget 耗盡時只回 incumbent 與 `exact=false`，不列舉其他最大元；Nat 無對應切分，Circle／Torus 方塊 comp 只在候選座標可逐分支面驗證時計算，任意宿主／端點相合盒可停在形式 `DNComp` | 每個入口保留 budget／exact 狀態；效能工作先做共享／記憶化，不得把未完成搜尋包裝成反例或完備合成 |
+| CUB-003 | P2／待實作 | 持久化工件沒有跨格式共享圖、增量 delta、作業系統檔案同步、多寫者或密碼學簽章；舊版工件有 bootstrap 信任 | 若要作外部交換格式，先定版本、原子寫入與簽章威脅模型；現階段定位是程序內證書與文字工件 |
+| CUB-004 | P2／已接受 | 一般因式分解在無合適證書時，最壞成本仍由 Kronecker 列舉與 BigInt 位長支配，現有證書只判不可約性而不加速一般分解輸出；多二次擴張以四個獨立生成元為上限，第五生成元、未處理的被開方形狀與一般代數數根在支援外回 `None` | 新增算法必須與直算差分對拍；支援外維持 Option，不得回近似冒充精確值 |
+| CUB-005 | P2／已接受 | 精確 BDD 變量序 DP 硬上限 `n≤16` 且成本仍約 `O(n·2^n)`；CDCL 證明是 DRUP 而不是 DRAT，完整 replay 也有成本；宿主立方 Tier D 是有限探針，高 arity 會回 `complete=false`；自適應 Jacobi 需以特徵多項式／Sturm 作精確後援，高重數與極小分離的成本不變 | 擴展前先定共享／證書檢查與成本模型；所有上限、未達標與 incomplete 狀態保留在回傳值和規格行中 |
+| CUB-006 | P3／研究級 | 球面已覆蓋代表元、3-胞與閉環路式正規化，但仍缺任意中性環路的分類引理、完整內部 `π₁(S¹)≃ℤ`、一般同倫群、Eckmann–Hilton／pentagon 相干、內部 Hopf 映射與不變量 | 這是類型論研究工作；現有結果只能按已命名的代表元片斷引用 |
+| CUB-007 | P3／已接受 | HOU 殘差求解一般只給 specific unifier，沒有完備 CSU 或非 pattern 形狀保證的 MGU，預算耗盡不表示無解；版本協商與 artifact 尚無身份簽章、遠端傳送或未宣告未來格式支援 | 保持「部分策略＋預算」定位，任何完備性主張必須先限定可判定片段；傳輸層需另定身份與相容政策 |
+| CUB-008 | P3／研究級 | univalence 是可執行語義證書與填充公式，不是證明助理中的封閉形式證明，也不是完整生產 kernel | 若要升級，需要把核心規則移植到可獨立檢查的最小 kernel，並逐條卸除受信欄位 |
+
+## `symlib/`
+
+詳細限制在 [symlib 長文 §7](../symlib/README.md)；這裏登記工程後果。
+
+| ID | 優先級／狀態 | 缺口與影響 | 下一步／驗收方向 |
+|---|---|---|---|
+| SYM-001 | P2／已接受 | 圖同構全域搜尋本質可指數爆炸；完全圖／空圖等高度規則大圖在 `n≥16` 可變得不可行，文件中的 E16 全搜尋明確不可行 | 已用連通分量與補圖分解繞過常見病態；進一步需要 partition refinement／canonical augmentation 的新搜尋核心 |
+| SYM-002 | P1／待實作 | colored search 只支援固定語義的頂點顏色，不允許顏色全域重命名；原生 `Graph` 仍不表示有向邊、邊色、多重邊、自環或超邊 | 先決定在 symlib 增原生有向／邊色圖，還是把完整加權搜尋留在 bridge；驗收須含同 support、異方向／異權重的反例 |
+| SYM-003 | P2／已接受 | `perm_key64` 上限 `n≤12`；子群、共軛類與置換列舉均有 caps；刪生元動態剪枝未完全實現 | API 狀態必須區分完備與截斷；換任意精度或 bitset 前先做 E8／E16 規模回歸 |
+| SYM-004 | P2／待實作 | 群階與計數多用 `Int64`，大群可溢位；canonical encoding 保證同構不變但不是字典序最小標準標籤 | 為階數提供 overflow 狀態或 BigInt 變體；若要宣稱 canonical labeling，必須以暴力最小標籤差分測試 |
+| SYM-005 | P2／待實作 | 部分子群分類只在已生成子群上完備，隨機 Schreier 類入口若截斷，生元可能不完整 | 高階入口回傳 completeness 旗標；登記在 SYM-003 的共用 outcome 改造中一併處理 |
+
+## `semiring/*`
+
+詳細限制在 [semiring README §7](../semiring/README.md) 與
+[DESIGN §19](../semiring/DESIGN.md)。
+
+| ID | 優先級／狀態 | 缺口與影響 | 下一步／驗收方向 |
+|---|---|---|---|
+| SEM-001 | P2／待實作 | 稀疏 Kleene 每輪走通用乘加與多次陣列重建，沒有 reserved／allocation-free merge、NUMA 或線上 autotune | 先量測分配熱點，再加容量保留；結果必須與現有稠密／稀疏差分 oracle 全等 |
+| SEM-002 | P2／待實作 | 沒有真正 CPU 多執行緒；`async` host 是單執行緒分工，native-only，且要先 `moon update` 取依賴 | MoonBit 執行緒模型成熟前不可宣稱 CPU 並行；host 可攜性缺口另見 SEC-002 |
+| SEM-003 | P2／已接受 | belief propagation 只在樹上精確，有環圖不保證收斂或等於 brute force；無 junction tree、GBP、連續／高斯訊息 | 擴展時每個新推理器要與小圖 brute-force 對拍；loopy BP 繼續明標近似 |
+| SEM-004 | P2／已接受 | 熱帶子分割只有二變數、一般複雜度 `O(m^4)` 檢查；無高維、增量凸包、穩定交、重數或退化面原語；主係數多為 `Int32` | 高維化是獨立算法期；先確保現有二變數退化例有覆蓋，不得把二變數繪圖拓樸升級宣稱一般熱帶幾何 |
+| SEM-005 | P2／已接受 | NFA 正規形只判定 Kleene／自由冪等片段，且最小化走 Moore 而非 Hopcroft；一般半環等價有共同模式錯誤 | 需要更強公理完備片段或外部 oracle 時，明寫可判定範圍與反例，不以多數決冒充證明 |
+| SEM-006 | P2／待實作 | 稠密矩陣只有 row-major 形狀；稠密 bitset closure 大圖記憶體成本高；形狀錯誤多以 abort 處理 | 先定形狀錯誤 API（API-001），再評估 blocked／sparse 表示；不得為加速破壞現有代數 oracle |
+| SEM-007 | P2／待實作 | `REPORT.md` 不記錄 CPU、OS、commit 與完整 toolchain 欄案，數字不可跨機器嚴格重現 | 報告產生器加環境欄案與命令；CI artifact 保存原始輸出，入庫快照仍經人工審查 |
+
+## `finalg/`
+
+詳細 package 圖與 proof 資產見 [FINALG](FINALG.md)。
+
+| ID | 優先級／狀態 | 缺口與影響 | 下一步／驗收方向 |
+|---|---|---|---|
+| FIN-001 | P1／待外部 | `finalg/verify` 只完成普通型別／合約編譯；八個 proof goals 未在本環境以 `moon prove`、Why3、Z3、cvc5 重證；上游 Why3 config 還記錄特定 prover 版本與原 `/home/user` 前綴（已由 prove script 在臨時副本重基） | 在獲授權的 proof 運行期固定 why3/z3/cvc5 版本，執行 `finalg/prove.sh` 並保存完整輸出；若 prover 版本不同，先重生 config 並審查差異，不把 `moon check` 當 proof 證據 |
+| FIN-002 | P2／已接受 | finalg 核心是 `Int32` 模數、指數與小矩陣正規形；Gröbner、有限枚舉與 SNF/HNF 的實用邊界遠小於任意精度 CAS，多處前提以 abort 表達 | 保持有限小規模定位；若要擴展，先為模數／係數引入 BigInt 路徑並逐算法做差分 oracle，不得只放大型別而沿用未審的複雜度假設 |
+| FIN-003 | P2／已接受 | `finalg/cat` 的閉包 Category 不能一般地枚舉回有限表；finite scheme/HoTT 也只是有限呈現模型，不是一般概形論或完整 HoTT kernel | 轉接只定義表格→閉包方向；新增一般理論主張前必須給出有限化前提或獨立語義證明 |
+| FIN-004 | P2／待實作 | `finalg/testutil` 是公開 package 並進入符號附錄，但定位只是 test fixture；若被生產碼長期依賴，會把確定性測試產生器誤升成穩定 API | 在 API 穩定分級中標為 test-support；`architecture.json`／`moon.pkg` 繼續只允許 test-scope 匯入 |
+| FIN-005 | P2／已接受 | `finalg/port` 的接口移植是簽名字串／記錄模型，不是 MoonBit 編譯器 AST 級遷移器；不能證明語義、trait 解析或生成介面相容 | 只作盤點與報告；真正遷移仍須編譯器、`.mbti` 與測試輸出三重核對 |
+
+## `catmath/`
+
+詳細內容分域與拆分事件見 [CATMATH](CATMATH.md)。
+
+| ID | 優先級／狀態 | 缺口與影響 | 下一步／驗收方向 |
+|---|---|---|---|
+| CAT-001 | P1／待實作 | catmath 仍是約 45 檔、逾萬行的單一 MoonBit package；同一編譯單元使增量編譯、主題邊界與 API 審查成本高，但內部互相遞迴尚未有 SCC 量測 | 先取得五系統運行基線，再輸出去除 tests 的宣告依賴圖與 SCC；只有無環或可明示 SCC 的主題才逐一拆包，每拆一包都要維持 `.mbti` 與測試清單不倒退 |
+| CAT-002 | P2／已接受 | 眾多 `verify_*` 是有限／抽樣可執行檢查，不是形式證明；公理窮舉的成本可達三次方或更高，函數名本身不記錄樣本域與完備性 | 與 DOC-009 一起在附錄外補逐函數域、複雜度與完備性元資料；引用時必須說清有限範圍 |
+| CAT-003 | P2／待實作 | catmath `snf_int` 會就地改寫入參 `IntMat.data`；不熟悉此慣例的呼叫者可能在求 SNF 後誤用原矩陣（bridge 已以深拷貝構造避開） | 增加不變入參的 `*_copy`／report 變體或在型別／命名上標示 in-place；舊 API 的破壞性語義在相容政策前不得靜默改變 |
+| CAT-004 | P2／待實作 | `canonical_index`／`derived_index` 是手寫敘事登記，未由檔案、宣告或測試自動對賬，新增算法時可靜默漏登 | 以生成介面與檔案清單核對索引覆蓋；手寫的定理敘事仍人工維護，但漏登應令治理工具失敗 |
+| CAT-005 | P2／已接受 | 部分 catmath 群 API 實質假設單位元索引 `e=0`，`FinTop` 建構也會把關係自反化及傳遞閉包；bridge 只在明示小片段使用，原始 API 名稱本身不攜帶這些前提 | 增加 checked wrapper 或把前提進型別／命名，並為非零單位元與非閉包輸入加反例；在此之前 bridge 報告不得把片段結果推廣到任意標號 |
+
+## 直接聯邦擴展（沿用原 UNI 編號）
+
+| ID | 優先級／狀態 | 缺口與影響 | 下一步／驗收方向 |
+|---|---|---|---|
+| UNI-001 | P1／待實作 | 18 張 bridge 證書已寫成可執行函數，但本階段與 ENG-009 一樣未運行；目前只能宣稱轉換器成功編譯，不能宣稱往返與互校在五成員樹上已通過 | 運行期先單跑 bridge wbtest 與 `cmd/showcase` 保存輸出，再跑全倉；任何失敗先定位到來源表示，不可改證書樣本掩蓋 |
+| UNI-002 | P2／待實作 | bridge 的扁平 `BridgeCertificate` 尚無版本、輸入摘要、序列化或離線重驗包；與 BRG-007 是同一工程債 | 定義版本化 certificate envelope，保留來源原生證據引用 |
+| UNI-003 | P2／已接受 | 直接橋已覆蓋有限範疇／群／G-集、單變量多項式、整數矩陣、布林函數、有限拓撲／Spec、功能圖、有限同調、S¹ 與窄 STLC；多變量 Q→finalg、一般 finalg scheme/module→catmath derived 等尚無共同資料模型 | 逐項以可逆性、反例、成本與來源判定器設計；不得為了覆蓋率在成員間共用私有表示 |
+| UNI-004 | P2／待實作 | 群列舉、範疇表轉換與律檢查具平方／三次方成本，現以 `cap`／Option／Bool 分散表達，沒有共用 budget 或部分結果形狀 | 納入 API-002 的共用 outcome 設計；新轉接器先明寫大小上限與超限結果 |
+
+## `bridge/` 與展示層
+
+詳細語義與反例在 [BRIDGE](BRIDGE.md)。
+
+| ID | 優先級／狀態 | 缺口與影響 | 下一步／驗收方向 |
+|---|---|---|---|
+| BRG-001 | P1／待實作 | 加權有向圖對稱採 support＋頂點簽名顏色作候選，再逐邊精確驗證；簽名雜湊碰撞只降剪枝不損精確性，但性能可退化接近全列舉 | 把方向與邊權多重集改成無雜湊的精確顏色鍵，或完成 SYM-002 的原生邊色搜尋；加入人造碰撞壓力測試 |
+| BRG-002 | P2／已接受 | 熱帶最優指派與完整對稱群需要列舉置換，具有 `n!` 本質成本與 cap；只接受有限橋接範圍的 `Int64` | 大規模入口應改回傳 generating set 或單一最優解；完整群 API 保留小 `n` 誠實版 |
+| BRG-003 | P2／待實作 | 任意實／複浮點矩陣對稱只作 `eps` 近似檢查，沒有區間或譜誤差證書；projector 也繼承列舉上限 | 為可精確化的 0／1、置換與有理矩陣增加精確路徑；浮點路徑在名稱／回傳中保留 tolerance |
+| BRG-004 | P2／已接受 | 自由範疇橋只接受 DAG，轉換會枚舉全部路徑並物化合成表；有環圖的自由範疇一般有無限多態射 | 有環版本只能採生成元＋關係或截斷長度表示，不能塞入現有 `FinCat` 全表 |
+| BRG-005 | P2／待實作 | `QPoly` 熱帶化只有單變數 p-進賦值，沒有一般有理賦值、多變數 monomial valuation 或與因式分解／子分割的系統差分測試 | 先加 Newton polygon／根賦值 oracle；多變數化依賴 SEM-004 的高維工作 |
+| BRG-006 | P2／待實作 | Face 半環 star 在有限布爾格上恆為 top，尚無胞腔傳播應用；正方形胞腔只是固定展示，沒有一般定向、邊界符號或參數化胞腔複形 | 下一期橋接應先定 cell complex 資料型別與邊界算子，不再增加只含固定例子的符號 |
+| BRG-007 | P2／待實作 | 三方證書只投影成共同 `source/name/ok/detail`，沒有版本、序列化格式、摘要或重驗 API | 定義版本化 certificate envelope；舊來源的完整證據仍留在各支柱，bridge 只保存可重驗引用 |
+| BRG-008 | P2／待實作 | `weighted_graph_report` 內部重算候選與對稱，且同時做 projector、距離閉包與特徵多項式；大圖時沒有分段 budget 或部分報告 | 拆成可組合階段並共用候選枚舉；report API 明寫每個欄位成本和超限行為 |
+| BRG-009 | P2／已接受 | cubical STLC 的 `quote_eta` 會把任何 `LUnit` 項塌縮為單位值，catmath `eta_long` 不對 `SOne` 中性項作同一塌縮；兩邊 raw normal form 因此不是同一相等 | bridge 報告同時保存 raw equality 與顯式 unit-η completion；若要 raw 相等，必須改 catmath 範形定義或引入型別化商，不可在橋中靜默抹除差異 |
+| BRG-010 | P2／已接受 | 第二波交叉檢查多為小有限窮舉：assignments、子集、Hom、群元素與矩陣形狀在尺寸增大時成本急升，部分 API 只以 `Bool`/Option 匯總失敗原因 | 新報告先加成本欄位與分段 outcome；大規模版本必須換符號或增量算法並與窮舉 oracle 差分對拍 |
+
+## 文檔、雙語與生成物
+
+| ID | 優先級／狀態 | 缺口與影響 | 下一步／驗收方向 |
+|---|---|---|---|
+| DOC-006 | P2／待實作 | 雙語覆蓋不均：根 `GUIDE.en.md` 是較短的英文版，各成員 README、`semiring/DESIGN.md`、`catmath/MATH.md` 與中央 `BRIDGE.md`、`FINALG.md`、`CATMATH.md` 長文以中文為正本；英文規格靠 SPEC §1.17 與生成附錄維持結構 | 不追求逐字全譯；先為中央長文補英文摘要與限制章節，標明中文詳細版是正本 |
+| DOC-007 | P2／待實作 | 多數使用範例已由 `cmd/*` 與 tests 編譯，但 Markdown 內的短 import／命令示例尚無逐段 doctest | `doc_check.py` 下一步抽取標記為可執行示例核對；不可執行的歷史片段要明標 pseudo-code |
+| DOC-008 | P2／已接受 | 早期 GUIDE 期數敘事與已濃縮的研究決策有歷史價值，但篇幅大，容易被搜尋引擎或新讀者誤作現況 | 已由中央索引與 MIGRATION 決策史分流；不得改寫歷史量測來追平現值，現值只更新 STATUS |
+| DOC-009 | P2／待實作 | 附錄只列符號、套件、類別和規格族，不含逐符號範例、前提、複雜度與穩定等級 | 與 API-003 一起設計元資料來源；不可手改生成附錄來補欄位 |
+| DOC-010 | P3／待實作 | 尚無文件站、搜尋、術語表或跨文件概念圖；大型 Markdown 只能靠索引導航 | 在有外部讀者需求後再建站；目前先維持可由 GitHub 直接閱讀與機器檢查連結的純 Markdown |
+
+## 建議執行順序
+
+1. 運行期獲授權後先關閉 `ENG-009`／`UNI-001`：取得五系統 wasm-gc、
+   native 的實際測試數字與全部 smoke 證據，未完成前不作可信發佈。
+2. 完成 `REL-001`、`REL-004` 與 `ENG-001`，令四個來源倉導流、CI
+   強制度與 hosted compile/runtime 運行都有外部證據。
+3. 在合適的外部工具環境執行 FIN-001 的 proof pipeline；不得把它
+   併入一般單元測試統計。
+4. 建立第一個版本與相容政策（`REL-003`、`API-003`），再開 API 錯誤
+   模型分期遷移（`API-001`、`API-002`）。
+5. 修 `SEC-002`，並建立覆蓋率與工具鏈鎖定（`ENG-002`、`ENG-003`）；
+   catmath 拆包（CAT-001）只在運行基線後按 SCC 推進。
+6. bridge 優先做精確有向邊色鍵及 canonical form（`BRG-001`、`API-005`），
+   不再添加沒有一般資料型別的固定展示。
+7. 理論界限按研究價值逐項開期；沒有新證明或新算法前，保持「已接受」。

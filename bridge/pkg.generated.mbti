@@ -3,7 +3,10 @@ package "vv0101v01/cubical-hermitian/bridge"
 
 import {
   "vv0101v01/cubical-hermitian",
-  "vv0101v01/cubical-hermitian/semiring/cat",
+  "vv0101v01/cubical-hermitian/catmath",
+  "vv0101v01/cubical-hermitian/finalg",
+  "vv0101v01/cubical-hermitian/finalg/finite",
+  "vv0101v01/cubical-hermitian/finalg/scheme",
   "vv0101v01/cubical-hermitian/semiring/graph",
   "vv0101v01/cubical-hermitian/semiring/matrix",
   "vv0101v01/cubical-hermitian/semiring/trop",
@@ -11,15 +14,45 @@ import {
 }
 
 // Values
+pub fn anf_coeffs_to_cubical_face(Int32, Array[Int32]) -> @cubical-hermitian.Face?
+
 pub fn assignment_cost(Array[Array[Int64]], @symlib.Perm) -> Int64
 
 pub fn average_permutation_matrices(Array[@symlib.Perm]) -> @cubical-hermitian.CMat
 
 pub fn bool_tuple_type(Int32) -> @cubical-hermitian.Ty
 
+pub fn boolean_function_federation_report(Int32, Array[Int32]) -> BooleanFunctionFederationReport
+
 pub fn bridge_certificate(String, String, Bool, detail? : String) -> BridgeCertificate
 
 pub fn bridge_certificates() -> Array[BridgeCertificate]
+
+pub fn catmath_category_to_finalg_category(@catmath.Category) -> @vv0101v01/cubical-hermitian/finalg/cat.Category[Int32, Int32]?
+
+pub fn catmath_category_to_fincat(@catmath.Category) -> @symlib.FinCat?
+
+pub fn catmath_context_to_cubical_context(Array[@catmath.SType]) -> Array[@cubical-hermitian.LTy]
+
+pub fn catmath_dynsys_to_semiring_graph(@catmath.DynSys) -> @graph.Graph?
+
+pub fn catmath_fin_group_to_symlib_perm_group(@catmath.FinGroup) -> @symlib.PermGroup?
+
+pub fn catmath_fintop_to_symlib_fincat(@catmath.FinTop) -> @symlib.FinCat?
+
+pub fn catmath_gset_to_symlib_gsetof(@catmath.GSet) -> @symlib.GSetOf?
+
+pub fn catmath_path_of_winding(Int32) -> @catmath.S1Path
+
+pub fn catmath_sterm_equal(@catmath.STerm, @catmath.STerm) -> Bool
+
+pub fn catmath_sterm_to_cubical_term(@catmath.STerm) -> @cubical-hermitian.Term
+
+pub fn catmath_sterm_unit_eta_complete(@catmath.STerm, @catmath.SType, Array[@catmath.SType]) -> @catmath.STerm?
+
+pub fn catmath_stype_equal(@catmath.SType, @catmath.SType) -> Bool
+
+pub fn catmath_stype_to_cubical_lty(@catmath.SType) -> @cubical-hermitian.LTy
 
 pub fn certificate_of_cubical(@cubical-hermitian.CheckResult) -> BridgeCertificate
 
@@ -31,19 +64,75 @@ pub fn certificate_summary(Array[BridgeCertificate]) -> String
 
 pub fn certificates_all_ok(Array[BridgeCertificate]) -> Bool
 
+pub fn check_boolean_function_federation(Int32, Array[Int32]) -> Bool
+
 pub fn check_certificate_bridge() -> Bool
 
 pub fn check_face_semiring_bridge() -> Bool
+
+pub fn check_federation_algebra_derived_bridges() -> Bool
+
+pub fn check_federation_boolean_topology_derived_bridges() -> Bool
+
+pub fn check_federation_category_bridge() -> Bool
+
+pub fn check_federation_catmath_registry() -> Bool
+
+pub fn check_federation_circle_bridge() -> Bool
+
+pub fn check_federation_dynamics_homology_derived_bridges() -> Bool
+
+pub fn check_federation_finalg_verify_bridge() -> Bool
+
+pub fn check_federation_finite_structure_derived_bridges() -> Bool
+
+pub fn check_federation_group_bridge() -> Bool
+
+pub fn check_federation_matrix_bridge() -> Bool
+
+pub fn check_federation_polynomial_bridge() -> Bool
+
+pub fn check_federation_stlc_derived_bridge() -> Bool
+
+pub fn check_finite_category_federation(@symlib.FinCat) -> Bool
+
+pub fn check_finite_dynamics_federation(@catmath.DynSys) -> Bool
+
+pub fn check_finite_group_federation(@catmath.FinGroup, Int32) -> Bool
+
+pub fn check_finite_gset_federation(@catmath.GSet) -> Bool
+
+pub fn check_finite_spec_federation(@finite.FinAlg) -> Bool
+
+pub fn check_finite_topology_federation(@catmath.FinTop) -> Bool
+
+pub fn check_fp_chain_complex_federation(@catmath.ChainComplex) -> Bool
 
 pub fn check_free_category_bridge() -> Bool
 
 pub fn check_graph_symmetry_bridges() -> Bool
 
+pub fn check_integer_matrix_federation(Array[Array[Int32]], Int32, Int32) -> Bool
+
+pub fn check_integral_homology_federation(Array[Array[Int32]], Array[Array[Int32]], Int32) -> Bool
+
 pub fn check_perm_wiring_bridge() -> Bool
+
+pub fn check_polynomial_reduction_federation(@vv0101v01/cubical-hermitian/algebra.QPoly, @vv0101v01/cubical-hermitian/algebra.QPoly, Int32, Array[Int32]) -> Bool
 
 pub fn check_square_cell_symmetry() -> Bool
 
+pub fn check_stlc_federation(Array[@catmath.SType], @catmath.STerm) -> Bool
+
 pub fn check_tropical_bridges() -> Bool
+
+pub fn circle_winding_cross_check(Array[Int32]) -> Bool
+
+pub fn cubical_eta_long_term_to_catmath(@cubical-hermitian.Term, @catmath.SType, Array[@catmath.SType]) -> @catmath.STerm?
+
+pub fn cubical_loop_of_winding(Int32) -> @cubical-hermitian.SphereLoopExpr
+
+pub fn cubical_lty_to_catmath_stype(@cubical-hermitian.LTy) -> @catmath.SType
 
 pub fn exact_determinant_int64(Array[Array[Int64]]) -> @vv0101v01/cubical-hermitian/algebra.Rat
 
@@ -51,9 +140,59 @@ pub fn exact_permanent_int64(Array[Array[Int64]], Int32) -> @vv0101v01/cubical-h
 
 pub fn face_semiring_law_report() -> @vv0101v01/cubical-hermitian/semiring/algebra.LawReport
 
+pub fn federation_member_count() -> Int32
+
+pub fn federation_member_ids() -> Array[String]
+
+pub fn federation_members() -> Array[FederationMember]
+
+pub fn federation_namespaces() -> Array[String]
+
+pub fn finalg_loop_of_winding(Int32) -> Int32
+
+pub fn finalg_spec_to_catmath_fintop(@scheme.Spec) -> @catmath.FinTop
+
+pub fn finalg_univariate_dense_coeffs(@finalg.Poly) -> Array[Int32]?
+
+pub fn finalg_univariate_qpoly_roundtrip(@finalg.Poly) -> Bool
+
+pub fn finalg_univariate_to_qpoly(@finalg.Poly) -> @vv0101v01/cubical-hermitian/algebra.QPoly?
+
+pub fn fincat_finalg_category_laws(@symlib.FinCat) -> Bool
+
 pub fn fincat_hom_counts(@symlib.FinCat) -> Array[Array[Int64]]
 
-pub fn free_category_to_fincat(@cat.DiGraph) -> @symlib.FinCat
+pub fn fincat_tables_equal(@symlib.FinCat, @symlib.FinCat) -> Bool
+
+pub fn fincat_to_catmath_category(@symlib.FinCat) -> @catmath.Category?
+
+pub fn fincat_to_finalg_category(@symlib.FinCat) -> @vv0101v01/cubical-hermitian/finalg/cat.Category[Int32, Int32]?
+
+pub fn finite_category_federation_report(@symlib.FinCat) -> FiniteCategoryFederationReport
+
+pub fn finite_dynamics_federation_report(@catmath.DynSys) -> FiniteDynamicsFederationReport
+
+pub fn finite_group_federation_report(@catmath.FinGroup, Int32) -> FiniteGroupFederationReport
+
+pub fn finite_gset_federation_report(@catmath.GSet) -> FiniteGSetFederationReport
+
+pub fn finite_spec_federation_report(@finite.FinAlg) -> FiniteSpecFederationReport
+
+pub fn finite_topology_federation_report(@catmath.FinTop) -> FiniteTopologyFederationReport
+
+pub fn fp_chain_complex_federation_report(@catmath.ChainComplex) -> FpChainComplexFederationReport
+
+pub fn free_category_to_fincat(@vv0101v01/cubical-hermitian/semiring/cat.DiGraph) -> @symlib.FinCat
+
+pub fn integer_matrix_charpoly_cross_check_mod(Array[Array[Int32]], Int32) -> Bool
+
+pub fn integer_matrix_federation_report(Array[Array[Int32]], Int32, Int32) -> IntegerMatrixFederationReport
+
+pub fn integer_matrix_normal_form_report(Array[Array[Int32]]) -> IntegerMatrixNormalFormReport?
+
+pub fn integer_snf_cross_check(Array[Array[Int32]]) -> Bool
+
+pub fn integral_homology_federation_report(Array[Array[Int32]], Array[Array[Int32]], Int32) -> IntegralHomologyFederationReport
 
 pub fn matrix_permutation_symmetries(@cubical-hermitian.CMat, Int32) -> Array[@symlib.Perm]
 
@@ -70,6 +209,10 @@ pub fn perm_preserves_semiring_graph(@graph.Graph, @symlib.Perm) -> Bool
 pub fn perm_wiring(@symlib.Perm) -> @cubical-hermitian.Wiring
 
 pub fn permutation_matrix(@symlib.Perm) -> @cubical-hermitian.CMat
+
+pub fn polynomial_reduction_federation_report(@vv0101v01/cubical-hermitian/algebra.QPoly, @vv0101v01/cubical-hermitian/algebra.QPoly, Int32, Array[Int32]) -> PolynomialReductionFederationReport
+
+pub fn qpoly_to_finalg_univariate(@vv0101v01/cubical-hermitian/algebra.QPoly, Int32) -> @finalg.Poly?
 
 pub fn qpoly_tropicalize_padic(@vv0101v01/cubical-hermitian/algebra.QPoly, Int32) -> @trop.UniPoly
 
@@ -89,17 +232,52 @@ pub fn signed_perm_wiring(@symlib.Perm, Array[Bool]) -> @cubical-hermitian.Wirin
 
 pub fn square_cell_incidence() -> (@symlib.Graph, Array[Int32])
 
+pub fn stlc_federation_report(Array[@catmath.SType], @catmath.STerm) -> StlcFederationReport
+
+pub fn symlib_gsetof_to_catmath_gset_with_element_order(@symlib.GSetOf, @symlib.PermGroup, Int32) -> @catmath.GSet?
+
+pub fn symlib_perm_group_to_catmath_fin_group(@symlib.PermGroup, Int32) -> @catmath.FinGroup?
+
+pub fn symlib_thin_fincat_to_catmath_fintop(@symlib.FinCat) -> @catmath.FinTop?
+
 pub fn tropical_matrix_symmetries(Array[Array[Int64]], Int32) -> Array[@symlib.Perm]
 
 pub fn tropical_optimal_assignments(Array[Array[Int64]], Int32) -> Array[@symlib.Perm]
 
+pub fn truth_table_to_cubical_face_dnf(Int32, Array[Int32]) -> @cubical-hermitian.Face?
+
 pub fn weighted_graph_report(@graph.Graph, Int32) -> WeightedGraphReport
+
+pub fn winding_of_catmath_path(@catmath.S1Path) -> Int32
+
+pub fn winding_of_cubical_loop(@cubical-hermitian.SphereLoopExpr) -> Int32
 
 pub fn wiring_output_signs(@cubical-hermitian.Wiring) -> Array[Bool]
 
 // Errors
 
 // Types and methods
+pub(all) struct BooleanFunctionFederationReport {
+  valid : Bool
+  nvars : Int32
+  table_size : Int32
+  support_count : Int32
+  anf_coeffs : Array[Int32]
+  anf_degree : Int32
+  anf_term_count : Int32
+  dnf_face : @cubical-hermitian.Face
+  anf_face : @cubical-hermitian.Face
+  satisfiable : Bool
+  tautology : Bool
+  anf_evaluation_ok : Bool
+  anf_involution_ok : Bool
+  dnf_evaluation_ok : Bool
+  anf_face_evaluation_ok : Bool
+  face_equivalence_ok : Bool
+  witness_ok : Bool
+  face_class_ok : Bool
+}
+
 pub(all) struct BridgeCertificate {
   source : String
   name : String
@@ -135,6 +313,234 @@ pub impl @vv0101v01/cubical-hermitian/semiring/algebra.IdempotentSemiring for Fa
 pub impl @vv0101v01/cubical-hermitian/semiring/algebra.OrderedSemiring for FaceClass
 pub impl @vv0101v01/cubical-hermitian/semiring/algebra.Semiring for FaceClass
 pub impl @vv0101v01/cubical-hermitian/semiring/algebra.StarSemiring for FaceClass
+
+pub(all) struct FederationMember {
+  id : String
+  display_name : String
+  package_namespace : String
+  source_repository : String
+  provenance : String
+  summary : String
+}
+
+pub(all) struct FiniteCategoryFederationReport {
+  valid : Bool
+  n_objects : Int32
+  n_morphisms : Int32
+  iso_class_count : Int32
+  skeleton_object_count : Int32
+  underlying_component_count : Int32
+  hom_count_matrix : Array[Array[Int32]]
+  directed_reachability : Array[Array[Bool]]
+  hom_count_charpoly : @vv0101v01/cubical-hermitian/algebra.QPoly
+  catmath_laws_ok : Bool
+  finalg_laws_ok : Bool
+  hom_counts_ok : Bool
+  skeleton_ok : Bool
+  reachability_ok : Bool
+  components_ok : Bool
+}
+
+pub(all) struct FiniteDynamicsFederationReport {
+  valid : Bool
+  n_points : Int32
+  component_count : Int32
+  cycle_lengths : Array[Int32]
+  periodic_point_count : Int32
+  fixed_point_count : Int32
+  tail_point_count : Int32
+  adjacency_charpoly : @vv0101v01/cubical-hermitian/algebra.QPoly
+  is_permutation : Bool
+  permutation_order : Int32
+  decomposition_ok : Bool
+  components_ok : Bool
+  charpoly_formula_ok : Bool
+  permutation_ok : Bool
+}
+
+pub(all) struct FiniteGSetFederationReport {
+  valid : Bool
+  group_order : Int32
+  set_size : Int32
+  orbit_count : Int32
+  orbit_sizes : Array[Int32]
+  burnside_average : Int32
+  averaged_projector_rank : Int32
+  transitive : Bool
+  catmath_action_ok : Bool
+  symlib_orbits_ok : Bool
+  burnside_ok : Bool
+  semiring_orbit_closure_ok : Bool
+  finalg_equiv_ok : Bool
+  projector_ok : Bool
+}
+
+pub(all) struct FiniteGroupFederationReport {
+  valid : Bool
+  order : Int32
+  center_size : Int32
+  conjugacy_class_count : Int32
+  abelianization_order : Int32
+  abelianization_invariants : Array[Int32]
+  regular_projector_rank : Int32
+  catmath_group_ok : Bool
+  cayley_embedding_ok : Bool
+  regular_action_ok : Bool
+  finalg_equiv_ok : Bool
+  projector_ok : Bool
+  zero_identity_supported : Bool
+  delooping_ok : Bool
+  abelianization_ok : Bool
+}
+
+pub(all) struct FiniteSpecFederationReport {
+  valid : Bool
+  prime_count : Int32
+  open_count : Int32
+  component_count : Int32
+  block_count : Int32
+  irreducible_component_count : Int32
+  dimension : Int32
+  topology_ok : Bool
+  opens_supported : Bool
+  opens_ok : Bool
+  dimension_ok : Bool
+  blocks_supported : Bool
+  blocks_ok : Bool
+}
+
+pub(all) struct FiniteTopologyFederationReport {
+  valid : Bool
+  n_points : Int32
+  relation_count : Int32
+  t0 : Bool
+  t0_quotient_points : Int32
+  component_count : Int32
+  open_set_count : Int32
+  adjacency_charpoly : @vv0101v01/cubical-hermitian/algebra.QPoly
+  preorder_ok : Bool
+  semiring_closure_ok : Bool
+  thin_category_ok : Bool
+  t0_skeleton_ok : Bool
+  components_ok : Bool
+  identity_homeomorphism_ok : Bool
+  open_sets_supported : Bool
+  open_sets_ok : Bool
+}
+
+pub(all) struct FpChainComplexFederationReport {
+  valid : Bool
+  prime : Int32
+  dimensions : Array[Int32]
+  boundary_ranks : Array[Int32]
+  homology_dimensions : Array[Int32]
+  euler_characteristic : Int32
+  shape_ok : Bool
+  chain_ok : Bool
+  ranks_ok : Bool
+  homology_ok : Bool
+  euler_ok : Bool
+}
+
+pub(all) struct IntegerMatrixFederationReport {
+  valid : Bool
+  rows : Int32
+  cols : Int32
+  prime : Int32
+  exact_rank : Int32
+  finalg_snf_rank : Int32
+  catmath_snf_rank : Int32
+  finalg_finite_rank : Int32
+  catmath_finite_rank : Int32
+  invariant_factors : Array[Int32]
+  determinant : @vv0101v01/cubical-hermitian/algebra.Rat
+  trace : @vv0101v01/cubical-hermitian/algebra.Rat
+  charpoly : @vv0101v01/cubical-hermitian/algebra.QPoly
+  minimal_polynomial : @vv0101v01/cubical-hermitian/algebra.QPoly
+  finite_cokernel_supported : Bool
+  finite_cokernel_order : Int32
+  snf_ok : Bool
+  rank_ok : Bool
+  determinant_ok : Bool
+  charpoly_supported : Bool
+  charpoly_ok : Bool
+  finite_cokernel_ok : Bool
+}
+
+pub(all) struct IntegerMatrixNormalFormReport {
+  finalg_snf_diag : Array[Int32]
+  catmath_snf_factors : Array[Int32]
+  snf_agrees : Bool
+  finalg_hnf : Array[Array[Int32]]
+  hnf_idempotent : Bool
+}
+
+pub(all) struct IntegralHomologyFederationReport {
+  valid : Bool
+  middle_dimension : Int32
+  rank_a : Int32
+  rank_b : Int32
+  free_rank : Int32
+  torsion_factors : Array[Int32]
+  prime : Int32
+  mod_p_rank_a : Int32
+  mod_p_rank_b : Int32
+  mod_p_homology_dimension : Int32
+  p_torsion_factor_count : Int32
+  product_zero_ok : Bool
+  snf_ok : Bool
+  universal_coefficient_bound_ok : Bool
+}
+
+pub(all) struct PolynomialReductionFederationReport {
+  valid : Bool
+  prime : Int32
+  exact_degree_f : Int32
+  exact_degree_g : Int32
+  exact_degree_product : Int32
+  reduced_degree_f : Int32
+  reduced_degree_g : Int32
+  reduced_degree_product : Int32
+  reduced_f_coeffs : Array[Int32]
+  reduced_g_coeffs : Array[Int32]
+  reduced_product_coeffs : Array[Int32]
+  finite_roots_f : Array[Int32]
+  multiple_finite_roots_f : Array[Int32]
+  rational_root_images_f : Array[Int32]
+  hensel_lifts_f : Array[(Int32, Int32)]
+  quotient_dimension : Int32
+  quotient_is_field : Bool
+  quotient_is_reduced : Bool
+  quotient_is_semisimple : Bool
+  multiplication_ok : Bool
+  derivative_ok : Bool
+  evaluation_ok : Bool
+  catmath_multiplication_ok : Bool
+  rational_root_images_ok : Bool
+  hensel_supported : Bool
+  hensel_ok : Bool
+  ideal_supported : Bool
+  ideal_membership_ok : Bool
+  companion_supported : Bool
+  companion_ok : Bool
+  tropical_supported : Bool
+  tropical_ok : Bool
+}
+
+pub(all) struct StlcFederationReport {
+  valid : Bool
+  inferred_type : @catmath.SType
+  catmath_normal_form : @catmath.STerm
+  catmath_unit_eta_completed_normal_form : @catmath.STerm
+  cubical_normal_form : @cubical-hermitian.Term
+  cubical_normal_form_in_catmath : @catmath.STerm
+  raw_normal_forms_equal : Bool
+  unit_eta_completion_needed : Bool
+  completed_normal_forms_equal : Bool
+  type_preserved_ok : Bool
+  cubical_eta_equality_ok : Bool
+  catmath_normal_form_idempotent_ok : Bool
+}
 
 pub(all) struct WeightedGraphReport {
   n : Int32

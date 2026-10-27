@@ -2,11 +2,21 @@
 
 Language: **English** · [中文正本](SPEC.md) · [English appendix](SPEC-APPENDIX.en.md) · [中文附錄](SPEC-APPENDIX.md) · [Architecture](ARCHITECTURE.md)
 
-> **Federation scope note.** The prose below specifies the cubical pillar
-> (root + exact `algebra/`).  The long symlib and semiring specifications
-> live in `docs/symlib.md` and `docs/semiring/`, and cross-pillar bridges
-> in `docs/BRIDGE.md`.  The generated appendices, by contrast, cover all
-> **25 packages and 5,054 public symbols** in the repository.
+> **Federation scope note.** The prose below specifies the cubical
+> leader member (root + exact `algebra/`).  The pre-federation texts of
+> symlib, semiring, finalg and catmath live in their own root-level
+> `README.md` files; finalg and catmath in the federation are covered
+> by `docs/FINALG.md` and `docs/CATMATH.md`, and the single
+> five-member bridge by `docs/BRIDGE.md`.  The generated appendices
+> cover all **39 packages and 6,259 public symbols**.
+>
+> **Current publication identity.** The repository is
+> <https://github.com/vv0101v01/golden>; the MoonBit module remains
+> `vv0101v01/cubical-hermitian`. Current repository state is in
+> `docs/STATUS.md`. Section 4 remains the authoritative cubical boundary,
+> while `docs/ENGINEERING-GAPS.md` indexes work across the whole
+> federation. A listed symbol is classified, not thereby covered by a
+> stability promise (gap API-003).
 
 This document gives, for **every type, operator, structure and specification in the project**:
 
@@ -22,7 +32,9 @@ Acceptance (in the project root):
 moon info && python3 tools/audit_spec.py --write   # regenerate and audit the appendices
 python3 tools/audit_spec.py --check                # audit only
 python3 tools/arch_check.py                        # package/component layers and unique ownership
-moon check --deny-warn && moon test --target wasm-gc && moon run cmd/main   # 336 whole-repository tests (111 cubical), theorems 90/90
+python3 tools/doc_check.py                         # documentation links/index/governance counts
+sh tools/check_compile.sh                          # current compile-only gate: four-target checks, test build-only, executable builds
+GOLDEN_RUN_TESTS=1 sh tools/check_full.sh          # future runtime stage: actual tests and smoke executables
 ```
 
 ---
@@ -517,6 +529,52 @@ This turns degree classification of the closed representative language into a wi
 Phase 12 could return residual HOU constraints, but callers had to resume them manually. `hou_solve_constraints` now solves a constraint *set*: repeatedly propagate the principal fragment through all equations, and only when stuck choose one residual for transactional iterative-deepening Huet search, feeding any specific guess back into global propagation. Before reporting `HouSolved`, every original constraint is rechecked under the substitution. A guess that makes another equation fail without proving the whole set unsolvable yields residual, not a false no-unifier; a Bool clash after a principal assignment yields `HouNoUnifier` with the input restored; exhausted node budgets yield `HouBudgetExceeded` with the residual. `HouResidualSolveReport` records initial/solved counts, search rounds and search counters. The law feeds exactly the `.residual` returned by `hou_unify_mgu` for a rigid-spine equation back to the solver and verifies reconstruction, solves a rigid-plus-repeated-spine pair, takes zero search rounds on a principal example, and leaves the blocked meta unassigned on a one-node budget. Search successes are specific unifiers, not general MGUs, and undecidability stands.
 
 Artifact manifests now form an append-only integrity chain. Every successful put/remove first validates the existing chain and then appends a `CHARTCHN` entry (sequence, tombstone flag, the complete record, previous digest and this entry's dual-hash digest) to `chain.bin`; a corrupt chain makes writes fail closed. `artifact_repository_chain_report` reverifies every link, replays puts-overwrite/removes-tombstone to live records, and checks coverage against the index. Reads and recovery accept `expected_head~ : (Int32, Int32)?` as an external trust anchor — an Option, not a `-1` sentinel, because overflowed Int32 hashes can be negative. The law covers one blob under two names plus overwrite (entries=3/live=2), rejection of the old head after removal (entries=4/live=1), recovery of exactly one record after destroying the index without resurrecting the tombstone, rejection of an old-chain replay (recovery −1), invalidation by either record-hash or blob tampering, and bootstrapping a chainless legacy index's two records on its next put (entries=3/live=3). The dual checksum is not a cryptographic signature: the chain proves consistency relative to an externally kept head. Acceptance: `check_hou_residual_solver`, `check_artifact_manifest_integrity_chain`.
+
+### 1.17 Phase 14: the direct 3+2 five-member federation (`finalg/`, `catmath/`, expanded `bridge/`)
+
+algo and algo4 enter the same module without being flattened into the
+cubical root and without a second integration layer above the old
+three-pillar bridge.  `finalg/` preserves moon-algebra's twelve-package
+DAG; `catmath/` preserves algo4 as one large library, with its former
+same-package executable split to `cmd/catmath`.  The original `bridge/`
+is expanded in place into the only five-member observer/adapter layer.
+
+The formal alignments and derived finite diagrams comprise exact
+finite-category table transposition and table-to-closure presentation;
+finite groups and G-sets (Cayley embedding, capped enumeration,
+regular/action projector ranks and Burnside averages); integral
+univariate-polynomial reduction commuting with multiplication,
+differentiation and evaluation on the stated fragments, rational-root
+images under invertible denominators and exactly rechecked Hensel
+lifts; integer-matrix Smith/characteristic/minimal-polynomial and
+Cayley-Hamilton cross-checks; rank-nullity Betti numbers and Euler
+characteristics for guarded `F_p` boundary matrices, with only a
+universal-coefficient lower bound claimed from integral data modulo p;
+truth-table/ANF/Face agreement on every assignment; Alexandrov
+specialization versus thin categories and transposed finite-Spec open
+sets; functional-graph cycle/tail invariants yielding
+`x^(tail)·∏(x^L−1)`; the shared integer S1 winding invariant; and a
+narrow STLC translation.  The STLC bridge records both raw normal-form
+equality and an explicit unit-eta completion because cubical quotation
+collapses every unit term while catmath's raw eta-long form does not;
+it rejects Bool literals and `coe` rather than inventing an equivalence.
+Representative lifting out of a finite field is explicitly not a ring
+homomorphism, arbitrary closure categories are not claimed enumerable,
+and exhaustive diagrams are bounded to their stated finite fragments.
+
+Narrow owner-local interop constructors/copy functions, finalg/cat's
+generic `category_of`, and explicit `pub extend` declarations are the
+only interface widening inside the imported members; no representation
+is promoted wholesale to `pub(all)`.
+
+All test sources are present, but by explicit stage policy this phase
+is compile-only: formatting, generated interfaces and appendices,
+four-target `moon check --deny-warn`, `moon test --build-only`, and
+executable `moon build`.  The certificate functions are therefore
+compiled, not yet reported as executed on the five-member tree; the
+336/340 and 90/90 figures remain historical evidence for the earlier
+three-system tree, and `moon prove` has not been run for
+`finalg/verify`.
 
 ## 2. Catalogue of canonical forms (by structure)
 

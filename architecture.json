@@ -239,7 +239,7 @@
       "id": "bridge",
       "path": "bridge",
       "moon": "vv0101v01/cubical-hermitian/bridge",
-      "layer": 4,
+      "layer": 6,
       "depends_on": [
         "root",
         "algebra",
@@ -248,24 +248,33 @@
         "semiring-graph",
         "semiring-matrix",
         "semiring-trop",
-        "semiring-cat"
+        "semiring-cat",
+        "finalg",
+        "finalg-num",
+        "finalg-linalg",
+        "finalg-finite",
+        "finalg-scheme",
+        "finalg-cat",
+        "finalg-hott",
+        "finalg-verify",
+        "catmath"
       ],
-      "summary_en": "One-way cross-pillar bridges: permutation representations and wirings, weighted graph symmetry, tropical assignments, free categories, Face semirings, polynomial tropicalization and unified certificates.",
-      "summary_zh": "單向跨支柱橋接：置換表示與 wiring、加權圖對稱、熱帶指派、自由範疇、Face 半環、多項式熱帶化與統一證書。"
+      "summary_en": "The single one-way five-member federation core, expanded in place from the original three-pillar bridge: federation registry, certificates, and cross-member finite category/group/G-set, polynomial/matrix, Boolean/topology/Spec, dynamics/homology, circle and STLC commuting diagrams.",
+      "summary_zh": "單一的單向五成員聯邦核心，由原三支柱橋就地擴張：聯邦註冊表與證書，以及有限範疇／群／G-集、多項式／矩陣、布林／拓撲／譜、動力系統／同調、圓周與 STLC 的跨成員可交換圖表。"
     },
     {
       "id": "cmd-showcase",
       "path": "cmd/showcase",
       "moon": "vv0101v01/cubical-hermitian/cmd/showcase",
-      "layer": 5,
+      "layer": 7,
       "depends_on": [
         "bridge",
         "semiring-graph",
         "symlib",
         "root"
       ],
-      "summary_en": "Executable three-pillar showcase.",
-      "summary_zh": "三支柱展示執行入口。"
+      "summary_en": "Executable five-member federation showcase: member registry, all bridge certificates and the original graph-symmetry/projector demonstration.",
+      "summary_zh": "五成員聯邦展示執行入口：成員註冊表、全部橋證書及原圖對稱／投影算子展示。"
     },
     {
       "id": "semiring-par-host",
@@ -302,6 +311,165 @@
       ],
       "summary_en": "Native-only measured semiring report generator. The ~66-second report is a slow gate, never a fast/default gate.",
       "summary_zh": "native-only 半環量測報告產生器；約 66 秒的報告只作慢閘門，永不進快速／預設閘門。"
+    },
+    {
+      "id": "finalg-num",
+      "path": "finalg/num",
+      "moon": "vv0101v01/cubical-hermitian/finalg/num",
+      "layer": 1,
+      "depends_on": [],
+      "summary_en": "Modular integer arithmetic, deterministic primality, factorization, CRT and elementary number theory for the finalg pillar.",
+      "summary_zh": "finalg 支柱的模整數算術、確定性素性、因數分解、CRT 與初等數論。"
+    },
+    {
+      "id": "finalg-linalg",
+      "path": "finalg/linalg",
+      "moon": "vv0101v01/cubical-hermitian/finalg/linalg",
+      "layer": 2,
+      "depends_on": [
+        "finalg-num"
+      ],
+      "summary_en": "Dense matrices, RREF, rank, nullspaces and linear solvers over prime fields.",
+      "summary_zh": "素域上的稠密矩陣、RREF、秩、零空間與線性求解。"
+    },
+    {
+      "id": "finalg",
+      "path": "finalg",
+      "moon": "vv0101v01/cubical-hermitian/finalg",
+      "layer": 3,
+      "depends_on": [
+        "finalg-num",
+        "finalg-linalg"
+      ],
+      "summary_en": "Finite-field rings and multivariate polynomials, Groebner bases, ideals and integer/finite-field normal forms.",
+      "summary_zh": "有限域環與多變量多項式、Gröbner 基、理想與整數／有限域正規範形。"
+    },
+    {
+      "id": "finalg-finite",
+      "path": "finalg/finite",
+      "moon": "vv0101v01/cubical-hermitian/finalg/finite",
+      "layer": 4,
+      "depends_on": [
+        "finalg-num",
+        "finalg-linalg",
+        "finalg"
+      ],
+      "summary_en": "Finite algebras presented by structure constants, ideals, radicals, localization and finite-ring structure.",
+      "summary_zh": "以結構常數呈現的有限代數、理想、根、局部化與有限環結構。"
+    },
+    {
+      "id": "finalg-modules",
+      "path": "finalg/modules",
+      "moon": "vv0101v01/cubical-hermitian/finalg/modules",
+      "layer": 5,
+      "depends_on": [
+        "finalg-num",
+        "finalg-linalg",
+        "finalg-finite"
+      ],
+      "summary_en": "Finite modules, duals, homological/projective constructions, inverse systems and sheaf-like gluing.",
+      "summary_zh": "有限模、對偶、同調／射影構造、逆向系統與層式黏合。"
+    },
+    {
+      "id": "finalg-geometry",
+      "path": "finalg/geometry",
+      "moon": "vv0101v01/cubical-hermitian/finalg/geometry",
+      "layer": 5,
+      "depends_on": [
+        "finalg-num",
+        "finalg-linalg",
+        "finalg",
+        "finalg-finite"
+      ],
+      "summary_en": "Finite algebraic geometry: varieties, rational points and dimension/ideal computations.",
+      "summary_zh": "有限代數幾何：簇、有理點與維數／理想計算。"
+    },
+    {
+      "id": "finalg-scheme",
+      "path": "finalg/scheme",
+      "moon": "vv0101v01/cubical-hermitian/finalg/scheme",
+      "layer": 5,
+      "depends_on": [
+        "finalg-num",
+        "finalg-linalg",
+        "finalg-finite"
+      ],
+      "summary_en": "Finite affine schemes: spectra, stalks/local data and finite gluing constructions.",
+      "summary_zh": "有限仿射概形：譜、莖／局部資料與有限黏合構造。"
+    },
+    {
+      "id": "finalg-hott",
+      "path": "finalg/hott",
+      "moon": "vv0101v01/cubical-hermitian/finalg/hott",
+      "layer": 5,
+      "depends_on": [
+        "finalg-num",
+        "finalg",
+        "finalg-finite"
+      ],
+      "summary_en": "Finite computational HoTT: equivalences, HIT circle/quotients, truncation levels and rewriting models.",
+      "summary_zh": "有限計算 HoTT：等價、HIT 圓／商、截斷層級與重寫模型。"
+    },
+    {
+      "id": "finalg-cat",
+      "path": "finalg/cat",
+      "moon": "vv0101v01/cubical-hermitian/finalg/cat",
+      "layer": 2,
+      "depends_on": [
+        "finalg-num"
+      ],
+      "summary_en": "Closure-dictionary categories/groupoids, delooping, free path categories, partition groupoids and Grothendieck classes.",
+      "summary_zh": "閉包字典範疇／群胚、去圈、自由路徑範疇、分割群胚與 Grothendieck 類。"
+    },
+    {
+      "id": "finalg-port",
+      "path": "finalg/port",
+      "moon": "vv0101v01/cubical-hermitian/finalg/port",
+      "layer": 1,
+      "depends_on": [],
+      "summary_en": "Static interface-port and migration reporting utilities over MoonBit-like signatures.",
+      "summary_zh": "以 MoonBit 式簽名為對象的靜態接口移植與遷移報告工具。"
+    },
+    {
+      "id": "finalg-testutil",
+      "path": "finalg/testutil",
+      "moon": "vv0101v01/cubical-hermitian/finalg/testutil",
+      "layer": 5,
+      "depends_on": [
+        "finalg-num",
+        "finalg-finite"
+      ],
+      "summary_en": "Deterministic random-generation and fixture utilities used by finalg black-box/white-box tests.",
+      "summary_zh": "供 finalg 黑箱／白箱測試使用的確定性隨機生成與 fixture 工具。"
+    },
+    {
+      "id": "finalg-verify",
+      "path": "finalg/verify",
+      "moon": "vv0101v01/cubical-hermitian/finalg/verify",
+      "layer": 1,
+      "depends_on": [],
+      "summary_en": "Proof-enabled elementary integer arithmetic with contracted division, powers and modular exponentiation.",
+      "summary_zh": "啟用 proof 的初等整數算術：合約式除法、冪次與模冪。"
+    },
+    {
+      "id": "catmath",
+      "path": "catmath",
+      "moon": "vv0101v01/cubical-hermitian/catmath",
+      "layer": 1,
+      "depends_on": [],
+      "summary_en": "A large single-package library of finite category theory, higher algebra, homological algebra, canonical forms and computational type theory.",
+      "summary_zh": "大型單一套件函式庫：有限範疇論、高維代數、同調代數、規範形式與計算型別論。"
+    },
+    {
+      "id": "cmd-catmath",
+      "path": "cmd/catmath",
+      "moon": "vv0101v01/cubical-hermitian/cmd/catmath",
+      "layer": 2,
+      "depends_on": [
+        "catmath"
+      ],
+      "summary_en": "Executable catmath entry point split from the upstream library/executable package.",
+      "summary_zh": "由上游函式庫／執行檔同包拆出的 catmath 執行入口。"
     }
   ],
   "components": [
@@ -370,12 +538,13 @@
         "nbe.mbt",
         "nbe_eta.mbt",
         "wiring.mbt",
-        "pathp_glue.mbt"
+        "pathp_glue.mbt",
+        "interop_constructors.mbt"
       ],
       "depends_on": [
         "foundation"
       ],
-      "summary_en": "Simply typed NbE/HOAS and the finite Bool/Unit/product universe with wiring equivalences, ua, PathP, Glue and J.",
+      "summary_en": "Simply typed NbE/HOAS (including narrow cross-package STLC constructors for the federation bridge) and the finite Bool/Unit/product universe with wiring equivalences, ua, PathP, Glue and J.",
       "summary_zh": "簡單型別 NbE／HOAS，以及 Bool／Unit／積有限宇宙的 wiring 等價、ua、PathP、Glue 與 J。"
     },
     {
@@ -528,7 +697,11 @@
         "semiring/**/*_wbtest.mbt",
         "semiring/**/*_test.mbt",
         "bridge/*_wbtest.mbt",
-        "bridge/*_test.mbt"
+        "bridge/*_test.mbt",
+        "finalg/**/*_wbtest.mbt",
+        "finalg/**/*_test.mbt",
+        "catmath/*_wbtest.mbt",
+        "catmath/*_test.mbt"
       ],
       "depends_on": [
         "*"
@@ -811,8 +984,8 @@
         "*"
       ],
       "observer": true,
-      "summary_en": "Integration-only bridge constructions. No pillar may depend back on this component.",
-      "summary_zh": "只作整合的橋接構造；三支柱不得反向依賴此元件。"
+      "summary_en": "The only cross-member integration component. It directly joins all five member systems (the original three pillars plus finalg and catmath); no member pillar may depend back on it.",
+      "summary_zh": "唯一的跨成員整合元件，直接連接五個成員系統（原三支柱加 finalg 與 catmath）；任何成員支柱不得反向依賴它。"
     },
     {
       "id": "showcase-app",
@@ -825,8 +998,8 @@
         "*"
       ],
       "observer": true,
-      "summary_en": "Three-pillar executable showcase.",
-      "summary_zh": "三支柱展示執行入口。"
+      "summary_en": "The single five-member federation executable showcase.",
+      "summary_zh": "唯一的五成員聯邦展示執行入口。"
     },
     {
       "id": "semiring-par-host",
@@ -856,6 +1029,220 @@
       "observer": true,
       "summary_en": "Native measured report executable (slow gate).",
       "summary_zh": "native 量測報告執行入口（慢閘門）。"
+    },
+    {
+      "id": "finalg-num",
+      "package": "finalg-num",
+      "layer": 1,
+      "files": [
+        "finalg/num/*.mbt",
+        "!finalg/num/*_test.mbt",
+        "!finalg/num/*_wbtest.mbt"
+      ],
+      "depends_on": [],
+      "summary_en": "Modular integer arithmetic for finalg.",
+      "summary_zh": "finalg 的模整數算術。"
+    },
+    {
+      "id": "finalg-linalg",
+      "package": "finalg-linalg",
+      "layer": 2,
+      "files": [
+        "finalg/linalg/*.mbt",
+        "!finalg/linalg/*_test.mbt",
+        "!finalg/linalg/*_wbtest.mbt"
+      ],
+      "depends_on": [
+        "finalg-num"
+      ],
+      "summary_en": "Prime-field dense linear algebra for finalg.",
+      "summary_zh": "finalg 的素域稠密線性代數。"
+    },
+    {
+      "id": "finalg-core",
+      "package": "finalg",
+      "layer": 3,
+      "files": [
+        "finalg/*.mbt",
+        "!finalg/*_test.mbt",
+        "!finalg/*_wbtest.mbt"
+      ],
+      "depends_on": [
+        "finalg-num",
+        "finalg-linalg"
+      ],
+      "summary_en": "Polynomial rings, Groebner bases, ideals and normal forms.",
+      "summary_zh": "多項式環、Gröbner 基、理想與正規範形。"
+    },
+    {
+      "id": "finalg-finite",
+      "package": "finalg-finite",
+      "layer": 4,
+      "files": [
+        "finalg/finite/*.mbt",
+        "!finalg/finite/*_test.mbt",
+        "!finalg/finite/*_wbtest.mbt"
+      ],
+      "depends_on": [
+        "finalg-num",
+        "finalg-linalg",
+        "finalg-core"
+      ],
+      "summary_en": "Finite algebras and finite-ring structure.",
+      "summary_zh": "有限代數與有限環結構。"
+    },
+    {
+      "id": "finalg-modules",
+      "package": "finalg-modules",
+      "layer": 5,
+      "files": [
+        "finalg/modules/*.mbt",
+        "!finalg/modules/*_test.mbt",
+        "!finalg/modules/*_wbtest.mbt"
+      ],
+      "depends_on": [
+        "finalg-num",
+        "finalg-linalg",
+        "finalg-finite"
+      ],
+      "summary_en": "Finite modules, duals, inverse systems and gluing.",
+      "summary_zh": "有限模、對偶、逆向系統與黏合。"
+    },
+    {
+      "id": "finalg-geometry",
+      "package": "finalg-geometry",
+      "layer": 5,
+      "files": [
+        "finalg/geometry/*.mbt",
+        "!finalg/geometry/*_test.mbt",
+        "!finalg/geometry/*_wbtest.mbt"
+      ],
+      "depends_on": [
+        "finalg-num",
+        "finalg-linalg",
+        "finalg-core",
+        "finalg-finite"
+      ],
+      "summary_en": "Finite algebraic geometry.",
+      "summary_zh": "有限代數幾何。"
+    },
+    {
+      "id": "finalg-scheme",
+      "package": "finalg-scheme",
+      "layer": 5,
+      "files": [
+        "finalg/scheme/*.mbt",
+        "!finalg/scheme/*_test.mbt",
+        "!finalg/scheme/*_wbtest.mbt"
+      ],
+      "depends_on": [
+        "finalg-num",
+        "finalg-linalg",
+        "finalg-finite"
+      ],
+      "summary_en": "Finite spectra and scheme-like local constructions.",
+      "summary_zh": "有限譜與概形式的局部構造。"
+    },
+    {
+      "id": "finalg-hott",
+      "package": "finalg-hott",
+      "layer": 5,
+      "files": [
+        "finalg/hott/*.mbt",
+        "!finalg/hott/*_test.mbt",
+        "!finalg/hott/*_wbtest.mbt"
+      ],
+      "depends_on": [
+        "finalg-num",
+        "finalg-core",
+        "finalg-finite"
+      ],
+      "summary_en": "Finite computational HoTT models.",
+      "summary_zh": "有限計算 HoTT 模型。"
+    },
+    {
+      "id": "finalg-cat",
+      "package": "finalg-cat",
+      "layer": 2,
+      "files": [
+        "finalg/cat/*.mbt",
+        "!finalg/cat/*_test.mbt",
+        "!finalg/cat/*_wbtest.mbt"
+      ],
+      "depends_on": [
+        "finalg-num"
+      ],
+      "summary_en": "Closure-dictionary categorification.",
+      "summary_zh": "閉包字典式範疇化。"
+    },
+    {
+      "id": "finalg-port",
+      "package": "finalg-port",
+      "layer": 1,
+      "files": [
+        "finalg/port/*.mbt",
+        "!finalg/port/*_test.mbt",
+        "!finalg/port/*_wbtest.mbt"
+      ],
+      "depends_on": [],
+      "summary_en": "Interface-port and migration reporting.",
+      "summary_zh": "接口移植與遷移報告。"
+    },
+    {
+      "id": "finalg-testutil",
+      "package": "finalg-testutil",
+      "layer": 6,
+      "files": [
+        "finalg/testutil/*.mbt",
+        "!finalg/testutil/*_test.mbt",
+        "!finalg/testutil/*_wbtest.mbt"
+      ],
+      "depends_on": [
+        "finalg-num",
+        "finalg-finite"
+      ],
+      "summary_en": "Deterministic utilities for finalg tests; production packages import it only in test scope.",
+      "summary_zh": "供 finalg 測試的確定性工具；生產套件只在 test scope 匯入。"
+    },
+    {
+      "id": "finalg-verify",
+      "package": "finalg-verify",
+      "layer": 1,
+      "files": [
+        "finalg/verify/*.mbt",
+        "!finalg/verify/*_test.mbt",
+        "!finalg/verify/*_wbtest.mbt"
+      ],
+      "depends_on": [],
+      "summary_en": "Proof-enabled elementary arithmetic.",
+      "summary_zh": "啟用 proof 的初等算術。"
+    },
+    {
+      "id": "catmath-core",
+      "package": "catmath",
+      "layer": 2,
+      "files": [
+        "catmath/*.mbt",
+        "!catmath/*_test.mbt",
+        "!catmath/*_wbtest.mbt"
+      ],
+      "depends_on": [],
+      "summary_en": "Imported algo4 library core. It remains independent of every other pillar; cross-system adapters live in bridge/.",
+      "summary_zh": "搬入的 algo4 函式庫核心，保持不依賴其他支柱；跨系統轉接只放 bridge/。"
+    },
+    {
+      "id": "catmath-app",
+      "package": "cmd-catmath",
+      "layer": 13,
+      "files": [
+        "cmd/catmath/*.mbt"
+      ],
+      "depends_on": [
+        "*"
+      ],
+      "observer": true,
+      "summary_en": "catmath executable entry point.",
+      "summary_zh": "catmath 執行入口。"
     }
   ],
   "exceptions": []

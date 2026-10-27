@@ -1,0 +1,37 @@
+// Generated using `moon info`, DON'T EDIT IT
+package "vv0101v01/cubical-hermitian/finalg/geometry"
+
+import {
+  "vv0101v01/cubical-hermitian/finalg",
+  "vv0101v01/cubical-hermitian/finalg/finite",
+  "vv0101v01/cubical-hermitian/finalg/linalg",
+}
+
+// Values
+pub fn affine_points(Int32, Int32, Int32) -> Array[Array[Int32]]
+
+pub fn coordinate_basis(Array[Array[Int32]], Int32, Int32) -> Array[Array[Int32]]
+
+pub fn coordinate_ring(Array[Array[Int32]], Int32, Int32) -> @finite.FinAlg?
+
+pub fn crt_iso_holds(Array[Array[Int32]], Int32, Int32) -> Bool
+
+pub fn eval_matrix(Array[Array[Int32]], Int32, Int32) -> @linalg.Matrix
+
+pub fn jacobian_matrix(Array[@finalg.Poly], Array[Int32]) -> @linalg.Matrix
+
+pub fn singular_points(Array[@finalg.Poly], Int32, Int32) -> Array[Array[Int32]]
+
+pub fn smooth_at(Array[@finalg.Poly], Array[Int32], Int32) -> Bool
+
+pub fn vanishing_ideal(Array[Array[Int32]], Int32, Int32) -> @finalg.PolyIdeal
+
+pub fn variety(Array[@finalg.Poly], Int32) -> Array[Array[Int32]]
+
+// Errors
+
+// Types and methods
+
+// Type aliases
+
+// Traits

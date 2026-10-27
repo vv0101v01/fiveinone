@@ -1,0 +1,13 @@
+pkgtype(kind: "library")
+
+import {
+  "moonbitlang/core/debug",
+  "vv0101v01/cubical-hermitian/finalg/num",
+  "vv0101v01/cubical-hermitian/finalg/linalg",
+  "vv0101v01/cubical-hermitian/finalg" @poly,
+}
+
+import {
+  "vv0101v01/cubical-hermitian/finalg/testutil",
+  "moonbitlang/core/quickcheck",
+} for "wbtest"

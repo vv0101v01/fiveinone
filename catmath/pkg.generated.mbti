@@ -1,0 +1,842 @@
+// Generated using `moon info`, DON'T EDIT IT
+package "vv0101v01/cubical-hermitian/catmath"
+
+// Values
+pub fn a_basis_len() -> Int32
+
+pub fn a_diff(Array[Int32]) -> Array[Int32]
+
+pub fn a_homotopy(Array[Int32]) -> Array[Int32]
+
+pub fn a_mul(Array[Int32], Array[Int32]) -> Array[Int32]
+
+pub fn abelian_invariant_factors(FinGroup) -> Array[Int32]
+
+pub fn abelianization(FinGroup) -> FinGroup
+
+pub fn all_subgroups(FinGroup) -> Array[Array[Int32]]
+
+pub fn are_conjugate(DynSys, DynSys) -> Bool
+
+pub fn are_conjugate_canonical(DynSys, DynSys) -> Bool
+
+pub fn are_equivalent_thin(Category, Category) -> Bool
+
+pub fn are_homeomorphic(FinTop, FinTop) -> Bool
+
+pub fn arrow_of(Int32, Int32) -> Arrow
+
+pub fn assoc_compose(Array[Int32], Array[Array[Int32]], Array[Int32]) -> Array[Int32]
+
+pub fn associahedron_faces(Int32) -> Array[Int32]
+
+pub fn aut_g_h(FinGroup, Array[Int32]) -> Int32
+
+pub fn aut_tensor_omega(FinGroup, Int32) -> Array[Array[Int32]]
+
+pub fn automorphism_group(FinGroup) -> FinGroup
+
+pub fn automorphism_perms(FinGroup) -> Array[Array[Int32]]
+
+pub fn bar_dual_numbers(Int32, Int32) -> ChainComplex
+
+pub fn canon_tree(Array[Array[Int32]]) -> Array[Int32]
+
+pub fn canonical_index() -> Array[CanonicalEntry]
+
+pub fn catalan(Int32) -> Int32
+
+pub fn category_skeleton(Category) -> Category
+
+pub fn ccc_eval(Int32, Int32, Int32, Int32) -> Int32
+
+pub fn ccc_exponential(Int32, Int32) -> Int32
+
+pub fn ccc_fst(Int32, Int32, Int32) -> Int32
+
+pub fn ccc_pair(Int32, Int32, Array[Int32], Array[Int32]) -> Array[Int32]
+
+pub fn ccc_product(Int32, Int32) -> Int32
+
+pub fn ccc_snd(Int32, Int32, Int32) -> Int32
+
+pub fn ccc_terminal() -> Int32
+
+pub fn center(FinGroup) -> Array[Int32]
+
+pub fn chain_complex_of(Int32, Array[Mat]) -> ChainComplex
+
+pub fn check_chain_complex(ChainComplex) -> Bool
+
+pub fn check_crossed_module(CrossedModule) -> Bool
+
+pub fn check_functor(Functor, Category, Category) -> Bool
+
+pub fn check_group(FinGroup) -> Bool
+
+pub fn check_group_model(FinGroup, Array[Array[Int32]]) -> Bool
+
+pub fn check_group_model_steps(FinGroup, Array[Array[Int32]]) -> (Bool, Int32)
+
+pub fn check_group_naive_steps(FinGroup) -> (Bool, Int32)
+
+pub fn check_gset(GSet) -> Bool
+
+pub fn check_laws(Category) -> Bool
+
+pub fn check_nat_iso(NatIso, Functor, Functor, Category) -> Bool
+
+pub fn check_preorder(FinTop) -> Bool
+
+pub fn check_presheaf(Presheaf) -> Bool
+
+pub fn check_pseudo(GroupActionPseudo) -> Bool
+
+pub fn check_rep(Rep) -> Bool
+
+pub fn check_set_functor(SetFunctor) -> Bool
+
+pub fn check_simplicial_identities(SimplicialSpace) -> Bool
+
+pub fn classify_at(Presheaf, Array[Array[Bool]], Int32) -> Array[Int32]
+
+pub fn closure(FinTop, Array[Bool]) -> Array[Bool]
+
+pub fn cochain_diff(FinGroup, Int32, Int32) -> Mat
+
+pub fn cohomology_dim(FinGroup, Int32, Int32) -> Int32
+
+pub fn commutant(Rep) -> Array[Array[Int32]]
+
+pub fn commutator_subgroup(FinGroup) -> Array[Int32]
+
+pub fn compile_time_square(Int32) -> Int32
+
+pub fn complexity_parse(String) -> Array[(Int32, Int32, Int32)]
+
+pub fn complexity_theta(String) -> (Int32, Int32, Int32)
+
+pub fn compose(Category, Int32, Int32) -> Int32?
+
+pub fn compose_functor(Functor, Functor) -> Functor
+
+pub fn concat_s1(S1Path, S1Path) -> S1Path
+
+pub fn congruence_s1(Int32, S1Path) -> S1Path
+
+pub fn conjugacy_classes(FinGroup) -> Array[Array[Int32]]
+
+pub fn conjugate_subgroups(FinGroup, Array[Int32], Array[Int32]) -> Bool
+
+pub fn connected_components(FinTop) -> Array[Int32]
+
+pub fn core_of(FinTop) -> FinTop
+
+pub fn coset_gset(FinGroup, Array[Int32]) -> GSet
+
+pub fn curry(Int32, Int32, Int32, Array[Int32]) -> Array[Int32]
+
+pub fn cut_count(ProofNet) -> Int32
+
+pub fn cut_eliminate(ProofNet) -> ProofNet
+
+pub fn cut_reduce_step(ProofNet) -> ProofNet?
+
+pub fn cut_steps(ProofNet) -> Int32
+
+pub fn cycle_decompose(DynSys) -> Array[(Int32, Int32, Int32)]
+
+pub fn cyclic_characters(Int32, Int32) -> Array[Array[Int32]]
+
+pub fn cyclic_cohomology_dim(Int32, Int32, Int32) -> Int32
+
+pub fn cyclic_group(Int32) -> FinGroup
+
+pub fn decode_s1(Int32) -> S1Path
+
+pub fn decompose_rep_cyclic(Rep, Int32, Int32) -> Array[Int32]
+
+pub fn degenerate_dims(SimplicialSpace) -> Array[Int32]
+
+pub fn derived_index() -> Array[DerivedThm]
+
+pub fn direct_product(FinGroup, FinGroup) -> FinGroup
+
+pub fn dr_switching_run(ProofNet) -> Int32
+
+pub fn dr_switching_steps(ProofNet) -> Int32
+
+pub fn ds_apply(DynSys, Int32) -> Int32
+
+pub fn ds_iterate(DynSys, Int32, Int32) -> Int32
+
+pub fn ds_iterate_pow(JumpTable, Int32, Int32) -> Int32
+
+pub fn ds_product(DynSys, DynSys) -> DynSys
+
+pub fn ds_size(DynSys) -> Int32
+
+pub fn dynsys_canonical_form(DynSys) -> Array[Int32]
+
+pub fn element_order(FinGroup, Int32) -> Int32
+
+pub fn elements_category(SetFunctor) -> Category
+
+pub fn encode_s1(S1Path) -> Int32
+
+pub fn end_compose(Array[Int32], Array[Array[Int32]], Array[Int32], Int32) -> Array[Int32]
+
+pub fn end_count(Int32, Int32) -> Int32
+
+pub fn equivariant_maps(GSet, GSet) -> Array[Array[Int32]]
+
+pub fn fg_mul(FreeGroup, Array[Int32], Array[Int32]) -> Array[Int32]
+
+pub fn fg_reduce(FreeGroup, Array[Int32]) -> Array[Int32]
+
+pub fn fg_word_equal(FreeGroup, Array[Int32], Array[Int32]) -> Bool
+
+pub fn fiber_autos(FinGroup, Array[GSet]) -> Array[Array[Array[Int32]]]
+
+pub fn fin_group_of(Int32, Array[Array[Int32]], Array[Int32], Int32, String) -> FinGroup
+
+pub fn fin_monoid_of(Int32, Array[Array[Int32]], Int32, String) -> FinMonoid
+
+pub fn find_pullback(Category, Int32, Int32) -> (Int32, Int32, Int32)?
+
+pub fn finitop_canonical_form(FinTop) -> Array[Array[Bool]]
+
+pub fn fixed_points(DynSys) -> Array[Int32]
+
+pub fn flat_iff_cofiltered(SetFunctor) -> Bool
+
+pub fn floyd_cycle(DynSys, Int32) -> (Int32, Int32)
+
+pub fn fm_concat(Array[Int32], Array[Int32]) -> Array[Int32]
+
+pub fn fm_extend(FreeMonoid, Array[Int32], FinMonoid, Array[Int32]) -> Int32
+
+pub fn free_dyn(Int32) -> DynSys
+
+pub fn free_monoid_of(Int32) -> FreeMonoid
+
+pub fn free_operad_count(Int32) -> Int32
+
+pub fn functor_eq(Functor, Functor) -> Bool
+
+pub fn[T : Addable] generic_sum(Array[T]) -> T
+
+pub fn gmm_parsing_steps(ProofNet) -> Int32
+
+pub fn group_as_category(FinGroup) -> Category
+
+pub fn groupoid_cardinality(Category) -> (Int32, Int32)
+
+pub fn groupoid_components(Category) -> Array[Int32]
+
+pub fn groupoid_skeleton(Category) -> Array[FinGroup]
+
+pub fn gset_of(FinGroup, Int32, Array[Array[Int32]]) -> GSet
+
+pub fn gset_orbits(GSet) -> Array[Array[Int32]]
+
+pub fn h_basis() -> Array[Int32]
+
+pub fn h_to_a(Array[Int32]) -> Array[Int32]
+
+pub fn hom(Category, Int32, Int32) -> Array[Int32]
+
+pub fn hom_dim_from_ab(FinGroup, Int32) -> Int32
+
+pub fn homeomorphic(FinTop, FinTop) -> Bool
+
+pub fn homology_dim(ChainComplex, Int32) -> Int32
+
+pub fn identity_functor(Category) -> Functor
+
+pub fn inline_double(Int32) -> Int32
+
+pub fn inline_sextuple(Int32) -> Int32
+
+pub fn inline_triple(Int32) -> Int32
+
+pub fn inner_crossed_module(FinGroup, FinGroup, Array[Array[Int32]]) -> CrossedModule
+
+pub fn int64_sum(Array[Int64]) -> Int64
+
+pub fn int_mat_of(Int32, Int32, Array[Array[Int32]]) -> IntMat
+
+pub fn int_sum(Array[Int32]) -> Int32
+
+pub fn integral_homology(IntMat, IntMat) -> (Int32, Array[Int32])
+
+pub fn interior(FinTop, Array[Bool]) -> Array[Bool]
+
+pub fn intertwiner_basis(Rep, Rep) -> Array[Array[Int32]]
+
+pub fn inverse_arrow(Category, Int32) -> Int32?
+
+pub fn inverse_s1(S1Path) -> S1Path
+
+pub fn is_abelian(FinGroup) -> Bool
+
+pub fn is_closed(FinTop, Array[Bool]) -> Bool
+
+pub fn is_coboundary(FinGroup, Array[Array[Int32]], Array[Int32], Int32) -> Bool
+
+pub fn is_cofiltered(SetFunctor) -> Bool
+
+pub fn is_cofiltered_cat(Category) -> Bool
+
+pub fn is_continuous(FinTop, FinTop, Array[Int32]) -> Bool
+
+pub fn is_dyn_morphism(DynSys, DynSys, Array[Int32]) -> Bool
+
+pub fn is_equivalence(Functor, Category, Category) -> Bool
+
+pub fn is_equivariant(GSet, GSet, Array[Int32]) -> Bool
+
+pub fn is_essentially_surjective(Functor, Category, Category) -> Bool
+
+pub fn is_faithful(Functor, Category, Category) -> Bool
+
+pub fn is_flat(SetFunctor) -> Bool
+
+pub fn is_full(Functor, Category, Category) -> Bool
+
+pub fn is_group_like(Array[Int32]) -> Bool
+
+pub fn is_groupoid(Category) -> Bool
+
+pub fn is_homeomorphism(FinTop, FinTop, Array[Int32]) -> Bool
+
+pub fn is_iso(Category, Int32) -> Bool
+
+pub fn is_natural(Array[Array[Int32]], SetFunctor, SetFunctor) -> Bool
+
+pub fn is_open(FinTop, Array[Bool]) -> Bool
+
+pub fn is_permutation(DynSys) -> Bool
+
+pub fn is_t0(FinTop) -> Bool
+
+pub fn is_transitive(GSet) -> Bool
+
+pub fn iso_classes(Category) -> Array[Int32]
+
+pub fn isomorphic(Category, Int32, Int32) -> Bool
+
+pub fn j_elim(S1Path, Int32) -> Int32
+
+pub fn karatsuba(Array[Int32], Array[Int32], Int32) -> Array[Int32]
+
+pub fn karatsuba_steps(Array[Int32], Array[Int32], Int32) -> (Array[Int32], Int32)
+
+pub fn koszul_poly(Int32) -> ChainComplex
+
+pub fn loop_pow(Int32) -> S1Path
+
+pub fn loop_s1() -> S1Path
+
+pub fn m2_h(Array[Int32], Array[Int32]) -> Array[Int32]
+
+pub fn m3_h(Array[Int32], Array[Int32], Array[Int32]) -> Array[Int32]
+
+pub fn make_category(Int32, Array[Arrow], Array[Array[Int32?]], Array[Int32]) -> Category
+
+pub fn make_dyn(Int32, Array[Int32]) -> DynSys
+
+pub fn make_jump(DynSys, Int32) -> JumpTable
+
+pub fn make_mat(Int32, Int32, Int32, Array[Array[Int32]]) -> Mat
+
+pub fn make_top(Int32, Array[Array[Bool]]) -> FinTop
+
+pub fn massey_aaa_b() -> Array[Int32]
+
+pub fn mat_det(Mat) -> Int32
+
+pub fn mat_identity(Int32, Int32) -> Mat
+
+pub fn mat_inv(Mat) -> Mat?
+
+pub fn mat_mul(Mat, Mat) -> Mat
+
+pub fn mat_mul_steps(Mat, Mat) -> (Mat, Int32)
+
+pub fn mat_mul_strassen(Mat, Mat) -> Mat
+
+pub fn mat_mul_strassen_steps(Mat, Mat) -> (Mat, Int32)
+
+pub fn mat_nullspace(Mat) -> Array[Array[Int32]]
+
+pub fn mat_rank(Mat) -> Int32
+
+pub fn mat_solve(Mat, Array[Int32]) -> Array[Int32]?
+
+pub fn minimal_complex(ChainComplex) -> ChainComplex
+
+pub fn mk_axiom() -> NetNode
+
+pub fn mk_cut(Int32, Int32) -> NetNode
+
+pub fn mk_par(Int32, Int32) -> NetNode
+
+pub fn mk_tensor(Int32, Int32) -> NetNode
+
+pub fn mobius_transform(Array[Int32], Int32) -> Array[Int32]
+
+pub fn mod_inv(Int32, Int32) -> Int32
+
+pub fn moore_complex(SimplicialSpace) -> ChainComplex
+
+pub fn naive_pow_steps(Int32, Int32, Int32) -> (Int32, Int32)
+
+pub fn nat_iso_id(Category) -> NatIso
+
+pub fn net_is_correct(ProofNet) -> Bool
+
+pub fn net_reduct(ProofNet) -> ProofNet
+
+pub fn net_size(ProofNet) -> Int32
+
+pub fn normalized_dims(SimplicialSpace) -> Array[Int32]
+
+pub fn normalizer(FinGroup, Array[Int32]) -> Array[Int32]
+
+pub fn ntt(Array[Int32], Int32, Int32, Bool) -> Array[Int32]
+
+pub fn omega_presheaf(Category) -> Presheaf
+
+pub fn open_sets(FinTop) -> Array[Array[Bool]]
+
+pub fn orbit(DynSys, Int32, Int32) -> Array[Int32]
+
+pub fn par_count(ProofNet) -> Int32
+
+pub fn periodic_points(DynSys) -> Array[Int32]
+
+pub fn pi0(CrossedModule) -> FinGroup
+
+pub fn pi1(CrossedModule) -> FinGroup
+
+pub fn poly_mul_naive_steps(Array[Int32], Array[Int32], Int32) -> (Array[Int32], Int32)
+
+pub fn poly_mul_ntt(Array[Int32], Array[Int32], Int32, Int32) -> Array[Int32]
+
+pub fn poly_mul_ntt_steps(Array[Int32], Array[Int32], Int32, Int32) -> (Array[Int32], Int32)
+
+pub fn pow_mod(Int32, Int32, Int32) -> Int32
+
+pub fn pow_mod_steps(Int32, Int32, Int32) -> (Int32, Int32)
+
+pub fn power_object_size(Presheaf) -> Array[Int32]
+
+pub fn preorder_canonical_form(Category) -> Array[Array[Bool]]
+
+pub fn project_h(Array[Int32]) -> Array[Int32]
+
+pub fn quasi_inverse(Functor, Category, Category) -> Functor
+
+pub fn rank_f_p(Array[Array[Int32]], Int32) -> Int32
+
+pub fn refl_s1() -> S1Path
+
+pub fn regular_rep(FinGroup, Int32) -> Rep
+
+pub fn rref_f_p(Array[Array[Int32]], Int32) -> Array[Array[Int32]]
+
+pub fn sieves_on(Category, Int32) -> Array[Array[Int32]]
+
+pub fn simplicial_circle(Int32) -> SimplicialSpace
+
+pub fn skeleton_functor(Category, Int32) -> Functor
+
+pub fn snf_int(IntMat) -> IntMat
+
+pub fn snf_invariant_factors(IntMat) -> Array[Int32]
+
+pub fn snf_rank(IntMat) -> Int32
+
+pub fn sterm_app_of(STerm, STerm) -> STerm
+
+pub fn sterm_fst_of(STerm) -> STerm
+
+pub fn sterm_lam_of(SType, STerm) -> STerm
+
+pub fn sterm_pair_of(STerm, STerm) -> STerm
+
+pub fn sterm_snd_of(STerm) -> STerm
+
+pub fn sterm_unit() -> STerm
+
+pub fn sterm_var_of(Int32) -> STerm
+
+pub fn stlc_beta_eta_nf(STerm, SType) -> STerm
+
+pub fn stlc_eval(STerm) -> STerm
+
+pub fn stlc_infer(Array[SType], STerm) -> SType?
+
+pub fn strictification_equivalent(GroupActionPseudo, GroupActionPseudo, Array[Int32]) -> Bool
+
+pub fn strictify(GroupActionPseudo, Array[Int32], Array[Array[Int32]], Int32) -> GroupActionPseudo
+
+pub fn stype_arrow(SType, SType) -> SType
+
+pub fn stype_atom() -> SType
+
+pub fn stype_one() -> SType
+
+pub fn stype_pair(SType, SType) -> SType
+
+pub fn subgroup_closure(FinGroup, Array[Int32]) -> Array[Int32]
+
+pub fn subgroup_conjugacy_classes(FinGroup) -> Array[Array[Array[Int32]]]
+
+pub fn subpresheaves(Presheaf) -> Array[Array[Array[Bool]]]
+
+pub fn symmetric_group(Int32) -> FinGroup
+
+pub fn symmetric_index(Array[Int32]) -> Int32
+
+pub fn symmetric_perm(Int32, Int32) -> Array[Int32]
+
+pub fn t0_quotient(FinTop) -> FinTop
+
+pub fn tannaka_reconstruction(FinGroup, Int32) -> Bool
+
+pub fn tensor_rep(Rep, Rep) -> Rep
+
+pub fn terminal_object(Category) -> Int32?
+
+pub fn terminal_presheaf(Category) -> Presheaf
+
+pub fn transfer_complexity(Int32) -> Int32
+
+pub fn transitive_gsets(FinGroup) -> Array[GSet]
+
+pub fn transport_code(S1Path, Int32) -> Int32
+
+pub fn trivial_rep(FinGroup, Int32) -> Rep
+
+pub fn uncurry(Int32, Int32, Int32, Array[Int32]) -> Array[Int32]
+
+pub fn univalence_statement() -> String
+
+pub fn verify_abelian_distinguishing() -> Bool
+
+pub fn verify_adjunction_group(Int32, FinGroup) -> Bool
+
+pub fn verify_adjunction_monoid(Int32, FinMonoid) -> Bool
+
+pub fn verify_all_derived() -> Bool
+
+pub fn verify_assoc_operad() -> Bool
+
+pub fn verify_associahedron() -> Bool
+
+pub fn verify_aut_fiber(FinGroup, Array[GSet]) -> Bool
+
+pub fn verify_beta() -> Bool
+
+pub fn verify_beta_const() -> Bool
+
+pub fn verify_beta_eta_canonical() -> Bool
+
+pub fn verify_character_decomposition() -> Bool
+
+pub fn verify_complexity_theta() -> Bool
+
+pub fn verify_conjugacy_classes() -> Bool
+
+pub fn verify_contracting_homotopy() -> Bool
+
+pub fn verify_core_theorem() -> Bool
+
+pub fn verify_cyclic_periodicity(Int32, Int32, Int32) -> Bool
+
+pub fn verify_dold_kan_circle(Int32) -> Bool
+
+pub fn verify_dold_kan_split(SimplicialSpace) -> Bool
+
+pub fn verify_dyn_category() -> Bool
+
+pub fn verify_dynsys_canonical() -> Bool
+
+pub fn verify_elements_cofiltered() -> Bool
+
+pub fn verify_encode_decode() -> Bool
+
+pub fn verify_end_operad(Int32) -> Bool
+
+pub fn verify_exponential_universal(Int32, Int32, Int32) -> Bool
+
+pub fn verify_finitop_homeomorphism() -> Bool
+
+pub fn verify_free_dyn_universal(DynSys, Int32) -> Bool
+
+pub fn verify_free_group(Int32, FinGroup, Array[Int32], Int32) -> Bool
+
+pub fn verify_free_monoid(Int32, FinMonoid, Array[Int32], Int32) -> Bool
+
+pub fn verify_free_operad() -> Bool
+
+pub fn verify_free_word_problem() -> Bool
+
+pub fn verify_galois_category(FinGroup) -> Bool
+
+pub fn verify_galois_correspondence(FinGroup) -> Bool
+
+pub fn verify_groupoid_cardinality() -> Bool
+
+pub fn verify_h1_is_hom(FinGroup, Int32) -> Bool
+
+pub fn verify_inline() -> Bool
+
+pub fn verify_integral_homology() -> Bool
+
+pub fn verify_j_computation() -> Bool
+
+pub fn verify_m2_welldefined() -> Bool
+
+pub fn verify_massey_nonzero() -> Bool
+
+pub fn verify_minimal_a_infinity() -> Bool
+
+pub fn verify_minimal_model() -> Bool
+
+pub fn verify_monomorphization() -> Bool
+
+pub fn verify_nat_omega_is_kg(FinGroup, Int32) -> Bool
+
+pub fn verify_net_reduct() -> Bool
+
+pub fn verify_path_group() -> Bool
+
+pub fn verify_path_sym() -> Bool
+
+pub fn verify_pi1_circle() -> Bool
+
+pub fn verify_product_universal(Int32, Int32) -> Bool
+
+pub fn verify_quasi_inverse(Functor, Functor, Category, Category) -> Bool
+
+pub fn verify_rank_nullity_cross() -> Bool
+
+pub fn verify_skeleton_equivalence() -> Bool
+
+pub fn verify_snf_invariance() -> Bool
+
+pub fn verify_stasheff_pentagon() -> Bool
+
+pub fn verify_structure_theorem_abelian() -> Bool
+
+pub fn verify_subobject_classifier(Presheaf) -> Bool
+
+pub fn verify_taxonomy_complete() -> Bool
+
+pub fn verify_tensor_preserving(FinGroup, Int32) -> Bool
+
+pub fn verify_terminal_universal(Int32) -> Bool
+
+pub fn verify_tor_dual_numbers(Int32, Int32) -> Bool
+
+pub fn verify_tor_poly(Int32) -> Bool
+
+pub fn verify_tree_canonization() -> Bool
+
+pub fn vertex_group(Category, Int32) -> FinGroup
+
+pub fn yoneda(Category, Int32) -> SetFunctor
+
+pub fn yoneda_backward(SetFunctor, Int32, Int32) -> Array[Array[Int32]]
+
+pub fn yoneda_forward(SetFunctor, Int32, Array[Array[Int32]]) -> Int32
+
+pub fn zero_cost_demo() -> Int32
+
+pub fn zeta_naive_steps(Array[Int32], Int32) -> (Array[Int32], Int32)
+
+pub fn zeta_steps(Array[Int32], Int32) -> (Array[Int32], Int32)
+
+pub fn zeta_transform(Array[Int32], Int32) -> Array[Int32]
+
+// Errors
+
+// Types and methods
+pub struct Arrow {
+  from : Int32
+  to : Int32
+}
+
+pub struct CanonicalEntry {
+  family : Int32
+  mod_name : String
+  name : String
+  definition : String
+  algorithm : String
+  complexity : String
+  theorem : String
+}
+
+pub struct Category {
+  n_obj : Int32
+  arrows : Array[Arrow]
+  comp : Array[Array[Int32?]]
+  id_of_obj : Array[Int32]
+}
+
+pub struct ChainComplex {
+  p : Int32
+  diff : Array[Mat]
+}
+
+pub struct CrossedModule {
+  hh : FinGroup
+  gg : FinGroup
+  d : Array[Int32]
+  action : Array[Array[Int32]]
+}
+
+pub struct DerivedThm {
+  name : String
+  statement : String
+  source : String
+}
+
+pub struct DynSys {
+  n : Int32
+  f : Array[Int32]
+}
+
+pub struct FinGroup {
+  order : Int32
+  mul : Array[Array[Int32]]
+  inv : Array[Int32]
+  e : Int32
+  name : String
+}
+
+pub struct FinMonoid {
+  order : Int32
+  mul : Array[Array[Int32]]
+  e : Int32
+  name : String
+}
+
+pub struct FinTop {
+  n : Int32
+  le : Array[Array[Bool]]
+}
+
+pub struct FreeGroup {
+  generators : Int32
+}
+
+pub struct FreeMonoid {
+  alphabet : Int32
+}
+
+pub struct Functor {
+  obj_map : Array[Int32]
+  mor_map : Array[Int32]
+}
+
+pub struct GSet {
+  group : FinGroup
+  elements : Int32
+  action : Array[Array[Int32]]
+}
+
+pub struct GroupActionPseudo {
+  gg : FinGroup
+  dom : Category
+  alpha : Array[Functor]
+  phi : Array[Array[NatIso]]
+}
+
+pub struct IntMat {
+  rows : Int32
+  cols : Int32
+  data : Array[Array[Int32]]
+}
+
+pub struct JumpTable {
+  jump : Array[Array[Int32]]
+}
+
+pub struct Mat {
+  rows : Int32
+  cols : Int32
+  p : Int32
+  data : Array[Array[Int32]]
+}
+
+pub struct NatIso {
+  components : Array[Int32]
+}
+
+pub struct NetNode {
+  kind : Int32
+  prem : Array[Int32]
+  dead : Bool
+}
+
+pub struct Presheaf {
+  cc : Category
+  sets : Array[Int32]
+  maps : Array[Array[Int32]]
+}
+
+pub struct ProofNet {
+  nodes : Array[NetNode]
+}
+
+pub struct Rep {
+  group : FinGroup
+  dim : Int32
+  rho : Array[Mat]
+}
+
+pub struct S1Path {
+  n : Int32
+}
+
+pub enum STerm {
+  SVar(Int32)
+  SUnit
+  SPair(STerm, STerm)
+  SFst(STerm)
+  SSnd(STerm)
+  SLam(SType, STerm)
+  SApp(STerm, STerm)
+}
+
+pub enum SType {
+  SAtom
+  SOne
+  SArrow(SType, SType)
+  SPair(SType, SType)
+}
+
+pub struct SetFunctor {
+  dom : Category
+  objects : Array[Array[Int32]]
+  arrows : Array[Array[Int32]]
+}
+
+pub struct SimplicialSpace {
+  p : Int32
+  deg : Array[Int32]
+  face : Array[Array[Mat]]
+  degen : Array[Array[Mat]]
+}
+
+// Type aliases
+
+// Traits
+pub trait Addable {
+  fn add(Self, Self) -> Self
+  fn zero() -> Self
+}

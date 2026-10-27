@@ -1,0 +1,33 @@
+// Generated using `moon info`, DON'T EDIT IT
+package "vv0101v01/cubical-hermitian/finalg/num"
+
+// Values
+pub fn crt_pair(Int32, Int32, Int32, Int32) -> (Int32, Int32)?
+
+pub fn divisors(Int32) -> Array[Int32]
+
+pub fn egcd(Int32, Int32) -> (Int32, Int32, Int32)
+
+pub fn factor(Int32) -> Array[(Int32, Int32)]
+
+pub fn gcd(Int32, Int32) -> Int32
+
+pub fn invmod(Int32, Int32) -> Int32?
+
+pub fn is_prime(Int32) -> Bool
+
+pub fn mod_pos(Int32, Int32) -> Int32
+
+pub fn mul_mod(Int32, Int32, Int32) -> Int32
+
+pub fn power_int(Int32, Int32) -> Int32
+
+pub fn powmod(Int32, Int32, Int32) -> Int32
+
+// Errors
+
+// Types and methods
+
+// Type aliases
+
+// Traits

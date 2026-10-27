@@ -1,12 +1,20 @@
-# 三方合併遷移指南
+# 五系統合併遷移指南
 
-本倉庫以聯邦方式合併三個 0.x MoonBit 專案：
+首次公開的三系統樹位於 <https://github.com/vv0101v01/golden>，
+遠端 `main` 為 `9452cb94a441ffe17b082c09cd8ee351c4c96c89`。本工作樹
+在其上擴展為五系統；MoonBit module 與 import 身份維持
+`vv0101v01/cubical-hermitian`，克隆後不需要把 import 改成倉名。
+整體現況見 [STATUS](STATUS.md)。
+
+本倉庫以聯邦方式合併五個 MoonBit 系統：
 
 | 上游 | 凍結版本 | 合併後位置 |
 |---|---|---|
 | `vv0101v01/algorithms02` / cubical-hermitian | 第十三期工作樹 | 根套件 + `algebra/` + `cmd/main` |
 | `vv0101v01/algorithm03` / symlib | `05232fd` | `symlib/` + `cmd/symdemo` + `cmd/symbench` |
 | `vv0101v01/algorithm01` / semiring-lab | `6a208f4` | `semiring/*` + `cmd/semiringreport` |
+| `vv0101v01/algo` / moon-algebra | `427135faf8492f5433baba8077d4dc139282291f` | `finalg/` + `finalg/*` |
+| `vv0101v01/algo4` / catmath | `3b3deaa9706ee5a3543c0fe0ac897167669e26a4` | `catmath/` + `cmd/catmath` |
 
 ## Import path 對照
 
@@ -50,6 +58,38 @@
 | `arena/semiring-lab/examples` | `vv0101v01/cubical-hermitian/semiring/examples` |
 | `cmd/report` | `cmd/semiringreport`（native-only） |
 
+### algo / moon-algebra
+
+通則：`moon-algebra` 改為
+`vv0101v01/cubical-hermitian/finalg`，子路徑不變。例如：
+
+| 舊路徑 | 新路徑 |
+|---|---|
+| `moon-algebra` | `vv0101v01/cubical-hermitian/finalg` |
+| `moon-algebra/num` | `vv0101v01/cubical-hermitian/finalg/num` |
+| `moon-algebra/linalg` | `vv0101v01/cubical-hermitian/finalg/linalg` |
+| `moon-algebra/finite` | `vv0101v01/cubical-hermitian/finalg/finite` |
+| `moon-algebra/cat` | `vv0101v01/cubical-hermitian/finalg/cat` |
+| `moon-algebra/hott` | `vv0101v01/cubical-hermitian/finalg/hott` |
+| `moon-algebra/verify` | `vv0101v01/cubical-hermitian/finalg/verify` |
+
+`modules`、`geometry`、`scheme`、`port`、`testutil` 依同一通則。
+上游 module-level `warnings = "-implicit_impl_as_method"` 沒有搬入；
+golden 改以 finalg 套件內的明確 `pub extend` 保留方法面。
+
+### algo4 / catmath
+
+| 舊路徑／入口 | 新路徑／入口 |
+|---|---|
+| `vv0101v01/algo4`（根 library 檔案） | `vv0101v01/cubical-hermitian/catmath` |
+| 上游根 package 的 `moon run`／`fn main` | `moon run cmd/catmath`（未來 smoke 期） |
+| 同包 struct literal 建構 `Arrow`／`FinGroup`／`FinMonoid`／`FreeMonoid`／`IntMat` | `arrow_of`／`fin_group_of`／`fin_monoid_of`／`free_monoid_of`／`int_mat_of` |
+
+Algo4 上游 `preferred_target="native"` 是其獨立 module 的偏好；
+併入後由 golden module 的 `preferred_target="wasm"` 管轄。catmath
+package 本身不宣告 native-only；本階段以四 target `moon check`
+作可攜性編譯邊界。
+
 ## 兩個 `algebra` 不得混淆
 
 - `vv0101v01/cubical-hermitian/algebra`：精確 BigInt 有理數、多項式、
@@ -69,7 +109,8 @@
 
 ## Target 與依賴
 
-- 主 module 的 `preferred_target` 保持 `wasm`，延續 cubical/symlib。
+- 主 module 的 `preferred_target` 保持 `wasm`，延續 cubical/symlib／
+  moon-algebra；algo4 的獨立 native 偏好不沿用作 golden 邊界。
 - `semiring/par_host` 與 `cmd/semiringreport` 以
   `supported_targets: "native"` 隔離；其他 target 會整包跳過。
 - 主 module 在 Phase T5 起只有一個外部依賴
@@ -79,25 +120,60 @@
 
 ## 常用命令
 
+本階段唯一自動閘門是 compile-only；它編譯全部測試源碼但不執行
+任何 test block 或 smoke 程式：
+
 ```bash
-# 全倉快速閘門（native 另含 4 個 host 測試）
-moon check --deny-warn
-moon test --target wasm-gc   # 336/336
-moon test --target native     # 340/340
-
-# 有限對稱
-moon test symlib
-moon run cmd/symdemo
-
-# 半環核心（wasm-gc 154；native 連 host 為 158）
-moon test --target wasm-gc semiring/algebra semiring/app semiring/bp semiring/cat semiring/examples semiring/graph semiring/io semiring/matrix semiring/monoid semiring/nf semiring/par semiring/ratelimit semiring/sim semiring/spline semiring/trop
-
-# 慢閘門：19 節半環量測報告
-moon run cmd/semiringreport --target native
+git clone https://github.com/vv0101v01/golden.git
+cd golden
+moon update
+sh tools/check_compile.sh
 ```
+
+只想重編某個新支柱及其測試源碼時可用：
+
+```bash
+moon check --deny-warn finalg finalg/num finalg/linalg finalg/finite   finalg/modules finalg/geometry finalg/scheme finalg/hott finalg/cat   finalg/port finalg/testutil finalg/verify
+moon test --build-only --deny-warn finalg catmath bridge
+moon build --deny-warn cmd/catmath cmd/showcase
+```
+
+未來獲指示進入運行期後，才執行：
+
+```bash
+GOLDEN_RUN_TESTS=1 sh tools/check_full.sh
+GOLDEN_RUN_SMOKE=1 sh tools/check_slow.sh > /tmp/REPORT.generated.md
+```
+
+舊三系統樹的 wasm-gc 336/336、native 340/340 是歷史基線，不得
+改寫成目前五系統樹的預期測試數；五系統總數須待運行期由測試
+執行器實數回填。
+
+## 決策史（取代已刪除的獨立 MERGE 研究檔）
+
+早期研究與施工文件曾分別保存為兩方、三方、五方研究快照。為免
+同一決策在多份文件中漂移，現只保留下列權威摘要；原始量測仍可
+由來源倉與 golden 的 Git 歷史追溯，不再在工作樹維持平行正本。
+
+1. **兩方／三方階段採「同 module、成員真身、單向橋」方案**：
+   cubical 保持根套件，symlib 與 semiring 保持獨立 namespace，
+   跨界語義只進 `bridge/`；此樹以 `9452cb9…` 首次公開。
+2. **五方施工先驗證來源映射**：algo 的 12-package DAG 原樣成為
+   `finalg/`；algo4 的單一大 package 成為 `catmath/` library，
+   同包 executable 拆到 `cmd/catmath/`；公開面不足只以所屬
+   package 的窄域 constructor 或明確 `pub extend` 補齊。
+3. **初版曾把五方接口疊在三方 bridge 之上的 `unified/`**。該作法
+   有助分階段施工，但形成兩套整合權責與不必要的依賴鏈。
+4. **現行裁決改為直接 3＋2**：撤銷 `unified/` 與
+   `cmd/unified/`，把註冊、轉接、推導報告與證書併入原
+   `bridge/`。成員映射、來源保真與語義邊界不變；改變的只是
+   聯邦拓撲。完整相容圖表見 [BRIDGE](BRIDGE.md)。
 
 ## 舊倉封存狀態
 
-舊倉 README 告示文字與有憑證後的操作順序已備妥於
-[`LEGACY-ARCHIVE.md`](LEGACY-ARCHIVE.md)。在主倉實際推送並驗證前，
-不得把 algorithm01／algorithm03 宣稱為已在 GitHub 封存。
+主倉首次公開條件已經滿足，但 `algorithm01`／`algorithm03` 的 README
+遷移告示與 GitHub Archive **尚未執行**；`algo`／`algo4` 的五系統
+遷移告示也尚未貼到來源倉。現有兩倉的告示定稿與操作順序在
+[`LEGACY-ARCHIVE.md`](LEGACY-ARCHIVE.md)，並登記為缺口 REL-001；在兩倉
+頁面出現告示且變為 read-only 前，不得宣稱已封存。cubical 來源不再作為
+獨立發布入口，現行維護只在 `golden`。

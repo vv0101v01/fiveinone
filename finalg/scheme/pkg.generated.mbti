@@ -1,0 +1,35 @@
+// Generated using `moon info`, DON'T EDIT IT
+package "vv0101v01/cubical-hermitian/finalg/scheme"
+
+import {
+  "moonbitlang/core/debug",
+  "vv0101v01/cubical-hermitian/finalg/finite",
+}
+
+// Values
+pub fn covers_basic(@finite.FinAlg, Array[Int32], Array[Int32], Array[Int32]) -> Bool
+
+pub fn restriction(@finite.FinAlg, Array[Int32], Array[Int32]) -> Array[Int32]?
+
+pub fn sheaf_gluing_bijective(@finite.FinAlg, Array[Int32], Array[Int32], Array[Int32]) -> Bool
+
+pub fn spec(@finite.FinAlg) -> Spec
+
+// Errors
+
+// Types and methods
+pub(all) struct Spec {
+  alg : @finite.FinAlg
+  primes : Array[@finite.FinIdeal]
+} derive(@debug.Debug)
+pub fn Spec::basic_open(Self, Array[Int32]) -> Array[Int32]
+pub fn Spec::dimension(Self) -> Int32
+pub fn Spec::irreducible_components(Self) -> Array[Int32]
+pub fn Spec::is_le(Self, Int32, Int32) -> Bool
+pub fn Spec::open_count(Self) -> Int32
+pub fn Spec::opens(Self) -> Array[Bool]
+pub fn Spec::to_repr(Self) -> @debug.Repr
+
+// Type aliases
+
+// Traits

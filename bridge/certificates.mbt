@@ -93,6 +93,71 @@ pub fn bridge_certificates() -> Array[BridgeCertificate] {
       "FaceClass BDD quotient semiring laws",
       face_semiring_law_report(),
     ),
+    bridge_certificate(
+      "bridge",
+      "five-member federation registry has five entries",
+      federation_member_count() == 5,
+    ),
+    bridge_certificate(
+      "bridge",
+      "FinCat ↔ catmath Category ↔ finalg closure category",
+      check_federation_category_bridge(),
+    ),
+    bridge_certificate(
+      "bridge",
+      "catmath Cayley groups ↔ symlib permutation groups",
+      check_federation_group_bridge(),
+    ),
+    bridge_certificate(
+      "bridge",
+      "QPoly ↔ finalg univariate polynomials and ideal membership",
+      check_federation_polynomial_bridge(),
+    ),
+    bridge_certificate(
+      "bridge",
+      "integer SNF and characteristic-polynomial cross-checks",
+      check_federation_matrix_bridge(),
+    ),
+    bridge_certificate(
+      "bridge",
+      "S1 winding numbers across cubical, finalg and catmath",
+      check_federation_circle_bridge(),
+    ),
+    bridge_certificate(
+      "bridge",
+      "finalg verify arithmetic executable specifications",
+      check_federation_finalg_verify_bridge(),
+    ),
+    bridge_certificate(
+      "bridge",
+      "catmath canonical and derived registries",
+      check_federation_catmath_registry(),
+    ),
+    bridge_certificate(
+      "bridge",
+      "derived finite category, group and G-set diagrams",
+      check_federation_finite_structure_derived_bridges(),
+    ),
+    bridge_certificate(
+      "bridge",
+      "derived polynomial-reduction and integer-matrix diagrams",
+      check_federation_algebra_derived_bridges(),
+    ),
+    bridge_certificate(
+      "bridge",
+      "derived Boolean, finite-topology and Spec diagrams",
+      check_federation_boolean_topology_derived_bridges(),
+    ),
+    bridge_certificate(
+      "bridge",
+      "derived functional-graph and homology diagrams",
+      check_federation_dynamics_homology_derived_bridges(),
+    ),
+    bridge_certificate(
+      "bridge",
+      "STLC βπη normal forms modulo explicit unit-η completion",
+      check_federation_stlc_derived_bridge(),
+    ),
   ]
 }
 

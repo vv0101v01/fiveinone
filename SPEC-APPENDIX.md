@@ -1,13 +1,14 @@
 # cubical-hermitian 規格附錄（逐符號登記）
 
-[English appendix](SPEC-APPENDIX.en.md) · [中文規格正本](SPEC.md) · [English specification](SPEC.en.md)
+[English appendix](SPEC-APPENDIX.en.md) · [中文規格正本](SPEC.md) · [English specification](SPEC.en.md) · [目前狀態](docs/STATUS.md) · [工程缺口](docs/ENGINEERING-GAPS.md)
 
 > 本檔案由 `tools/audit_spec.py --write` 自各套件的 `pkg.generated.mbti`
 > （`moon info`）生成，**勿手改**附錄標記之間的內容。套件欄是
-> `architecture.json` 登記的 MoonBit 套件。
+> `architecture.json` 登記的 MoonBit 套件。符號列入附錄只表示公共介面
+> 存在並已分類，不構成版本穩定承諾；發布身份與待辦見所連結文件。
 
 <!-- APPENDIX:BEGIN -->
-共 **5054** 個公共符號（宣告＋構造子＋欄位），分屬 86 個規格族；按套件：`algebra` 860、`bridge` 87、`cmd-semiringreport` 42、`root` 2678、`semiring-algebra` 287、`semiring-app` 24、`semiring-bp` 22、`semiring-cat` 33、`semiring-examples` 18、`semiring-graph` 40、`semiring-io` 9、`semiring-matrix` 60、`semiring-monoid` 85、`semiring-nf` 43、`semiring-par` 18、`semiring-par-host` 4、`semiring-ratelimit` 64、`semiring-sim` 42、`semiring-spline` 17、`semiring-trop` 84、`symlib` 537。
+共 **6259** 個公共符號（宣告＋構造子＋欄位），分屬 99 個規格族；按套件：`algebra` 860、`bridge` 385、`catmath` 445、`cmd-semiringreport` 42、`finalg` 122、`finalg-cat` 61、`finalg-finite` 87、`finalg-geometry` 10、`finalg-hott` 43、`finalg-linalg` 34、`finalg-modules` 36、`finalg-num` 11、`finalg-port` 22、`finalg-scheme` 14、`finalg-testutil` 4、`finalg-verify` 7、`root` 2689、`semiring-algebra` 287、`semiring-app` 24、`semiring-bp` 22、`semiring-cat` 33、`semiring-examples` 18、`semiring-graph` 40、`semiring-io` 9、`semiring-matrix` 60、`semiring-monoid` 85、`semiring-nf` 43、`semiring-par` 18、`semiring-par-host` 4、`semiring-ratelimit` 64、`semiring-sim` 42、`semiring-spline` 17、`semiring-trop` 84、`symlib` 537。
 
 ### 複數標量
 
@@ -443,13 +444,24 @@
 | `check_eta_unit` | root | 函數 |
 | `def_eq_eta` | root | 函數 |
 | `eta_single_valued_on` | root | 函數 |
+| `lty_bool_ctor` | root | 函數 |
+| `lty_fun_ctor` | root | 函數 |
+| `lty_prod_ctor` | root | 函數 |
+| `lty_unit_ctor` | root | 函數 |
 | `nf_eta` | root | 函數 |
 | `quote_eta` | root | 函數 |
 | `quote_tneutral` | root | 函數 |
 | `tapp` | root | 函數 |
 | `tfst` | root | 函數 |
+| `tm_app_ctor` | root | 函數 |
 | `tm_coe_swap_at` | root | 函數 |
+| `tm_fst_ctor` | root | 函數 |
+| `tm_lam_ctor` | root | 函數 |
+| `tm_pair_ctor` | root | 函數 |
+| `tm_snd_ctor` | root | 函數 |
 | `tm_swap_at` | root | 函數 |
+| `tm_unit_ctor` | root | 函數 |
+| `tm_var_ctor` | root | 函數 |
 | `tsnd` | root | 函數 |
 | `ty_check` | root | 函數 |
 | `ty_infer` | root | 函數 |
@@ -5741,14 +5753,33 @@
 | `sec18_belief` | cmd-semiringreport | 函數 |
 | `sec19_limits` | cmd-semiringreport | 函數 |
 
-### 三方橋接
+### 五成員聯邦橋接
 
-- 規範形式：跨支柱轉換後的規範矩陣、圖、範疇或統一證書
-- 範疇化：cubical、有限對稱與半環路徑代數之間的顯式橋接構造
-- 判定：每一橋接均以來源支柱的判定器重驗
+- 規範形式：跨成員轉換後的規範矩陣、圖、範疇、多項式、有限拓撲、同調與證書
+- 範疇化：原三支柱橋就地擴張成的單一五成員整合層；只在明示的有限共同片段連接五個成員系統
+- 判定：每一圖表均以來源成員的原生判定器與共同不變量重驗，並記錄方向、前提與不受支援片段
 
 | 符號 | 套件 | 類別 |
 |---|---|---|
+| `BooleanFunctionFederationReport` | bridge | 結構 |
+| `BooleanFunctionFederationReport.anf_coeffs` | bridge | 欄位 |
+| `BooleanFunctionFederationReport.anf_degree` | bridge | 欄位 |
+| `BooleanFunctionFederationReport.anf_evaluation_ok` | bridge | 欄位 |
+| `BooleanFunctionFederationReport.anf_face` | bridge | 欄位 |
+| `BooleanFunctionFederationReport.anf_face_evaluation_ok` | bridge | 欄位 |
+| `BooleanFunctionFederationReport.anf_involution_ok` | bridge | 欄位 |
+| `BooleanFunctionFederationReport.anf_term_count` | bridge | 欄位 |
+| `BooleanFunctionFederationReport.dnf_evaluation_ok` | bridge | 欄位 |
+| `BooleanFunctionFederationReport.dnf_face` | bridge | 欄位 |
+| `BooleanFunctionFederationReport.face_class_ok` | bridge | 欄位 |
+| `BooleanFunctionFederationReport.face_equivalence_ok` | bridge | 欄位 |
+| `BooleanFunctionFederationReport.nvars` | bridge | 欄位 |
+| `BooleanFunctionFederationReport.satisfiable` | bridge | 欄位 |
+| `BooleanFunctionFederationReport.support_count` | bridge | 欄位 |
+| `BooleanFunctionFederationReport.table_size` | bridge | 欄位 |
+| `BooleanFunctionFederationReport.tautology` | bridge | 欄位 |
+| `BooleanFunctionFederationReport.valid` | bridge | 欄位 |
+| `BooleanFunctionFederationReport.witness_ok` | bridge | 欄位 |
 | `BridgeCertificate` | bridge | 結構 |
 | `BridgeCertificate.detail` | bridge | 欄位 |
 | `BridgeCertificate.name` | bridge | 欄位 |
@@ -5776,6 +5807,208 @@
 | `FaceClass::to_string` | bridge | 函數 |
 | `FaceClass::top` | bridge | 函數 |
 | `FaceClass::zero` | bridge | 函數 |
+| `FederationMember` | bridge | 結構 |
+| `FederationMember.display_name` | bridge | 欄位 |
+| `FederationMember.id` | bridge | 欄位 |
+| `FederationMember.package_namespace` | bridge | 欄位 |
+| `FederationMember.provenance` | bridge | 欄位 |
+| `FederationMember.source_repository` | bridge | 欄位 |
+| `FederationMember.summary` | bridge | 欄位 |
+| `FiniteCategoryFederationReport` | bridge | 結構 |
+| `FiniteCategoryFederationReport.catmath_laws_ok` | bridge | 欄位 |
+| `FiniteCategoryFederationReport.components_ok` | bridge | 欄位 |
+| `FiniteCategoryFederationReport.directed_reachability` | bridge | 欄位 |
+| `FiniteCategoryFederationReport.finalg_laws_ok` | bridge | 欄位 |
+| `FiniteCategoryFederationReport.hom_count_charpoly` | bridge | 欄位 |
+| `FiniteCategoryFederationReport.hom_count_matrix` | bridge | 欄位 |
+| `FiniteCategoryFederationReport.hom_counts_ok` | bridge | 欄位 |
+| `FiniteCategoryFederationReport.iso_class_count` | bridge | 欄位 |
+| `FiniteCategoryFederationReport.n_morphisms` | bridge | 欄位 |
+| `FiniteCategoryFederationReport.n_objects` | bridge | 欄位 |
+| `FiniteCategoryFederationReport.reachability_ok` | bridge | 欄位 |
+| `FiniteCategoryFederationReport.skeleton_object_count` | bridge | 欄位 |
+| `FiniteCategoryFederationReport.skeleton_ok` | bridge | 欄位 |
+| `FiniteCategoryFederationReport.underlying_component_count` | bridge | 欄位 |
+| `FiniteCategoryFederationReport.valid` | bridge | 欄位 |
+| `FiniteDynamicsFederationReport` | bridge | 結構 |
+| `FiniteDynamicsFederationReport.adjacency_charpoly` | bridge | 欄位 |
+| `FiniteDynamicsFederationReport.charpoly_formula_ok` | bridge | 欄位 |
+| `FiniteDynamicsFederationReport.component_count` | bridge | 欄位 |
+| `FiniteDynamicsFederationReport.components_ok` | bridge | 欄位 |
+| `FiniteDynamicsFederationReport.cycle_lengths` | bridge | 欄位 |
+| `FiniteDynamicsFederationReport.decomposition_ok` | bridge | 欄位 |
+| `FiniteDynamicsFederationReport.fixed_point_count` | bridge | 欄位 |
+| `FiniteDynamicsFederationReport.is_permutation` | bridge | 欄位 |
+| `FiniteDynamicsFederationReport.n_points` | bridge | 欄位 |
+| `FiniteDynamicsFederationReport.periodic_point_count` | bridge | 欄位 |
+| `FiniteDynamicsFederationReport.permutation_ok` | bridge | 欄位 |
+| `FiniteDynamicsFederationReport.permutation_order` | bridge | 欄位 |
+| `FiniteDynamicsFederationReport.tail_point_count` | bridge | 欄位 |
+| `FiniteDynamicsFederationReport.valid` | bridge | 欄位 |
+| `FiniteGSetFederationReport` | bridge | 結構 |
+| `FiniteGSetFederationReport.averaged_projector_rank` | bridge | 欄位 |
+| `FiniteGSetFederationReport.burnside_average` | bridge | 欄位 |
+| `FiniteGSetFederationReport.burnside_ok` | bridge | 欄位 |
+| `FiniteGSetFederationReport.catmath_action_ok` | bridge | 欄位 |
+| `FiniteGSetFederationReport.finalg_equiv_ok` | bridge | 欄位 |
+| `FiniteGSetFederationReport.group_order` | bridge | 欄位 |
+| `FiniteGSetFederationReport.orbit_count` | bridge | 欄位 |
+| `FiniteGSetFederationReport.orbit_sizes` | bridge | 欄位 |
+| `FiniteGSetFederationReport.projector_ok` | bridge | 欄位 |
+| `FiniteGSetFederationReport.semiring_orbit_closure_ok` | bridge | 欄位 |
+| `FiniteGSetFederationReport.set_size` | bridge | 欄位 |
+| `FiniteGSetFederationReport.symlib_orbits_ok` | bridge | 欄位 |
+| `FiniteGSetFederationReport.transitive` | bridge | 欄位 |
+| `FiniteGSetFederationReport.valid` | bridge | 欄位 |
+| `FiniteGroupFederationReport` | bridge | 結構 |
+| `FiniteGroupFederationReport.abelianization_invariants` | bridge | 欄位 |
+| `FiniteGroupFederationReport.abelianization_ok` | bridge | 欄位 |
+| `FiniteGroupFederationReport.abelianization_order` | bridge | 欄位 |
+| `FiniteGroupFederationReport.catmath_group_ok` | bridge | 欄位 |
+| `FiniteGroupFederationReport.cayley_embedding_ok` | bridge | 欄位 |
+| `FiniteGroupFederationReport.center_size` | bridge | 欄位 |
+| `FiniteGroupFederationReport.conjugacy_class_count` | bridge | 欄位 |
+| `FiniteGroupFederationReport.delooping_ok` | bridge | 欄位 |
+| `FiniteGroupFederationReport.finalg_equiv_ok` | bridge | 欄位 |
+| `FiniteGroupFederationReport.order` | bridge | 欄位 |
+| `FiniteGroupFederationReport.projector_ok` | bridge | 欄位 |
+| `FiniteGroupFederationReport.regular_action_ok` | bridge | 欄位 |
+| `FiniteGroupFederationReport.regular_projector_rank` | bridge | 欄位 |
+| `FiniteGroupFederationReport.valid` | bridge | 欄位 |
+| `FiniteGroupFederationReport.zero_identity_supported` | bridge | 欄位 |
+| `FiniteSpecFederationReport` | bridge | 結構 |
+| `FiniteSpecFederationReport.block_count` | bridge | 欄位 |
+| `FiniteSpecFederationReport.blocks_ok` | bridge | 欄位 |
+| `FiniteSpecFederationReport.blocks_supported` | bridge | 欄位 |
+| `FiniteSpecFederationReport.component_count` | bridge | 欄位 |
+| `FiniteSpecFederationReport.dimension` | bridge | 欄位 |
+| `FiniteSpecFederationReport.dimension_ok` | bridge | 欄位 |
+| `FiniteSpecFederationReport.irreducible_component_count` | bridge | 欄位 |
+| `FiniteSpecFederationReport.open_count` | bridge | 欄位 |
+| `FiniteSpecFederationReport.opens_ok` | bridge | 欄位 |
+| `FiniteSpecFederationReport.opens_supported` | bridge | 欄位 |
+| `FiniteSpecFederationReport.prime_count` | bridge | 欄位 |
+| `FiniteSpecFederationReport.topology_ok` | bridge | 欄位 |
+| `FiniteSpecFederationReport.valid` | bridge | 欄位 |
+| `FiniteTopologyFederationReport` | bridge | 結構 |
+| `FiniteTopologyFederationReport.adjacency_charpoly` | bridge | 欄位 |
+| `FiniteTopologyFederationReport.component_count` | bridge | 欄位 |
+| `FiniteTopologyFederationReport.components_ok` | bridge | 欄位 |
+| `FiniteTopologyFederationReport.identity_homeomorphism_ok` | bridge | 欄位 |
+| `FiniteTopologyFederationReport.n_points` | bridge | 欄位 |
+| `FiniteTopologyFederationReport.open_set_count` | bridge | 欄位 |
+| `FiniteTopologyFederationReport.open_sets_ok` | bridge | 欄位 |
+| `FiniteTopologyFederationReport.open_sets_supported` | bridge | 欄位 |
+| `FiniteTopologyFederationReport.preorder_ok` | bridge | 欄位 |
+| `FiniteTopologyFederationReport.relation_count` | bridge | 欄位 |
+| `FiniteTopologyFederationReport.semiring_closure_ok` | bridge | 欄位 |
+| `FiniteTopologyFederationReport.t0` | bridge | 欄位 |
+| `FiniteTopologyFederationReport.t0_quotient_points` | bridge | 欄位 |
+| `FiniteTopologyFederationReport.t0_skeleton_ok` | bridge | 欄位 |
+| `FiniteTopologyFederationReport.thin_category_ok` | bridge | 欄位 |
+| `FiniteTopologyFederationReport.valid` | bridge | 欄位 |
+| `FpChainComplexFederationReport` | bridge | 結構 |
+| `FpChainComplexFederationReport.boundary_ranks` | bridge | 欄位 |
+| `FpChainComplexFederationReport.chain_ok` | bridge | 欄位 |
+| `FpChainComplexFederationReport.dimensions` | bridge | 欄位 |
+| `FpChainComplexFederationReport.euler_characteristic` | bridge | 欄位 |
+| `FpChainComplexFederationReport.euler_ok` | bridge | 欄位 |
+| `FpChainComplexFederationReport.homology_dimensions` | bridge | 欄位 |
+| `FpChainComplexFederationReport.homology_ok` | bridge | 欄位 |
+| `FpChainComplexFederationReport.prime` | bridge | 欄位 |
+| `FpChainComplexFederationReport.ranks_ok` | bridge | 欄位 |
+| `FpChainComplexFederationReport.shape_ok` | bridge | 欄位 |
+| `FpChainComplexFederationReport.valid` | bridge | 欄位 |
+| `IntegerMatrixFederationReport` | bridge | 結構 |
+| `IntegerMatrixFederationReport.catmath_finite_rank` | bridge | 欄位 |
+| `IntegerMatrixFederationReport.catmath_snf_rank` | bridge | 欄位 |
+| `IntegerMatrixFederationReport.charpoly` | bridge | 欄位 |
+| `IntegerMatrixFederationReport.charpoly_ok` | bridge | 欄位 |
+| `IntegerMatrixFederationReport.charpoly_supported` | bridge | 欄位 |
+| `IntegerMatrixFederationReport.cols` | bridge | 欄位 |
+| `IntegerMatrixFederationReport.determinant` | bridge | 欄位 |
+| `IntegerMatrixFederationReport.determinant_ok` | bridge | 欄位 |
+| `IntegerMatrixFederationReport.exact_rank` | bridge | 欄位 |
+| `IntegerMatrixFederationReport.finalg_finite_rank` | bridge | 欄位 |
+| `IntegerMatrixFederationReport.finalg_snf_rank` | bridge | 欄位 |
+| `IntegerMatrixFederationReport.finite_cokernel_ok` | bridge | 欄位 |
+| `IntegerMatrixFederationReport.finite_cokernel_order` | bridge | 欄位 |
+| `IntegerMatrixFederationReport.finite_cokernel_supported` | bridge | 欄位 |
+| `IntegerMatrixFederationReport.invariant_factors` | bridge | 欄位 |
+| `IntegerMatrixFederationReport.minimal_polynomial` | bridge | 欄位 |
+| `IntegerMatrixFederationReport.prime` | bridge | 欄位 |
+| `IntegerMatrixFederationReport.rank_ok` | bridge | 欄位 |
+| `IntegerMatrixFederationReport.rows` | bridge | 欄位 |
+| `IntegerMatrixFederationReport.snf_ok` | bridge | 欄位 |
+| `IntegerMatrixFederationReport.trace` | bridge | 欄位 |
+| `IntegerMatrixFederationReport.valid` | bridge | 欄位 |
+| `IntegerMatrixNormalFormReport` | bridge | 結構 |
+| `IntegerMatrixNormalFormReport.catmath_snf_factors` | bridge | 欄位 |
+| `IntegerMatrixNormalFormReport.finalg_hnf` | bridge | 欄位 |
+| `IntegerMatrixNormalFormReport.finalg_snf_diag` | bridge | 欄位 |
+| `IntegerMatrixNormalFormReport.hnf_idempotent` | bridge | 欄位 |
+| `IntegerMatrixNormalFormReport.snf_agrees` | bridge | 欄位 |
+| `IntegralHomologyFederationReport` | bridge | 結構 |
+| `IntegralHomologyFederationReport.free_rank` | bridge | 欄位 |
+| `IntegralHomologyFederationReport.middle_dimension` | bridge | 欄位 |
+| `IntegralHomologyFederationReport.mod_p_homology_dimension` | bridge | 欄位 |
+| `IntegralHomologyFederationReport.mod_p_rank_a` | bridge | 欄位 |
+| `IntegralHomologyFederationReport.mod_p_rank_b` | bridge | 欄位 |
+| `IntegralHomologyFederationReport.p_torsion_factor_count` | bridge | 欄位 |
+| `IntegralHomologyFederationReport.prime` | bridge | 欄位 |
+| `IntegralHomologyFederationReport.product_zero_ok` | bridge | 欄位 |
+| `IntegralHomologyFederationReport.rank_a` | bridge | 欄位 |
+| `IntegralHomologyFederationReport.rank_b` | bridge | 欄位 |
+| `IntegralHomologyFederationReport.snf_ok` | bridge | 欄位 |
+| `IntegralHomologyFederationReport.torsion_factors` | bridge | 欄位 |
+| `IntegralHomologyFederationReport.universal_coefficient_bound_ok` | bridge | 欄位 |
+| `IntegralHomologyFederationReport.valid` | bridge | 欄位 |
+| `PolynomialReductionFederationReport` | bridge | 結構 |
+| `PolynomialReductionFederationReport.catmath_multiplication_ok` | bridge | 欄位 |
+| `PolynomialReductionFederationReport.companion_ok` | bridge | 欄位 |
+| `PolynomialReductionFederationReport.companion_supported` | bridge | 欄位 |
+| `PolynomialReductionFederationReport.derivative_ok` | bridge | 欄位 |
+| `PolynomialReductionFederationReport.evaluation_ok` | bridge | 欄位 |
+| `PolynomialReductionFederationReport.exact_degree_f` | bridge | 欄位 |
+| `PolynomialReductionFederationReport.exact_degree_g` | bridge | 欄位 |
+| `PolynomialReductionFederationReport.exact_degree_product` | bridge | 欄位 |
+| `PolynomialReductionFederationReport.finite_roots_f` | bridge | 欄位 |
+| `PolynomialReductionFederationReport.hensel_lifts_f` | bridge | 欄位 |
+| `PolynomialReductionFederationReport.hensel_ok` | bridge | 欄位 |
+| `PolynomialReductionFederationReport.hensel_supported` | bridge | 欄位 |
+| `PolynomialReductionFederationReport.ideal_membership_ok` | bridge | 欄位 |
+| `PolynomialReductionFederationReport.ideal_supported` | bridge | 欄位 |
+| `PolynomialReductionFederationReport.multiple_finite_roots_f` | bridge | 欄位 |
+| `PolynomialReductionFederationReport.multiplication_ok` | bridge | 欄位 |
+| `PolynomialReductionFederationReport.prime` | bridge | 欄位 |
+| `PolynomialReductionFederationReport.quotient_dimension` | bridge | 欄位 |
+| `PolynomialReductionFederationReport.quotient_is_field` | bridge | 欄位 |
+| `PolynomialReductionFederationReport.quotient_is_reduced` | bridge | 欄位 |
+| `PolynomialReductionFederationReport.quotient_is_semisimple` | bridge | 欄位 |
+| `PolynomialReductionFederationReport.rational_root_images_f` | bridge | 欄位 |
+| `PolynomialReductionFederationReport.rational_root_images_ok` | bridge | 欄位 |
+| `PolynomialReductionFederationReport.reduced_degree_f` | bridge | 欄位 |
+| `PolynomialReductionFederationReport.reduced_degree_g` | bridge | 欄位 |
+| `PolynomialReductionFederationReport.reduced_degree_product` | bridge | 欄位 |
+| `PolynomialReductionFederationReport.reduced_f_coeffs` | bridge | 欄位 |
+| `PolynomialReductionFederationReport.reduced_g_coeffs` | bridge | 欄位 |
+| `PolynomialReductionFederationReport.reduced_product_coeffs` | bridge | 欄位 |
+| `PolynomialReductionFederationReport.tropical_ok` | bridge | 欄位 |
+| `PolynomialReductionFederationReport.tropical_supported` | bridge | 欄位 |
+| `PolynomialReductionFederationReport.valid` | bridge | 欄位 |
+| `StlcFederationReport` | bridge | 結構 |
+| `StlcFederationReport.catmath_normal_form` | bridge | 欄位 |
+| `StlcFederationReport.catmath_normal_form_idempotent_ok` | bridge | 欄位 |
+| `StlcFederationReport.catmath_unit_eta_completed_normal_form` | bridge | 欄位 |
+| `StlcFederationReport.completed_normal_forms_equal` | bridge | 欄位 |
+| `StlcFederationReport.cubical_eta_equality_ok` | bridge | 欄位 |
+| `StlcFederationReport.cubical_normal_form` | bridge | 欄位 |
+| `StlcFederationReport.cubical_normal_form_in_catmath` | bridge | 欄位 |
+| `StlcFederationReport.inferred_type` | bridge | 欄位 |
+| `StlcFederationReport.raw_normal_forms_equal` | bridge | 欄位 |
+| `StlcFederationReport.type_preserved_ok` | bridge | 欄位 |
+| `StlcFederationReport.unit_eta_completion_needed` | bridge | 欄位 |
+| `StlcFederationReport.valid` | bridge | 欄位 |
 | `WeightedGraphReport` | bridge | 結構 |
 | `WeightedGraphReport.candidate_group_order` | bridge | 欄位 |
 | `WeightedGraphReport.canonical_colors` | bridge | 欄位 |
@@ -5788,33 +6021,101 @@
 | `WeightedGraphReport.support_characteristic_poly` | bridge | 欄位 |
 | `WeightedGraphReport.symmetry_projector` | bridge | 欄位 |
 | `WeightedGraphReport.weighted_symmetry_count` | bridge | 欄位 |
+| `anf_coeffs_to_cubical_face` | bridge | 函數 |
 | `assignment_cost` | bridge | 函數 |
 | `average_permutation_matrices` | bridge | 函數 |
 | `bool_tuple_type` | bridge | 函數 |
+| `boolean_function_federation_report` | bridge | 函數 |
 | `bridge_certificate` | bridge | 函數 |
 | `bridge_certificates` | bridge | 函數 |
+| `catmath_category_to_finalg_category` | bridge | 函數 |
+| `catmath_category_to_fincat` | bridge | 函數 |
+| `catmath_context_to_cubical_context` | bridge | 函數 |
+| `catmath_dynsys_to_semiring_graph` | bridge | 函數 |
+| `catmath_fin_group_to_symlib_perm_group` | bridge | 函數 |
+| `catmath_fintop_to_symlib_fincat` | bridge | 函數 |
+| `catmath_gset_to_symlib_gsetof` | bridge | 函數 |
+| `catmath_path_of_winding` | bridge | 函數 |
+| `catmath_sterm_equal` | bridge | 函數 |
+| `catmath_sterm_to_cubical_term` | bridge | 函數 |
+| `catmath_sterm_unit_eta_complete` | bridge | 函數 |
+| `catmath_stype_equal` | bridge | 函數 |
+| `catmath_stype_to_cubical_lty` | bridge | 函數 |
 | `certificate_of_cubical` | bridge | 函數 |
 | `certificate_of_semiring_law` | bridge | 函數 |
 | `certificate_of_symlib` | bridge | 函數 |
 | `certificate_summary` | bridge | 函數 |
 | `certificates_all_ok` | bridge | 函數 |
+| `check_boolean_function_federation` | bridge | 函數 |
 | `check_certificate_bridge` | bridge | 函數 |
 | `check_face_semiring_bridge` | bridge | 函數 |
+| `check_federation_algebra_derived_bridges` | bridge | 函數 |
+| `check_federation_boolean_topology_derived_bridges` | bridge | 函數 |
+| `check_federation_category_bridge` | bridge | 函數 |
+| `check_federation_catmath_registry` | bridge | 函數 |
+| `check_federation_circle_bridge` | bridge | 函數 |
+| `check_federation_dynamics_homology_derived_bridges` | bridge | 函數 |
+| `check_federation_finalg_verify_bridge` | bridge | 函數 |
+| `check_federation_finite_structure_derived_bridges` | bridge | 函數 |
+| `check_federation_group_bridge` | bridge | 函數 |
+| `check_federation_matrix_bridge` | bridge | 函數 |
+| `check_federation_polynomial_bridge` | bridge | 函數 |
+| `check_federation_stlc_derived_bridge` | bridge | 函數 |
+| `check_finite_category_federation` | bridge | 函數 |
+| `check_finite_dynamics_federation` | bridge | 函數 |
+| `check_finite_group_federation` | bridge | 函數 |
+| `check_finite_gset_federation` | bridge | 函數 |
+| `check_finite_spec_federation` | bridge | 函數 |
+| `check_finite_topology_federation` | bridge | 函數 |
+| `check_fp_chain_complex_federation` | bridge | 函數 |
 | `check_free_category_bridge` | bridge | 函數 |
 | `check_graph_symmetry_bridges` | bridge | 函數 |
+| `check_integer_matrix_federation` | bridge | 函數 |
+| `check_integral_homology_federation` | bridge | 函數 |
 | `check_perm_wiring_bridge` | bridge | 函數 |
+| `check_polynomial_reduction_federation` | bridge | 函數 |
 | `check_square_cell_symmetry` | bridge | 函數 |
+| `check_stlc_federation` | bridge | 函數 |
 | `check_tropical_bridges` | bridge | 函數 |
+| `circle_winding_cross_check` | bridge | 函數 |
+| `cubical_eta_long_term_to_catmath` | bridge | 函數 |
+| `cubical_loop_of_winding` | bridge | 函數 |
+| `cubical_lty_to_catmath_stype` | bridge | 函數 |
 | `exact_determinant_int64` | bridge | 函數 |
 | `exact_permanent_int64` | bridge | 函數 |
 | `face_semiring_law_report` | bridge | 函數 |
+| `federation_member_count` | bridge | 函數 |
+| `federation_member_ids` | bridge | 函數 |
+| `federation_members` | bridge | 函數 |
+| `federation_namespaces` | bridge | 函數 |
+| `finalg_loop_of_winding` | bridge | 函數 |
+| `finalg_spec_to_catmath_fintop` | bridge | 函數 |
+| `finalg_univariate_dense_coeffs` | bridge | 函數 |
+| `finalg_univariate_qpoly_roundtrip` | bridge | 函數 |
+| `finalg_univariate_to_qpoly` | bridge | 函數 |
+| `fincat_finalg_category_laws` | bridge | 函數 |
 | `fincat_hom_counts` | bridge | 函數 |
+| `fincat_tables_equal` | bridge | 函數 |
+| `fincat_to_catmath_category` | bridge | 函數 |
+| `fincat_to_finalg_category` | bridge | 函數 |
+| `finite_category_federation_report` | bridge | 函數 |
+| `finite_dynamics_federation_report` | bridge | 函數 |
+| `finite_group_federation_report` | bridge | 函數 |
+| `finite_gset_federation_report` | bridge | 函數 |
+| `finite_spec_federation_report` | bridge | 函數 |
+| `finite_topology_federation_report` | bridge | 函數 |
+| `fp_chain_complex_federation_report` | bridge | 函數 |
 | `free_category_to_fincat` | bridge | 函數 |
 | `impl IdempotentSemiring for FaceClass` | bridge | trait 實作 |
 | `impl OrderedSemiring for FaceClass` | bridge | trait 實作 |
 | `impl Semiring for FaceClass` | bridge | trait 實作 |
 | `impl Show for FaceClass` | bridge | trait 實作 |
 | `impl StarSemiring for FaceClass` | bridge | trait 實作 |
+| `integer_matrix_charpoly_cross_check_mod` | bridge | 函數 |
+| `integer_matrix_federation_report` | bridge | 函數 |
+| `integer_matrix_normal_form_report` | bridge | 函數 |
+| `integer_snf_cross_check` | bridge | 函數 |
+| `integral_homology_federation_report` | bridge | 函數 |
 | `matrix_permutation_symmetries` | bridge | 函數 |
 | `matrix_support_graph` | bridge | 函數 |
 | `perm_equiv` | bridge | 函數 |
@@ -5823,6 +6124,8 @@
 | `perm_preserves_semiring_graph` | bridge | 函數 |
 | `perm_wiring` | bridge | 函數 |
 | `permutation_matrix` | bridge | 函數 |
+| `polynomial_reduction_federation_report` | bridge | 函數 |
+| `qpoly_to_finalg_univariate` | bridge | 函數 |
 | `qpoly_tropicalize_padic` | bridge | 函數 |
 | `rat_padic_valuation` | bridge | 函數 |
 | `semiring_graph_candidate_order` | bridge | 函數 |
@@ -5832,8 +6135,1028 @@
 | `semiring_graph_vertex_colors` | bridge | 函數 |
 | `signed_perm_wiring` | bridge | 函數 |
 | `square_cell_incidence` | bridge | 函數 |
+| `stlc_federation_report` | bridge | 函數 |
+| `symlib_gsetof_to_catmath_gset_with_element_order` | bridge | 函數 |
+| `symlib_perm_group_to_catmath_fin_group` | bridge | 函數 |
+| `symlib_thin_fincat_to_catmath_fintop` | bridge | 函數 |
 | `tropical_matrix_symmetries` | bridge | 函數 |
 | `tropical_optimal_assignments` | bridge | 函數 |
+| `truth_table_to_cubical_face_dnf` | bridge | 函數 |
 | `weighted_graph_report` | bridge | 函數 |
+| `winding_of_catmath_path` | bridge | 函數 |
+| `winding_of_cubical_loop` | bridge | 函數 |
 | `wiring_output_signs` | bridge | 函數 |
+
+### finalg：數論與模算術
+
+- 規範形式：[0,m) 剩餘代表、素因數表與 CRT 解
+- 範疇化：Z/mZ 與整數乘法群的有限片段
+- 判定：擴展歐氏、Bézout 恆等式、確定性 Miller–Rabin（32 位元範圍）與因數表重組
+
+| 符號 | 套件 | 類別 |
+|---|---|---|
+| `crt_pair` | finalg-num | 函數 |
+| `divisors` | finalg-num | 函數 |
+| `egcd` | finalg-num | 函數 |
+| `factor` | finalg-num | 函數 |
+| `gcd` | finalg-num | 函數 |
+| `invmod` | finalg-num | 函數 |
+| `is_prime` | finalg-num | 函數 |
+| `mod_pos` | finalg-num | 函數 |
+| `mul_mod` | finalg-num | 函數 |
+| `power_int` | finalg-num | 函數 |
+| `powmod` | finalg-num | 函數 |
+
+### finalg：有限域線性代數
+
+- 規範形式：F_p 稠密矩陣與 RREF+pivots
+- 範疇化：有限維 F_p 向量空間與線性映射範疇
+- 判定：Gauss–Jordan、rank-nullity、零空間與線性方程求解
+
+| 符號 | 套件 | 類別 |
+|---|---|---|
+| `Matrix` | finalg-linalg | 結構 |
+| `Matrix.cols` | finalg-linalg | 欄位 |
+| `Matrix.data` | finalg-linalg | 欄位 |
+| `Matrix.p` | finalg-linalg | 欄位 |
+| `Matrix.rows` | finalg-linalg | 欄位 |
+| `Matrix::add` | finalg-linalg | 函數 |
+| `Matrix::apply` | finalg-linalg | 函數 |
+| `Matrix::copy` | finalg-linalg | 函數 |
+| `Matrix::from_rows` | finalg-linalg | 函數 |
+| `Matrix::get` | finalg-linalg | 函數 |
+| `Matrix::identity` | finalg-linalg | 函數 |
+| `Matrix::mul` | finalg-linalg | 函數 |
+| `Matrix::nullspace` | finalg-linalg | 函數 |
+| `Matrix::rank` | finalg-linalg | 函數 |
+| `Matrix::rowspace_contains` | finalg-linalg | 函數 |
+| `Matrix::rref` | finalg-linalg | 函數 |
+| `Matrix::rref_signature` | finalg-linalg | 函數 |
+| `Matrix::set` | finalg-linalg | 函數 |
+| `Matrix::solve` | finalg-linalg | 函數 |
+| `Matrix::to_repr` | finalg-linalg | 函數 |
+| `Matrix::transpose` | finalg-linalg | 函數 |
+| `Matrix::zero` | finalg-linalg | 函數 |
+| `close_under_actions` | finalg-linalg | 函數 |
+| `elems_contains` | finalg-linalg | 函數 |
+| `elems_eq` | finalg-linalg | 函數 |
+| `elems_normalize` | finalg-linalg | 函數 |
+| `enumerate_closed_subspaces` | finalg-linalg | 函數 |
+| `enumerate_vectors` | finalg-linalg | 函數 |
+| `int_arrays_eq` | finalg-linalg | 函數 |
+| `span_elements` | finalg-linalg | 函數 |
+| `vec_add` | finalg-linalg | 函數 |
+| `vec_cmp` | finalg-linalg | 函數 |
+| `vec_eq` | finalg-linalg | 函數 |
+| `vec_scale` | finalg-linalg | 函數 |
+
+### finalg：多項式、理想與正規形
+
+- 規範形式：字典序規範多項式、約化 Gröbner 基、SNF/HNF 與有理標準形
+- 範疇化：有限域多項式環、理想商與歐氏整環上的模
+- 判定：Buchberger/正規形、UAV 幺模證書、Cayley–Hamilton 與整除鏈
+
+| 符號 | 套件 | 類別 |
+|---|---|---|
+| `Field` | finalg | trait |
+| `Field::try_inv` | finalg | trait 方法 |
+| `IntMod` | finalg | 結構 |
+| `IntMod.modulus` | finalg | 欄位 |
+| `IntMod.val` | finalg | 欄位 |
+| `IntMod::add` | finalg | 函數 |
+| `IntMod::equal` | finalg | 函數 |
+| `IntMod::make` | finalg | 函數 |
+| `IntMod::mul` | finalg | 函數 |
+| `IntMod::neg` | finalg | 函數 |
+| `IntMod::not_equal` | finalg | 函數 |
+| `IntMod::one_like` | finalg | 函數 |
+| `IntMod::rep` | finalg | 函數 |
+| `IntMod::sub` | finalg | 函數 |
+| `IntMod::to_repr` | finalg | 函數 |
+| `IntMod::try_inv` | finalg | 函數 |
+| `IntMod::zero_like` | finalg | 函數 |
+| `Poly` | finalg | 結構 |
+| `Poly.modulus` | finalg | 欄位 |
+| `Poly.nvars` | finalg | 欄位 |
+| `Poly.terms` | finalg | 欄位 |
+| `Poly::add` | finalg | 函數 |
+| `Poly::constant` | finalg | 函數 |
+| `Poly::derivative` | finalg | 函數 |
+| `Poly::divmod` | finalg | 函數 |
+| `Poly::equal` | finalg | 函數 |
+| `Poly::eval` | finalg | 函數 |
+| `Poly::is_zero` | finalg | 函數 |
+| `Poly::lc` | finalg | 函數 |
+| `Poly::lm` | finalg | 函數 |
+| `Poly::mul` | finalg | 函數 |
+| `Poly::mul_monom` | finalg | 函數 |
+| `Poly::neg` | finalg | 函數 |
+| `Poly::normal_form` | finalg | 函數 |
+| `Poly::not_equal` | finalg | 函數 |
+| `Poly::one` | finalg | 函數 |
+| `Poly::one_like` | finalg | 函數 |
+| `Poly::sub` | finalg | 函數 |
+| `Poly::to_repr` | finalg | 函數 |
+| `Poly::total_deg` | finalg | 函數 |
+| `Poly::variable` | finalg | 函數 |
+| `Poly::zero` | finalg | 函數 |
+| `Poly::zero_like` | finalg | 函數 |
+| `PolyIdeal` | finalg | 結構 |
+| `PolyIdeal.gens` | finalg | 欄位 |
+| `PolyIdeal.modulus` | finalg | 欄位 |
+| `PolyIdeal.nvars` | finalg | 欄位 |
+| `PolyIdeal::add` | finalg | 函數 |
+| `PolyIdeal::conductor` | finalg | 函數 |
+| `PolyIdeal::contains` | finalg | 函數 |
+| `PolyIdeal::eq` | finalg | 函數 |
+| `PolyIdeal::gb` | finalg | 函數 |
+| `PolyIdeal::intersect` | finalg | 函數 |
+| `PolyIdeal::is_prime` | finalg | 函數 |
+| `PolyIdeal::is_zero_dim` | finalg | 函數 |
+| `PolyIdeal::mul` | finalg | 函數 |
+| `PolyIdeal::new` | finalg | 函數 |
+| `PolyIdeal::principal` | finalg | 函數 |
+| `PolyIdeal::quotient_principal` | finalg | 函數 |
+| `PolyIdeal::radical_membership` | finalg | 函數 |
+| `PolyIdeal::standard_monomials` | finalg | 函數 |
+| `PolyIdeal::to_repr` | finalg | 函數 |
+| `PolyIdeal::unit` | finalg | 函數 |
+| `PolyIdeal::zero` | finalg | 函數 |
+| `Ring` | finalg | trait |
+| `Ring::add` | finalg | trait 方法 |
+| `Ring::mul` | finalg | trait 方法 |
+| `Ring::neg` | finalg | trait 方法 |
+| `Ring::one_like` | finalg | trait 方法 |
+| `Ring::sub` | finalg | trait 方法 |
+| `Ring::zero_like` | finalg | trait 方法 |
+| `Term` | finalg | 結構 |
+| `Term.coeff` | finalg | 欄位 |
+| `Term.exp` | finalg | 欄位 |
+| `Term::equal` | finalg | 函數 |
+| `Term::not_equal` | finalg | 函數 |
+| `Term::to_repr` | finalg | 函數 |
+| `anf_degree` | finalg | 函數 |
+| `anf_eval` | finalg | 函數 |
+| `anf_transform` | finalg | 函數 |
+| `companion_matrix` | finalg | 函數 |
+| `det_gf` | finalg | 函數 |
+| `det_int` | finalg | 函數 |
+| `exp_add` | finalg | 函數 |
+| `exp_divides` | finalg | 函數 |
+| `exp_lcm` | finalg | 函數 |
+| `groebner_basis` | finalg | 函數 |
+| `hnf_int` | finalg | 函數 |
+| `ideal_membership` | finalg | 函數 |
+| `impl Field for IntMod` | finalg | trait 實作 |
+| `impl Ring for IntMod` | finalg | trait 實作 |
+| `impl Ring for Poly` | finalg | trait 實作 |
+| `is_zero_dim` | finalg | 函數 |
+| `lex_cmp` | finalg | 函數 |
+| `mat_charpoly` | finalg | 函數 |
+| `mat_poly_eval` | finalg | 函數 |
+| `poly_of_terms` | finalg | 函數 |
+| `radical_membership` | finalg | 函數 |
+| `rational_canonical_form` | finalg | 函數 |
+| `ring_int_mul` | finalg | 函數 |
+| `ring_pow` | finalg | 函數 |
+| `snf_int` | finalg | 函數 |
+| `spoly` | finalg | 函數 |
+| `standard_monomials` | finalg | 函數 |
+| `up_eval` | finalg | 函數 |
+| `zn_conductor` | finalg | 函數 |
+| `zn_coordinate` | finalg | 函數 |
+| `zn_crt_components` | finalg | 函數 |
+| `zn_dimension` | finalg | 函數 |
+| `zn_ideal_elements` | finalg | 函數 |
+| `zn_ideal_gens` | finalg | 函數 |
+| `zn_idempotents` | finalg | 函數 |
+| `zn_is_artinian` | finalg | 函數 |
+| `zn_is_local` | finalg | 函數 |
+| `zn_is_nilpotent` | finalg | 函數 |
+| `zn_is_primitive_idempotent` | finalg | 函數 |
+| `zn_is_regular_local` | finalg | 函數 |
+| `zn_is_semiprime_ideal` | finalg | 函數 |
+| `zn_is_unit` | finalg | 函數 |
+| `zn_nilradical` | finalg | 函數 |
+| `zn_pow` | finalg | 函數 |
+| `zn_units` | finalg | 函數 |
+
+### finalg：有限代數與有限環
+
+- 規範形式：基底與結構常數、理想成員表與局部化資料
+- 範疇化：有限維 F_p 代數及有限交換環片段
+- 判定：元素枚舉上的理想/根/單位/冪零與局部環檢查
+
+| 符號 | 套件 | 類別 |
+|---|---|---|
+| `FinAlg` | finalg-finite | 結構 |
+| `FinAlg.dim` | finalg-finite | 欄位 |
+| `FinAlg.mult` | finalg-finite | 欄位 |
+| `FinAlg.p` | finalg-finite | 欄位 |
+| `FinAlg::add_elem` | finalg-finite | 函數 |
+| `FinAlg::all_elements` | finalg-finite | 函數 |
+| `FinAlg::localize` | finalg-finite | 函數 |
+| `FinAlg::localize_at` | finalg-finite | 函數 |
+| `FinAlg::localize_at_element` | finalg-finite | 函數 |
+| `FinAlg::mul_elem` | finalg-finite | 函數 |
+| `FinAlg::neg_elem` | finalg-finite | 函數 |
+| `FinAlg::one_elem` | finalg-finite | 函數 |
+| `FinAlg::principal_ideal` | finalg-finite | 函數 |
+| `FinAlg::product` | finalg-finite | 函數 |
+| `FinAlg::subalgebra` | finalg-finite | 函數 |
+| `FinAlg::to_repr` | finalg-finite | 函數 |
+| `FinAlg::unit_ideal` | finalg-finite | 函數 |
+| `FinAlg::univariate_quotient` | finalg-finite | 函數 |
+| `FinAlg::validate` | finalg-finite | 函數 |
+| `FinAlg::zero_dim_quotient` | finalg-finite | 函數 |
+| `FinAlg::zero_elem` | finalg-finite | 函數 |
+| `FinAlg::zero_ideal` | finalg-finite | 函數 |
+| `FinIdeal` | finalg-finite | 結構 |
+| `FinIdeal.alg` | finalg-finite | 欄位 |
+| `FinIdeal.members` | finalg-finite | 欄位 |
+| `FinIdeal::add` | finalg-finite | 函數 |
+| `FinIdeal::conductor` | finalg-finite | 函數 |
+| `FinIdeal::contains` | finalg-finite | 函數 |
+| `FinIdeal::eq` | finalg-finite | 函數 |
+| `FinIdeal::generate` | finalg-finite | 函數 |
+| `FinIdeal::intersect` | finalg-finite | 函數 |
+| `FinIdeal::is_prime` | finalg-finite | 函數 |
+| `FinIdeal::is_semiprime` | finalg-finite | 函數 |
+| `FinIdeal::mul` | finalg-finite | 函數 |
+| `FinIdeal::quotient` | finalg-finite | 函數 |
+| `FinIdeal::radical` | finalg-finite | 函數 |
+| `FinIdeal::to_repr` | finalg-finite | 函數 |
+| `Localization` | finalg-finite | 結構 |
+| `Localization.add_code` | finalg-finite | 欄位 |
+| `Localization.base` | finalg-finite | 欄位 |
+| `Localization.class_count` | finalg-finite | 欄位 |
+| `Localization.class_pair` | finalg-finite | 欄位 |
+| `Localization.mul_code` | finalg-finite | 欄位 |
+| `Localization.pair_class` | finalg-finite | 欄位 |
+| `Localization.pair_den` | finalg-finite | 欄位 |
+| `Localization.pair_num` | finalg-finite | 欄位 |
+| `Localization.s_codes` | finalg-finite | 欄位 |
+| `Localization.s_idx_of` | finalg-finite | 欄位 |
+| `Localization.s_set` | finalg-finite | 欄位 |
+| `Localization::add_class` | finalg-finite | 函數 |
+| `Localization::embed` | finalg-finite | 函數 |
+| `Localization::fraction` | finalg-finite | 函數 |
+| `Localization::map_to` | finalg-finite | 函數 |
+| `Localization::mul_class` | finalg-finite | 函數 |
+| `Localization::size` | finalg-finite | 函數 |
+| `annihilator` | finalg-finite | 函數 |
+| `annihilator_ideal` | finalg-finite | 函數 |
+| `corner` | finalg-finite | 函數 |
+| `decompose_blocks` | finalg-finite | 函數 |
+| `embedding_dim` | finalg-finite | 函數 |
+| `enumerate_ideals` | finalg-finite | 函數 |
+| `ideal_dim` | finalg-finite | 函數 |
+| `idempotents` | finalg-finite | 函數 |
+| `is_field_alg` | finalg-finite | 函數 |
+| `is_local` | finalg-finite | 函數 |
+| `is_nilpotent` | finalg-finite | 函數 |
+| `is_primitive_idempotent` | finalg-finite | 函數 |
+| `is_reduced` | finalg-finite | 函數 |
+| `is_regular_local_at` | finalg-finite | 函數 |
+| `is_semisimple_ring` | finalg-finite | 函數 |
+| `is_simple_ideal` | finalg-finite | 函數 |
+| `is_trivial_idempotent` | finalg-finite | 函數 |
+| `is_wedderburn_product` | finalg-finite | 函數 |
+| `jacobson_radical` | finalg-finite | 函數 |
+| `krull_dim` | finalg-finite | 函數 |
+| `local_maximal` | finalg-finite | 函數 |
+| `local_ring_dim` | finalg-finite | 函數 |
+| `longest_ideal_chain` | finalg-finite | 函數 |
+| `maximal_ideals` | finalg-finite | 函數 |
+| `nilradical` | finalg-finite | 函數 |
+| `prime_ideals` | finalg-finite | 函數 |
+| `primitive_idempotents` | finalg-finite | 函數 |
+| `simple_ideals` | finalg-finite | 函數 |
+| `socle` | finalg-finite | 函數 |
+| `split_idempotent` | finalg-finite | 函數 |
+| `square_ideal` | finalg-finite | 函數 |
+| `wedderburn_fields` | finalg-finite | 函數 |
+
+### finalg：有限模與黏合
+
+- 規範形式：生成元—關係呈現、對偶基與逆向系統相容族
+- 範疇化：有限環上的有限呈現模與有限極限
+- 判定：子模/商/直和、射影性探針與黏合相容性檢查
+
+| 符號 | 套件 | 類別 |
+|---|---|---|
+| `FinModule` | finalg-modules | 結構 |
+| `FinModule.action` | finalg-modules | 欄位 |
+| `FinModule.alg` | finalg-modules | 欄位 |
+| `FinModule.dim` | finalg-modules | 欄位 |
+| `FinModule::annihilator` | finalg-modules | 函數 |
+| `FinModule::complement_exists` | finalg-modules | 函數 |
+| `FinModule::cyclic` | finalg-modules | 函數 |
+| `FinModule::free` | finalg-modules | 函數 |
+| `FinModule::generators` | finalg-modules | 函數 |
+| `FinModule::is_coherent` | finalg-modules | 函數 |
+| `FinModule::is_submodule` | finalg-modules | 函數 |
+| `FinModule::quotient_module` | finalg-modules | 函數 |
+| `FinModule::relations` | finalg-modules | 函數 |
+| `FinModule::to_repr` | finalg-modules | 函數 |
+| `FinModule::validate` | finalg-modules | 函數 |
+| `FinModule::zero_module` | finalg-modules | 函數 |
+| `InvSystem` | finalg-modules | 結構 |
+| `InvSystem.bonds` | finalg-modules | 欄位 |
+| `InvSystem.sizes` | finalg-modules | 欄位 |
+| `InvSystem::bond_injective` | finalg-modules | 函數 |
+| `InvSystem::limit_threads` | finalg-modules | 函數 |
+| `InvSystem::projection_surjective` | finalg-modules | 函數 |
+| `InvSystem::to_repr` | finalg-modules | 函數 |
+| `InvSystem::validate` | finalg-modules | 函數 |
+| `dual_dim` | finalg-modules | 函數 |
+| `enumerate_submodules` | finalg-modules | 函數 |
+| `hom_space` | finalg-modules | 函數 |
+| `ideal_kdim` | finalg-modules | 函數 |
+| `is_free` | finalg-modules | 函數 |
+| `is_projective` | finalg-modules | 函數 |
+| `is_split_extension` | finalg-modules | 函數 |
+| `is_torsion_elem` | finalg-modules | 函數 |
+| `is_torsion_free` | finalg-modules | 函數 |
+| `mod_localize_class_of` | finalg-modules | 函數 |
+| `mod_localize_size` | finalg-modules | 函數 |
+| `torsion_elements` | finalg-modules | 函數 |
+
+### finalg：有限代數幾何
+
+- 規範形式：有限點集、消失理想與維數證書
+- 範疇化：有限域仿射簇與其坐標環片段
+- 判定：點枚舉、Hilbert/理想運算與維數互校
+
+| 符號 | 套件 | 類別 |
+|---|---|---|
+| `affine_points` | finalg-geometry | 函數 |
+| `coordinate_basis` | finalg-geometry | 函數 |
+| `coordinate_ring` | finalg-geometry | 函數 |
+| `crt_iso_holds` | finalg-geometry | 函數 |
+| `eval_matrix` | finalg-geometry | 函數 |
+| `jacobian_matrix` | finalg-geometry | 函數 |
+| `singular_points` | finalg-geometry | 函數 |
+| `smooth_at` | finalg-geometry | 函數 |
+| `vanishing_ideal` | finalg-geometry | 函數 |
+| `variety` | finalg-geometry | 函數 |
+
+### finalg：有限概形
+
+- 規範形式：Spec 點/莖資料與有限開覆蓋黏合表
+- 範疇化：有限交換環譜與結構層的有限片段
+- 判定：素理想、局部化與覆蓋相容性枚舉
+
+| 符號 | 套件 | 類別 |
+|---|---|---|
+| `Spec` | finalg-scheme | 結構 |
+| `Spec.alg` | finalg-scheme | 欄位 |
+| `Spec.primes` | finalg-scheme | 欄位 |
+| `Spec::basic_open` | finalg-scheme | 函數 |
+| `Spec::dimension` | finalg-scheme | 函數 |
+| `Spec::irreducible_components` | finalg-scheme | 函數 |
+| `Spec::is_le` | finalg-scheme | 函數 |
+| `Spec::open_count` | finalg-scheme | 函數 |
+| `Spec::opens` | finalg-scheme | 函數 |
+| `Spec::to_repr` | finalg-scheme | 函數 |
+| `covers_basic` | finalg-scheme | 函數 |
+| `restriction` | finalg-scheme | 函數 |
+| `sheaf_gluing_bijective` | finalg-scheme | 函數 |
+| `spec` | finalg-scheme | 函數 |
+
+### finalg：有限 HoTT
+
+- 規範形式：等價的雙向函數資料、S1 繞數與截斷見證
+- 範疇化：有限集宇宙中的等價、HIT 商與低截斷層級
+- 判定：逐元素逆律、商消去良定性與同倫層級見證
+
+| 符號 | 套件 | 類別 |
+|---|---|---|
+| `Equiv` | finalg-hott | 結構 |
+| `Equiv.bwd` | finalg-hott | 欄位 |
+| `Equiv.fwd` | finalg-hott | 欄位 |
+| `Equiv::is_equiv_finite` | finalg-hott | 函數 |
+| `Equiv::retr_ok` | finalg-hott | 函數 |
+| `Equiv::sect_ok` | finalg-hott | 函數 |
+| `HalfAdj` | finalg-hott | 結構 |
+| `HalfAdj.bwd` | finalg-hott | 欄位 |
+| `HalfAdj.eta` | finalg-hott | 欄位 |
+| `HalfAdj.fwd` | finalg-hott | 欄位 |
+| `ann_sum_law` | finalg-hott | 函數 |
+| `contrapose_holds` | finalg-hott | 函數 |
+| `coprod_hom_equiv_holds` | finalg-hott | 函數 |
+| `crt_equiv_holds` | finalg-hott | 函數 |
+| `crt_forward` | finalg-hott | 函數 |
+| `crt_recombine` | finalg-hott | 函數 |
+| `curry_equiv_holds` | finalg-hott | 函數 |
+| `de_morgan_holds` | finalg-hott | 函數 |
+| `dne_holds` | finalg-hott | 函數 |
+| `enumerate_functions` | finalg-hott | 函數 |
+| `equiv_symm` | finalg-hott | 函數 |
+| `equiv_trans` | finalg-hott | 函數 |
+| `funext_finite` | finalg-hott | 函數 |
+| `halfadj_to_qinv` | finalg-hott | 函數 |
+| `id_equiv` | finalg-hott | 函數 |
+| `iff_pred` | finalg-hott | 函數 |
+| `iff_symm_holds` | finalg-hott | 函數 |
+| `impl_pred` | finalg-hott | 函數 |
+| `impl_trans_holds` | finalg-hott | 函數 |
+| `int_refl_unique` | finalg-hott | 函數 |
+| `is_prop_elems` | finalg-hott | 函數 |
+| `pi1_s1_equiv` | finalg-hott | 函數 |
+| `qinv_to_halfadj` | finalg-hott | 函數 |
+| `quotient_path` | finalg-hott | 函數 |
+| `quotient_rec_ok` | finalg-hott | 函數 |
+| `s1_concat` | finalg-hott | 函數 |
+| `s1_groupoid_laws` | finalg-hott | 函數 |
+| `s1_inv` | finalg-hott | 函數 |
+| `s1_is_set` | finalg-hott | 函數 |
+| `s1_loop` | finalg-hott | 函數 |
+| `s1_refl` | finalg-hott | 函數 |
+| `transport_pred` | finalg-hott | 函數 |
+| `ua_beta_holds` | finalg-hott | 函數 |
+
+### finalg：範疇化
+
+- 規範形式：閉包字典、路徑序列、分割群胚與 Grothendieck 類
+- 範疇化：集合層結構到範疇/群胚層的提升與反降
+- 判定：結合/單位/逆律、路徑合成、群胚基數與 Yoneda 計數
+
+| 符號 | 套件 | 類別 |
+|---|---|---|
+| `Category` | finalg-cat | 結構 |
+| `Category.compose` | finalg-cat | 欄位 |
+| `Category.eq` | finalg-cat | 欄位 |
+| `Category.id` | finalg-cat | 欄位 |
+| `Category.src` | finalg-cat | 欄位 |
+| `Category.tgt` | finalg-cat | 欄位 |
+| `Frac` | finalg-cat | 結構 |
+| `Frac.den` | finalg-cat | 欄位 |
+| `Frac.num` | finalg-cat | 欄位 |
+| `Frac::equal` | finalg-cat | 函數 |
+| `Frac::not_equal` | finalg-cat | 函數 |
+| `Frac::to_repr` | finalg-cat | 函數 |
+| `Graph` | finalg-cat | 結構 |
+| `Graph.edges` | finalg-cat | 欄位 |
+| `Graph.n` | finalg-cat | 欄位 |
+| `Graph::to_repr` | finalg-cat | 函數 |
+| `Groupoid` | finalg-cat | 結構 |
+| `Groupoid.cat` | finalg-cat | 欄位 |
+| `Groupoid.inv` | finalg-cat | 欄位 |
+| `KClass` | finalg-cat | 結構 |
+| `KClass.p` | finalg-cat | 欄位 |
+| `KClass.q` | finalg-cat | 欄位 |
+| `KClass::to_repr` | finalg-cat | 函數 |
+| `PartitionGroupoid` | finalg-cat | 結構 |
+| `PartitionGroupoid.cls` | finalg-cat | 欄位 |
+| `PartitionGroupoid::as_groupoid` | finalg-cat | 函數 |
+| `PartitionGroupoid::equal` | finalg-cat | 函數 |
+| `PartitionGroupoid::groupoid_cardinality` | finalg-cat | 函數 |
+| `PartitionGroupoid::is_iso` | finalg-cat | 函數 |
+| `PartitionGroupoid::iso_class_count` | finalg-cat | 函數 |
+| `PartitionGroupoid::iso_is_equivalence` | finalg-cat | 函數 |
+| `PartitionGroupoid::not_equal` | finalg-cat | 函數 |
+| `PartitionGroupoid::pi0` | finalg-cat | 函數 |
+| `PartitionGroupoid::to_repr` | finalg-cat | 函數 |
+| `Path` | finalg-cat | 結構 |
+| `Path.edges` | finalg-cat | 欄位 |
+| `Path.from` | finalg-cat | 欄位 |
+| `Path.to` | finalg-cat | 欄位 |
+| `Path::to_repr` | finalg-cat | 函數 |
+| `assoc_ok` | finalg-cat | 函數 |
+| `category_of` | finalg-cat | 函數 |
+| `compose_len` | finalg-cat | 函數 |
+| `delooping_zn` | finalg-cat | 函數 |
+| `delooping_zn_groupoid` | finalg-cat | 函數 |
+| `frac` | finalg-cat | 函數 |
+| `frac_add` | finalg-cat | 函數 |
+| `graph_components` | finalg-cat | 函數 |
+| `graph_reachable` | finalg-cat | 函數 |
+| `inv_ok` | finalg-cat | 函數 |
+| `k_add` | finalg-cat | 函數 |
+| `k_eq` | finalg-cat | 函數 |
+| `k_induced` | finalg-cat | 函數 |
+| `k_neg` | finalg-cat | 函數 |
+| `k_to_int` | finalg-cat | 函數 |
+| `path_category` | finalg-cat | 函數 |
+| `path_len` | finalg-cat | 函數 |
+| `path_weighted` | finalg-cat | 函數 |
+| `unit_ok` | finalg-cat | 函數 |
+| `yoneda_bwd` | finalg-cat | 函數 |
+| `yoneda_fwd` | finalg-cat | 函數 |
+| `yoneda_nat_count` | finalg-cat | 函數 |
+
+### finalg：接口移植
+
+- 規範形式：函數簽名記錄與遷移報告
+- 範疇化：靜態接口形狀而非數學對象本身
+- 判定：簽名相容性、缺失/多餘符號與 JSON 往返檢查
+
+| 符號 | 套件 | 類別 |
+|---|---|---|
+| `FuncSig` | finalg-port | 結構 |
+| `FuncSig.lineno` | finalg-port | 欄位 |
+| `FuncSig.name` | finalg-port | 欄位 |
+| `FuncSig.params` | finalg-port | 欄位 |
+| `FuncSig.ret` | finalg-port | 欄位 |
+| `MigrationReport` | finalg-port | 結構 |
+| `MigrationReport.mapped` | finalg-port | 欄位 |
+| `MigrationReport.sigs` | finalg-port | 欄位 |
+| `MigrationReport.skeleton` | finalg-port | 欄位 |
+| `MigrationReport.total` | finalg-port | 欄位 |
+| `MigrationReport.unmapped` | finalg-port | 欄位 |
+| `Param` | finalg-port | 結構 |
+| `Param.name` | finalg-port | 欄位 |
+| `Param.ty` | finalg-port | 欄位 |
+| `count_asserts` | finalg-port | 函數 |
+| `extract_functions` | finalg-port | 函數 |
+| `extract_test_names` | finalg-port | 函數 |
+| `generate_skeleton` | finalg-port | 函數 |
+| `map_type` | finalg-port | 函數 |
+| `migrate` | finalg-port | 函數 |
+| `parse_params` | finalg-port | 函數 |
+| `report_json` | finalg-port | 函數 |
+
+### finalg：測試工具
+
+- 規範形式：確定性隨機流與有限代數 fixture
+- 範疇化：QuickCheck 式產生器在有限見證上的實現
+- 判定：可重播產生與性質測試供給
+
+| 符號 | 套件 | 類別 |
+|---|---|---|
+| `det_rand` | finalg-testutil | 函數 |
+| `is_zero_vec` | finalg-testutil | 函數 |
+| `prop_elem` | finalg-testutil | 函數 |
+| `prop_ring` | finalg-testutil | 函數 |
+
+### finalg：形式驗證算術
+
+- 規範形式：Euclid 商餘對與模冪結果
+- 範疇化：整數歐氏整環及 Z/mZ 的合約式片段
+- 判定：MoonBit 合約供 moon prove/Why3；一般編譯只檢查型別與合約句法
+
+| 符號 | 套件 | 類別 |
+|---|---|---|
+| `Euclid` | finalg-verify | 結構 |
+| `Euclid.q` | finalg-verify | 欄位 |
+| `Euclid.r` | finalg-verify | 欄位 |
+| `euclid_divmod` | finalg-verify | 函數 |
+| `mod_pos` | finalg-verify | 函數 |
+| `pow2_rec` | finalg-verify | 函數 |
+| `pow_mod` | finalg-verify | 函數 |
+
+### catmath：範疇與高維代數規範形
+
+- 規範形式：有限合成表、乘法表、鏈複形矩陣、約化詞與多類規範索引
+- 範疇化：小範疇、群胚、高維/同調代數與型別論模型的有限表示
+- 判定：公理窮舉、等價/同構判定、SNF/RREF、Yoneda 與各 verify_* 有限檢查
+
+| 符號 | 套件 | 類別 |
+|---|---|---|
+| `Addable` | catmath | trait |
+| `Addable::add` | catmath | trait 方法 |
+| `Addable::zero` | catmath | trait 方法 |
+| `Arrow` | catmath | 結構 |
+| `Arrow.from` | catmath | 欄位 |
+| `Arrow.to` | catmath | 欄位 |
+| `CanonicalEntry` | catmath | 結構 |
+| `CanonicalEntry.algorithm` | catmath | 欄位 |
+| `CanonicalEntry.complexity` | catmath | 欄位 |
+| `CanonicalEntry.definition` | catmath | 欄位 |
+| `CanonicalEntry.family` | catmath | 欄位 |
+| `CanonicalEntry.mod_name` | catmath | 欄位 |
+| `CanonicalEntry.name` | catmath | 欄位 |
+| `CanonicalEntry.theorem` | catmath | 欄位 |
+| `Category` | catmath | 結構 |
+| `Category.arrows` | catmath | 欄位 |
+| `Category.comp` | catmath | 欄位 |
+| `Category.id_of_obj` | catmath | 欄位 |
+| `Category.n_obj` | catmath | 欄位 |
+| `ChainComplex` | catmath | 結構 |
+| `ChainComplex.diff` | catmath | 欄位 |
+| `ChainComplex.p` | catmath | 欄位 |
+| `CrossedModule` | catmath | 結構 |
+| `CrossedModule.action` | catmath | 欄位 |
+| `CrossedModule.d` | catmath | 欄位 |
+| `CrossedModule.gg` | catmath | 欄位 |
+| `CrossedModule.hh` | catmath | 欄位 |
+| `DerivedThm` | catmath | 結構 |
+| `DerivedThm.name` | catmath | 欄位 |
+| `DerivedThm.source` | catmath | 欄位 |
+| `DerivedThm.statement` | catmath | 欄位 |
+| `DynSys` | catmath | 結構 |
+| `DynSys.f` | catmath | 欄位 |
+| `DynSys.n` | catmath | 欄位 |
+| `FinGroup` | catmath | 結構 |
+| `FinGroup.e` | catmath | 欄位 |
+| `FinGroup.inv` | catmath | 欄位 |
+| `FinGroup.mul` | catmath | 欄位 |
+| `FinGroup.name` | catmath | 欄位 |
+| `FinGroup.order` | catmath | 欄位 |
+| `FinMonoid` | catmath | 結構 |
+| `FinMonoid.e` | catmath | 欄位 |
+| `FinMonoid.mul` | catmath | 欄位 |
+| `FinMonoid.name` | catmath | 欄位 |
+| `FinMonoid.order` | catmath | 欄位 |
+| `FinTop` | catmath | 結構 |
+| `FinTop.le` | catmath | 欄位 |
+| `FinTop.n` | catmath | 欄位 |
+| `FreeGroup` | catmath | 結構 |
+| `FreeGroup.generators` | catmath | 欄位 |
+| `FreeMonoid` | catmath | 結構 |
+| `FreeMonoid.alphabet` | catmath | 欄位 |
+| `Functor` | catmath | 結構 |
+| `Functor.mor_map` | catmath | 欄位 |
+| `Functor.obj_map` | catmath | 欄位 |
+| `GSet` | catmath | 結構 |
+| `GSet.action` | catmath | 欄位 |
+| `GSet.elements` | catmath | 欄位 |
+| `GSet.group` | catmath | 欄位 |
+| `GroupActionPseudo` | catmath | 結構 |
+| `GroupActionPseudo.alpha` | catmath | 欄位 |
+| `GroupActionPseudo.dom` | catmath | 欄位 |
+| `GroupActionPseudo.gg` | catmath | 欄位 |
+| `GroupActionPseudo.phi` | catmath | 欄位 |
+| `IntMat` | catmath | 結構 |
+| `IntMat.cols` | catmath | 欄位 |
+| `IntMat.data` | catmath | 欄位 |
+| `IntMat.rows` | catmath | 欄位 |
+| `JumpTable` | catmath | 結構 |
+| `JumpTable.jump` | catmath | 欄位 |
+| `Mat` | catmath | 結構 |
+| `Mat.cols` | catmath | 欄位 |
+| `Mat.data` | catmath | 欄位 |
+| `Mat.p` | catmath | 欄位 |
+| `Mat.rows` | catmath | 欄位 |
+| `NatIso` | catmath | 結構 |
+| `NatIso.components` | catmath | 欄位 |
+| `NetNode` | catmath | 結構 |
+| `NetNode.dead` | catmath | 欄位 |
+| `NetNode.kind` | catmath | 欄位 |
+| `NetNode.prem` | catmath | 欄位 |
+| `Presheaf` | catmath | 結構 |
+| `Presheaf.cc` | catmath | 欄位 |
+| `Presheaf.maps` | catmath | 欄位 |
+| `Presheaf.sets` | catmath | 欄位 |
+| `ProofNet` | catmath | 結構 |
+| `ProofNet.nodes` | catmath | 欄位 |
+| `Rep` | catmath | 結構 |
+| `Rep.dim` | catmath | 欄位 |
+| `Rep.group` | catmath | 欄位 |
+| `Rep.rho` | catmath | 欄位 |
+| `S1Path` | catmath | 結構 |
+| `S1Path.n` | catmath | 欄位 |
+| `STerm` | catmath | 列舉 |
+| `STerm::SApp` | catmath | 構造子 |
+| `STerm::SFst` | catmath | 構造子 |
+| `STerm::SLam` | catmath | 構造子 |
+| `STerm::SPair` | catmath | 構造子 |
+| `STerm::SSnd` | catmath | 構造子 |
+| `STerm::SUnit` | catmath | 構造子 |
+| `STerm::SVar` | catmath | 構造子 |
+| `SType` | catmath | 列舉 |
+| `SType::SArrow` | catmath | 構造子 |
+| `SType::SAtom` | catmath | 構造子 |
+| `SType::SOne` | catmath | 構造子 |
+| `SType::SPair` | catmath | 構造子 |
+| `SetFunctor` | catmath | 結構 |
+| `SetFunctor.arrows` | catmath | 欄位 |
+| `SetFunctor.dom` | catmath | 欄位 |
+| `SetFunctor.objects` | catmath | 欄位 |
+| `SimplicialSpace` | catmath | 結構 |
+| `SimplicialSpace.deg` | catmath | 欄位 |
+| `SimplicialSpace.degen` | catmath | 欄位 |
+| `SimplicialSpace.face` | catmath | 欄位 |
+| `SimplicialSpace.p` | catmath | 欄位 |
+| `a_basis_len` | catmath | 函數 |
+| `a_diff` | catmath | 函數 |
+| `a_homotopy` | catmath | 函數 |
+| `a_mul` | catmath | 函數 |
+| `abelian_invariant_factors` | catmath | 函數 |
+| `abelianization` | catmath | 函數 |
+| `all_subgroups` | catmath | 函數 |
+| `are_conjugate` | catmath | 函數 |
+| `are_conjugate_canonical` | catmath | 函數 |
+| `are_equivalent_thin` | catmath | 函數 |
+| `are_homeomorphic` | catmath | 函數 |
+| `arrow_of` | catmath | 函數 |
+| `assoc_compose` | catmath | 函數 |
+| `associahedron_faces` | catmath | 函數 |
+| `aut_g_h` | catmath | 函數 |
+| `aut_tensor_omega` | catmath | 函數 |
+| `automorphism_group` | catmath | 函數 |
+| `automorphism_perms` | catmath | 函數 |
+| `bar_dual_numbers` | catmath | 函數 |
+| `canon_tree` | catmath | 函數 |
+| `canonical_index` | catmath | 函數 |
+| `catalan` | catmath | 函數 |
+| `category_skeleton` | catmath | 函數 |
+| `ccc_eval` | catmath | 函數 |
+| `ccc_exponential` | catmath | 函數 |
+| `ccc_fst` | catmath | 函數 |
+| `ccc_pair` | catmath | 函數 |
+| `ccc_product` | catmath | 函數 |
+| `ccc_snd` | catmath | 函數 |
+| `ccc_terminal` | catmath | 函數 |
+| `center` | catmath | 函數 |
+| `chain_complex_of` | catmath | 函數 |
+| `check_chain_complex` | catmath | 函數 |
+| `check_crossed_module` | catmath | 函數 |
+| `check_functor` | catmath | 函數 |
+| `check_group` | catmath | 函數 |
+| `check_group_model` | catmath | 函數 |
+| `check_group_model_steps` | catmath | 函數 |
+| `check_group_naive_steps` | catmath | 函數 |
+| `check_gset` | catmath | 函數 |
+| `check_laws` | catmath | 函數 |
+| `check_nat_iso` | catmath | 函數 |
+| `check_preorder` | catmath | 函數 |
+| `check_presheaf` | catmath | 函數 |
+| `check_pseudo` | catmath | 函數 |
+| `check_rep` | catmath | 函數 |
+| `check_set_functor` | catmath | 函數 |
+| `check_simplicial_identities` | catmath | 函數 |
+| `classify_at` | catmath | 函數 |
+| `closure` | catmath | 函數 |
+| `cochain_diff` | catmath | 函數 |
+| `cohomology_dim` | catmath | 函數 |
+| `commutant` | catmath | 函數 |
+| `commutator_subgroup` | catmath | 函數 |
+| `compile_time_square` | catmath | 函數 |
+| `complexity_parse` | catmath | 函數 |
+| `complexity_theta` | catmath | 函數 |
+| `compose` | catmath | 函數 |
+| `compose_functor` | catmath | 函數 |
+| `concat_s1` | catmath | 函數 |
+| `congruence_s1` | catmath | 函數 |
+| `conjugacy_classes` | catmath | 函數 |
+| `conjugate_subgroups` | catmath | 函數 |
+| `connected_components` | catmath | 函數 |
+| `core_of` | catmath | 函數 |
+| `coset_gset` | catmath | 函數 |
+| `curry` | catmath | 函數 |
+| `cut_count` | catmath | 函數 |
+| `cut_eliminate` | catmath | 函數 |
+| `cut_reduce_step` | catmath | 函數 |
+| `cut_steps` | catmath | 函數 |
+| `cycle_decompose` | catmath | 函數 |
+| `cyclic_characters` | catmath | 函數 |
+| `cyclic_cohomology_dim` | catmath | 函數 |
+| `cyclic_group` | catmath | 函數 |
+| `decode_s1` | catmath | 函數 |
+| `decompose_rep_cyclic` | catmath | 函數 |
+| `degenerate_dims` | catmath | 函數 |
+| `derived_index` | catmath | 函數 |
+| `direct_product` | catmath | 函數 |
+| `dr_switching_run` | catmath | 函數 |
+| `dr_switching_steps` | catmath | 函數 |
+| `ds_apply` | catmath | 函數 |
+| `ds_iterate` | catmath | 函數 |
+| `ds_iterate_pow` | catmath | 函數 |
+| `ds_product` | catmath | 函數 |
+| `ds_size` | catmath | 函數 |
+| `dynsys_canonical_form` | catmath | 函數 |
+| `element_order` | catmath | 函數 |
+| `elements_category` | catmath | 函數 |
+| `encode_s1` | catmath | 函數 |
+| `end_compose` | catmath | 函數 |
+| `end_count` | catmath | 函數 |
+| `equivariant_maps` | catmath | 函數 |
+| `fg_mul` | catmath | 函數 |
+| `fg_reduce` | catmath | 函數 |
+| `fg_word_equal` | catmath | 函數 |
+| `fiber_autos` | catmath | 函數 |
+| `fin_group_of` | catmath | 函數 |
+| `fin_monoid_of` | catmath | 函數 |
+| `find_pullback` | catmath | 函數 |
+| `finitop_canonical_form` | catmath | 函數 |
+| `fixed_points` | catmath | 函數 |
+| `flat_iff_cofiltered` | catmath | 函數 |
+| `floyd_cycle` | catmath | 函數 |
+| `fm_concat` | catmath | 函數 |
+| `fm_extend` | catmath | 函數 |
+| `free_dyn` | catmath | 函數 |
+| `free_monoid_of` | catmath | 函數 |
+| `free_operad_count` | catmath | 函數 |
+| `functor_eq` | catmath | 函數 |
+| `generic_sum` | catmath | 函數 |
+| `gmm_parsing_steps` | catmath | 函數 |
+| `group_as_category` | catmath | 函數 |
+| `groupoid_cardinality` | catmath | 函數 |
+| `groupoid_components` | catmath | 函數 |
+| `groupoid_skeleton` | catmath | 函數 |
+| `gset_of` | catmath | 函數 |
+| `gset_orbits` | catmath | 函數 |
+| `h_basis` | catmath | 函數 |
+| `h_to_a` | catmath | 函數 |
+| `hom` | catmath | 函數 |
+| `hom_dim_from_ab` | catmath | 函數 |
+| `homeomorphic` | catmath | 函數 |
+| `homology_dim` | catmath | 函數 |
+| `identity_functor` | catmath | 函數 |
+| `inline_double` | catmath | 函數 |
+| `inline_sextuple` | catmath | 函數 |
+| `inline_triple` | catmath | 函數 |
+| `inner_crossed_module` | catmath | 函數 |
+| `int64_sum` | catmath | 函數 |
+| `int_mat_of` | catmath | 函數 |
+| `int_sum` | catmath | 函數 |
+| `integral_homology` | catmath | 函數 |
+| `interior` | catmath | 函數 |
+| `intertwiner_basis` | catmath | 函數 |
+| `inverse_arrow` | catmath | 函數 |
+| `inverse_s1` | catmath | 函數 |
+| `is_abelian` | catmath | 函數 |
+| `is_closed` | catmath | 函數 |
+| `is_coboundary` | catmath | 函數 |
+| `is_cofiltered` | catmath | 函數 |
+| `is_cofiltered_cat` | catmath | 函數 |
+| `is_continuous` | catmath | 函數 |
+| `is_dyn_morphism` | catmath | 函數 |
+| `is_equivalence` | catmath | 函數 |
+| `is_equivariant` | catmath | 函數 |
+| `is_essentially_surjective` | catmath | 函數 |
+| `is_faithful` | catmath | 函數 |
+| `is_flat` | catmath | 函數 |
+| `is_full` | catmath | 函數 |
+| `is_group_like` | catmath | 函數 |
+| `is_groupoid` | catmath | 函數 |
+| `is_homeomorphism` | catmath | 函數 |
+| `is_iso` | catmath | 函數 |
+| `is_natural` | catmath | 函數 |
+| `is_open` | catmath | 函數 |
+| `is_permutation` | catmath | 函數 |
+| `is_t0` | catmath | 函數 |
+| `is_transitive` | catmath | 函數 |
+| `iso_classes` | catmath | 函數 |
+| `isomorphic` | catmath | 函數 |
+| `j_elim` | catmath | 函數 |
+| `karatsuba` | catmath | 函數 |
+| `karatsuba_steps` | catmath | 函數 |
+| `koszul_poly` | catmath | 函數 |
+| `loop_pow` | catmath | 函數 |
+| `loop_s1` | catmath | 函數 |
+| `m2_h` | catmath | 函數 |
+| `m3_h` | catmath | 函數 |
+| `make_category` | catmath | 函數 |
+| `make_dyn` | catmath | 函數 |
+| `make_jump` | catmath | 函數 |
+| `make_mat` | catmath | 函數 |
+| `make_top` | catmath | 函數 |
+| `massey_aaa_b` | catmath | 函數 |
+| `mat_det` | catmath | 函數 |
+| `mat_identity` | catmath | 函數 |
+| `mat_inv` | catmath | 函數 |
+| `mat_mul` | catmath | 函數 |
+| `mat_mul_steps` | catmath | 函數 |
+| `mat_mul_strassen` | catmath | 函數 |
+| `mat_mul_strassen_steps` | catmath | 函數 |
+| `mat_nullspace` | catmath | 函數 |
+| `mat_rank` | catmath | 函數 |
+| `mat_solve` | catmath | 函數 |
+| `minimal_complex` | catmath | 函數 |
+| `mk_axiom` | catmath | 函數 |
+| `mk_cut` | catmath | 函數 |
+| `mk_par` | catmath | 函數 |
+| `mk_tensor` | catmath | 函數 |
+| `mobius_transform` | catmath | 函數 |
+| `mod_inv` | catmath | 函數 |
+| `moore_complex` | catmath | 函數 |
+| `naive_pow_steps` | catmath | 函數 |
+| `nat_iso_id` | catmath | 函數 |
+| `net_is_correct` | catmath | 函數 |
+| `net_reduct` | catmath | 函數 |
+| `net_size` | catmath | 函數 |
+| `normalized_dims` | catmath | 函數 |
+| `normalizer` | catmath | 函數 |
+| `ntt` | catmath | 函數 |
+| `omega_presheaf` | catmath | 函數 |
+| `open_sets` | catmath | 函數 |
+| `orbit` | catmath | 函數 |
+| `par_count` | catmath | 函數 |
+| `periodic_points` | catmath | 函數 |
+| `pi0` | catmath | 函數 |
+| `pi1` | catmath | 函數 |
+| `poly_mul_naive_steps` | catmath | 函數 |
+| `poly_mul_ntt` | catmath | 函數 |
+| `poly_mul_ntt_steps` | catmath | 函數 |
+| `pow_mod` | catmath | 函數 |
+| `pow_mod_steps` | catmath | 函數 |
+| `power_object_size` | catmath | 函數 |
+| `preorder_canonical_form` | catmath | 函數 |
+| `project_h` | catmath | 函數 |
+| `quasi_inverse` | catmath | 函數 |
+| `rank_f_p` | catmath | 函數 |
+| `refl_s1` | catmath | 函數 |
+| `regular_rep` | catmath | 函數 |
+| `rref_f_p` | catmath | 函數 |
+| `sieves_on` | catmath | 函數 |
+| `simplicial_circle` | catmath | 函數 |
+| `skeleton_functor` | catmath | 函數 |
+| `snf_int` | catmath | 函數 |
+| `snf_invariant_factors` | catmath | 函數 |
+| `snf_rank` | catmath | 函數 |
+| `sterm_app_of` | catmath | 函數 |
+| `sterm_fst_of` | catmath | 函數 |
+| `sterm_lam_of` | catmath | 函數 |
+| `sterm_pair_of` | catmath | 函數 |
+| `sterm_snd_of` | catmath | 函數 |
+| `sterm_unit` | catmath | 函數 |
+| `sterm_var_of` | catmath | 函數 |
+| `stlc_beta_eta_nf` | catmath | 函數 |
+| `stlc_eval` | catmath | 函數 |
+| `stlc_infer` | catmath | 函數 |
+| `strictification_equivalent` | catmath | 函數 |
+| `strictify` | catmath | 函數 |
+| `stype_arrow` | catmath | 函數 |
+| `stype_atom` | catmath | 函數 |
+| `stype_one` | catmath | 函數 |
+| `stype_pair` | catmath | 函數 |
+| `subgroup_closure` | catmath | 函數 |
+| `subgroup_conjugacy_classes` | catmath | 函數 |
+| `subpresheaves` | catmath | 函數 |
+| `symmetric_group` | catmath | 函數 |
+| `symmetric_index` | catmath | 函數 |
+| `symmetric_perm` | catmath | 函數 |
+| `t0_quotient` | catmath | 函數 |
+| `tannaka_reconstruction` | catmath | 函數 |
+| `tensor_rep` | catmath | 函數 |
+| `terminal_object` | catmath | 函數 |
+| `terminal_presheaf` | catmath | 函數 |
+| `transfer_complexity` | catmath | 函數 |
+| `transitive_gsets` | catmath | 函數 |
+| `transport_code` | catmath | 函數 |
+| `trivial_rep` | catmath | 函數 |
+| `uncurry` | catmath | 函數 |
+| `univalence_statement` | catmath | 函數 |
+| `verify_abelian_distinguishing` | catmath | 函數 |
+| `verify_adjunction_group` | catmath | 函數 |
+| `verify_adjunction_monoid` | catmath | 函數 |
+| `verify_all_derived` | catmath | 函數 |
+| `verify_assoc_operad` | catmath | 函數 |
+| `verify_associahedron` | catmath | 函數 |
+| `verify_aut_fiber` | catmath | 函數 |
+| `verify_beta` | catmath | 函數 |
+| `verify_beta_const` | catmath | 函數 |
+| `verify_beta_eta_canonical` | catmath | 函數 |
+| `verify_character_decomposition` | catmath | 函數 |
+| `verify_complexity_theta` | catmath | 函數 |
+| `verify_conjugacy_classes` | catmath | 函數 |
+| `verify_contracting_homotopy` | catmath | 函數 |
+| `verify_core_theorem` | catmath | 函數 |
+| `verify_cyclic_periodicity` | catmath | 函數 |
+| `verify_dold_kan_circle` | catmath | 函數 |
+| `verify_dold_kan_split` | catmath | 函數 |
+| `verify_dyn_category` | catmath | 函數 |
+| `verify_dynsys_canonical` | catmath | 函數 |
+| `verify_elements_cofiltered` | catmath | 函數 |
+| `verify_encode_decode` | catmath | 函數 |
+| `verify_end_operad` | catmath | 函數 |
+| `verify_exponential_universal` | catmath | 函數 |
+| `verify_finitop_homeomorphism` | catmath | 函數 |
+| `verify_free_dyn_universal` | catmath | 函數 |
+| `verify_free_group` | catmath | 函數 |
+| `verify_free_monoid` | catmath | 函數 |
+| `verify_free_operad` | catmath | 函數 |
+| `verify_free_word_problem` | catmath | 函數 |
+| `verify_galois_category` | catmath | 函數 |
+| `verify_galois_correspondence` | catmath | 函數 |
+| `verify_groupoid_cardinality` | catmath | 函數 |
+| `verify_h1_is_hom` | catmath | 函數 |
+| `verify_inline` | catmath | 函數 |
+| `verify_integral_homology` | catmath | 函數 |
+| `verify_j_computation` | catmath | 函數 |
+| `verify_m2_welldefined` | catmath | 函數 |
+| `verify_massey_nonzero` | catmath | 函數 |
+| `verify_minimal_a_infinity` | catmath | 函數 |
+| `verify_minimal_model` | catmath | 函數 |
+| `verify_monomorphization` | catmath | 函數 |
+| `verify_nat_omega_is_kg` | catmath | 函數 |
+| `verify_net_reduct` | catmath | 函數 |
+| `verify_path_group` | catmath | 函數 |
+| `verify_path_sym` | catmath | 函數 |
+| `verify_pi1_circle` | catmath | 函數 |
+| `verify_product_universal` | catmath | 函數 |
+| `verify_quasi_inverse` | catmath | 函數 |
+| `verify_rank_nullity_cross` | catmath | 函數 |
+| `verify_skeleton_equivalence` | catmath | 函數 |
+| `verify_snf_invariance` | catmath | 函數 |
+| `verify_stasheff_pentagon` | catmath | 函數 |
+| `verify_structure_theorem_abelian` | catmath | 函數 |
+| `verify_subobject_classifier` | catmath | 函數 |
+| `verify_taxonomy_complete` | catmath | 函數 |
+| `verify_tensor_preserving` | catmath | 函數 |
+| `verify_terminal_universal` | catmath | 函數 |
+| `verify_tor_dual_numbers` | catmath | 函數 |
+| `verify_tor_poly` | catmath | 函數 |
+| `verify_tree_canonization` | catmath | 函數 |
+| `vertex_group` | catmath | 函數 |
+| `yoneda` | catmath | 函數 |
+| `yoneda_backward` | catmath | 函數 |
+| `yoneda_forward` | catmath | 函數 |
+| `zero_cost_demo` | catmath | 函數 |
+| `zeta_naive_steps` | catmath | 函數 |
+| `zeta_steps` | catmath | 函數 |
+| `zeta_transform` | catmath | 函數 |
 <!-- APPENDIX:END -->

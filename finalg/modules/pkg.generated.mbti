@@ -1,0 +1,68 @@
+// Generated using `moon info`, DON'T EDIT IT
+package "vv0101v01/cubical-hermitian/finalg/modules"
+
+import {
+  "moonbitlang/core/debug",
+  "vv0101v01/cubical-hermitian/finalg/finite",
+  "vv0101v01/cubical-hermitian/finalg/linalg",
+}
+
+// Values
+pub fn dual_dim(FinModule) -> Int32
+
+pub fn enumerate_submodules(FinModule) -> Array[Array[Array[Int32]]]
+
+pub fn hom_space(FinModule, FinModule) -> Array[@linalg.Matrix]
+
+pub fn ideal_kdim(@finite.FinIdeal) -> Int32
+
+pub fn is_free(FinModule) -> Bool
+
+pub fn is_projective(FinModule) -> Bool
+
+pub fn is_split_extension(FinModule, Array[Array[Int32]]) -> Bool
+
+pub fn is_torsion_elem(FinModule, Array[Int32]) -> Bool
+
+pub fn is_torsion_free(FinModule) -> Bool
+
+pub fn mod_localize_class_of(FinModule, Array[Int32], Array[Int32]) -> Int32
+
+pub fn mod_localize_size(FinModule, Array[Int32]) -> Int32
+
+pub fn torsion_elements(FinModule) -> Array[Array[Int32]]
+
+// Errors
+
+// Types and methods
+pub(all) struct FinModule {
+  alg : @finite.FinAlg
+  dim : Int32
+  action : Array[@linalg.Matrix]
+} derive(@debug.Debug)
+pub fn FinModule::annihilator(Self) -> Array[Array[Int32]]
+pub fn FinModule::complement_exists(Self, Array[Array[Int32]]) -> Bool
+pub fn FinModule::cyclic(@finite.FinIdeal) -> Self
+pub fn FinModule::free(@finite.FinAlg, Int32) -> Self
+pub fn FinModule::generators(Self) -> Array[Array[Int32]]
+pub fn FinModule::is_coherent(Self) -> Bool
+pub fn FinModule::is_submodule(Self, Array[Array[Int32]]) -> Bool
+pub fn FinModule::quotient_module(Self, Array[Array[Int32]]) -> Self
+pub fn FinModule::relations(Self, Array[Array[Int32]]) -> Array[Array[Int32]]
+pub fn FinModule::to_repr(Self) -> @debug.Repr
+pub fn FinModule::validate(Self) -> Bool
+pub fn FinModule::zero_module(@finite.FinAlg) -> Self
+
+pub(all) struct InvSystem {
+  sizes : Array[Int32]
+  bonds : Array[Array[Int32]]
+} derive(@debug.Debug)
+pub fn InvSystem::bond_injective(Self, Int32) -> Bool
+pub fn InvSystem::limit_threads(Self) -> Array[Array[Int32]]
+pub fn InvSystem::projection_surjective(Self, Int32) -> Bool
+pub fn InvSystem::to_repr(Self) -> @debug.Repr
+pub fn InvSystem::validate(Self) -> Bool
+
+// Type aliases
+
+// Traits

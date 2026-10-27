@@ -13,7 +13,7 @@ name = "vv0101v01/cubical-hermitian"
 
 version = "0.0.1"
 
-readme = "README.mbt.md"
+readme = "README.md"
 
 repository = "https://github.com/vv0101v01/golden"
 
@@ -23,16 +23,24 @@ keywords = [
   "cubical",
   "hermitian",
   "projector",
-  "kan",
-  "nbe",
   "univalence",
-  "hoas",
-  "glue",
+  "exact-algebra",
+  "finite-symmetry",
+  "graph-automorphism",
+  "finite-category",
+  "category-theory",
+  "canonical-forms",
+  "finite-fields",
+  "groebner-bases",
+  "homotopy-type-theory",
+  "semiring",
+  "tropical",
+  "path-algebra",
 ]
 
 preferred_target = "wasm"
 
-description = "Hermitian projectors meet a dependent cubical kernel in MoonBit: NbE, type-directed Kan coe/comp, inductive/HIT schema generators, computational univalence certificates, exact BigInt algebra, BDD/DPLL decisions."
+description = "A five-system federated MoonBit library joining an executable cubical/Hermitian kernel with exact rational algebra, finite symmetry, semiring path/tropical algorithms, finite-field algebra and Gröbner/normal forms, and categorical higher-algebra algorithms through the single one-way bridge package."
 
 import {
   "moonbitlang/async@0.22.5",

@@ -1,0 +1,190 @@
+// Generated using `moon info`, DON'T EDIT IT
+package "vv0101v01/cubical-hermitian/finalg"
+
+import {
+  "moonbitlang/core/debug",
+  "vv0101v01/cubical-hermitian/finalg/linalg",
+}
+
+// Values
+pub fn anf_degree(Array[Int32]) -> Int32
+
+pub fn anf_eval(Int32, Array[Int32], Int32) -> Int32
+
+pub fn anf_transform(Int32, Array[Int32]) -> Array[Int32]
+
+pub fn companion_matrix(Int32, Array[Int32]) -> Array[Array[Int32]]
+
+pub fn det_gf(@linalg.Matrix) -> Int32
+
+pub fn det_int(Array[Array[Int32]]) -> Int32
+
+pub fn exp_add(Array[Int32], Array[Int32]) -> Array[Int32]
+
+pub fn exp_divides(Array[Int32], Array[Int32]) -> Bool
+
+pub fn exp_lcm(Array[Int32], Array[Int32]) -> Array[Int32]
+
+pub fn groebner_basis(Array[Poly]) -> Array[Poly]
+
+pub fn hnf_int(Array[Array[Int32]]) -> (Array[Array[Int32]], Array[Array[Int32]])
+
+pub fn ideal_membership(Poly, Array[Poly]) -> Bool
+
+pub fn is_zero_dim(Array[Poly]) -> Bool
+
+pub fn lex_cmp(Array[Int32], Array[Int32]) -> Int32
+
+pub fn mat_charpoly(@linalg.Matrix) -> Array[Int32]
+
+pub fn mat_poly_eval(Array[Int32], @linalg.Matrix) -> @linalg.Matrix
+
+pub fn poly_of_terms(Int32, Int32, Array[(Int32, Array[Int32])]) -> Poly
+
+pub fn radical_membership(Poly, Array[Poly]) -> Bool
+
+pub fn rational_canonical_form(@linalg.Matrix) -> (Array[Array[Int32]], @linalg.Matrix)
+
+pub fn[T : Ring] ring_int_mul(T, Int32) -> T
+
+pub fn[T : Ring] ring_pow(T, Int32) -> T
+
+pub fn snf_int(Array[Array[Int32]]) -> (Array[Int32], Array[Array[Int32]], Array[Array[Int32]])
+
+pub fn spoly(Poly, Poly) -> Poly
+
+pub fn standard_monomials(Array[Poly]) -> Array[Array[Int32]]?
+
+pub fn up_eval(Int32, Array[Int32], Int32) -> Int32
+
+pub fn zn_conductor(Int32, Int32, Int32) -> Int32
+
+pub fn zn_coordinate(Int32, Int32) -> Int32
+
+pub fn zn_crt_components(Int32) -> Array[Int32]
+
+pub fn zn_dimension(Int32) -> Int32
+
+pub fn zn_ideal_elements(Int32, Int32) -> Array[Int32]
+
+pub fn zn_ideal_gens(Int32) -> Array[Int32]
+
+pub fn zn_idempotents(Int32) -> Array[Int32]
+
+pub fn zn_is_artinian(Int32) -> Bool
+
+pub fn zn_is_local(Int32) -> Bool
+
+pub fn zn_is_nilpotent(Int32, Int32) -> Bool
+
+pub fn zn_is_primitive_idempotent(Int32, Int32) -> Bool
+
+pub fn zn_is_regular_local(Int32) -> Bool
+
+pub fn zn_is_semiprime_ideal(Int32, Int32) -> Bool
+
+pub fn zn_is_unit(Int32, Int32) -> Bool
+
+pub fn zn_nilradical(Int32) -> Array[Int32]
+
+pub fn zn_pow(Int32, Int32, Int32) -> Int32
+
+pub fn zn_units(Int32) -> Array[Int32]
+
+// Errors
+
+// Types and methods
+pub(all) struct IntMod {
+  val : Int32
+  modulus : Int32
+} derive(Eq, @debug.Debug)
+pub fn IntMod::add(Self, Self) -> Self
+pub fn IntMod::equal(Self, Self) -> Bool
+pub fn IntMod::make(Int32, Int32) -> Self
+pub fn IntMod::mul(Self, Self) -> Self
+pub fn IntMod::neg(Self) -> Self
+pub fn IntMod::not_equal(Self, Self) -> Bool
+pub fn IntMod::one_like(Self) -> Self
+pub fn IntMod::rep(Self) -> Int32
+pub fn IntMod::sub(Self, Self) -> Self
+pub fn IntMod::to_repr(Self) -> @debug.Repr
+pub fn IntMod::try_inv(Self) -> Self?
+pub fn IntMod::zero_like(Self) -> Self
+pub impl Field for IntMod
+pub impl Ring for IntMod
+
+pub(all) struct Poly {
+  nvars : Int32
+  modulus : Int32
+  terms : Array[Term]
+} derive(Eq, @debug.Debug)
+pub fn Poly::add(Self, Self) -> Self
+pub fn Poly::constant(Int32, Int32, Int32) -> Self
+pub fn Poly::derivative(Self, Int32) -> Self
+pub fn Poly::divmod(Self, Array[Self]) -> (Array[Self], Self)
+pub fn Poly::equal(Self, Self) -> Bool
+pub fn Poly::eval(Self, Array[Int32]) -> IntMod
+pub fn Poly::is_zero(Self) -> Bool
+pub fn Poly::lc(Self) -> IntMod
+pub fn Poly::lm(Self) -> Array[Int32]?
+pub fn Poly::mul(Self, Self) -> Self
+pub fn Poly::mul_monom(Self, Int32, Array[Int32]) -> Self
+pub fn Poly::neg(Self) -> Self
+pub fn Poly::normal_form(Self, Array[Self]) -> Self
+pub fn Poly::not_equal(Self, Self) -> Bool
+pub fn Poly::one(Int32, Int32) -> Self
+pub fn Poly::one_like(Self) -> Self
+pub fn Poly::sub(Self, Self) -> Self
+pub fn Poly::to_repr(Self) -> @debug.Repr
+pub fn Poly::total_deg(Self) -> Int32
+pub fn Poly::variable(Int32, Int32, Int32) -> Self
+pub fn Poly::zero(Int32, Int32) -> Self
+pub fn Poly::zero_like(Self) -> Self
+pub impl Ring for Poly
+
+pub(all) struct PolyIdeal {
+  nvars : Int32
+  modulus : Int32
+  gens : Array[Poly]
+} derive(@debug.Debug)
+pub fn PolyIdeal::add(Self, Self) -> Self
+pub fn PolyIdeal::conductor(Self, Self) -> Self?
+pub fn PolyIdeal::contains(Self, Poly) -> Bool
+pub fn PolyIdeal::eq(Self, Self) -> Bool
+pub fn PolyIdeal::gb(Self) -> Array[Poly]
+pub fn PolyIdeal::intersect(Self, Self) -> Self
+pub fn PolyIdeal::is_prime(Self) -> Bool
+pub fn PolyIdeal::is_zero_dim(Self) -> Bool
+pub fn PolyIdeal::mul(Self, Self) -> Self
+pub fn PolyIdeal::new(Int32, Int32, Array[Poly]) -> Self
+pub fn PolyIdeal::principal(Poly) -> Self
+pub fn PolyIdeal::quotient_principal(Self, Poly) -> Self?
+pub fn PolyIdeal::radical_membership(Self, Poly) -> Bool
+pub fn PolyIdeal::standard_monomials(Self) -> Array[Array[Int32]]?
+pub fn PolyIdeal::to_repr(Self) -> @debug.Repr
+pub fn PolyIdeal::unit(Int32, Int32) -> Self
+pub fn PolyIdeal::zero(Int32, Int32) -> Self
+
+pub(all) struct Term {
+  coeff : IntMod
+  exp : Array[Int32]
+} derive(Eq, @debug.Debug)
+pub fn Term::equal(Self, Self) -> Bool
+pub fn Term::not_equal(Self, Self) -> Bool
+pub fn Term::to_repr(Self) -> @debug.Repr
+
+// Type aliases
+
+// Traits
+pub trait Field : Ring {
+  fn try_inv(Self) -> Self?
+}
+
+pub trait Ring {
+  fn add(Self, Self) -> Self
+  fn sub(Self, Self) -> Self
+  fn mul(Self, Self) -> Self
+  fn neg(Self) -> Self
+  fn zero_like(Self) -> Self
+  fn one_like(Self) -> Self
+}

@@ -2052,7 +2052,15 @@ pub fn loop_space_type_term(DTerm, DTerm, Int32) -> DTerm
 
 pub fn loop_space_type_value(DValue, DValue, Int32) -> DValue
 
+pub fn lty_bool_ctor() -> LTy
+
+pub fn lty_fun_ctor(LTy, LTy) -> LTy
+
+pub fn lty_prod_ctor(LTy, LTy) -> LTy
+
 pub fn lty_to_dterm(LTy) -> DTerm
+
+pub fn lty_unit_ctor() -> LTy
 
 pub fn make_glue(GlueData, PVal, PVal, Int32) -> GlueElem?
 
@@ -2636,6 +2644,8 @@ pub fn term_to_hoas(Term, Array[HTm]) -> HTm
 
 pub fn tfst(TValue, LTy) -> TValue
 
+pub fn tm_app_ctor(Term, Term) -> Term
+
 pub fn tm_coe_swap_at(LTy, LTy) -> Term
 
 pub fn tm_comp_at(Term, Term, LTy, LTy, LTy) -> Term
@@ -2644,15 +2654,27 @@ pub fn tm_comp_closed(Term, Term) -> Term
 
 pub fn tm_const() -> Term
 
+pub fn tm_fst_ctor(Term) -> Term
+
 pub fn tm_id() -> Term
 
 pub fn tm_id_at(LTy) -> Term
 
+pub fn tm_lam_ctor(Term) -> Term
+
+pub fn tm_pair_ctor(Term, Term) -> Term
+
 pub fn tm_shift(Term, Int32, Int32) -> Term
+
+pub fn tm_snd_ctor(Term) -> Term
 
 pub fn tm_swap() -> Term
 
 pub fn tm_swap_at(LTy, LTy) -> Term
+
+pub fn tm_unit_ctor() -> Term
+
+pub fn tm_var_ctor(Int32) -> Term
 
 pub fn torus_dims_of(DValue) -> (Dim, Dim)
 

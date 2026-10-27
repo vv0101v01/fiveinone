@@ -1,0 +1,23 @@
+// Generated using `moon info`, DON'T EDIT IT
+package "vv0101v01/cubical-hermitian/finalg/testutil"
+
+import {
+  "vv0101v01/cubical-hermitian/finalg/finite",
+}
+
+// Values
+pub fn det_rand(Int32, Int32) -> Int32
+
+pub fn is_zero_vec(Array[Int32]) -> Bool
+
+pub fn prop_elem(Int32, Int32, Int32, Int32) -> Array[Int32]
+
+pub fn prop_ring(Int32, Array[Int32]) -> @finite.FinAlg
+
+// Errors
+
+// Types and methods
+
+// Type aliases
+
+// Traits

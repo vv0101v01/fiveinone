@@ -1,79 +1,112 @@
-# Project Agents.md Guide
+# Repository Guide for Agents and Maintainers
 
-This is a [MoonBit](https://docs.moonbitlang.com) project.
+This is the public `golden` repository
+(<https://github.com/vv0101v01/golden>). Its MoonBit module deliberately
+remains `vv0101v01/cubical-hermitian`; do not rename imports to match the
+GitHub repository name.
 
-You can browse and install extra skills here:
-<https://github.com/moonbitlang/skills>
+## Read first
 
-## Project Structure
+1. `docs/STATUS.md` — authoritative current state and verified counts.
+2. `docs/ENGINEERING-GAPS.md` — every registered limitation and pending job.
+3. `docs/README.md` — documentation map and update classification.
+4. `ARCHITECTURE.md` and `architecture.json` — dependency governance.
+5. `CONTRIBUTING.md` — build, generated-file and gate rules.
 
-- MoonBit packages are organized per directory; each directory contains a
-  `moon.pkg` file listing its dependencies. Each package has its files and
-  blackbox test files (ending in `_test.mbt`) and whitebox test files (ending in
-  `_wbtest.mbt`).
+The old standalone merge-research snapshots have been distilled into
+`docs/MIGRATION.md`; do not recreate parallel decision documents.
+Pre-federation member facts live in the one `README.md` at each member
+root. Post-federation facts go to the central documents and must not be
+written back into those member histories.
 
-- In the toplevel directory, there is a `moon.mod` file listing module
-  metadata.
+## Package map and boundaries
 
-## Coding convention
+- Root package: cubical/Hermitian executable semantics, certificates and
+  bounded decision procedures. It is not a complete production cubical
+  type-theory kernel.
+- `algebra/`: exact BigInt/rational algebra. Its full import path is
+  `vv0101v01/cubical-hermitian/algebra`.
+- `symlib/`: exact finite symmetry, graph search and finite categories.
+  Its native `Graph` is a simple undirected graph.
+- `semiring/*`: portable semiring algorithms. Its trait package is
+  `vv0101v01/cubical-hermitian/semiring/algebra`, a different package from
+  the exact `algebra/` above. Only native-only `semiring/par_host` may
+  import `moonbitlang/async`; `cmd/semiringreport` is also native-only.
+- `finalg/` plus `finalg/*`: the imported `algo`/`moon-algebra`
+  finite-field pillar. Preserve its internal package DAG; only tests
+  may import `finalg/testutil`, and `finalg/verify` proof execution is
+  separate from ordinary compilation.
+- `catmath/`: the imported `algo4` library, deliberately still one
+  large MoonBit package. Its former same-package executable is
+  `cmd/catmath`; do not split it without runtime evidence and an SCC
+  measurement (CAT-001).
+- `bridge/`: the only five-member federation core. It retains the
+  original three-pillar files and adds direct `federation_*` adapters,
+  reports and certificates for finalg/catmath. Do not create a second
+  overlay integration package. Members must not import one another
+  sideways merely to share a helper. Application packages under `cmd/`
+  may observe the relevant public APIs.
+- Root `Ty`, `Dim` and `Face` remain readonly across packages. Use their
+  narrow public constructors; do not widen them to `pub(all)`.
+- Terminology is stable: monoid = 么半群； monad = 單子／單子函子. Never
+  call a monoid a 單子.
 
-- MoonBit code is organized in block style, each block is separated by `///|`,
-  the order of each block is irrelevant. In some refactorings, you can process
-  block by block independently.
+Every `.mbt` file belongs to exactly one component in `architecture.json`.
+The observer components may inspect several lower components; that is not a
+licence to add production cross-pillar edges elsewhere.
 
-- Try to keep deprecated blocks in file called `deprecated.mbt` in each
-  directory.
+## Generated artifacts
 
-## Tooling
+Never hand-edit:
 
-- `moon fmt` is used to format your code properly.
+- any `pkg.generated.mbti`;
+- the marked generated regions of `SPEC-APPENDIX.md` and
+  `SPEC-APPENDIX.en.md`;
+- the generated body of `semiring/REPORT.md` without preserving its
+  manual snapshot banner.
 
-- `moon ide` provides project navigation helpers like `peek-def`, `outline`, and
-  `find-references`. See $moonbit-agent-guide for details.
+After changing a public interface, run `moon info`, classify new symbols in
+the bilingual SPEC families, then run
+`python3 tools/audit_spec.py --write`.
 
-- `moon info` is used to update the generated interface of the package, each
-  package has a generated interface file `.mbti`, it is a brief formal
-  description of the package. If nothing in `.mbti` changes, this means your
-  change does not bring the visible changes to the external package users, it is
-  typically a safe refactoring.
+## Documentation discipline
 
-- In the last step, run `moon info && moon fmt` to update the interface and
-  format the code. Check the diffs of `.mbti` file to see if the changes are
-  expected.
+- Current facts go to `docs/STATUS.md` and the root `README.md`.
+- `AGENTS.md`, `SPEC.md` and `GUIDE.md` exist only at the federation
+  leader/repository root; member directories keep their own `README.md`
+  (plus genuinely distinct technical appendices), never another copy of
+  those three central documents.
+- New caps, approximations, trusted assumptions or incomplete routes go to
+  `docs/ENGINEERING-GAPS.md` in the same change.
+- Every new Markdown file must be classified in `docs/README.md`.
+- User-visible changes go to `CHANGELOG.md`.
+- Keep target-specific test totals separate. The earlier public
+  three-system baseline is wasm-gc 336/336 and native 340/340; never
+  add them together or present them as five-system runtime evidence.
 
-- Run `moon test` to check tests pass. MoonBit supports snapshot testing; when
-  changes affect outputs, run `moon test --update` to refresh snapshots.
+## Gates
 
-- Prefer `assert_eq` or `assert_true(pattern is Pattern(...))` for results that
-  are stable or very unlikely to change. For snapshot tests that record
-  structured debugging output, derive `Debug` and use `debug_inspect`, rather
-  than deriving `Show` for debugging. For solid, well-defined results (e.g.
-  scientific computations), prefer assertion tests. You can use
-  `moon coverage analyze > uncovered.log` to see which parts of your code are
-  not covered by tests.
+Use the narrowest honest gate and report exactly what ran:
 
-## This project (cubical-hermitian)
+```bash
+python3 tools/doc_check.py          # docs-only minimum, plus arch/audit
+sh tools/check_compile.sh           # current authorized gate
+GOLDEN_RUN_TESTS=1 sh tools/check_full.sh
+                                    # future runtime stage only
+GOLDEN_RUN_SMOKE=1 sh tools/check_slow.sh > /tmp/REPORT.generated.md
+```
 
-- Packages: `cmd/main -> root -> algebra`; every `.mbt` file is owned by
-  exactly one component in `architecture.json` (see `ARCHITECTURE.md`).
-  Root consumes `@algebra` only through the explicit list in
-  `algebra_imports.mbt`.
-- Acceptance gates (all must pass before committing):
-  `moon fmt`, `moon info`, `moon check --deny-warn`, `moon test`,
-  `moon run cmd/main`, `python3 tools/arch_check.py`,
-  `python3 tools/audit_spec.py --check`.
-- New public symbols must be classified in `tools/audit_spec.py`
-  (the bilingual `SPEC-APPENDIX*.md` files are generated, never hand-edited)
-  and, when they carry a checkable law, registered in `verify.mbt`
-  and `spec.mbt`. Counts in prose docs come from the tools, not by hand.
-- White-box test files (`*_wbtest.mbt`) call the `check_*` laws defined
-  next to the implementations; law-style checks live in `*_laws.mbt`.
-- Phase-13 ownership is deliberate: `algebra/multiquad_tower.mbt` stays in
-  the algebra package (root imports only its total check through
-  `algebra_imports.mbt`), while `dterm_dag_binary.mbt` is frontend-owned
-  because it reuses the module-binary byte/version machinery and is
-  consumed by the artifact repository; the live intern graph itself stays
-  in the kernel's `dterm_intern.mbt`.
-- Artifact-chain trust anchors are `expected_head~ : (Int32, Int32)?`.
-  Never replace this with `-1` sentinels: the repository's overflowing
-  Int32 dual hashes can legitimately be negative.
+The owner has explicitly deferred executing tests and smoke programs
+for the five-system integration stage.  Preserve/import test sources
+and compile them with `moon test --build-only`, but do not run
+`moon test` without `--build-only`, `moon run`, benchmarks,
+`moon prove`, or the slow report until a later runtime-stage
+instruction.  Without the environment switches, `check_full.sh`
+refuses before execution and `check_slow.sh` only builds the report.
+Report compile-only evidence as compile-only, never as tests passing.
+
+GitHub workflow files existing in the tree do not prove a hosted run is
+green, and branch protection is an external repository setting. None of the four
+migrated source repositories is archived in this change; notices and
+Archive steps require external evidence, see
+`docs/LEGACY-ARCHIVE.md` and REL-001.

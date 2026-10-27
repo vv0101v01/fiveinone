@@ -1,0 +1,47 @@
+name: Compile-only
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: compile-only-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  compile-only:
+    name: Compile-only gate
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.x"
+
+      - name: Install MoonBit
+        shell: bash
+        run: |
+          curl -fsSL https://cli.moonbitlang.com/install/unix.sh | bash
+          echo "$HOME/.moon/bin" >> "$GITHUB_PATH"
+
+      - name: Show tool versions
+        shell: bash
+        run: |
+          moon version
+          python3 --version
+
+      - name: Fetch MoonBit dependencies
+        shell: bash
+        run: moon update
+
+      - name: Run compile-only gate
+        shell: bash
+        run: sh tools/check_compile.sh

@@ -1,0 +1,141 @@
+// Generated using `moon info`, DON'T EDIT IT
+package "vv0101v01/cubical-hermitian/finalg/finite"
+
+import {
+  "moonbitlang/core/debug",
+  "vv0101v01/cubical-hermitian/finalg",
+  "vv0101v01/cubical-hermitian/finalg/linalg",
+}
+
+// Values
+pub fn annihilator(FinAlg, Array[Int32]) -> FinIdeal
+
+pub fn annihilator_ideal(FinIdeal) -> FinIdeal
+
+pub fn corner(FinAlg, Array[Int32]) -> FinAlg
+
+pub fn decompose_blocks(FinAlg) -> Array[FinAlg]
+
+pub fn embedding_dim(FinIdeal) -> Int32
+
+pub fn enumerate_ideals(FinAlg) -> Array[FinIdeal]
+
+pub fn ideal_dim(FinIdeal) -> Int32
+
+pub fn idempotents(FinAlg) -> Array[Array[Int32]]
+
+pub fn is_field_alg(FinAlg) -> Bool
+
+pub fn is_local(FinAlg) -> Bool
+
+pub fn is_nilpotent(FinAlg, Array[Int32]) -> Bool
+
+pub fn is_primitive_idempotent(FinAlg, Array[Int32]) -> Bool
+
+pub fn is_reduced(FinAlg) -> Bool
+
+pub fn is_regular_local_at(FinIdeal) -> Bool
+
+pub fn is_semisimple_ring(FinAlg) -> Bool
+
+pub fn is_simple_ideal(FinIdeal) -> Bool
+
+pub fn is_trivial_idempotent(FinAlg, Array[Int32]) -> Bool
+
+pub fn is_wedderburn_product(FinAlg) -> Bool
+
+pub fn jacobson_radical(FinAlg) -> FinIdeal
+
+pub fn krull_dim(FinAlg) -> Int32
+
+pub fn local_maximal(FinAlg) -> FinIdeal?
+
+pub fn local_ring_dim(FinIdeal) -> Int32
+
+pub fn longest_ideal_chain(FinAlg) -> Int32
+
+pub fn maximal_ideals(FinAlg) -> Array[FinIdeal]
+
+pub fn nilradical(FinAlg) -> FinIdeal
+
+pub fn prime_ideals(FinAlg) -> Array[FinIdeal]
+
+pub fn primitive_idempotents(FinAlg) -> Array[Array[Int32]]
+
+pub fn simple_ideals(FinAlg) -> Array[FinIdeal]
+
+pub fn socle(FinAlg) -> FinIdeal
+
+pub fn split_idempotent(FinAlg, Array[Int32]) -> (Array[Int32], Array[Int32])?
+
+pub fn square_ideal(FinIdeal) -> FinIdeal
+
+pub fn wedderburn_fields(FinAlg) -> Array[FinAlg]
+
+// Errors
+
+// Types and methods
+pub(all) struct FinAlg {
+  p : Int32
+  dim : Int32
+  mult : Array[@linalg.Matrix]
+} derive(@debug.Debug)
+pub fn FinAlg::add_elem(Self, Array[Int32], Array[Int32]) -> Array[Int32]
+pub fn FinAlg::all_elements(Self) -> Array[Array[Int32]]
+pub fn FinAlg::localize(Self, Array[Array[Int32]]) -> Localization
+pub fn FinAlg::localize_at(Self, FinIdeal) -> Localization
+pub fn FinAlg::localize_at_element(Self, Array[Int32]) -> Localization
+pub fn FinAlg::mul_elem(Self, Array[Int32], Array[Int32]) -> Array[Int32]
+pub fn FinAlg::neg_elem(Self, Array[Int32]) -> Array[Int32]
+pub fn FinAlg::one_elem(Self) -> Array[Int32]
+pub fn FinAlg::principal_ideal(Self, Array[Int32]) -> FinIdeal
+pub fn FinAlg::product(Int32, Array[Int32]) -> Self
+pub fn FinAlg::subalgebra(Self, Array[Array[Int32]], Array[Int32]) -> Self
+pub fn FinAlg::to_repr(Self) -> @debug.Repr
+pub fn FinAlg::unit_ideal(Self) -> FinIdeal
+pub fn FinAlg::univariate_quotient(Int32, Array[Int32]) -> Self
+pub fn FinAlg::validate(Self) -> Bool
+pub fn FinAlg::zero_dim_quotient(Int32, Array[@finalg.Poly]) -> Self
+pub fn FinAlg::zero_elem(Self) -> Array[Int32]
+pub fn FinAlg::zero_ideal(Self) -> FinIdeal
+
+pub(all) struct FinIdeal {
+  alg : FinAlg
+  members : Array[Array[Int32]]
+} derive(@debug.Debug)
+pub fn FinIdeal::add(Self, Self) -> Self
+pub fn FinIdeal::conductor(Self, Self) -> Self
+pub fn FinIdeal::contains(Self, Array[Int32]) -> Bool
+pub fn FinIdeal::eq(Self, Self) -> Bool
+pub fn FinIdeal::generate(FinAlg, Array[Array[Int32]]) -> Self
+pub fn FinIdeal::intersect(Self, Self) -> Self
+pub fn FinIdeal::is_prime(Self) -> Bool
+pub fn FinIdeal::is_semiprime(Self) -> Bool
+pub fn FinIdeal::mul(Self, Self) -> Self
+pub fn FinIdeal::quotient(Self) -> FinAlg
+pub fn FinIdeal::radical(Self) -> Self
+pub fn FinIdeal::to_repr(Self) -> @debug.Repr
+
+pub(all) struct Localization {
+  base : FinAlg
+  s_set : Array[Array[Int32]]
+  s_codes : Array[Int32]
+  s_idx_of : Array[Int32]
+  pair_num : Array[Int32]
+  pair_den : Array[Int32]
+  pair_class : Array[Int32]
+  class_count : Int32
+  class_pair : Array[Int32]
+  mul_code : Array[Int32]
+  add_code : Array[Int32]
+}
+pub fn Localization::add_class(Self, Int32, Int32) -> Int32
+pub fn Localization::embed(Self, Array[Int32]) -> Int32
+pub fn Localization::fraction(Self, Array[Int32], Array[Int32]) -> Int32
+pub fn Localization::map_to(Self, Self) -> Array[Int32]
+pub fn Localization::mul_class(Self, Int32, Int32) -> Int32
+pub fn Localization::size(Self) -> Int32
+
+// Type aliases
+
+// Traits

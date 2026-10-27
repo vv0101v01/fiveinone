@@ -7,4 +7,13 @@ import {
   "vv0101v01/cubical-hermitian/semiring/matrix" @smat,
   "vv0101v01/cubical-hermitian/semiring/trop" @strop,
   "vv0101v01/cubical-hermitian/semiring/cat" @scat,
+  "vv0101v01/cubical-hermitian/finalg",
+  "vv0101v01/cubical-hermitian/finalg/num" @fnum,
+  "vv0101v01/cubical-hermitian/finalg/linalg" @flinalg,
+  "vv0101v01/cubical-hermitian/finalg/finite" @ffinite,
+  "vv0101v01/cubical-hermitian/finalg/scheme" @fscheme,
+  "vv0101v01/cubical-hermitian/finalg/cat" @fcat,
+  "vv0101v01/cubical-hermitian/finalg/hott" @fhott,
+  "vv0101v01/cubical-hermitian/finalg/verify" @fverify,
+  "vv0101v01/cubical-hermitian/catmath",
 }

@@ -1,0 +1,23 @@
+// Generated using `moon info`, DON'T EDIT IT
+package "vv0101v01/cubical-hermitian/finalg/verify"
+
+// Values
+pub fn euclid_divmod(Int32, Int32) -> Euclid
+
+pub fn mod_pos(Int32, Int32) -> Int32
+
+pub fn pow2_rec(Int32) -> Int32
+
+pub fn pow_mod(Int32, Int32, Int32) -> Int32
+
+// Errors
+
+// Types and methods
+pub struct Euclid {
+  q : Int32
+  r : Int32
+}
+
+// Type aliases
+
+// Traits

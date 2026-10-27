@@ -1,0 +1,57 @@
+name: Runtime (manual only)
+
+on:
+  workflow_dispatch:
+    inputs:
+      run_slow_report:
+        description: Also regenerate the slow semiring report as an artifact
+        required: true
+        type: boolean
+        default: false
+
+permissions:
+  contents: read
+
+jobs:
+  runtime:
+    name: Runtime tests and smoke programs
+    runs-on: ubuntu-latest
+    timeout-minutes: 120
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.x"
+
+      - name: Install MoonBit
+        shell: bash
+        run: |
+          curl -fsSL https://cli.moonbitlang.com/install/unix.sh | bash
+          echo "$HOME/.moon/bin" >> "$GITHUB_PATH"
+
+      - name: Fetch MoonBit dependencies
+        shell: bash
+        run: moon update
+
+      - name: Run explicitly authorized runtime gate
+        shell: bash
+        env:
+          GOLDEN_RUN_TESTS: "1"
+        run: sh tools/check_full.sh
+
+      - name: Regenerate slow report body
+        if: inputs.run_slow_report
+        shell: bash
+        env:
+          GOLDEN_RUN_SMOKE: "1"
+        run: sh tools/check_slow.sh > REPORT.generated.md
+
+      - name: Upload slow report body
+        if: inputs.run_slow_report
+        uses: actions/upload-artifact@v4
+        with:
+          name: semiring-report-generated
+          path: REPORT.generated.md

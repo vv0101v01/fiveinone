@@ -282,6 +282,12 @@ EXACT = {
     "comp_torus_value": "資料型別與 HIT 消去",
     "quote_eta": "型別化 NbE 與 η", "quote_tneutral": "型別化 NbE 與 η",
     "nf_eta": "型別化 NbE 與 η", "def_eq_eta": "型別化 NbE 與 η",
+    "lty_bool_ctor": "型別化 NbE 與 η", "lty_unit_ctor": "型別化 NbE 與 η",
+    "lty_prod_ctor": "型別化 NbE 與 η", "lty_fun_ctor": "型別化 NbE 與 η",
+    "tm_var_ctor": "型別化 NbE 與 η", "tm_lam_ctor": "型別化 NbE 與 η",
+    "tm_app_ctor": "型別化 NbE 與 η", "tm_pair_ctor": "型別化 NbE 與 η",
+    "tm_fst_ctor": "型別化 NbE 與 η", "tm_snd_ctor": "型別化 NbE 與 η",
+    "tm_unit_ctor": "型別化 NbE 與 η",
     "sym_affine_path": "譜投影與仿射唯一填充", "sym_square_fill": "譜投影與仿射唯一填充",
     "sym_bilinear_from_corners": "譜投影與仿射唯一填充", "sym_bilinear_ansatz": "譜投影與仿射唯一填充",
     "sym_frac_one_minus": "譜投影與仿射唯一填充", "sym_hermitian2": "譜投影與仿射唯一填充",
@@ -853,7 +859,20 @@ FAMILIES.update({
     "半環實驗室：原生宿主後端": ("結構化 async 任務與分片讀取結果", "原生宿主效果在平行接縫之下封裝", "僅 native 編譯與測試，其餘 target 整包跳過"),
     "半環實驗室：範例": ("可編譯教學範例的輸出值", "半環支柱各構造的具體見證", "範例白盒測試"),
     "半環實驗室：量測報告": ("章節函數輸出的量測表與裁決摘要", "半環支柱各演算法在原生主機上的可重現量測敘事", "native 慢閘門完整重跑並保存輸出快照；永不進快速閘門"),
-    "三方橋接": ("跨支柱轉換後的規範矩陣、圖、範疇或統一證書", "cubical、有限對稱與半環路徑代數之間的顯式橋接構造", "每一橋接均以來源支柱的判定器重驗"),
+    "五成員聯邦橋接": ("跨成員轉換後的規範矩陣、圖、範疇、多項式、有限拓撲、同調與證書", "原三支柱橋就地擴張成的單一五成員整合層；只在明示的有限共同片段連接五個成員系統", "每一圖表均以來源成員的原生判定器與共同不變量重驗，並記錄方向、前提與不受支援片段"),
+    "finalg：數論與模算術": ("[0,m) 剩餘代表、素因數表與 CRT 解", "Z/mZ 與整數乘法群的有限片段", "擴展歐氏、Bézout 恆等式、確定性 Miller–Rabin（32 位元範圍）與因數表重組"),
+    "finalg：有限域線性代數": ("F_p 稠密矩陣與 RREF+pivots", "有限維 F_p 向量空間與線性映射範疇", "Gauss–Jordan、rank-nullity、零空間與線性方程求解"),
+    "finalg：多項式、理想與正規形": ("字典序規範多項式、約化 Gröbner 基、SNF/HNF 與有理標準形", "有限域多項式環、理想商與歐氏整環上的模", "Buchberger/正規形、UAV 幺模證書、Cayley–Hamilton 與整除鏈"),
+    "finalg：有限代數與有限環": ("基底與結構常數、理想成員表與局部化資料", "有限維 F_p 代數及有限交換環片段", "元素枚舉上的理想/根/單位/冪零與局部環檢查"),
+    "finalg：有限模與黏合": ("生成元—關係呈現、對偶基與逆向系統相容族", "有限環上的有限呈現模與有限極限", "子模/商/直和、射影性探針與黏合相容性檢查"),
+    "finalg：有限代數幾何": ("有限點集、消失理想與維數證書", "有限域仿射簇與其坐標環片段", "點枚舉、Hilbert/理想運算與維數互校"),
+    "finalg：有限概形": ("Spec 點/莖資料與有限開覆蓋黏合表", "有限交換環譜與結構層的有限片段", "素理想、局部化與覆蓋相容性枚舉"),
+    "finalg：有限 HoTT": ("等價的雙向函數資料、S1 繞數與截斷見證", "有限集宇宙中的等價、HIT 商與低截斷層級", "逐元素逆律、商消去良定性與同倫層級見證"),
+    "finalg：範疇化": ("閉包字典、路徑序列、分割群胚與 Grothendieck 類", "集合層結構到範疇/群胚層的提升與反降", "結合/單位/逆律、路徑合成、群胚基數與 Yoneda 計數"),
+    "finalg：接口移植": ("函數簽名記錄與遷移報告", "靜態接口形狀而非數學對象本身", "簽名相容性、缺失/多餘符號與 JSON 往返檢查"),
+    "finalg：測試工具": ("確定性隨機流與有限代數 fixture", "QuickCheck 式產生器在有限見證上的實現", "可重播產生與性質測試供給"),
+    "finalg：形式驗證算術": ("Euclid 商餘對與模冪結果", "整數歐氏整環及 Z/mZ 的合約式片段", "MoonBit 合約供 moon prove/Why3；一般編譯只檢查型別與合約句法"),
+    "catmath：範疇與高維代數規範形": ("有限合成表、乘法表、鏈複形矩陣、約化詞與多類規範索引", "小範疇、群胚、高維/同調代數與型別論模型的有限表示", "公理窮舉、等價/同構判定、SNF/RREF、Yoneda 與各 verify_* 有限檢查"),
 })
 
 FAMILIES_EN.update({
@@ -881,7 +900,20 @@ FAMILIES_EN.update({
     "半環實驗室：原生宿主後端": ("Semiring lab: native host backend", "structured async tasks and sharded read results", "native host effects encapsulated below the parallel seam", "compiled and tested only on native; skipped as a whole package elsewhere"),
     "半環實驗室：範例": ("Semiring lab: examples", "outputs of compilable teaching examples", "concrete witnesses for constructions in the semiring pillar", "white-box example tests"),
     "半環實驗室：量測報告": ("Semiring lab: measured report", "measurement tables and verdict summaries emitted by section functions", "a reproducible native-host measurement narrative for algorithms in the semiring pillar", "rerun completely as a native slow gate and archive the output snapshot; never part of the fast gate"),
-    "三方橋接": ("Three-way bridges", "canonical matrices, graphs, categories or unified certificates after cross-pillar conversion", "explicit bridge constructions between cubical paths, finite symmetry and semiring path algebra", "every bridge is rechecked by decision procedures from its source pillars"),
+    "五成員聯邦橋接": ("Five-member federation bridges", "canonical matrices, graphs, categories, polynomials, finite topologies, homology data and certificates after cross-member conversion", "the single federation core obtained by expanding the original three-pillar bridge in place; it connects the five members only on explicit finite common fragments", "every diagram is rechecked with source-native decision procedures and shared invariants, with direction, side conditions and unsupported fragments recorded"),
+    "finalg：數論與模算術": ("finalg: number theory and modular arithmetic", "canonical residues, prime-factor tables and CRT solutions", "finite fragments of Z/mZ and integer unit groups", "extended Euclid/Bezout identities, deterministic Miller-Rabin on the 32-bit range and factorization reassembly"),
+    "finalg：有限域線性代數": ("finalg: finite-field linear algebra", "dense F_p matrices and RREF/pivot data", "finite-dimensional F_p vector spaces and linear maps", "Gauss-Jordan elimination, rank-nullity, nullspaces and solvers"),
+    "finalg：多項式、理想與正規形": ("finalg: polynomials, ideals and normal forms", "lex-canonical polynomials, reduced Groebner bases, SNF/HNF and rational canonical forms", "finite-field polynomial rings, ideal quotients and modules over Euclidean domains", "Buchberger/normal forms, unimodular certificates, Cayley-Hamilton and divisibility chains"),
+    "finalg：有限代數與有限環": ("finalg: finite algebras and rings", "bases with structure constants, ideal membership tables and localization data", "finite-dimensional F_p algebras and finite commutative rings", "elementwise ideal/radical/unit/nilpotence and local-ring checks"),
+    "finalg：有限模與黏合": ("finalg: finite modules and gluing", "generator-relation presentations, dual bases and compatible inverse-system families", "finitely presented modules over finite rings and finite limits", "submodule/quotient/sum, projectivity probes and gluing compatibility"),
+    "finalg：有限代數幾何": ("finalg: finite algebraic geometry", "finite point sets, vanishing ideals and dimension certificates", "affine varieties and coordinate rings over finite fields", "point enumeration, Hilbert/ideal computations and dimension cross-checks"),
+    "finalg：有限概形": ("finalg: finite schemes", "Spec points/stalks and finite open-cover gluing tables", "spectra and structure-sheaf fragments of finite commutative rings", "prime ideals, localization and cover-compatibility enumeration"),
+    "finalg：有限 HoTT": ("finalg: finite HoTT", "bidirectional equivalence data, S1 windings and truncation witnesses", "equivalences, HIT quotients and low truncation levels in finite universes", "pointwise inverse laws, quotient-elimination well-definedness and level witnesses"),
+    "finalg：範疇化": ("finalg: categorification", "closure dictionaries, path sequences, partition groupoids and Grothendieck classes", "lifts from set-level structures to categories/groupoids and their decategorifications", "associativity/unit/inverse laws, path composition, groupoid cardinality and Yoneda counts"),
+    "finalg：接口移植": ("finalg: interface porting", "function-signature records and migration reports", "static interface shapes rather than mathematical objects", "signature compatibility, missing/extra symbols and JSON round trips"),
+    "finalg：測試工具": ("finalg: test utilities", "deterministic random streams and finite-algebra fixtures", "QuickCheck-style generators realized on finite witnesses", "replayable generation for property tests"),
+    "finalg：形式驗證算術": ("finalg: formally verified arithmetic", "Euclid quotient/remainder pairs and modular powers", "contracted fragments of the Euclidean integers and Z/mZ", "MoonBit contracts for moon prove/Why3; ordinary compilation checks only types and contract syntax"),
+    "catmath：範疇與高維代數規範形": ("catmath: categorical and higher-algebraic normal forms", "finite composition tables, multiplication tables, chain-complex matrices, reduced words and canonical-form indexes", "finite representations of small categories, groupoids, higher/homological algebra and type-theoretic models", "exhaustive axioms, equivalence/isomorphism decisions, SNF/RREF, Yoneda and finite verify_* checks"),
 })
 
 PACKAGE_FAMILY = {
@@ -902,7 +934,20 @@ PACKAGE_FAMILY = {
     "semiring-par-host": "半環實驗室：原生宿主後端",
     "semiring-examples": "半環實驗室：範例",
     "cmd-semiringreport": "半環實驗室：量測報告",
-    "bridge": "三方橋接",
+    "bridge": "五成員聯邦橋接",
+    "finalg-num": "finalg：數論與模算術",
+    "finalg-linalg": "finalg：有限域線性代數",
+    "finalg": "finalg：多項式、理想與正規形",
+    "finalg-finite": "finalg：有限代數與有限環",
+    "finalg-modules": "finalg：有限模與黏合",
+    "finalg-geometry": "finalg：有限代數幾何",
+    "finalg-scheme": "finalg：有限概形",
+    "finalg-hott": "finalg：有限 HoTT",
+    "finalg-cat": "finalg：範疇化",
+    "finalg-port": "finalg：接口移植",
+    "finalg-testutil": "finalg：測試工具",
+    "finalg-verify": "finalg：形式驗證算術",
+    "catmath": "catmath：範疇與高維代數規範形",
 }
 
 SYMLIB_GRAPH = "有限對稱：圖規範形與自同構"
@@ -1123,22 +1168,25 @@ def appendix_document(lang, rendered):
     if lang == "zh":
         head = """# cubical-hermitian 規格附錄（逐符號登記）
 
-[English appendix](SPEC-APPENDIX.en.md) · [中文規格正本](SPEC.md) · [English specification](SPEC.en.md)
+[English appendix](SPEC-APPENDIX.en.md) · [中文規格正本](SPEC.md) · [English specification](SPEC.en.md) · [目前狀態](docs/STATUS.md) · [工程缺口](docs/ENGINEERING-GAPS.md)
 
 > 本檔案由 `tools/audit_spec.py --write` 自各套件的 `pkg.generated.mbti`
 > （`moon info`）生成，**勿手改**附錄標記之間的內容。套件欄是
-> `architecture.json` 登記的 MoonBit 套件。
+> `architecture.json` 登記的 MoonBit 套件。符號列入附錄只表示公共介面
+> 存在並已分類，不構成版本穩定承諾；發布身份與待辦見所連結文件。
 
 """
     else:
         head = """# cubical-hermitian Specification Appendix (per-symbol registry)
 
-[中文附錄](SPEC-APPENDIX.md) · [English specification](SPEC.en.md) · [中文規格正本](SPEC.md)
+[中文附錄](SPEC-APPENDIX.md) · [English specification](SPEC.en.md) · [中文規格正本](SPEC.md) · [Status](docs/STATUS.md) · [Engineering gaps](docs/ENGINEERING-GAPS.md)
 
 > This file is generated by `tools/audit_spec.py --write` from each
 > package's `pkg.generated.mbti` (`moon info`).  Do **not** edit the
 > content between the appendix markers by hand.  The package column
 > is the MoonBit package registered in `architecture.json`.
+> Inclusion proves that a public symbol exists and is classified;
+> it is not a version-stability promise.
 
 """
     return head + "<!-- APPENDIX:BEGIN -->\n" + rendered.rstrip("\n") + "\n<!-- APPENDIX:END -->\n"

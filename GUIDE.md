@@ -1,6 +1,14 @@
 # cubical-hermitian 導覽（MoonBit 實作）
 
-語言：**中文正本** · [English](GUIDE.en.md) · [規格](SPEC.md) · [Specification](SPEC.en.md) · [架構](ARCHITECTURE.md)
+語言：**中文正本** · [English](GUIDE.en.md) · [規格](SPEC.md) · [Specification](SPEC.en.md) · [架構](ARCHITECTURE.md) · [目前狀態](docs/STATUS.md) · [工程缺口](docs/ENGINEERING-GAPS.md)
+
+> 本文只導覽 cubical 支柱。全倉現已發布為
+> <https://github.com/vv0101v01/golden>（MoonBit module 仍是
+> `vv0101v01/cubical-hermitian`）；`symlib`、`semiring/*`、`finalg`、
+> `catmath` 與唯一五成員 `bridge` 分別見其專門文件。文中「本次升級」
+> 及分期段落保留開發演進脈絡，
+> 全局現行數字只以 [STATUS](docs/STATUS.md) 為準，未完善處見
+> [缺口登記](docs/ENGINEERING-GAPS.md)。
 
 一組互相纏繞的概念做成**可執行、可測試的計算模型**：
 
@@ -35,23 +43,27 @@
 - 有界 Huet 搜尋、版本化已編譯模組 byte codec，以及 BDD
   sifting/cache、watched-literal DPLL 與 sparse/Karatsuba `QPoly` 乘法；
 - `SPEC.md`/`SPEC.en.md` 與雙語附錄對全部型別、算子、規格、結構逐符號
-  給出規範形式與範疇化；三方合併後附錄共 **5,054 個符號**，cubical 支柱的
+  給出規範形式與範疇化；五方聯邦後附錄共 **6,259 個符號**，cubical 支柱的
   規格登記仍為 **101 條**；
 - cubical 支柱的實體套件子圖 `cmd/main → root → algebra` 與其 13 個邏輯元件，
-  現與另外兩根支柱、bridge/apps 合共 **25 套件／34 元件**，由同一
+  現與另外四根支柱、bridge/apps 合共 **39 套件／48 元件**，由同一
   `architecture.json`/`tools/arch_check.py` 管制。
 
 ## 運行與驗收
 
 ```text
-moon check --deny-warn                 # 全專案通過且零警告
-moon test --target wasm-gc             # 全倉 336/336（其中 cubical root+algebra 111）
-moon test --target native               # 全倉 340/340（多 4 個 native-only host 測試）
-moon run cmd/main                      # 90 項定理登記表，期望 90/90
+sh tools/check_compile.sh              # 本階段 compile-only：格式、治理、四 target、test build-only、執行檔 build
+GOLDEN_RUN_TESTS=1 sh tools/check_full.sh
+                                       # 未來運行期才實跑全倉測試與 smoke
+python3 tools/doc_check.py             # 文檔連結、索引與現行治理數字
 python3 tools/arch_check.py            # 依賴層級、唯一檔案歸位與計數
 moon info && python3 tools/audit_spec.py --check
                                        # 雙語符號附錄與各套件介面集合相等
 ```
+
+舊三系統樹的歷史基線是 wasm-gc 336（cubical 子集 111）與 native
+340（多 4 個 `semiring/par_host`）；目前五系統樹尚未實跑，兩數不可
+相加或借作五系統證據。
 
 ## 本次升級重點
 
@@ -371,7 +383,7 @@ point、PathP 或巢狀 PathP square，端點由低維 face 的消去值給出�
 | 第十三期收束 | SelfFamily 正性不動點／foreign 巢狀 IH 函子映射、相關維度下降／最大相容補入、差異導引 Bool 切分／驗證方塊帽、CHDAGBIN 共圖／CHARTCHN 完整性鏈、聯合不可約證書／四生成元多二次塔／自適應 Jacobi、n≤16 精確序／DRUP／Tier D、逆元結合律 3-胞／閉代表式分類、HOU 殘差求解器 | `schema_positivity.mbt`, `dsystem_compat.mbt`, `conv_case_split.mbt`, `dterm_dag_binary.mbt`, `algebra/multiquad_tower.mbt`, `phase13_laws.mbt` |
 | 第十二期收束 | 同規格自嵌／正性宣告、同時 IR eliminator 編譯、結構合意與補入、Bool case-split 與路徑值 comp、artifact 儲存庫／DAG codec／版本協商、不可約證書／三次三二次塔／簇感知 Jacobi、子集 DP 序／CDCL 刪除＋RUP、分層外延、單位律 3-胞／精確 Hopf、HOU 三態 MGU | `schema_phase9.mbt`, `schema_positivity.mbt`, `conv_case_split.mbt`, `artifact_repository.mbt`, `algebra/qpoly_certificate.mbt`, `algebra/tower_fields.mbt`, `phase12_laws.mbt` |
 | 套件與依賴治理 | `cmd/main → root → algebra`、13 元件、禁止向上邊 | `architecture.json`, `tools/arch_check.py`, `ARCHITECTURE.md` |
-| 規格範形登記 | cubical 101 條目＋全倉 5,054 雙語附錄符號＋多套件審計 | `spec.mbt`, `SPEC*.md`, `SPEC-APPENDIX*.md`, `tools/audit_spec.py` |
+| 規格範形登記 | cubical 101 條目＋全倉 6,259 雙語附錄符號＋多套件審計 | `spec.mbt`, `SPEC*.md`, `SPEC-APPENDIX*.md`, `tools/audit_spec.py` |
 
 ## 檔案地圖
 

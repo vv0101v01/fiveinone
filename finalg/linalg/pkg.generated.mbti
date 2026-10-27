@@ -1,0 +1,62 @@
+// Generated using `moon info`, DON'T EDIT IT
+package "vv0101v01/cubical-hermitian/finalg/linalg"
+
+import {
+  "moonbitlang/core/debug",
+}
+
+// Values
+pub fn close_under_actions(Int32, Array[Array[Int32]], Array[Matrix]) -> Array[Array[Int32]]
+
+pub fn elems_contains(Array[Array[Int32]], Array[Int32]) -> Bool
+
+pub fn elems_eq(Array[Array[Int32]], Array[Array[Int32]]) -> Bool
+
+pub fn elems_normalize(Int32, Array[Array[Int32]]) -> Array[Array[Int32]]
+
+pub fn enumerate_closed_subspaces(Int32, Int32, Array[Matrix]) -> Array[Array[Array[Int32]]]
+
+pub fn enumerate_vectors(Int32, Int32) -> Array[Array[Int32]]
+
+pub fn int_arrays_eq(Array[Int32], Array[Int32]) -> Bool
+
+pub fn span_elements(Int32, Array[Array[Int32]]) -> Array[Array[Int32]]
+
+pub fn vec_add(Int32, Array[Int32], Array[Int32]) -> Array[Int32]
+
+pub fn vec_cmp(Array[Int32], Array[Int32]) -> Int32
+
+pub fn vec_eq(Array[Int32], Array[Int32]) -> Bool
+
+pub fn vec_scale(Int32, Int32, Array[Int32]) -> Array[Int32]
+
+// Errors
+
+// Types and methods
+pub(all) struct Matrix {
+  p : Int32
+  rows : Int32
+  cols : Int32
+  data : Array[Array[Int32]]
+} derive(@debug.Debug)
+pub fn Matrix::add(Self, Self) -> Self
+pub fn Matrix::apply(Self, Array[Int32]) -> Array[Int32]
+pub fn Matrix::copy(Self) -> Self
+pub fn Matrix::from_rows(Int32, Array[Array[Int32]]) -> Self
+pub fn Matrix::get(Self, Int32, Int32) -> Int32
+pub fn Matrix::identity(Int32, Int32) -> Self
+pub fn Matrix::mul(Self, Self) -> Self
+pub fn Matrix::nullspace(Self) -> Array[Array[Int32]]
+pub fn Matrix::rank(Self) -> Int32
+pub fn Matrix::rowspace_contains(Self, Self) -> Bool
+pub fn Matrix::rref(Self) -> (Self, Array[Int32])
+pub fn Matrix::rref_signature(Self) -> Array[Int32]
+pub fn Matrix::set(Self, Int32, Int32, Int32) -> Unit
+pub fn Matrix::solve(Self, Array[Int32]) -> Array[Int32]?
+pub fn Matrix::to_repr(Self) -> @debug.Repr
+pub fn Matrix::transpose(Self) -> Self
+pub fn Matrix::zero(Int32, Int32, Int32) -> Self
+
+// Type aliases
+
+// Traits

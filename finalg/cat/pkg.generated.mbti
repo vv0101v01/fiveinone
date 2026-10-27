@@ -1,0 +1,111 @@
+// Generated using `moon info`, DON'T EDIT IT
+package "vv0101v01/cubical-hermitian/finalg/cat"
+
+import {
+  "moonbitlang/core/debug",
+}
+
+// Values
+pub fn[Obj, Hom] assoc_ok(Category[Obj, Hom], Hom, Hom, Hom) -> Bool
+
+pub fn[Obj, Hom] category_of((Obj) -> Hom, (Hom) -> Obj, (Hom) -> Obj, (Hom, Hom) -> Hom, (Hom, Hom) -> Bool) -> Category[Obj, Hom]
+
+pub fn compose_len(Path, Path) -> Int32
+
+pub fn delooping_zn(Int32) -> Category[Int32, Int32]
+
+pub fn delooping_zn_groupoid(Int32) -> Groupoid[Int32, Int32]
+
+pub fn frac(Int32, Int32) -> Frac
+
+pub fn frac_add(Frac, Frac) -> Frac
+
+pub fn graph_components(Graph) -> Array[Int32]
+
+pub fn graph_reachable(Graph, Int32, Int32) -> Bool
+
+pub fn[Obj, Hom] inv_ok(Groupoid[Obj, Hom], Hom) -> Bool
+
+pub fn k_add(KClass, KClass) -> KClass
+
+pub fn k_eq(KClass, KClass) -> Bool
+
+pub fn k_induced(Int32, Int32, KClass) -> Int32
+
+pub fn k_neg(KClass) -> KClass
+
+pub fn k_to_int(KClass) -> Int32
+
+pub fn path_category(Graph) -> Category[Int32, Path]
+
+pub fn path_len(Path) -> Int32
+
+pub fn path_weighted(Graph, Array[Int32], Int32, Path) -> Int32
+
+pub fn[Obj, Hom] unit_ok(Category[Obj, Hom], Hom) -> Bool
+
+pub fn yoneda_bwd(Int32, Array[Int32], (Int32, Int32)) -> Int32
+
+pub fn yoneda_fwd(Int32, Array[Int32], Int32) -> (Int32, Int32)
+
+pub fn yoneda_nat_count(Int32, Int32, Array[Int32]) -> Int32
+
+// Errors
+
+// Types and methods
+pub struct Category[Obj, Hom] {
+  id : (Obj) -> Hom
+  src : (Hom) -> Obj
+  tgt : (Hom) -> Obj
+  compose : (Hom, Hom) -> Hom
+  eq : (Hom, Hom) -> Bool
+}
+
+pub(all) struct Frac {
+  num : Int32
+  den : Int32
+} derive(Eq, @debug.Debug)
+pub fn Frac::equal(Self, Self) -> Bool
+pub fn Frac::not_equal(Self, Self) -> Bool
+pub fn Frac::to_repr(Self) -> @debug.Repr
+
+pub(all) struct Graph {
+  n : Int32
+  edges : Array[(Int32, Int32)]
+} derive(@debug.Debug)
+pub fn Graph::to_repr(Self) -> @debug.Repr
+
+pub struct Groupoid[Obj, Hom] {
+  cat : Category[Obj, Hom]
+  inv : (Hom) -> Hom
+}
+
+pub(all) struct KClass {
+  p : Int32
+  q : Int32
+} derive(@debug.Debug)
+pub fn KClass::to_repr(Self) -> @debug.Repr
+
+pub(all) struct PartitionGroupoid {
+  cls : Array[Int32]
+} derive(Eq, @debug.Debug)
+pub fn PartitionGroupoid::as_groupoid(Self) -> Groupoid[Int32, (Int32, Int32)]
+pub fn PartitionGroupoid::equal(Self, Self) -> Bool
+pub fn PartitionGroupoid::groupoid_cardinality(Self) -> Frac
+pub fn PartitionGroupoid::is_iso(Self, Int32, Int32) -> Bool
+pub fn PartitionGroupoid::iso_class_count(Self) -> Int32
+pub fn PartitionGroupoid::iso_is_equivalence(Self) -> Bool
+pub fn PartitionGroupoid::not_equal(Self, Self) -> Bool
+pub fn PartitionGroupoid::pi0(Self) -> Array[Int32]
+pub fn PartitionGroupoid::to_repr(Self) -> @debug.Repr
+
+pub(all) struct Path {
+  edges : Array[Int32]
+  from : Int32
+  to : Int32
+} derive(@debug.Debug)
+pub fn Path::to_repr(Self) -> @debug.Repr
+
+// Type aliases
+
+// Traits

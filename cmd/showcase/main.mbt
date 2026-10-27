@@ -1,7 +1,12 @@
 ///|
 fn main {
-  println("Cubical Hermitian — three-pillar bridge showcase")
-  println("------------------------------------------------")
+  println("Cubical Hermitian — five-member (3+2) federation showcase")
+  println("----------------------------------------------------------")
+  println("Federation members:")
+  for system in @bridge.federation_members() {
+    println("- \{system.id}: \{system.package_namespace} — \{system.summary}")
+  }
+  println("Bridge certificates:")
   let certificates = @bridge.bridge_certificates()
   for cert in certificates {
     let status = if cert.ok { "PASS" } else { "FAIL" }

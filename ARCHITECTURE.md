@@ -1,13 +1,21 @@
 # cubical-hermitian 架構與依賴治理
 
-[中文規格](SPEC.md) · [English specification](SPEC.en.md) · [中文指南](GUIDE.md) ·
+[目前狀態](docs/STATUS.md) · [工程缺口](docs/ENGINEERING-GAPS.md) ·
+[文檔索引](docs/README.md) · [中文規格](SPEC.md) ·
+[English specification](SPEC.en.md) · [中文指南](GUIDE.md) ·
 [English guide](GUIDE.en.md) · [中文符號附錄](SPEC-APPENDIX.md) ·
 [English appendix](SPEC-APPENDIX.en.md)
+
+> 目前發布倉為 <https://github.com/vv0101v01/golden>；MoonBit module
+> 仍是 `vv0101v01/cubical-hermitian`。本文 §1–§11 詳細保存 cubical
+> 支柱形成目前 DAG 的歷史與理由；全倉即時清單以 `architecture.json`
+> 與 checker 輸出為準。`tools/doc_check.py` 與 GitHub Actions 只執行
+> 已登記的機械閘門，不能把近似依賴推導升級成數學證明。
 
 > English summary: MoonBit compiles each package as one mutually
 > recursive unit, so files inside a package have no compilation
 > order.  This project nevertheless fixes a logical dependency DAG.
-> The federation has 25 packages / 34 components.  Within the cubical
+> The direct five-member federation has 39 packages / 48 components.  Within the cubical
 > pillar the physical subgraph remains `cmd/main → root → algebra`;
 > its 13 components in layers 0–9 are the detailed table below.
 > `architecture.json` assigns every `.mbt` file to exactly one
@@ -27,7 +35,7 @@ MoonBit 以 package 為編譯單位：同一目錄的 `.mbt` 宣告共同求解�
 
 因此架構分成兩級：
 
-1. **cubical 支柱實體 package 子圖（編譯器強制；全倉另有 symlib、semiring、bridge 與各 apps）**
+1. **cubical 支柱實體 package 子圖（編譯器強制；全倉另有 symlib、semiring、finalg、catmath、唯一 bridge 與各 apps）**
 
    ```text
    vv0101v01/cubical-hermitian/cmd/main
@@ -49,8 +57,8 @@ MoonBit 以 package 為編譯單位：同一目錄的 `.mbt` 宣告共同求解�
 
 ## 2. Component 層級
 
-下表詳列 cubical 支柱的 13 個 component。全倉現為 34 個 component；其餘
-symlib、semiring、bridge、host/report 與 app component 的即時明細以
+下表詳列 cubical 支柱的 13 個 component。全倉現為 48 個 component；其餘
+symlib、semiring、finalg、catmath、bridge、host/report 與 app component 的即時明細以
 `architecture.json` 與 checker 輸出為唯一來源，不在本表手抄複製。
 
 | 層 | Component | 實體套件 | 職責 | 可依賴 |
@@ -149,16 +157,15 @@ arch check 禁止它向上引用；核心 `dependent-kernel` 亦同理
    `tools/audit_spec.py` 分類並重新生成雙語附錄。
 4. 新數學檢查接入 `verify.mbt` 與 `spec.mbt`，不得只存在於
    未登記的測試檔。
-5. 提交前最小門檻：
+5. 提交前按變更級別選閘門，定義以 [CONTRIBUTING](CONTRIBUTING.md) 為準：
 
    ```bash
-   moon fmt
-   moon check --deny-warn
-   moon test --target wasm-gc
-   moon run cmd/main
-   moon run cmd/showcase
-   python3 tools/arch_check.py
-   python3 tools/audit_spec.py --check
+   python3 tools/doc_check.py   # 純文檔最低門檻，另加 arch/audit
+   sh tools/check_compile.sh    # 本階段唯一自動閘門：只編譯，不執行測試/smoke
+   GOLDEN_RUN_TESTS=1 sh tools/check_full.sh
+                                # 未來運行期才啟用（原生／發佈前）
+   GOLDEN_RUN_SMOKE=1 sh tools/check_slow.sh > /tmp/REPORT.generated.md
+                                # 未來運行期的人工慢報告
    ```
 
 ## 7. 第八期依賴整理實際做了甚麼
@@ -263,3 +270,50 @@ Root 的 `moon.pkg` 另加入 core `math` 供 Hopf 連結積分的三角函數�
   最大完成、方形 comp、BDD/CDCL、環路 3-胞、HOU 殘差求解與
   工件完整性鏈）均落在既有檔案與既有元件，未引入新上行邊。
   實體套件圖仍是 `cmd/main → root → algebra`。
+
+## 12. 直接五成員聯邦化與治理
+
+原三方合併沒有改變上文的 cubical 子圖。其後 finalg 與 catmath 不是
+疊在三聯邦之上，而是直接加入同一聯邦：原三支柱 `bridge/` 就地
+擴張成唯一五成員整合包，舊的獨立 `unified/` 疊加層已刪除。
+
+```text
+cmd/showcase ──► bridge ──► cubical root ──► 精確 algebra
+                    ├──────► symlib
+                    ├──────► semiring/{algebra,matrix,graph,trop,cat,...}
+                    ├──────► finalg ──► finalg/{num,linalg}
+                    │          ├──────► finalg/{finite,modules,geometry,scheme,hott}
+                    │          └──────► finalg/{cat,port,testutil,verify}
+                    └──────► catmath
+
+cmd/catmath ──► catmath
+semiring/par_host (native-only) ──► moonbitlang/async
+```
+
+五個成員之間沒有生產 import。`bridge/` 內原三支柱檔案保留出處，
+`federation_*.mbt` 承擔 3＋2 的新圖表；這比
+`三支柱 → bridge → unified` 少一層無語義必要的依賴，也只有一套
+註冊表與證書。`architecture.json` 目前登記 39 packages／48
+components，全量由 `tools/arch_check.py` 輸出，不在本文手抄檔案明細。
+
+發布後治理另分三層：
+
+| 層 | 權威工件 | 不能證明甚麼 |
+|---|---|---|
+| 架構／符號 | `architecture.json`、`.mbti`、雙語附錄 | 不證明算法完備或 API 已穩定 |
+| 文檔 | `docs/STATUS.md`、`docs/README.md`、`tools/doc_check.py` | 不審查散文與數學主張，只查連結、索引與客觀數字 |
+| 執行 | GitHub Actions compile-only job；runtime tests／slow report 僅 manual workflow | compile-only 不證明測試通過；尚未設定 branch protection 前，也不是強制合併閘門 |
+
+跨成員新邊、observer component 與 checker 近似推導的未解限制，統一
+登記在 [ENG-007](docs/ENGINEERING-GAPS.md)；不要為了讓圖變綠而把新整合
+偷放進任一成員。
+
+其中 `finalg/testutil` 是測試支撐 package：其他 finalg package
+只可在 `test`／`wbtest` scope 匯入它，不能把它變成生產依賴。
+`catmath/` 目前刻意保留為單一大 package；這記錄的是來源的真實
+互相遞迴邊界，不是宣稱它已完成理想的細粒度拆包。
+
+跨成員轉換必須經過公開介面：若表示只有 `pub` 而非 `pub(all)`，
+只能在所屬 package 內加窄域構造函數（如
+`catmath::fin_group_of`、`finalg/cat::category_of`、root 的
+`lty_*_ctor`），不可為了 bridge 方便而把整個表示升成 `pub(all)`。

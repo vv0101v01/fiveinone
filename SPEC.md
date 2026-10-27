@@ -2,10 +2,17 @@
 
 語言：**中文正本** · [English](SPEC.en.md) · [中文逐符號附錄](SPEC-APPENDIX.md) · [English appendix](SPEC-APPENDIX.en.md) · [架構](ARCHITECTURE.md)
 
-> **聯邦範圍註記**：本文正文規格化 cubical 支柱（root＋精確 `algebra/`）；
-> symlib 與 semiring 的長文規格分別見 `docs/symlib.md`、
-> `docs/semiring/`，跨支柱橋見 `docs/BRIDGE.md`。逐符號附錄則覆蓋
-> 全倉 **25 個套件、5,054 個公開符號**。
+> **聯邦範圍註記**：本文正文規格化 cubical 首領成員（root＋精確
+> `algebra/`）；symlib、semiring、finalg、catmath 的成邦前長文
+> 分別在各自根目錄的 `README.md`，成邦後位置見 `docs/FINALG.md`、
+> `docs/CATMATH.md`，唯一五成員橋見 `docs/BRIDGE.md`。
+> 逐符號附錄覆蓋全倉 **39 個套件、6,259 個公開符號**。
+>
+> **現行發布身份**：儲存倉為 <https://github.com/vv0101v01/golden>，
+> MoonBit module 為 `vv0101v01/cubical-hermitian`。全倉現況見
+> `docs/STATUS.md`；本文第四章仍是 cubical 理論邊界正本，全倉待辦索引在
+> `docs/ENGINEERING-GAPS.md`。規格列出符號只證明介面存在且已分類，尚不等於
+> 已有版本穩定承諾（缺口 API-003）。
 
 本文件對專案中**所有型別、算子、結構與規格逐樣**給出：
 
@@ -25,7 +32,9 @@ MoonBit 套件；審計以集合相等保證附錄與介面**無遺漏、無重�
 moon info && python3 tools/audit_spec.py --write   # 重新生成附錄並審計
 python3 tools/audit_spec.py --check                # 只審計，不改檔
 python3 tools/arch_check.py                        # 套件/元件依賴層級與檔案唯一歸位
-moon check --deny-warn && moon test --target wasm-gc && moon run cmd/main   # 全倉 336 tests（cubical 子集 111）、定理 90/90
+python3 tools/doc_check.py                         # 文檔連結、索引與治理數字
+sh tools/check_compile.sh                          # 本期 compile-only：四 target 檢查、test build-only、執行檔 build
+GOLDEN_RUN_TESTS=1 sh tools/check_full.sh          # 未來運行期才實跑全倉測試與 smoke
 ```
 
 ---
@@ -1502,6 +1511,60 @@ recovery 回 -1、record-hash 或 blob 任一竄改令報告失效，
 
 驗收：`check_hou_residual_solver`、
 `check_artifact_manifest_integrity_chain`。
+
+### 1.17 第十四期：直接 3＋2 五成員聯邦（`finalg/`、`catmath/`、擴張的 `bridge/`）
+
+本期不把 algo 與 algo4 攤平進 cubical 根套件，也不把五系統疊在
+原三支柱橋之上。`finalg/` 保留 moon-algebra 的 12-package DAG，
+`catmath/` 保留 algo4 的單一大套件並拆出 `cmd/catmath`；
+兩個新成員直接加入原聯邦，原 `bridge/` 就地擴張為唯一五成員
+observer／轉接層。獨立 `unified/` 不是本期的最終形態。
+
+跨表示的正式對齊與由相容片段推導的圖表包括：
+
+1. **有限範疇**：symlib 扁平表、catmath 巢狀 `Option` 表與
+   finalg/cat 閉包字典並存；表格互換只做合成索引轉置，表格到
+   閉包逐一驗證單位與結合律。有向可達等價於對應 Hom 非空；
+   無向弱分量、iso classes 與 skeleton 以來源判定器互校。
+   任意閉包範疇不聲稱可枚舉回表，Hom-count 特徵多項式只是
+   去範疇化不變量。
+2. **有限群與 G-集**：catmath Cayley 表按左正則表示嵌入
+   symlib `PermGroup`；反向只對 `cap` 內小群列舉。正則表示
+   平均投影秩為 1；有限 G-集的軌道分割、Burnside 平均值與作用
+   平均投影秩＝軌道數。catmath 的 delooping／abelianization
+   橋只用單位元索引為 0 的片段。
+3. **多項式**：整係數 `QPoly` 逐係數模約化到 finalg 單變量
+   `Poly`；反向取 `[0,m)` 代表元，明示不是環同態。在合法
+   片段，乘法、導數與整點求值和模約化交換；分母可逆時有理根
+   像仍為根；Hensel 單根候選再以精確模 `p²` 驗證。
+4. **整數矩陣與同調片段**：兩套 Smith 標準形、精確／模
+   特徵多項式、rank、det、trace、最小多項式與 Cayley–Hamilton
+   互校；`F_p` 邊界矩陣在素數、形狀與 `∂²=0` 守衛下以
+   rank-nullity 得 Betti 數並核 Euler 特徵。整數兩-boundary
+   片段核自由秩與 SNF 扭子，模 p 只取 universal-coefficient 下界。
+5. **布林函數、拓撲與動力**：真值表、finalg ANF 與 cubical
+   Face/ROBDD 在全部 assignments 上同義；Alexandrov 專化預序
+   與 thin category 對齊，finalg Spec 轉置包含序後逐子集核開集；
+   功能圖的環／尾不變量推出鄰接特徵多項式
+   `x^(tail)·∏(x^L−1)`。這些圖表均受小有限窮舉成本約束。
+6. **圓與 STLC**：三套 S¹ 表示只由共同整數繞數對齊。STLC 以
+   `SAtom↔LBool`、`SOne↔LUnit`、積／箭頭與反轉 context 對齊，
+   de Bruijn index 不變；回程只收 cubical η-long 範形並拒絕
+   Bool 字面量與 coe。因 cubical 有 unit-η 而 catmath raw
+   範形沒有，規格同時保存 raw equality 與顯式 unit-η completion，
+   不宣稱 raw 範形相等。
+
+窄域公開面只包括所屬成員內的 interop 構造／複製函數、
+finalg/cat 的泛型 `category_of`，以及把 finalg 原本由
+module-level warning 抑制掩蓋的方法改為明確 `pub extend`；
+算法表示不因此升成 `pub(all)`。
+
+**本期驗收邊界。** 全部上游與新寫的 test/wbtest 均已納入樹中，
+但依負責人指示只作 compile-only：格式、`.mbti`／附錄、四 target
+`moon check --deny-warn`、`moon test --build-only` 與 executable
+`moon build`。證書函數已編譯，不等於已在五成員樹執行；舊三系統
+336/340 與 90/90 只是歷史基線，`finalg/verify` 的 proof goals
+也未執行 `moon prove`。
 
 ## 二、規範形式目錄（逐結構）
 

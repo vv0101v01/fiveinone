@@ -225,6 +225,14 @@ fn tropical_points_subset(
 fn tropical_bpoly_checks(
   polys : Array[@finalg.Poly],
 ) -> (Bool, Bool, Bool, Bool, Bool) {
+  // Aggregate every eligible bivariate generator.  Returning
+  // after the first one would make the report's bivariate
+  // fields claim more than was actually checked.
+  let mut supported = false
+  let mut all_duality_ok = true
+  let mut all_balancing_ok = true
+  let mut all_ties_ok = true
+  let mut all_area_ok = true
   for poly in polys {
     let bpoly = match finalg_poly_to_tropical_bpoly(poly) {
       Some(bpoly) => bpoly
@@ -233,10 +241,19 @@ fn tropical_bpoly_checks(
     guard bpoly.terms.length() >= 3 && bpoly.newton_area2() > 0L else {
       continue
     }
+    supported = true
     let faces = bpoly.subdivision()
-    guard faces.length() > 0 else { continue }
+    if faces.length() == 0 {
+      all_duality_ok = false
+      all_balancing_ok = false
+      all_ties_ok = false
+      all_area_ok = false
+      continue
+    }
     let (dual_ok_count, dual_bad_count) = bpoly.check_duality(faces)
-    let duality_ok = dual_bad_count == 0 && dual_ok_count == faces.length()
+    all_duality_ok = all_duality_ok &&
+      dual_bad_count == 0 &&
+      dual_ok_count == faces.length()
     let edges = bpoly.dual_curve(faces)
     let residuals = @strop.balancing_residuals(edges, faces.length())
     let mut balancing_ok = residuals.length() == faces.length()
@@ -245,11 +262,17 @@ fn tropical_bpoly_checks(
         balancing_ok = false
       }
     }
+    all_balancing_ok = all_balancing_ok && balancing_ok
     let (_, _, unexplained) = bpoly.check_ties_on_faces(faces, 256, 7717UL)
-    let area_ok = bpoly.subdivision_area2(faces) == bpoly.newton_area2()
-    return (true, duality_ok, balancing_ok, unexplained == 0, area_ok)
+    all_ties_ok = all_ties_ok && unexplained == 0
+    all_area_ok = all_area_ok &&
+      bpoly.subdivision_area2(faces) == bpoly.newton_area2()
   }
-  (false, false, false, false, false)
+  if supported {
+    (true, all_duality_ok, all_balancing_ok, all_ties_ok, all_area_ok)
+  } else {
+    (false, false, false, false, false)
+  }
 }
 
 ///|
@@ -462,7 +485,7 @@ pub fn padic_tropical_hypersurface_report(
   lo : Int32,
   hi : Int32,
 ) -> PadicTropicalHypersurfaceReport {
-  guard is_prime_i32(prime) && lo <= hi && lo >= -100000 && hi <= 100000 else {
+  guard @fnum.is_prime(prime) && lo <= hi && lo >= -100000 && hi <= 100000 else {
     return invalid_padic_tropical_report(prime, lo, hi)
   }
   let tropical = qpoly_tropicalize_padic(poly, prime)

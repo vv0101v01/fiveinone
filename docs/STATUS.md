@@ -44,6 +44,14 @@
 賦值 Gröbner 基、tropical ideals、blueprints／bands 和
 一般 STLC 子型別仍是明示缺口，沒有以有限片段改名冒充。
 
+同日完成去重與驗收審計：刪除 bridge 內完全同義的私有
+helper，舊 tropical flagship 不再重複第三波 p-進範例，
+證書清單由歷史累計 20 項收攏為 16 項跨成員語義正本。
+按「五成員可相容有限共同片段」作分母、且運行證據分項
+計 0 的 100 分量表，現況為 **82/100**，可作大一統 v1
+收貨；這不是五成員全部原生功能的覆蓋率。詳見
+[GRAND-UNIFICATION](GRAND-UNIFICATION.md)。
+
 ## 目前規模
 
 本文與根 README 使用同一組機器可核查數字，由
@@ -53,12 +61,12 @@
 - 39 packages
 - 48 components
 - 323 `.mbt` files
-- 130,959 `.mbt` lines
+- 130,934 `.mbt` lines
 - 6,330 public symbols
 
 逐套件符號數以 [SPEC-APPENDIX](../SPEC-APPENDIX.md) 的生成清單
 為準。bridge 套件現有 456 個分類符號，包含原三支柱橋、直接
-聯邦轉接器、第二波推導報告、第三波大一統切片與 20 項聚合證書入口。
+聯邦轉接器、第二波推導報告、第三波大一統切片與去重後 16 項跨成員語義證書入口。
 
 ## 本階段驗證證據：compile-only
 

@@ -19,8 +19,10 @@ catmath/ ───────────────┘
 再優先以來源成員自己的判定器、規範形式或共同不變量重驗。
 
 本階段全部新舊測試源碼只編譯、不執行，所以本文所述
-`check_*` 與 20 項 `bridge_certificates()` 是已實作且能通過
-`--deny-warn` 編譯的檢查程式，不冒充現行五成員樹的運行期證據。
+`check_*` 與去重後 16 項 `bridge_certificates()` 是已實作且能
+通過 `--deny-warn` 編譯的檢查程式，不冒充現行五成員樹的
+運行期證據。註冊表計數與成員原生健康檢查仍保留各自函數／
+wbtest，但不重複列作大一統語義證書。
 
 ## 「疊加」與「直接 3＋2」的分別
 
@@ -58,7 +60,7 @@ catmath/ ───────────────┘
 | 複矩陣 | cubical `CMat` → 非零支撐色圖 → 候選置換 → 逐元近似保存 | 浮點保存沿用 cubical 既有容差，不包裝成精確證明 |
 | 自由範疇 | semiring DAG 路徑 → symlib `FinCat` | 非 DAG 直接拒絕，不截斷無限路徑集 |
 | 熱帶指派 | `trop_det`／Hungarian 最佳值 ↔ symlib 全置換 | 枚舉設 cap；只核有限枚舉片段 |
-| 熱帶化 | 精確 `QPoly` → p-進賦值 → semiring `UniPoly` | 零係數送至熱帶 +∞；橋只核已陳述的根多重集片段 |
+| 熱帶化 | 精確 `QPoly` → p-進賦值 → semiring `UniPoly` | 零係數送至熱帶 +∞；轉換器由多項式約化報告與第三波 p-進角點報告作正本核對，舊指派 flagship 不再重複同一根範例 |
 | Face 半環 | cubical `Face` → canonical ROBDD 包裝 `FaceClass` | 不以 Face AST 結構相等冒充語義相等；⊕=∨、⊗=∧、0=⊥、1=⊤ |
 | 胞腔對稱 | 2-胞腔正方形關聯圖（維數色）→ symlib 保色自同構 | 有限關聯圖包裝，不宣稱高維胞腔完整分類 |
 
@@ -100,9 +102,10 @@ catmath/ ───────────────┘
 | STLC | `SAtom↔LBool`、`SOne↔LUnit`、積與箭頭對應；context 次序反轉而 de Bruijn index 不變；回程只收 cubical η-long 範形 | 拒絕 Bool 字面量與 coe；cubical 有 unit-η 而 catmath raw 範形沒有，故報告同時保存 raw equality 與顯式 unit-η completion，不宣稱 raw 範形全面相等 |
 
 聚合入口是五個 `check_federation_*_derived_*` 函數與五個
-wbtest 區塊；它們與先前 13 項在第二波共同組成 18 項
-`bridge_certificates()`。這些證書統一展示格式，不抹除來源成員的
-原生表示，也不把 compile-only 說成已執行。
+wbtest 區塊；第二波完成時曾與先前 13 項組成 18 項清單。
+其後去重審計確認第一波整數矩陣煙霧已被本節報告包含，故
+現行正本證書只保留第二波矩陣報告。這些證書統一展示格式，
+不抹除來源成員的原生表示，也不把 compile-only 說成已執行。
 
 ## 文獻驅動的第三波大一統切片（2026-10-27）
 
@@ -117,8 +120,12 @@ wbtest 區塊；它們與先前 13 項在第二波共同組成 18 項
 
 聚合入口是
 `check_federation_heyting_unification_bridge` 與
-`check_federation_tropical_unification_bridge`，連同其 wbtest
-使 `bridge_certificates()` 增至 20 項。報告名稱刻意使用
+`check_federation_tropical_unification_bridge`。第三波初版曾把
+清單增至 20 項；同日去重後，註冊表計數、兩個成員原生健康
+檢查與被第二波包含的第一波矩陣煙霧退出證書分母，現行
+`bridge_certificates()` 為 16 項跨成員語義證書。去重原則與
+82/100 驗收量表見
+[GRAND-UNIFICATION](GRAND-UNIFICATION.md)。報告名稱刻意使用
 `corner locus`／`corner sample`，不用未實作的多面體扇或
 tropicalization functor 命名有限格點輸出。
 
@@ -140,7 +147,7 @@ tropicalization functor 命名有限格點輸出。
 ## 入口、錯誤與成本邊界
 
 - `cmd/showcase` 是唯一聯邦 showcase：先列五成員註冊表，再列
-  20 項 bridge 證書。本階段只 `moon build`，不執行。
+  16 項去重後 bridge 語義證書。本階段只 `moon build`，不執行。
 - bridge 仍有以 `abort` 表達的硬前提（空輸入、非方陣、尺寸、
   素數／DAG、枚舉 cap 與 finalg 閉包範疇不可合成呼叫）。
   它們是明示邊界而非結構化 `Result` API，見

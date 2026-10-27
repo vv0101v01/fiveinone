@@ -33,6 +33,8 @@ import；跨成員轉換、共同不變量、交叉核對與推導定理只在
 地圖加上有限 Heyting／可觀測子型別格，以及 p-進與多變量有界
 熱帶角點軌跡；文檔同時標明完整 tropical variety、賦值
 Gröbner 基、blueprints／bands 與一般子型別系統仍屬後續缺口。
+同日去重審計按「可相容有限共同片段」口徑評為 82/100，
+可作大一統 v1 收貨；這不是全部原生功能的覆蓋率。
 
 ## 五個成員
 
@@ -67,7 +69,7 @@ showcase、demo、benchmark、慢報告或 proof。真正的運行期閘門須
 ## 治理快照
 
 機器清單目前包含 **39 packages、48 components、323 `.mbt` files、
-130,959 `.mbt` lines、6,330 public symbols**；數字由
+130,934 `.mbt` lines、6,330 public symbols**；數字由
 `tools/arch_check.py`、`tools/doc_check.py` 與
 `tools/audit_spec.py --check` 交叉核對。架構正本是
 [architecture.json](architecture.json) 與

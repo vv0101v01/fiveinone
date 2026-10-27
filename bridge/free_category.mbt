@@ -1,16 +1,7 @@
 ///|
-fn same_path(a : Array[Int32], b : Array[Int32]) -> Bool {
-  guard a.length() == b.length() else { return false }
-  for i in 0..<a.length() {
-    guard a[i] == b[i] else { return false }
-  }
-  true
-}
-
-///|
 fn path_index(paths : Array[Array[Int32]], needle : Array[Int32]) -> Int32 {
   for i in 0..<paths.length() {
-    if same_path(paths[i], needle) {
+    if int_arrays_equal(paths[i], needle) {
       return i
     }
   }

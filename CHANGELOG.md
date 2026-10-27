@@ -11,8 +11,8 @@ Git tag 或 GitHub Release；見 [工程缺口 REL-003](docs/ENGINEERING-GAPS.md
 - 把 `algo4` 的 catmath 函式庫組合為第五成員 `catmath/`，保留全部
   test/wbtest；原同 package executable 拆至 `cmd/catmath`。
 - 不在三聯邦之上另疊五聯邦層：原 `bridge/` 就地擴張為唯一
-  五成員聯邦核心，`cmd/showcase` 直接列出五成員註冊表與 20 項
-  bridge 證書（證書函數已編譯，本期尚未執行）。
+  五成員聯邦核心，`cmd/showcase` 直接列出五成員註冊表與去重後
+  16 項跨成員語義證書（證書函數已編譯，本期尚未執行）。
 - bridge 新增並推導有限範疇／群／G-集、多項式模約化、整數
   矩陣、布林函數、有限拓撲／Spec、功能圖動力、有限同調與窄
   STLC 的轉換、共同不變量報告及交叉核對；每個接口明示方向、
@@ -24,6 +24,9 @@ Git tag 或 GitHub Release；見 [工程缺口 REL-003](docs/ENGINEERING-GAPS.md
   子型別格，以及 p-進單變量熱帶超曲面與多變量有界
   Gröbner-細化角點樣本；完整 tropical variety、賦值
   Gröbner 基、blueprints／bands 與一般子型別仍列為 GU 缺口。
+- 完成定理／演算法去重審計：bridge 內同義 helper、重複
+  p-進範例與歷史證書累計已收攏；按可相容有限共同片段且
+  運行證據計 0 的量表評為 82/100，作大一統 v1 收貨口徑。
 - 為跨套件唯讀表示只加所屬成員內的窄域 constructor／copy
   函數（catmath 的 G-集、鏈複形與 STLC 建構子，cubical root 的
   `LTy`／`Term` 建構子），不把成員型別放寬為 `pub(all)`。
@@ -32,7 +35,7 @@ Git tag 或 GitHub Release；見 [工程缺口 REL-003](docs/ENGINEERING-GAPS.md
   `GUIDE.md` 只留首領根目錄；獨立 MERGE 研究檔已濃縮到
   `docs/MIGRATION.md` 後刪除。
 - `architecture.json`、生成介面、雙語規格附錄與文檔數字更新至
-  39 packages／48 components／323 個 `.mbt`／130,959 行／
+  39 packages／48 components／323 個 `.mbt`／130,934 行／
   6,330 個公開符號；finalg 以明確 `pub extend` 取代上游的
   module-level warning 抑制。
 - 檢查政策維持 compile-only：`tools/check_compile.sh` 編譯全部

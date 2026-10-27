@@ -115,19 +115,6 @@ pub fn exact_determinant_int64(a : Array[Array[Int64]]) -> @exactalg.Rat {
 }
 
 ///|
-fn is_prime_i32(p : Int32) -> Bool {
-  guard p >= 2 else { return false }
-  let mut d = 2
-  while d * d <= p {
-    if p % d == 0 {
-      return false
-    }
-    d = d + 1
-  }
-  true
-}
-
-///|
 fn bigint_padic_valuation(x0 : BigInt, p : Int32) -> Int32 {
   let bp = BigInt::from_int(p)
   let mut x = @exactalg.bigint_abs(x0)
@@ -142,7 +129,7 @@ fn bigint_padic_valuation(x0 : BigInt, p : Int32) -> Int32 {
 ///|
 /// 有理數的 p-進賦值；零回傳 None（熱帶像為 +∞）。
 pub fn rat_padic_valuation(r : @exactalg.Rat, p : Int32) -> Int32? {
-  guard is_prime_i32(p) else { abort("rat_padic_valuation: p is not prime") }
+  guard @fnum.is_prime(p) else { abort("rat_padic_valuation: p is not prime") }
   if @exactalg.rat_is_zero(r) {
     return None
   }
@@ -156,7 +143,7 @@ pub fn qpoly_tropicalize_padic(
   poly : @exactalg.QPoly,
   p : Int32,
 ) -> @strop.UniPoly {
-  guard is_prime_i32(p) else {
+  guard @fnum.is_prime(p) else {
     abort("qpoly_tropicalize_padic: p is not prime")
   }
   let degree = @exactalg.qpoly_degree(poly)
@@ -177,8 +164,10 @@ pub fn qpoly_tropicalize_padic(
 /// 熱帶橋接穿越檢查：
 /// - 2×2 區塊矩陣有 8 個同時對稱、4 個最佳指派，且最佳集在
 ///   對稱共軛下封閉；
-/// - 精確永久式/行列式由 Q 代數重算；
-/// - (x-2)(x-4) 的 2-進熱帶根重數列是兩因子的併合 [1,2]。
+/// - 精確永久式/行列式由 Q 代數重算。
+///
+/// p-進熱帶化的正本幾何檢查已收攏到第三波的
+/// `padic_tropical_hypersurface_report`，此處不重複同一範例。
 pub fn check_tropical_bridges() -> Bool {
   let blocks : Array[Array[Int64]] = [
     [0L, 0L, 5L, 5L],
@@ -201,17 +190,6 @@ pub fn check_tropical_bridges() -> Bool {
     }
   }
   let small : Array[Array[Int64]] = [[1L, 2L], [3L, 4L]]
-  if !@exactalg.rat_eq(exact_permanent_int64(small, 4), @exactalg.rat_int(10)) ||
-    !@exactalg.rat_eq(exact_determinant_int64(small), @exactalg.rat_int(-2)) {
-    return false
-  }
-  let f = @exactalg.qpoly_root_factor(@exactalg.rat_int(2))
-  let g = @exactalg.qpoly_root_factor(@exactalg.rat_int(4))
-  let product = @exactalg.qpoly_mul(f, g)
-  let roots = @strop.sort_rats(qpoly_tropicalize_padic(product, 2).roots())
-  roots.length() == 2 &&
-  roots[0].n == 1L &&
-  roots[0].d == 1L &&
-  roots[1].n == 2L &&
-  roots[1].d == 1L
+  @exactalg.rat_eq(exact_permanent_int64(small, 4), @exactalg.rat_int(10)) &&
+  @exactalg.rat_eq(exact_determinant_int64(small), @exactalg.rat_int(-2))
 }

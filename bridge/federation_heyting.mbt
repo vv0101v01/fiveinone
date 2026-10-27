@@ -265,11 +265,9 @@ pub fn finite_heyting_topology_report(
     None => return invalid_finite_heyting_report(tt)
   }
   let topology = finite_topology_federation_report(tt)
-  let closure = match federation_bool_closure(tt.le) {
-    Some(closure) => closure
-    None => return invalid_finite_heyting_report(tt)
-  }
-  let semiring_closure_ok = bool_matrices_equal(closure, tt.le)
+  // Reuse the topology report's Boolean-closure clause instead
+  // of recomputing the same closure a second time.
+  let semiring_closure_ok = topology.semiring_closure_ok
   let supported = tt.n <= 12 && opens.length() <= 64
 
   let catmath_masks : Array[Int32] = []

@@ -138,8 +138,8 @@
 
 | ID | 優先級／狀態 | 缺口與影響 | 下一步／驗收方向 |
 |---|---|---|---|
-| UNI-001 | P1／待實作 | 18 張 bridge 證書已寫成可執行函數，但本階段與 ENG-009 一樣未運行；目前只能宣稱轉換器成功編譯，不能宣稱往返與互校在五成員樹上已通過 | 運行期先單跑 bridge wbtest 與 `cmd/showcase` 保存輸出，再跑全倉；任何失敗先定位到來源表示，不可改證書樣本掩蓋 |
-| UNI-002 | P2／待實作 | bridge 的扁平 `BridgeCertificate` 尚無版本、輸入摘要、序列化或離線重驗包；與 BRG-007 是同一工程債 | 定義版本化 certificate envelope，保留來源原生證據引用 |
+| UNI-001 | P1／待實作 | 去重後 16 項跨成員語義 bridge 證書已寫成可執行函數，但本階段與 ENG-009 一樣未運行；目前只能宣稱轉換器成功編譯，不能宣稱往返與互校在五成員樹上已通過 | 運行期先單跑 bridge wbtest 與 `cmd/showcase` 保存輸出，再跑全倉；任何失敗先定位到來源表示，不可改證書樣本掩蓋 |
+| UNI-002 | P2／已併入 | 與 BRG-007 是同一 certificate envelope 工程債，不再重複維護 | 以 BRG-007 為正本 |
 | UNI-003 | P2／已接受 | 直接橋已覆蓋有限範疇／群／G-集、單變量多項式、整數矩陣、布林函數、有限拓撲／Spec、功能圖、有限同調、S¹ 與窄 STLC；多變量 Q→finalg、一般 finalg scheme/module→catmath derived 等尚無共同資料模型 | 逐項以可逆性、反例、成本與來源判定器設計；不得為了覆蓋率在成員間共用私有表示 |
 | UNI-004 | P2／待實作 | 群列舉、範疇表轉換與律檢查具平方／三次方成本，現以 `cap`／Option／Bool 分散表達，沒有共用 budget 或部分結果形狀 | 納入 API-002 的共用 outcome 設計；新轉接器先明寫大小上限與超限結果 |
 
@@ -153,9 +153,9 @@
 | BRG-002 | P2／已接受 | 熱帶最優指派與完整對稱群需要列舉置換，具有 `n!` 本質成本與 cap；只接受有限橋接範圍的 `Int64` | 大規模入口應改回傳 generating set 或單一最優解；完整群 API 保留小 `n` 誠實版 |
 | BRG-003 | P2／待實作 | 任意實／複浮點矩陣對稱只作 `eps` 近似檢查，沒有區間或譜誤差證書；projector 也繼承列舉上限 | 為可精確化的 0／1、置換與有理矩陣增加精確路徑；浮點路徑在名稱／回傳中保留 tolerance |
 | BRG-004 | P2／已接受 | 自由範疇橋只接受 DAG，轉換會枚舉全部路徑並物化合成表；有環圖的自由範疇一般有無限多態射 | 有環版本只能採生成元＋關係或截斷長度表示，不能塞入現有 `FinCat` 全表 |
-| BRG-005 | P2／待實作 | `QPoly` 熱帶化只有單變數 p-進賦值，沒有一般有理賦值、多變數 monomial valuation 或與因式分解／子分割的系統差分測試 | 先加 Newton polygon／根賦值 oracle；多變數化依賴 SEM-004 的高維工作 |
+| BRG-005 | P2／已併入 | 一般有理賦值、多變數熱帶化與 Newton／根賦值 oracle 已由 GU-001 統一追蹤，不再重複維護 | 以 GU-001 為正本 |
 | BRG-006 | P2／待實作 | Face 半環 star 在有限布爾格上恆為 top，尚無胞腔傳播應用；正方形胞腔只是固定展示，沒有一般定向、邊界符號或參數化胞腔複形 | 下一期橋接應先定 cell complex 資料型別與邊界算子，不再增加只含固定例子的符號 |
-| BRG-007 | P2／待實作 | 三方證書只投影成共同 `source/name/ok/detail`，沒有版本、序列化格式、摘要或重驗 API | 定義版本化 certificate envelope；舊來源的完整證據仍留在各支柱，bridge 只保存可重驗引用 |
+| BRG-007 | P2／待實作 | bridge 證書只投影成共同 `source/name/ok/detail`，沒有版本、序列化格式、摘要或重驗 API（吸收原 UNI-002） | 定義版本化 certificate envelope；舊來源的完整證據仍留在各支柱，bridge 只保存可重驗引用 |
 | BRG-008 | P2／待實作 | `weighted_graph_report` 內部重算候選與對稱，且同時做 projector、距離閉包與特徵多項式；大圖時沒有分段 budget 或部分報告 | 拆成可組合階段並共用候選枚舉；report API 明寫每個欄位成本和超限行為 |
 | BRG-009 | P2／已接受 | cubical STLC 的 `quote_eta` 會把任何 `LUnit` 項塌縮為單位值，catmath `eta_long` 不對 `SOne` 中性項作同一塌縮；兩邊 raw normal form 因此不是同一相等 | bridge 報告同時保存 raw equality 與顯式 unit-η completion；若要 raw 相等，必須改 catmath 範形定義或引入型別化商，不可在橋中靜默抹除差異 |
 | BRG-010 | P2／已接受 | 第二波交叉檢查多為小有限窮舉：assignments、子集、Hom、群元素與矩陣形狀在尺寸增大時成本急升，部分 API 只以 `Bool`/Option 匯總失敗原因 | 新報告先加成本欄位與分段 outcome；大規模版本必須換符號或增量算法並與窮舉 oracle 差分對拍 |
@@ -164,7 +164,7 @@
 
 | ID | 優先／狀態 | 目前證據與缺口 | 完成標準 |
 |---|---|---|---|
-| GU-001 | P1／待實作 | 已有 p-進單變量熱帶超曲面與有限域支撐的有界角點樣本；尚無一般賦值多變量初始形式、賦值 Gröbner 基或完整多面體 tropical variety | 先固定賦值域上的精確表示，做權重初始形式與「初始理想含單項式」判定；再逐步對齊 Chan–Maclagan 算法，不得把 lex GB 改名 |
+| GU-001 | P1／待實作 | 已有 p-進單變量熱帶超曲面與有限域支撐的有界角點樣本；尚無一般有理賦值、多變量初始形式、賦值 Gröbner 基、Newton／根賦值系統差分 oracle 或完整多面體 tropical variety（吸收原 BRG-005） | 先固定賦值域上的精確表示，做權重初始形式與「初始理想含單項式」判定；再逐步對齊 Chan–Maclagan 算法，不得把 lex GB 改名 |
 | GU-002 | P2／待實作 | tropical ideals、半環概形、blueprints 與 bands 目前只有文獻角色地圖，沒有共同表示 | 先實作有限 blueprint（乘法么半群＋有限加法關係）的最小可執行模型，並給 finalg／semiring 兩側可核對實例 |
 | GU-003 | P1／待實作 | Heyting 片段已覆蓋有限 Alexandrov 開集；presheaf sieves、一般 STLC 子型別與 coercion 相干性未實作 | 先在有限範疇 representable 上做 sieves／pullback；型別層子型別另立規格，不把 refinement 包含直接等同語法子型別 |
 | GU-004 | P2／待實作 | Boolean 星閉包與 Heyting meet-residual 已存在；Boolean／熱帶矩陣的左右 residuals 尚未形成有限 quantale 報告 | 窮舉合成與 residual 的伴隨律，並與 symlib 可達性、semiring 星閉包互校 |

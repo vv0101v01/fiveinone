@@ -65,8 +65,13 @@ pub fn certificate_summary(certs : Array[BridgeCertificate]) -> String {
 }
 
 ///|
-/// 全部第一批跨支柱橋的布林穿越檢查，統一成 BridgeCertificate。
+/// 去重後的跨成員語義證書正本清單，統一成 BridgeCertificate。
 /// Face 半環一項保留 semiring LawReport 的原生 summary。
+///
+/// 註冊表計數、finalg verify 與 catmath registry 是治理／
+/// 成員原生健康檢查，仍由各自函數與 wbtest 保留，但不冒充
+/// 大一統定理而重複列證。第一波整數矩陣煙霧亦已被第二波
+/// 整數矩陣報告包含，故只保留後者作正本。
 pub fn bridge_certificates() -> Array[BridgeCertificate] {
   [
     bridge_certificate(
@@ -86,17 +91,12 @@ pub fn bridge_certificates() -> Array[BridgeCertificate] {
     ),
     bridge_certificate(
       "bridge",
-      "tropical assignment, exact permanent/determinant and QPoly tropicalization",
+      "tropical assignment and exact permanent/determinant",
       check_tropical_bridges(),
     ),
     certificate_of_semiring_law(
       "FaceClass BDD quotient semiring laws",
       face_semiring_law_report(),
-    ),
-    bridge_certificate(
-      "bridge",
-      "five-member federation registry has five entries",
-      federation_member_count() == 5,
     ),
     bridge_certificate(
       "bridge",
@@ -115,23 +115,8 @@ pub fn bridge_certificates() -> Array[BridgeCertificate] {
     ),
     bridge_certificate(
       "bridge",
-      "integer SNF and characteristic-polynomial cross-checks",
-      check_federation_matrix_bridge(),
-    ),
-    bridge_certificate(
-      "bridge",
       "S1 winding numbers across cubical, finalg and catmath",
       check_federation_circle_bridge(),
-    ),
-    bridge_certificate(
-      "bridge",
-      "finalg verify arithmetic executable specifications",
-      check_federation_finalg_verify_bridge(),
-    ),
-    bridge_certificate(
-      "bridge",
-      "catmath canonical and derived registries",
-      check_federation_catmath_registry(),
     ),
     bridge_certificate(
       "bridge",

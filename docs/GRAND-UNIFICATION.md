@@ -34,6 +34,90 @@
 | catmath | 有限範疇、有限拓撲、同調與型別論模型 | `FinTop` 的開集、內部、連續性與 T0 商 |
 | bridge | 只負責可證偽的共同片段、共同不變量與證書 | 新的 Heyting 與 tropical reports、`check_*`、wbtest 與證書 |
 
+## 去重審計與八成驗收判定（2026-10-27）
+
+### 判定口徑
+
+「百分之幾的大一統」沒有脫離分母的數學意義。本專案採用的
+分母是：**五個現有系統之間可相容、可有限表示、且能保留原生
+語義差異的共同片段**。它不是五套原生功能逐行互相覆蓋的
+比例，也不是「全部數學」的比例；按後兩種口徑，本倉沒有
+達到八成，也不應以假等價追逐八成。
+
+每個定理族在量表只計一次。converter、report、一般
+`check_*`、聚合範例、certificate 與 wbtest 是同一圖表的
+不同工程層，不因包裝層數重複加分。成員真身內的獨立算法
+例如兩套 SNF、三套有限範疇表示、exact/finite 多項式引擎，
+是差分 oracle，不是應刪除的複製品；要收攏的是 bridge 對
+它們的正本比較定理，而不是消滅來源實作。
+
+### 本輪實際去重
+
+| 發現 | 處置 |
+|---|---|
+| `free_category.mbt` 的 `same_path` 與既有 `int_arrays_equal` 完全同義 | 刪私有複本，統一呼叫 `int_arrays_equal` |
+| tropical bridge 自帶試除法 `is_prime_i32`，其餘 bridge 已用 `@fnum.is_prime` | 刪私有複本，p-進報告與舊 tropical bridge 統一用 finalg/num 的素性判定 |
+| Heyting 報告在已取得 topology 報告後，再重算同一 Boolean 閉包 | 改為繼承 `topology.semiring_closure_ok` |
+| 舊 `check_tropical_bridges` 與第三波重複檢查同一 `(x-2)(x-4)` 的 2-進根 | p-進幾何正本收攏到 `padic_tropical_hypersurface_report`；舊檢查只保留指派、永久式與行列式 |
+| `bridge_certificates()` 原把註冊表計數、finalg verify 與 catmath registry 的原生健康檢查也列作證書 | 三者保留原函數與 wbtest，但退出大一統證書分母 |
+| 第一波整數矩陣證書已被第二波 `IntegerMatrixFederationReport` 包含 | 保留第一波函數作 adapter 煙霧檢查，正本證書只列第二波報告 |
+| 二元 BPoly 附帶檢查原本只取第一個合資格生成元 | 改為彙總全部合資格生成元，避免欄位名承諾大於實際檢查 |
+| 缺口 `UNI-002`／`BRG-007`、以及 `BRG-005`／`GU-001` 內容重疊 | 分別以 `BRG-007`、`GU-001` 為正本，其餘只保留併入指向 |
+
+去重後 `bridge_certificates()` 是 **16 項跨成員語義證書**。
+原有公共函數沒有因證書去重而刪除，所以這是證據分母收攏，
+不是削弱覆蓋；被包含的 adapter 檢查仍可直接呼叫，也仍在
+wbtest 源碼中。
+
+### 不適合升格、已降格處理的內容
+
+- Hom-count 特徵多項式只是去範疇化不變量，可作 observable，
+  不作有限範疇等價證據。
+- `F_p[x] -> Q[x]` 的代表元提升不是環同態，只作係數截面。
+- finalg 閉包範疇不存在一般可枚舉回表方向，不補造逆轉換。
+- Face 有界格的 star 恆為 top、固定正方形胞腔只是展示；
+  兩者保留作範例，不計作一般胞腔／傳播理論已統一。
+- lex Gröbner 基只給有界角點必要條件的細化，不升格為
+  tropical basis 或完整 tropical variety。
+- STLC 的 raw 範形不作全面相等宣稱；只在顯式 unit-η
+  completion 後比較。這些都是理論邊界，不得為了百分比
+  刪除反例欄位。
+
+### 共同片段大一統量表
+
+| 面向 | 權重 | 得分 | 判定依據與主要扣分 |
+|---|---:|---:|---|
+| 直接 3＋2 架構與治理 | 10 | 10 | 單 module、五真身、唯一 bridge、無橫向 production import、單一註冊／證書／showcase |
+| 有限範疇與預序 | 10 | 9 | 三表示、自由 DAG 範疇、Hom／可達／skeleton／components；未及一般函子與 presheaf 圖表 |
+| 有限對稱、群與 G-集 | 10 | 9 | 置換／wiring、圖與矩陣對稱、Cayley、Burnside 與投影器；受枚舉 caps 限制 |
+| 精確／有限多項式與整數矩陣 | 12 | 11 | 約化同態、根與 Hensel、SNF/HNF、rank、charpoly/minpoly、有限 cokernel；多變量精確共同表示仍缺 |
+| 邏輯與語義子型別 | 10 | 9 | Boolean Face/ANF 與有限 Heyting 開謂詞子型別均有窮舉圖表；未及一般語法子型別與 presheaf 子物件分類子 |
+| 有限拓撲與 Spec | 8 | 7 | Alexandrov↔thin category、T0、components、Spec 轉置序；只及有限譜片段 |
+| 動力與同調 | 8 | 7 | 功能圖不變量、`F_p` Betti、整數 SNF 同調片段；未及一般導出函子／導出範疇 |
+| 型別論共同片段 | 8 | 6 | S¹ 繞數與窄 STLC（明示 unit-η 差異）；cubical 依賴核心的大部分高階結構仍是成員原生領域 |
+| 熱帶幾何 | 10 | 6 | 單變量 p-進角點、指派、BPoly 細分與有界多變量樣本；缺賦值 Gröbner、完整多面體簇、tropical ideals 與概形化 |
+| 序半環與路徑語義 | 6 | 5 | Boolean 星閉包、Face 半環與熱帶路徑已接通；矩陣 residuals／一般 quantale 未實作 |
+| 報告與證書模型 | 4 | 3 | 16 項正本語義證書與分欄報告；尚無版本、序列化、摘要與離線重驗 envelope |
+| 本樹運行與外證據 | 4 | 0 | 本階段嚴格 compile-only；沒有現行五成員樹的測試執行、proof 或 hosted CI 證據 |
+| **合計** | **100** | **82** |  |
+
+### 驗收結論
+
+**可以確定：按上述共同片段口徑，本系統已達約 82%，可作
+「大一統 v1」收貨。** 82 分已同時扣除尚無運行證據的 4 分，
+因此它不是把編譯成功誤作測試全過；它表示架構上沒有再靠
+疊加層、共同私有表示或假等價才能前進的結構性阻塞，各大
+共同軸都已有可執行定理／演算法，餘下主要是可逐項擴展的
+覆蓋缺口。
+
+現行 `bridge/` 以枚舉式有限表示能合理追求的上限約為
+**85–90%**：運行期證據、賦值 Gröbner、quantale residuals
+與 presheaf Heyting 可再增加分數，但一旦引入一般賦值域、
+blueprints/bands、無限範疇或完整導出／同倫語義，分母亦
+會擴大，因此 100% 不是有意義的目標。若把五成員全部原生
+功能互覆蓋當分母，本輪不宣稱八成；該口徑既不需要，也會
+迫使系統抹除已明示的非等價。
+
 ## 文獻軸一：內部邏輯、Heyting 代數與邏輯子型化
 
 範疇邏輯的基本事實是：topos 中任一物件的子物件偏序

@@ -28,6 +28,7 @@ CURRENT_DOCS = {
     "docs/MIGRATION.md",
     "docs/LEGACY-ARCHIVE.md",
     "docs/ENGINEERING-GAPS.md",
+    "docs/GRAND-UNIFICATION.md",
 }
 FORBIDDEN_CURRENT = [
     "待遠端憑證",

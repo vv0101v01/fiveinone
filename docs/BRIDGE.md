@@ -19,7 +19,7 @@ catmath/ ───────────────┘
 再優先以來源成員自己的判定器、規範形式或共同不變量重驗。
 
 本階段全部新舊測試源碼只編譯、不執行，所以本文所述
-`check_*` 與 18 項 `bridge_certificates()` 是已實作且能通過
+`check_*` 與 20 項 `bridge_certificates()` 是已實作且能通過
 `--deny-warn` 編譯的檢查程式，不冒充現行五成員樹的運行期證據。
 
 ## 「疊加」與「直接 3＋2」的分別
@@ -100,9 +100,27 @@ catmath/ ───────────────┘
 | STLC | `SAtom↔LBool`、`SOne↔LUnit`、積與箭頭對應；context 次序反轉而 de Bruijn index 不變；回程只收 cubical η-long 範形 | 拒絕 Bool 字面量與 coe；cubical 有 unit-η 而 catmath raw 範形沒有，故報告同時保存 raw equality 與顯式 unit-η completion，不宣稱 raw 範形全面相等 |
 
 聚合入口是五個 `check_federation_*_derived_*` 函數與五個
-wbtest 區塊；它們與先前 13 項共同組成 18 項
+wbtest 區塊；它們與先前 13 項在第二波共同組成 18 項
 `bridge_certificates()`。這些證書統一展示格式，不抹除來源成員的
 原生表示，也不把 compile-only 說成已執行。
+
+## 文獻驅動的第三波大一統切片（2026-10-27）
+
+完整文獻角色地圖見
+[GRAND-UNIFICATION.md](GRAND-UNIFICATION.md)。第三波只把兩個
+已有精確有限核心的軸做成報告：
+
+| 報告 | 推導出的可執行圖表 | 邊界 |
+|---|---|---|
+| 有限 Heyting 開集與可觀測子型別 | catmath `FinTop` 開集以包含作 subtype；meet/join/implication/negation 窮舉格律與 Heyting 伴隨；逐 mask 對齊 catmath 內部；保留 semiring Boolean 閉包、symlib thin category 與 finalg Spec 實例 | 子型別只指有限可觀測 refinement predicates；集合補集未必開，故一般只有 Heyting pseudocomplement；未宣稱 STLC 的一般語法子型別 |
+| 熱帶角點軌跡 | 精確 `QPoly` 的 p-進 `UniPoly` 角點；finalg 理想生成元與 lex Gröbner 基在有界整數格上的平凡賦值角點包含；雙變量 `BPoly` 的 Newton 細分面 ties、面積與平衡殘差 | lex Gröbner 基未必是 tropical basis；有限格點不是完整 tropical variety／ideal／scheme；多變量只用非零係數賦值 0 |
+
+聚合入口是
+`check_federation_heyting_unification_bridge` 與
+`check_federation_tropical_unification_bridge`，連同其 wbtest
+使 `bridge_certificates()` 增至 20 項。報告名稱刻意使用
+`corner locus`／`corner sample`，不用未實作的多面體扇或
+tropicalization functor 命名有限格點輸出。
 
 ## 刻意新增的窄域公開面
 
@@ -122,7 +140,7 @@ wbtest 區塊；它們與先前 13 項共同組成 18 項
 ## 入口、錯誤與成本邊界
 
 - `cmd/showcase` 是唯一聯邦 showcase：先列五成員註冊表，再列
-  18 項 bridge 證書。本階段只 `moon build`，不執行。
+  20 項 bridge 證書。本階段只 `moon build`，不執行。
 - bridge 仍有以 `abort` 表達的硬前提（空輸入、非方陣、尺寸、
   素數／DAG、枚舉 cap 與 finalg 閉包範疇不可合成呼叫）。
   它們是明示邊界而非結構化 `Result` API，見

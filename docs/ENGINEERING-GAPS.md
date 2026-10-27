@@ -60,7 +60,7 @@
 
 | ID | 優先級／狀態 | 缺口與影響 | 證據／下一步與驗收 |
 |---|---|---|---|
-| API-001 | P1／待實作 | 以 `abort(` 文字計，生產碼約 287 處（finalg 131、symlib 98、semiring 25、bridge 23、catmath 9、cmd 1；`unwrap` 等其他 panic 邊未計）；外部呼叫者對形狀錯誤、上限與前提失敗拿不到結構化錯誤 | 先按「不可恢復不變量／使用者輸入／資源上限」分類，再為 bridge 與新 API 提供 `Result` 版本；不得一次機械改寫 6,259 個符號 |
+| API-001 | P1／待實作 | 以 `abort(` 文字計，生產碼約 287 處（finalg 131、symlib 98、semiring 25、bridge 23、catmath 9、cmd 1；`unwrap` 等其他 panic 邊未計）；外部呼叫者對形狀錯誤、上限與前提失敗拿不到結構化錯誤 | 先按「不可恢復不變量／使用者輸入／資源上限」分類，再為 bridge 與新 API 提供 `Result` 版本；不得一次機械改寫 6,330 個符號 |
 | API-002 | P1／待實作 | 上限參數、回傳慣例混雜：`Int32 cap`、`Int64` 計數、Option、Bool 驗證器與 abort 並存；超限是否完整、是否部分結果要逐 API 查文檔 | 定義共用 budget／outcome 形狀和命名規則，優先套用到列舉 API；每個新 API 必須明寫完整、截斷或失敗語義 |
 | API-003 | P1／待實作 | 尚無 semantic versioning、deprecation 週期或穩定／實驗 API 分級；逐符號附錄只證明存在，不證明穩定 | 在第一個 tag 前發布相容政策，並在附錄生成器外維護穩定面清單；實驗符號不得默默升格 |
 | API-004 | P2／已接受 | 兩個 `algebra`、兩個 `Graph`、`Rat`、`Mat` 等同名概念造成 alias 負擔 | 聯邦邊界刻意保留；所有跨套件範例必須用完整路徑或 `exact`、`searched`、`weighted` 等語義 alias，索引不可裸寫「algebra」 |
@@ -159,6 +159,16 @@
 | BRG-008 | P2／待實作 | `weighted_graph_report` 內部重算候選與對稱，且同時做 projector、距離閉包與特徵多項式；大圖時沒有分段 budget 或部分報告 | 拆成可組合階段並共用候選枚舉；report API 明寫每個欄位成本和超限行為 |
 | BRG-009 | P2／已接受 | cubical STLC 的 `quote_eta` 會把任何 `LUnit` 項塌縮為單位值，catmath `eta_long` 不對 `SOne` 中性項作同一塌縮；兩邊 raw normal form 因此不是同一相等 | bridge 報告同時保存 raw equality 與顯式 unit-η completion；若要 raw 相等，必須改 catmath 範形定義或引入型別化商，不可在橋中靜默抹除差異 |
 | BRG-010 | P2／已接受 | 第二波交叉檢查多為小有限窮舉：assignments、子集、Hom、群元素與矩陣形狀在尺寸增大時成本急升，部分 API 只以 `Bool`/Option 匯總失敗原因 | 新報告先加成本欄位與分段 outcome；大規模版本必須換符號或增量算法並與窮舉 oracle 差分對拍 |
+
+## 大一統後續理論軸（GU）
+
+| ID | 優先／狀態 | 目前證據與缺口 | 完成標準 |
+|---|---|---|---|
+| GU-001 | P1／待實作 | 已有 p-進單變量熱帶超曲面與有限域支撐的有界角點樣本；尚無一般賦值多變量初始形式、賦值 Gröbner 基或完整多面體 tropical variety | 先固定賦值域上的精確表示，做權重初始形式與「初始理想含單項式」判定；再逐步對齊 Chan–Maclagan 算法，不得把 lex GB 改名 |
+| GU-002 | P2／待實作 | tropical ideals、半環概形、blueprints 與 bands 目前只有文獻角色地圖，沒有共同表示 | 先實作有限 blueprint（乘法么半群＋有限加法關係）的最小可執行模型，並給 finalg／semiring 兩側可核對實例 |
+| GU-003 | P1／待實作 | Heyting 片段已覆蓋有限 Alexandrov 開集；presheaf sieves、一般 STLC 子型別與 coercion 相干性未實作 | 先在有限範疇 representable 上做 sieves／pullback；型別層子型別另立規格，不把 refinement 包含直接等同語法子型別 |
+| GU-004 | P2／待實作 | Boolean 星閉包與 Heyting meet-residual 已存在；Boolean／熱帶矩陣的左右 residuals 尚未形成有限 quantale 報告 | 窮舉合成與 residual 的伴隨律，並與 symlib 可達性、semiring 星閉包互校 |
+| GU-005 | P2／研究中 | Lawvere theory／monad／operad 與 cubical modes 已形成文獻地圖，但沒有共同 theory 物件或 mode 系統 | 只有在能給可執行 theory morphism 與模型對照時才進 bridge；不得以裝飾性註冊欄位冒充統一 |
 
 ## 文檔、雙語與生成物
 

@@ -158,6 +158,16 @@ pub fn bridge_certificates() -> Array[BridgeCertificate] {
       "STLC βπη normal forms modulo explicit unit-η completion",
       check_federation_stlc_derived_bridge(),
     ),
+    bridge_certificate(
+      "bridge",
+      "finite Heyting opens and observable refinement subtyping",
+      check_federation_heyting_unification_bridge(),
+    ),
+    bridge_certificate(
+      "bridge",
+      "p-adic and Gröbner-refined tropical corner loci",
+      check_federation_tropical_unification_bridge(),
+    ),
   ]
 }
 

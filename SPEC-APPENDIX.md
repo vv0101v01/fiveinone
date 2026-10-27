@@ -8,7 +8,7 @@
 > 存在並已分類，不構成版本穩定承諾；發布身份與待辦見所連結文件。
 
 <!-- APPENDIX:BEGIN -->
-共 **6259** 個公共符號（宣告＋構造子＋欄位），分屬 99 個規格族；按套件：`algebra` 860、`bridge` 385、`catmath` 445、`cmd-semiringreport` 42、`finalg` 122、`finalg-cat` 61、`finalg-finite` 87、`finalg-geometry` 10、`finalg-hott` 43、`finalg-linalg` 34、`finalg-modules` 36、`finalg-num` 11、`finalg-port` 22、`finalg-scheme` 14、`finalg-testutil` 4、`finalg-verify` 7、`root` 2689、`semiring-algebra` 287、`semiring-app` 24、`semiring-bp` 22、`semiring-cat` 33、`semiring-examples` 18、`semiring-graph` 40、`semiring-io` 9、`semiring-matrix` 60、`semiring-monoid` 85、`semiring-nf` 43、`semiring-par` 18、`semiring-par-host` 4、`semiring-ratelimit` 64、`semiring-sim` 42、`semiring-spline` 17、`semiring-trop` 84、`symlib` 537。
+共 **6330** 個公共符號（宣告＋構造子＋欄位），分屬 99 個規格族；按套件：`algebra` 860、`bridge` 456、`catmath` 445、`cmd-semiringreport` 42、`finalg` 122、`finalg-cat` 61、`finalg-finite` 87、`finalg-geometry` 10、`finalg-hott` 43、`finalg-linalg` 34、`finalg-modules` 36、`finalg-num` 11、`finalg-port` 22、`finalg-scheme` 14、`finalg-testutil` 4、`finalg-verify` 7、`root` 2689、`semiring-algebra` 287、`semiring-app` 24、`semiring-bp` 22、`semiring-cat` 33、`semiring-examples` 18、`semiring-graph` 40、`semiring-io` 9、`semiring-matrix` 60、`semiring-monoid` 85、`semiring-nf` 43、`semiring-par` 18、`semiring-par-host` 4、`semiring-ratelimit` 64、`semiring-sim` 42、`semiring-spline` 17、`semiring-trop` 84、`symlib` 537。
 
 ### 複數標量
 
@@ -5876,6 +5876,27 @@
 | `FiniteGroupFederationReport.regular_projector_rank` | bridge | 欄位 |
 | `FiniteGroupFederationReport.valid` | bridge | 欄位 |
 | `FiniteGroupFederationReport.zero_identity_supported` | bridge | 欄位 |
+| `FiniteHeytingTopologyReport` | bridge | 結構 |
+| `FiniteHeytingTopologyReport.adjunction_ok` | bridge | 欄位 |
+| `FiniteHeytingTopologyReport.boolean` | bridge | 欄位 |
+| `FiniteHeytingTopologyReport.boolean_characterization_ok` | bridge | 欄位 |
+| `FiniteHeytingTopologyReport.catmath_open_sets_ok` | bridge | 欄位 |
+| `FiniteHeytingTopologyReport.complemented_open_count` | bridge | 欄位 |
+| `FiniteHeytingTopologyReport.implication_formula_ok` | bridge | 欄位 |
+| `FiniteHeytingTopologyReport.interior_ok` | bridge | 欄位 |
+| `FiniteHeytingTopologyReport.lattice_ok` | bridge | 欄位 |
+| `FiniteHeytingTopologyReport.modus_ponens_ok` | bridge | 欄位 |
+| `FiniteHeytingTopologyReport.n_points` | bridge | 欄位 |
+| `FiniteHeytingTopologyReport.open_count` | bridge | 欄位 |
+| `FiniteHeytingTopologyReport.open_masks` | bridge | 欄位 |
+| `FiniteHeytingTopologyReport.pseudocomplement_ok` | bridge | 欄位 |
+| `FiniteHeytingTopologyReport.regular_open_count` | bridge | 欄位 |
+| `FiniteHeytingTopologyReport.semiring_closure_ok` | bridge | 欄位 |
+| `FiniteHeytingTopologyReport.subtype_bounds_ok` | bridge | 欄位 |
+| `FiniteHeytingTopologyReport.supported` | bridge | 欄位 |
+| `FiniteHeytingTopologyReport.topology_bridge_ok` | bridge | 欄位 |
+| `FiniteHeytingTopologyReport.universe_mask` | bridge | 欄位 |
+| `FiniteHeytingTopologyReport.valid` | bridge | 欄位 |
 | `FiniteSpecFederationReport` | bridge | 結構 |
 | `FiniteSpecFederationReport.block_count` | bridge | 欄位 |
 | `FiniteSpecFederationReport.blocks_ok` | bridge | 欄位 |
@@ -5963,6 +5984,16 @@
 | `IntegralHomologyFederationReport.torsion_factors` | bridge | 欄位 |
 | `IntegralHomologyFederationReport.universal_coefficient_bound_ok` | bridge | 欄位 |
 | `IntegralHomologyFederationReport.valid` | bridge | 欄位 |
+| `PadicTropicalHypersurfaceReport` | bridge | 結構 |
+| `PadicTropicalHypersurfaceReport.integer_corner_points` | bridge | 欄位 |
+| `PadicTropicalHypersurfaceReport.integer_corners_ok` | bridge | 欄位 |
+| `PadicTropicalHypersurfaceReport.integer_roots_in_range` | bridge | 欄位 |
+| `PadicTropicalHypersurfaceReport.lower_bound` | bridge | 欄位 |
+| `PadicTropicalHypersurfaceReport.prime` | bridge | 欄位 |
+| `PadicTropicalHypersurfaceReport.supported` | bridge | 欄位 |
+| `PadicTropicalHypersurfaceReport.tropical_roots` | bridge | 欄位 |
+| `PadicTropicalHypersurfaceReport.upper_bound` | bridge | 欄位 |
+| `PadicTropicalHypersurfaceReport.valid` | bridge | 欄位 |
 | `PolynomialReductionFederationReport` | bridge | 結構 |
 | `PolynomialReductionFederationReport.catmath_multiplication_ok` | bridge | 欄位 |
 | `PolynomialReductionFederationReport.companion_ok` | bridge | 欄位 |
@@ -6009,6 +6040,28 @@
 | `StlcFederationReport.type_preserved_ok` | bridge | 欄位 |
 | `StlcFederationReport.unit_eta_completion_needed` | bridge | 欄位 |
 | `StlcFederationReport.valid` | bridge | 欄位 |
+| `TropicalCornerSampleReport` | bridge | 結構 |
+| `TropicalCornerSampleReport.bivariate_area_ok` | bridge | 欄位 |
+| `TropicalCornerSampleReport.bivariate_balancing_ok` | bridge | 欄位 |
+| `TropicalCornerSampleReport.bivariate_duality_ok` | bridge | 欄位 |
+| `TropicalCornerSampleReport.bivariate_supported` | bridge | 欄位 |
+| `TropicalCornerSampleReport.bivariate_ties_ok` | bridge | 欄位 |
+| `TropicalCornerSampleReport.generator_count` | bridge | 欄位 |
+| `TropicalCornerSampleReport.generator_point_count` | bridge | 欄位 |
+| `TropicalCornerSampleReport.generator_points` | bridge | 欄位 |
+| `TropicalCornerSampleReport.groebner_count` | bridge | 欄位 |
+| `TropicalCornerSampleReport.groebner_point_count` | bridge | 欄位 |
+| `TropicalCornerSampleReport.groebner_points` | bridge | 欄位 |
+| `TropicalCornerSampleReport.groebner_refines_generators_on_sample` | bridge | 欄位 |
+| `TropicalCornerSampleReport.ideal_membership_ok` | bridge | 欄位 |
+| `TropicalCornerSampleReport.lower_bound` | bridge | 欄位 |
+| `TropicalCornerSampleReport.modulus` | bridge | 欄位 |
+| `TropicalCornerSampleReport.nvars` | bridge | 欄位 |
+| `TropicalCornerSampleReport.sample_point_count` | bridge | 欄位 |
+| `TropicalCornerSampleReport.samples_equal` | bridge | 欄位 |
+| `TropicalCornerSampleReport.supported` | bridge | 欄位 |
+| `TropicalCornerSampleReport.upper_bound` | bridge | 欄位 |
+| `TropicalCornerSampleReport.valid` | bridge | 欄位 |
 | `WeightedGraphReport` | bridge | 結構 |
 | `WeightedGraphReport.candidate_group_order` | bridge | 欄位 |
 | `WeightedGraphReport.canonical_colors` | bridge | 欄位 |
@@ -6058,13 +6111,16 @@
 | `check_federation_finalg_verify_bridge` | bridge | 函數 |
 | `check_federation_finite_structure_derived_bridges` | bridge | 函數 |
 | `check_federation_group_bridge` | bridge | 函數 |
+| `check_federation_heyting_unification_bridge` | bridge | 函數 |
 | `check_federation_matrix_bridge` | bridge | 函數 |
 | `check_federation_polynomial_bridge` | bridge | 函數 |
 | `check_federation_stlc_derived_bridge` | bridge | 函數 |
+| `check_federation_tropical_unification_bridge` | bridge | 函數 |
 | `check_finite_category_federation` | bridge | 函數 |
 | `check_finite_dynamics_federation` | bridge | 函數 |
 | `check_finite_group_federation` | bridge | 函數 |
 | `check_finite_gset_federation` | bridge | 函數 |
+| `check_finite_heyting_topology` | bridge | 函數 |
 | `check_finite_spec_federation` | bridge | 函數 |
 | `check_finite_topology_federation` | bridge | 函數 |
 | `check_fp_chain_complex_federation` | bridge | 函數 |
@@ -6072,11 +6128,13 @@
 | `check_graph_symmetry_bridges` | bridge | 函數 |
 | `check_integer_matrix_federation` | bridge | 函數 |
 | `check_integral_homology_federation` | bridge | 函數 |
+| `check_padic_tropical_hypersurface` | bridge | 函數 |
 | `check_perm_wiring_bridge` | bridge | 函數 |
 | `check_polynomial_reduction_federation` | bridge | 函數 |
 | `check_square_cell_symmetry` | bridge | 函數 |
 | `check_stlc_federation` | bridge | 函數 |
 | `check_tropical_bridges` | bridge | 函數 |
+| `check_tropical_corner_sample` | bridge | 函數 |
 | `circle_winding_cross_check` | bridge | 函數 |
 | `cubical_eta_long_term_to_catmath` | bridge | 函數 |
 | `cubical_loop_of_winding` | bridge | 函數 |
@@ -6089,7 +6147,10 @@
 | `federation_members` | bridge | 函數 |
 | `federation_namespaces` | bridge | 函數 |
 | `finalg_loop_of_winding` | bridge | 函數 |
+| `finalg_poly_to_tropical_bpoly` | bridge | 函數 |
+| `finalg_poly_tropical_corner_at` | bridge | 函數 |
 | `finalg_spec_to_catmath_fintop` | bridge | 函數 |
+| `finalg_tropical_corner_locus_sample` | bridge | 函數 |
 | `finalg_univariate_dense_coeffs` | bridge | 函數 |
 | `finalg_univariate_qpoly_roundtrip` | bridge | 函數 |
 | `finalg_univariate_to_qpoly` | bridge | 函數 |
@@ -6102,8 +6163,16 @@
 | `finite_dynamics_federation_report` | bridge | 函數 |
 | `finite_group_federation_report` | bridge | 函數 |
 | `finite_gset_federation_report` | bridge | 函數 |
+| `finite_heyting_topology_report` | bridge | 函數 |
 | `finite_spec_federation_report` | bridge | 函數 |
 | `finite_topology_federation_report` | bridge | 函數 |
+| `fintop_heyting_implication` | bridge | 函數 |
+| `fintop_heyting_join` | bridge | 函數 |
+| `fintop_heyting_meet` | bridge | 函數 |
+| `fintop_heyting_negation` | bridge | 函數 |
+| `fintop_interior_mask` | bridge | 函數 |
+| `fintop_open_masks` | bridge | 函數 |
+| `fintop_open_subtype_of` | bridge | 函數 |
 | `fp_chain_complex_federation_report` | bridge | 函數 |
 | `free_category_to_fincat` | bridge | 函數 |
 | `impl IdempotentSemiring for FaceClass` | bridge | trait 實作 |
@@ -6118,6 +6187,7 @@
 | `integral_homology_federation_report` | bridge | 函數 |
 | `matrix_permutation_symmetries` | bridge | 函數 |
 | `matrix_support_graph` | bridge | 函數 |
+| `padic_tropical_hypersurface_report` | bridge | 函數 |
 | `perm_equiv` | bridge | 函數 |
 | `perm_of_wiring` | bridge | 函數 |
 | `perm_preserves_matrix` | bridge | 函數 |
@@ -6139,6 +6209,7 @@
 | `symlib_gsetof_to_catmath_gset_with_element_order` | bridge | 函數 |
 | `symlib_perm_group_to_catmath_fin_group` | bridge | 函數 |
 | `symlib_thin_fincat_to_catmath_fintop` | bridge | 函數 |
+| `tropical_corner_sample_report` | bridge | 函數 |
 | `tropical_matrix_symmetries` | bridge | 函數 |
 | `tropical_optimal_assignments` | bridge | 函數 |
 | `truth_table_to_cubical_face_dnf` | bridge | 函數 |

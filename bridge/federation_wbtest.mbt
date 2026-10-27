@@ -54,6 +54,16 @@ test "derived stlc normal form diagram" {
 }
 
 ///|
+test "finite Heyting observable subtype diagram" {
+  assert_true(check_federation_heyting_unification_bridge())
+}
+
+///|
+test "tropical corner locus diagram" {
+  assert_true(check_federation_tropical_unification_bridge())
+}
+
+///|
 test "all bridge certificates pass" {
   assert_true(certificates_all_ok(bridge_certificates()))
 }

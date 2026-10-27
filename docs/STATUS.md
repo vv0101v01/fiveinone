@@ -37,6 +37,13 @@
 跨成員圖表的方向、前提與邊界見 [BRIDGE](BRIDGE.md)，兩個新成員
 在聯邦內的位置另見 [FINALG](FINALG.md) 與 [CATMATH](CATMATH.md)。
 
+2026-10-27 再完成聯網文獻研究與第三波大一統切片，詳見
+[GRAND-UNIFICATION](GRAND-UNIFICATION.md)：有限 Alexandrov
+開集的 Heyting／可觀測子型別格，以及 p-進單變量熱帶超曲面
+與多變量有界 Gröbner-細化角點樣本。完整 tropical variety、
+賦值 Gröbner 基、tropical ideals、blueprints／bands 和
+一般 STLC 子型別仍是明示缺口，沒有以有限片段改名冒充。
+
 ## 目前規模
 
 本文與根 README 使用同一組機器可核查數字，由
@@ -45,13 +52,13 @@
 
 - 39 packages
 - 48 components
-- 320 `.mbt` files
-- 129,914 `.mbt` lines
-- 6,259 public symbols
+- 323 `.mbt` files
+- 130,959 `.mbt` lines
+- 6,330 public symbols
 
 逐套件符號數以 [SPEC-APPENDIX](../SPEC-APPENDIX.md) 的生成清單
-為準。bridge 套件現有 385 個分類符號，包含原三支柱橋、直接
-聯邦轉接器、第二波推導報告與 18 項聚合證書入口。
+為準。bridge 套件現有 456 個分類符號，包含原三支柱橋、直接
+聯邦轉接器、第二波推導報告、第三波大一統切片與 20 項聚合證書入口。
 
 ## 本階段驗證證據：compile-only
 

@@ -6,7 +6,7 @@
 > `algebra/`）；symlib、semiring、finalg、catmath 的成邦前長文
 > 分別在各自根目錄的 `README.md`，成邦後位置見 `docs/FINALG.md`、
 > `docs/CATMATH.md`，唯一五成員橋見 `docs/BRIDGE.md`。
-> 逐符號附錄覆蓋全倉 **39 個套件、6,259 個公開符號**。
+> 逐符號附錄覆蓋全倉 **39 個套件、6,330 個公開符號**。
 >
 > **現行發布身份**：儲存倉為 <https://github.com/vv0101v01/golden>，
 > MoonBit module 為 `vv0101v01/cubical-hermitian`。全倉現況見
@@ -1553,6 +1553,12 @@ observer／轉接層。獨立 `unified/` 不是本期的最終形態。
    Bool 字面量與 coe。因 cubical 有 unit-η 而 catmath raw
    範形沒有，規格同時保存 raw equality 與顯式 unit-η completion，
    不宣稱 raw 範形相等。
+7. **大一統第三波**：有限 Alexandrov 開集以包含形成可觀測
+   refinement 子型別格，並窮舉 Heyting 蕴含／否定與伴隨律；
+   精確 p-進單變量熱帶超曲面以及 finalg 理想的有界
+   Gröbner-細化角點樣本與 semiring Newton 細分互校。有限
+   片段不用完整 tropical variety、tropical ideal、schemes
+   或一般語法子型別命名，詳見 `docs/GRAND-UNIFICATION.md`。
 
 窄域公開面只包括所屬成員內的 interop 構造／複製函數、
 finalg/cat 的泛型 `category_of`，以及把 finalg 原本由

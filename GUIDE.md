@@ -43,7 +43,7 @@
 - 有界 Huet 搜尋、版本化已編譯模組 byte codec，以及 BDD
   sifting/cache、watched-literal DPLL 與 sparse/Karatsuba `QPoly` 乘法；
 - `SPEC.md`/`SPEC.en.md` 與雙語附錄對全部型別、算子、規格、結構逐符號
-  給出規範形式與範疇化；五方聯邦後附錄共 **6,259 個符號**，cubical 支柱的
+  給出規範形式與範疇化；五方聯邦後附錄共 **6,330 個符號**，大一統文獻角色與第三波 Heyting／熱帶切片見 [docs/GRAND-UNIFICATION.md](docs/GRAND-UNIFICATION.md)，cubical 支柱的
   規格登記仍為 **101 條**；
 - cubical 支柱的實體套件子圖 `cmd/main → root → algebra` 與其 13 個邏輯元件，
   現與另外四根支柱、bridge/apps 合共 **39 套件／48 元件**，由同一
@@ -383,7 +383,7 @@ point、PathP 或巢狀 PathP square，端點由低維 face 的消去值給出�
 | 第十三期收束 | SelfFamily 正性不動點／foreign 巢狀 IH 函子映射、相關維度下降／最大相容補入、差異導引 Bool 切分／驗證方塊帽、CHDAGBIN 共圖／CHARTCHN 完整性鏈、聯合不可約證書／四生成元多二次塔／自適應 Jacobi、n≤16 精確序／DRUP／Tier D、逆元結合律 3-胞／閉代表式分類、HOU 殘差求解器 | `schema_positivity.mbt`, `dsystem_compat.mbt`, `conv_case_split.mbt`, `dterm_dag_binary.mbt`, `algebra/multiquad_tower.mbt`, `phase13_laws.mbt` |
 | 第十二期收束 | 同規格自嵌／正性宣告、同時 IR eliminator 編譯、結構合意與補入、Bool case-split 與路徑值 comp、artifact 儲存庫／DAG codec／版本協商、不可約證書／三次三二次塔／簇感知 Jacobi、子集 DP 序／CDCL 刪除＋RUP、分層外延、單位律 3-胞／精確 Hopf、HOU 三態 MGU | `schema_phase9.mbt`, `schema_positivity.mbt`, `conv_case_split.mbt`, `artifact_repository.mbt`, `algebra/qpoly_certificate.mbt`, `algebra/tower_fields.mbt`, `phase12_laws.mbt` |
 | 套件與依賴治理 | `cmd/main → root → algebra`、13 元件、禁止向上邊 | `architecture.json`, `tools/arch_check.py`, `ARCHITECTURE.md` |
-| 規格範形登記 | cubical 101 條目＋全倉 6,259 雙語附錄符號＋多套件審計 | `spec.mbt`, `SPEC*.md`, `SPEC-APPENDIX*.md`, `tools/audit_spec.py` |
+| 規格範形登記 | cubical 101 條目＋全倉 6,330 雙語附錄符號＋多套件審計 | `spec.mbt`, `SPEC*.md`, `SPEC-APPENDIX*.md`, `tools/audit_spec.py` |
 
 ## 檔案地圖
 

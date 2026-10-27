@@ -88,11 +88,15 @@ pub fn check_federation_finite_structure_derived_bridges() -> Bool
 
 pub fn check_federation_group_bridge() -> Bool
 
+pub fn check_federation_heyting_unification_bridge() -> Bool
+
 pub fn check_federation_matrix_bridge() -> Bool
 
 pub fn check_federation_polynomial_bridge() -> Bool
 
 pub fn check_federation_stlc_derived_bridge() -> Bool
+
+pub fn check_federation_tropical_unification_bridge() -> Bool
 
 pub fn check_finite_category_federation(@symlib.FinCat) -> Bool
 
@@ -101,6 +105,8 @@ pub fn check_finite_dynamics_federation(@catmath.DynSys) -> Bool
 pub fn check_finite_group_federation(@catmath.FinGroup, Int32) -> Bool
 
 pub fn check_finite_gset_federation(@catmath.GSet) -> Bool
+
+pub fn check_finite_heyting_topology(@catmath.FinTop) -> Bool
 
 pub fn check_finite_spec_federation(@finite.FinAlg) -> Bool
 
@@ -116,6 +122,8 @@ pub fn check_integer_matrix_federation(Array[Array[Int32]], Int32, Int32) -> Boo
 
 pub fn check_integral_homology_federation(Array[Array[Int32]], Array[Array[Int32]], Int32) -> Bool
 
+pub fn check_padic_tropical_hypersurface(@vv0101v01/cubical-hermitian/algebra.QPoly, Int32, Int32, Int32) -> Bool
+
 pub fn check_perm_wiring_bridge() -> Bool
 
 pub fn check_polynomial_reduction_federation(@vv0101v01/cubical-hermitian/algebra.QPoly, @vv0101v01/cubical-hermitian/algebra.QPoly, Int32, Array[Int32]) -> Bool
@@ -125,6 +133,8 @@ pub fn check_square_cell_symmetry() -> Bool
 pub fn check_stlc_federation(Array[@catmath.SType], @catmath.STerm) -> Bool
 
 pub fn check_tropical_bridges() -> Bool
+
+pub fn check_tropical_corner_sample(Array[@finalg.Poly], Int32, Int32) -> Bool
 
 pub fn circle_winding_cross_check(Array[Int32]) -> Bool
 
@@ -150,7 +160,13 @@ pub fn federation_namespaces() -> Array[String]
 
 pub fn finalg_loop_of_winding(Int32) -> Int32
 
+pub fn finalg_poly_to_tropical_bpoly(@finalg.Poly) -> @trop.BPoly?
+
+pub fn finalg_poly_tropical_corner_at(@finalg.Poly, Array[Int32]) -> Bool
+
 pub fn finalg_spec_to_catmath_fintop(@scheme.Spec) -> @catmath.FinTop
+
+pub fn finalg_tropical_corner_locus_sample(Array[@finalg.Poly], Int32, Int32) -> Array[Array[Int32]]?
 
 pub fn finalg_univariate_dense_coeffs(@finalg.Poly) -> Array[Int32]?
 
@@ -176,9 +192,25 @@ pub fn finite_group_federation_report(@catmath.FinGroup, Int32) -> FiniteGroupFe
 
 pub fn finite_gset_federation_report(@catmath.GSet) -> FiniteGSetFederationReport
 
+pub fn finite_heyting_topology_report(@catmath.FinTop) -> FiniteHeytingTopologyReport
+
 pub fn finite_spec_federation_report(@finite.FinAlg) -> FiniteSpecFederationReport
 
 pub fn finite_topology_federation_report(@catmath.FinTop) -> FiniteTopologyFederationReport
+
+pub fn fintop_heyting_implication(@catmath.FinTop, Int32, Int32) -> Int32?
+
+pub fn fintop_heyting_join(@catmath.FinTop, Int32, Int32) -> Int32?
+
+pub fn fintop_heyting_meet(@catmath.FinTop, Int32, Int32) -> Int32?
+
+pub fn fintop_heyting_negation(@catmath.FinTop, Int32) -> Int32?
+
+pub fn fintop_interior_mask(@catmath.FinTop, Int32) -> Int32?
+
+pub fn fintop_open_masks(@catmath.FinTop) -> Array[Int32]?
+
+pub fn fintop_open_subtype_of(@catmath.FinTop, Int32, Int32) -> Bool
 
 pub fn fp_chain_complex_federation_report(@catmath.ChainComplex) -> FpChainComplexFederationReport
 
@@ -197,6 +229,8 @@ pub fn integral_homology_federation_report(Array[Array[Int32]], Array[Array[Int3
 pub fn matrix_permutation_symmetries(@cubical-hermitian.CMat, Int32) -> Array[@symlib.Perm]
 
 pub fn matrix_support_graph(@cubical-hermitian.CMat) -> @symlib.Graph
+
+pub fn padic_tropical_hypersurface_report(@vv0101v01/cubical-hermitian/algebra.QPoly, Int32, Int32, Int32) -> PadicTropicalHypersurfaceReport
 
 pub fn perm_equiv(@symlib.Perm) -> @cubical-hermitian.Equiv
 
@@ -239,6 +273,8 @@ pub fn symlib_gsetof_to_catmath_gset_with_element_order(@symlib.GSetOf, @symlib.
 pub fn symlib_perm_group_to_catmath_fin_group(@symlib.PermGroup, Int32) -> @catmath.FinGroup?
 
 pub fn symlib_thin_fincat_to_catmath_fintop(@symlib.FinCat) -> @catmath.FinTop?
+
+pub fn tropical_corner_sample_report(Array[@finalg.Poly], Int32, Int32) -> TropicalCornerSampleReport
 
 pub fn tropical_matrix_symmetries(Array[Array[Int64]], Int32) -> Array[@symlib.Perm]
 
@@ -393,6 +429,29 @@ pub(all) struct FiniteGroupFederationReport {
   abelianization_ok : Bool
 }
 
+pub(all) struct FiniteHeytingTopologyReport {
+  valid : Bool
+  supported : Bool
+  n_points : Int32
+  universe_mask : Int32
+  open_masks : Array[Int32]
+  open_count : Int32
+  boolean : Bool
+  complemented_open_count : Int32
+  regular_open_count : Int32
+  topology_bridge_ok : Bool
+  semiring_closure_ok : Bool
+  catmath_open_sets_ok : Bool
+  interior_ok : Bool
+  lattice_ok : Bool
+  subtype_bounds_ok : Bool
+  implication_formula_ok : Bool
+  adjunction_ok : Bool
+  modus_ponens_ok : Bool
+  pseudocomplement_ok : Bool
+  boolean_characterization_ok : Bool
+}
+
 pub(all) struct FiniteSpecFederationReport {
   valid : Bool
   prime_count : Int32
@@ -492,6 +551,18 @@ pub(all) struct IntegralHomologyFederationReport {
   universal_coefficient_bound_ok : Bool
 }
 
+pub(all) struct PadicTropicalHypersurfaceReport {
+  valid : Bool
+  supported : Bool
+  prime : Int32
+  lower_bound : Int32
+  upper_bound : Int32
+  tropical_roots : Array[(Int64, Int64)]
+  integer_corner_points : Array[Int32]
+  integer_roots_in_range : Array[Int32]
+  integer_corners_ok : Bool
+}
+
 pub(all) struct PolynomialReductionFederationReport {
   valid : Bool
   prime : Int32
@@ -540,6 +611,30 @@ pub(all) struct StlcFederationReport {
   type_preserved_ok : Bool
   cubical_eta_equality_ok : Bool
   catmath_normal_form_idempotent_ok : Bool
+}
+
+pub(all) struct TropicalCornerSampleReport {
+  valid : Bool
+  supported : Bool
+  nvars : Int32
+  modulus : Int32
+  generator_count : Int32
+  groebner_count : Int32
+  lower_bound : Int32
+  upper_bound : Int32
+  sample_point_count : Int32
+  generator_points : Array[Array[Int32]]
+  groebner_points : Array[Array[Int32]]
+  generator_point_count : Int32
+  groebner_point_count : Int32
+  groebner_refines_generators_on_sample : Bool
+  samples_equal : Bool
+  ideal_membership_ok : Bool
+  bivariate_supported : Bool
+  bivariate_duality_ok : Bool
+  bivariate_balancing_ok : Bool
+  bivariate_ties_ok : Bool
+  bivariate_area_ok : Bool
 }
 
 pub(all) struct WeightedGraphReport {

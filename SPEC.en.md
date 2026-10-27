@@ -8,7 +8,7 @@ Language: **English** · [中文正本](SPEC.md) · [English appendix](SPEC-APPE
 > `README.md` files; finalg and catmath in the federation are covered
 > by `docs/FINALG.md` and `docs/CATMATH.md`, and the single
 > five-member bridge by `docs/BRIDGE.md`.  The generated appendices
-> cover all **39 packages and 6,259 public symbols**.
+> cover all **39 packages and 6,330 public symbols**.
 >
 > **Current publication identity.** The repository is
 > <https://github.com/vv0101v01/golden>; the MoonBit module remains
@@ -561,6 +561,15 @@ it rejects Bool literals and `coe` rather than inventing an equivalence.
 Representative lifting out of a finite field is explicitly not a ring
 homomorphism, arbitrary closure categories are not claimed enumerable,
 and exhaustive diagrams are bounded to their stated finite fragments.
+
+The third, literature-driven unification wave adds a finite
+Heyting/observable-subtype lattice of Alexandrov opens and bounded
+tropical corner-locus reports: exact p-adic univariate hypersurfaces
+and Gröbner-refined integer-grid samples checked against semiring
+Newton subdivisions.  These finite fragments are not presented as a
+general syntactic subtyping system, a complete tropical variety or
+ideal, or a tropical/blueprint/band scheme; see
+`docs/GRAND-UNIFICATION.md`.
 
 Narrow owner-local interop constructors/copy functions, finalg/cat's
 generic `category_of`, and explicit `pub extend` declarations are the

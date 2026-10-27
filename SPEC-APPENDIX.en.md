@@ -10,7 +10,7 @@
 > it is not a version-stability promise.
 
 <!-- APPENDIX:BEGIN -->
-**6259** public symbols (declarations + constructors + fields) in 99 specification families; by package: `algebra` 860, `bridge` 385, `catmath` 445, `cmd-semiringreport` 42, `finalg` 122, `finalg-cat` 61, `finalg-finite` 87, `finalg-geometry` 10, `finalg-hott` 43, `finalg-linalg` 34, `finalg-modules` 36, `finalg-num` 11, `finalg-port` 22, `finalg-scheme` 14, `finalg-testutil` 4, `finalg-verify` 7, `root` 2689, `semiring-algebra` 287, `semiring-app` 24, `semiring-bp` 22, `semiring-cat` 33, `semiring-examples` 18, `semiring-graph` 40, `semiring-io` 9, `semiring-matrix` 60, `semiring-monoid` 85, `semiring-nf` 43, `semiring-par` 18, `semiring-par-host` 4, `semiring-ratelimit` 64, `semiring-sim` 42, `semiring-spline` 17, `semiring-trop` 84, `symlib` 537.
+**6330** public symbols (declarations + constructors + fields) in 99 specification families; by package: `algebra` 860, `bridge` 456, `catmath` 445, `cmd-semiringreport` 42, `finalg` 122, `finalg-cat` 61, `finalg-finite` 87, `finalg-geometry` 10, `finalg-hott` 43, `finalg-linalg` 34, `finalg-modules` 36, `finalg-num` 11, `finalg-port` 22, `finalg-scheme` 14, `finalg-testutil` 4, `finalg-verify` 7, `root` 2689, `semiring-algebra` 287, `semiring-app` 24, `semiring-bp` 22, `semiring-cat` 33, `semiring-examples` 18, `semiring-graph` 40, `semiring-io` 9, `semiring-matrix` 60, `semiring-monoid` 85, `semiring-nf` 43, `semiring-par` 18, `semiring-par-host` 4, `semiring-ratelimit` 64, `semiring-sim` 42, `semiring-spline` 17, `semiring-trop` 84, `symlib` 537.
 
 ### Complex scalars
 
@@ -5878,6 +5878,27 @@
 | `FiniteGroupFederationReport.regular_projector_rank` | bridge | field |
 | `FiniteGroupFederationReport.valid` | bridge | field |
 | `FiniteGroupFederationReport.zero_identity_supported` | bridge | field |
+| `FiniteHeytingTopologyReport` | bridge | struct |
+| `FiniteHeytingTopologyReport.adjunction_ok` | bridge | field |
+| `FiniteHeytingTopologyReport.boolean` | bridge | field |
+| `FiniteHeytingTopologyReport.boolean_characterization_ok` | bridge | field |
+| `FiniteHeytingTopologyReport.catmath_open_sets_ok` | bridge | field |
+| `FiniteHeytingTopologyReport.complemented_open_count` | bridge | field |
+| `FiniteHeytingTopologyReport.implication_formula_ok` | bridge | field |
+| `FiniteHeytingTopologyReport.interior_ok` | bridge | field |
+| `FiniteHeytingTopologyReport.lattice_ok` | bridge | field |
+| `FiniteHeytingTopologyReport.modus_ponens_ok` | bridge | field |
+| `FiniteHeytingTopologyReport.n_points` | bridge | field |
+| `FiniteHeytingTopologyReport.open_count` | bridge | field |
+| `FiniteHeytingTopologyReport.open_masks` | bridge | field |
+| `FiniteHeytingTopologyReport.pseudocomplement_ok` | bridge | field |
+| `FiniteHeytingTopologyReport.regular_open_count` | bridge | field |
+| `FiniteHeytingTopologyReport.semiring_closure_ok` | bridge | field |
+| `FiniteHeytingTopologyReport.subtype_bounds_ok` | bridge | field |
+| `FiniteHeytingTopologyReport.supported` | bridge | field |
+| `FiniteHeytingTopologyReport.topology_bridge_ok` | bridge | field |
+| `FiniteHeytingTopologyReport.universe_mask` | bridge | field |
+| `FiniteHeytingTopologyReport.valid` | bridge | field |
 | `FiniteSpecFederationReport` | bridge | struct |
 | `FiniteSpecFederationReport.block_count` | bridge | field |
 | `FiniteSpecFederationReport.blocks_ok` | bridge | field |
@@ -5965,6 +5986,16 @@
 | `IntegralHomologyFederationReport.torsion_factors` | bridge | field |
 | `IntegralHomologyFederationReport.universal_coefficient_bound_ok` | bridge | field |
 | `IntegralHomologyFederationReport.valid` | bridge | field |
+| `PadicTropicalHypersurfaceReport` | bridge | struct |
+| `PadicTropicalHypersurfaceReport.integer_corner_points` | bridge | field |
+| `PadicTropicalHypersurfaceReport.integer_corners_ok` | bridge | field |
+| `PadicTropicalHypersurfaceReport.integer_roots_in_range` | bridge | field |
+| `PadicTropicalHypersurfaceReport.lower_bound` | bridge | field |
+| `PadicTropicalHypersurfaceReport.prime` | bridge | field |
+| `PadicTropicalHypersurfaceReport.supported` | bridge | field |
+| `PadicTropicalHypersurfaceReport.tropical_roots` | bridge | field |
+| `PadicTropicalHypersurfaceReport.upper_bound` | bridge | field |
+| `PadicTropicalHypersurfaceReport.valid` | bridge | field |
 | `PolynomialReductionFederationReport` | bridge | struct |
 | `PolynomialReductionFederationReport.catmath_multiplication_ok` | bridge | field |
 | `PolynomialReductionFederationReport.companion_ok` | bridge | field |
@@ -6011,6 +6042,28 @@
 | `StlcFederationReport.type_preserved_ok` | bridge | field |
 | `StlcFederationReport.unit_eta_completion_needed` | bridge | field |
 | `StlcFederationReport.valid` | bridge | field |
+| `TropicalCornerSampleReport` | bridge | struct |
+| `TropicalCornerSampleReport.bivariate_area_ok` | bridge | field |
+| `TropicalCornerSampleReport.bivariate_balancing_ok` | bridge | field |
+| `TropicalCornerSampleReport.bivariate_duality_ok` | bridge | field |
+| `TropicalCornerSampleReport.bivariate_supported` | bridge | field |
+| `TropicalCornerSampleReport.bivariate_ties_ok` | bridge | field |
+| `TropicalCornerSampleReport.generator_count` | bridge | field |
+| `TropicalCornerSampleReport.generator_point_count` | bridge | field |
+| `TropicalCornerSampleReport.generator_points` | bridge | field |
+| `TropicalCornerSampleReport.groebner_count` | bridge | field |
+| `TropicalCornerSampleReport.groebner_point_count` | bridge | field |
+| `TropicalCornerSampleReport.groebner_points` | bridge | field |
+| `TropicalCornerSampleReport.groebner_refines_generators_on_sample` | bridge | field |
+| `TropicalCornerSampleReport.ideal_membership_ok` | bridge | field |
+| `TropicalCornerSampleReport.lower_bound` | bridge | field |
+| `TropicalCornerSampleReport.modulus` | bridge | field |
+| `TropicalCornerSampleReport.nvars` | bridge | field |
+| `TropicalCornerSampleReport.sample_point_count` | bridge | field |
+| `TropicalCornerSampleReport.samples_equal` | bridge | field |
+| `TropicalCornerSampleReport.supported` | bridge | field |
+| `TropicalCornerSampleReport.upper_bound` | bridge | field |
+| `TropicalCornerSampleReport.valid` | bridge | field |
 | `WeightedGraphReport` | bridge | struct |
 | `WeightedGraphReport.candidate_group_order` | bridge | field |
 | `WeightedGraphReport.canonical_colors` | bridge | field |
@@ -6060,13 +6113,16 @@
 | `check_federation_finalg_verify_bridge` | bridge | function |
 | `check_federation_finite_structure_derived_bridges` | bridge | function |
 | `check_federation_group_bridge` | bridge | function |
+| `check_federation_heyting_unification_bridge` | bridge | function |
 | `check_federation_matrix_bridge` | bridge | function |
 | `check_federation_polynomial_bridge` | bridge | function |
 | `check_federation_stlc_derived_bridge` | bridge | function |
+| `check_federation_tropical_unification_bridge` | bridge | function |
 | `check_finite_category_federation` | bridge | function |
 | `check_finite_dynamics_federation` | bridge | function |
 | `check_finite_group_federation` | bridge | function |
 | `check_finite_gset_federation` | bridge | function |
+| `check_finite_heyting_topology` | bridge | function |
 | `check_finite_spec_federation` | bridge | function |
 | `check_finite_topology_federation` | bridge | function |
 | `check_fp_chain_complex_federation` | bridge | function |
@@ -6074,11 +6130,13 @@
 | `check_graph_symmetry_bridges` | bridge | function |
 | `check_integer_matrix_federation` | bridge | function |
 | `check_integral_homology_federation` | bridge | function |
+| `check_padic_tropical_hypersurface` | bridge | function |
 | `check_perm_wiring_bridge` | bridge | function |
 | `check_polynomial_reduction_federation` | bridge | function |
 | `check_square_cell_symmetry` | bridge | function |
 | `check_stlc_federation` | bridge | function |
 | `check_tropical_bridges` | bridge | function |
+| `check_tropical_corner_sample` | bridge | function |
 | `circle_winding_cross_check` | bridge | function |
 | `cubical_eta_long_term_to_catmath` | bridge | function |
 | `cubical_loop_of_winding` | bridge | function |
@@ -6091,7 +6149,10 @@
 | `federation_members` | bridge | function |
 | `federation_namespaces` | bridge | function |
 | `finalg_loop_of_winding` | bridge | function |
+| `finalg_poly_to_tropical_bpoly` | bridge | function |
+| `finalg_poly_tropical_corner_at` | bridge | function |
 | `finalg_spec_to_catmath_fintop` | bridge | function |
+| `finalg_tropical_corner_locus_sample` | bridge | function |
 | `finalg_univariate_dense_coeffs` | bridge | function |
 | `finalg_univariate_qpoly_roundtrip` | bridge | function |
 | `finalg_univariate_to_qpoly` | bridge | function |
@@ -6104,8 +6165,16 @@
 | `finite_dynamics_federation_report` | bridge | function |
 | `finite_group_federation_report` | bridge | function |
 | `finite_gset_federation_report` | bridge | function |
+| `finite_heyting_topology_report` | bridge | function |
 | `finite_spec_federation_report` | bridge | function |
 | `finite_topology_federation_report` | bridge | function |
+| `fintop_heyting_implication` | bridge | function |
+| `fintop_heyting_join` | bridge | function |
+| `fintop_heyting_meet` | bridge | function |
+| `fintop_heyting_negation` | bridge | function |
+| `fintop_interior_mask` | bridge | function |
+| `fintop_open_masks` | bridge | function |
+| `fintop_open_subtype_of` | bridge | function |
 | `fp_chain_complex_federation_report` | bridge | function |
 | `free_category_to_fincat` | bridge | function |
 | `impl IdempotentSemiring for FaceClass` | bridge | trait implementation |
@@ -6120,6 +6189,7 @@
 | `integral_homology_federation_report` | bridge | function |
 | `matrix_permutation_symmetries` | bridge | function |
 | `matrix_support_graph` | bridge | function |
+| `padic_tropical_hypersurface_report` | bridge | function |
 | `perm_equiv` | bridge | function |
 | `perm_of_wiring` | bridge | function |
 | `perm_preserves_matrix` | bridge | function |
@@ -6141,6 +6211,7 @@
 | `symlib_gsetof_to_catmath_gset_with_element_order` | bridge | function |
 | `symlib_perm_group_to_catmath_fin_group` | bridge | function |
 | `symlib_thin_fincat_to_catmath_fintop` | bridge | function |
+| `tropical_corner_sample_report` | bridge | function |
 | `tropical_matrix_symmetries` | bridge | function |
 | `tropical_optimal_assignments` | bridge | function |
 | `truth_table_to_cubical_face_dnf` | bridge | function |

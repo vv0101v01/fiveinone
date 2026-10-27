@@ -28,6 +28,12 @@ import；跨成員轉換、共同不變量、交叉核對與推導定理只在
 `bridge/` 明示方向、前提、成本與語義邊界。相容性總表見
 [docs/BRIDGE.md](docs/BRIDGE.md)。
 
+2026-10-27 的大一統研究與首個實作切片見
+[docs/GRAND-UNIFICATION.md](docs/GRAND-UNIFICATION.md)：文獻角色
+地圖加上有限 Heyting／可觀測子型別格，以及 p-進與多變量有界
+熱帶角點軌跡；文檔同時標明完整 tropical variety、賦值
+Gröbner 基、blueprints／bands 與一般子型別系統仍屬後續缺口。
+
 ## 五個成員
 
 | 成員 | golden namespace | 成邦前正本 | 主要內容 |
@@ -60,8 +66,8 @@ showcase、demo、benchmark、慢報告或 proof。真正的運行期閘門須
 
 ## 治理快照
 
-機器清單目前包含 **39 packages、48 components、320 `.mbt` files、
-129,914 `.mbt` lines、6,259 public symbols**；數字由
+機器清單目前包含 **39 packages、48 components、323 `.mbt` files、
+130,959 `.mbt` lines、6,330 public symbols**；數字由
 `tools/arch_check.py`、`tools/doc_check.py` 與
 `tools/audit_spec.py --check` 交叉核對。架構正本是
 [architecture.json](architecture.json) 與

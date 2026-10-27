@@ -8,7 +8,7 @@ Language: **English** · [中文正本](SPEC.md) · [English appendix](SPEC-APPE
 > `README.md` files; finalg and catmath in the federation are covered
 > by `docs/FINALG.md` and `docs/CATMATH.md`, and the single
 > five-member bridge by `docs/BRIDGE.md`.  The generated appendices
-> cover all **39 packages and 6,330 public symbols**.
+> cover all **39 packages and 6,610 public symbols**.
 >
 > **Current publication identity.** The repository is
 > <https://github.com/vv0101v01/golden>; the MoonBit module remains

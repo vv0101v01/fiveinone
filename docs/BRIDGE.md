@@ -19,7 +19,7 @@ catmath/ ───────────────┘
 再優先以來源成員自己的判定器、規範形式或共同不變量重驗。
 
 本階段全部新舊測試源碼只編譯、不執行，所以本文所述
-`check_*` 與去重後 16 項 `bridge_certificates()` 是已實作且能
+`check_*` 與現行 21 項 `bridge_certificates()` 是已實作且能
 通過 `--deny-warn` 編譯的檢查程式，不冒充現行五成員樹的
 運行期證據。註冊表計數與成員原生健康檢查仍保留各自函數／
 wbtest，但不重複列作大一統語義證書。
@@ -129,6 +129,24 @@ wbtest 區塊；第二波完成時曾與先前 13 項組成 18 項清單。
 `corner locus`／`corner sample`，不用未實作的多面體扇或
 tropicalization functor 命名有限格點輸出。
 
+## 第四波 GU 有限核心（2026-10-27）
+
+| 核心 | 規範入口 | 精確邊界 |
+|---|---|---|
+| valued initial forms | `valued_initial_form_report`、`valued_initial_ideal_grid_report` | 精確多變量 `Poly`＋固定 `p`＋整數權重；principal 格分類精確，多生成元只給 sound exclusion／candidate 外逼近；非一般 valued Gröbner |
+| relation quantales | `finite_relation_quantale_report`、`finite_tropical_matrix_quantale_report` | Boolean 全律只窮舉 `n≤2`、顯示 residual 至 `n≤3`；tropical 只取有界非負候選域並與 semiring 原生乘法／閉包互校 |
+| presheaf sieves | `finite_presheaf_sieve_report`、`finite_presheaf_alexandrov_report` | 只在 representable `y(c)` 上；Alexandrov 退化必須取 opposite thin category，並且是局部限制對照 |
+| finite blueprints | `finite_blueprint_report` 與 `F_p`／finalg algebra／ideal lattice／Bool／有界 tropical／FinTop opens constructors | 有限 presentation 與小和檢查；非 distributive 的理想格會被報告拒絕；不是 blueprint／band scheme |
+| theory morphisms／modes | `finite_group_theory_restriction_report`、`finite_monoid_group_reflection_report`、`finite_lattice_theory_report`、`finite_heyting_theory_restriction_report`、`federation_theory_mode_report` | 只有單類有限 presentations 的兩條包含形態；同載體反射不等於 Grothendieck completion；mode 註冊不作數學證據 |
+
+聚合入口是 `check_federation_grand_unification_construction`，
+五個定理族各計一次；證書正本因此由第三波去重後的 16 項
+增至 **21 項**。`bridge_certificate_envelopes_report` 另外
+提供 v1 canonical 序列化、雙摘要與 registry 重驗，但按
+去重原則不把 envelope 本身再列作語義證書。完整理論邊界
+與 87/100 覆核見
+[GRAND-UNIFICATION](GRAND-UNIFICATION.md)。
+
 ## 刻意新增的窄域公開面
 
 跨套件 `pub` enum 構造子是唯讀的；為避免把成員型別放寬成
@@ -147,7 +165,7 @@ tropicalization functor 命名有限格點輸出。
 ## 入口、錯誤與成本邊界
 
 - `cmd/showcase` 是唯一聯邦 showcase：先列五成員註冊表，再列
-  16 項去重後 bridge 語義證書。本階段只 `moon build`，不執行。
+  21 項 bridge 語義證書。本階段只 `moon build`，不執行。
 - bridge 仍有以 `abort` 表達的硬前提（空輸入、非方陣、尺寸、
   素數／DAG、枚舉 cap 與 finalg 閉包範疇不可合成呼叫）。
   它們是明示邊界而非結構化 `Result` API，見
@@ -157,7 +175,9 @@ tropicalization functor 命名有限格點輸出。
   與明示 cap／前提負責。
 - `weighted_graph_report` 仍會重算候選、對稱、投影、閉包與
   特徵多項式；逐段 budget、部分報告、無碰撞精確簽名與一般
-  胞腔複形仍在工程缺口登記。
+  胞腔複形仍在工程缺口登記。新的 GU API 一律以
+  `Option` 或 `valid/supported` 報告明示形狀、上限與窮舉
+  片段，沒有在新生產碼加入 `abort`/`unwrap` 邊。
 
 ## 編譯驗收
 

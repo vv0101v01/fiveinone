@@ -20,11 +20,35 @@ pub fn assignment_cost(Array[Array[Int64]], @symlib.Perm) -> Int64
 
 pub fn average_permutation_matrices(Array[@symlib.Perm]) -> @cubical-hermitian.CMat
 
+pub fn bool_relation_compose(Array[Array[Bool]], Array[Array[Bool]]) -> Array[Array[Bool]]?
+
+pub fn bool_relation_join(Array[Array[Bool]], Array[Array[Bool]]) -> Array[Array[Bool]]?
+
+pub fn bool_relation_meet(Array[Array[Bool]], Array[Array[Bool]]) -> Array[Array[Bool]]?
+
+pub fn bool_relation_residual_after(Array[Array[Bool]], Array[Array[Bool]]) -> Array[Array[Bool]]?
+
+pub fn bool_relation_residual_before(Array[Array[Bool]], Array[Array[Bool]]) -> Array[Array[Bool]]?
+
+pub fn bool_relation_star(Array[Array[Bool]]) -> Array[Array[Bool]]?
+
+pub fn bool_semiring_blueprint() -> FiniteBlueprint
+
 pub fn bool_tuple_type(Int32) -> @cubical-hermitian.Ty
 
 pub fn boolean_function_federation_report(Int32, Array[Int32]) -> BooleanFunctionFederationReport
 
+pub fn bounded_tropical_blueprint(Int32) -> FiniteBlueprint?
+
 pub fn bridge_certificate(String, String, Bool, detail? : String) -> BridgeCertificate
+
+pub fn bridge_certificate_envelope(BridgeCertificate) -> BridgeCertificateEnvelope
+
+pub fn bridge_certificate_envelope_report(BridgeCertificateEnvelope) -> BridgeCertificateEnvelopeReport
+
+pub fn bridge_certificate_envelopes() -> Array[BridgeCertificateEnvelope]
+
+pub fn bridge_certificate_envelopes_report() -> BridgeCertificateEnvelopesReport
 
 pub fn bridge_certificates() -> Array[BridgeCertificate]
 
@@ -64,7 +88,11 @@ pub fn certificate_summary(Array[BridgeCertificate]) -> String
 
 pub fn certificates_all_ok(Array[BridgeCertificate]) -> Bool
 
+pub fn check_blueprint_unification_bridge() -> Bool
+
 pub fn check_boolean_function_federation(Int32, Array[Int32]) -> Bool
+
+pub fn check_bridge_certificate_envelopes() -> Bool
 
 pub fn check_certificate_bridge() -> Bool
 
@@ -86,6 +114,8 @@ pub fn check_federation_finalg_verify_bridge() -> Bool
 
 pub fn check_federation_finite_structure_derived_bridges() -> Bool
 
+pub fn check_federation_grand_unification_construction() -> Bool
+
 pub fn check_federation_group_bridge() -> Bool
 
 pub fn check_federation_heyting_unification_bridge() -> Bool
@@ -98,6 +128,8 @@ pub fn check_federation_stlc_derived_bridge() -> Bool
 
 pub fn check_federation_tropical_unification_bridge() -> Bool
 
+pub fn check_finite_blueprint(FiniteBlueprint) -> Bool
+
 pub fn check_finite_category_federation(@symlib.FinCat) -> Bool
 
 pub fn check_finite_dynamics_federation(@catmath.DynSys) -> Bool
@@ -108,9 +140,19 @@ pub fn check_finite_gset_federation(@catmath.GSet) -> Bool
 
 pub fn check_finite_heyting_topology(@catmath.FinTop) -> Bool
 
+pub fn check_finite_presheaf_alexandrov(@catmath.FinTop) -> Bool
+
+pub fn check_finite_presheaf_sieves(@symlib.FinCat, Int32) -> Bool
+
+pub fn check_finite_relation_quantale(Array[Array[Bool]], Array[Array[Bool]], Array[Array[Bool]]) -> Bool
+
 pub fn check_finite_spec_federation(@finite.FinAlg) -> Bool
 
+pub fn check_finite_theory_morphisms() -> Bool
+
 pub fn check_finite_topology_federation(@catmath.FinTop) -> Bool
+
+pub fn check_finite_tropical_matrix_quantale(Array[Array[Int32]], Array[Array[Int32]], Array[Array[Int32]], Int32) -> Bool
 
 pub fn check_fp_chain_complex_federation(@catmath.ChainComplex) -> Bool
 
@@ -128,13 +170,25 @@ pub fn check_perm_wiring_bridge() -> Bool
 
 pub fn check_polynomial_reduction_federation(@vv0101v01/cubical-hermitian/algebra.QPoly, @vv0101v01/cubical-hermitian/algebra.QPoly, Int32, Array[Int32]) -> Bool
 
+pub fn check_presheaf_sieve_unification_bridge() -> Bool
+
+pub fn check_relation_quantale_unification_bridge() -> Bool
+
 pub fn check_square_cell_symmetry() -> Bool
 
 pub fn check_stlc_federation(Array[@catmath.SType], @catmath.STerm) -> Bool
 
+pub fn check_theory_mode_unification_bridge() -> Bool
+
 pub fn check_tropical_bridges() -> Bool
 
 pub fn check_tropical_corner_sample(Array[@finalg.Poly], Int32, Int32) -> Bool
+
+pub fn check_valued_initial_form(@vv0101v01/cubical-hermitian/algebra.Poly, Int32, Array[Int32]) -> Bool
+
+pub fn check_valued_initial_ideal_grid(Array[@vv0101v01/cubical-hermitian/algebra.Poly], Int32, Int32, Int32, Int32) -> Bool
+
+pub fn check_valued_initial_unification_bridge() -> Bool
 
 pub fn circle_winding_cross_check(Array[Int32]) -> Bool
 
@@ -156,7 +210,15 @@ pub fn federation_member_ids() -> Array[String]
 
 pub fn federation_members() -> Array[FederationMember]
 
+pub fn federation_modes() -> Array[FederationMode]
+
 pub fn federation_namespaces() -> Array[String]
+
+pub fn federation_theory_mode_report() -> FederationTheoryModeReport
+
+pub fn federation_theory_morphisms() -> Array[FiniteTheoryMorphism]
+
+pub fn federation_theory_presentations() -> Array[FiniteTheoryPresentation]
 
 pub fn finalg_loop_of_winding(Int32) -> Int32
 
@@ -178,25 +240,77 @@ pub fn fincat_finalg_category_laws(@symlib.FinCat) -> Bool
 
 pub fn fincat_hom_counts(@symlib.FinCat) -> Array[Array[Int64]]
 
+pub fn fincat_is_sieve_on(@symlib.FinCat, Int32, Int32) -> Bool
+
+pub fn fincat_sieve_implication(@symlib.FinCat, Int32, Int32, Int32) -> Int32?
+
+pub fn fincat_sieve_negation(@symlib.FinCat, Int32, Int32) -> Int32?
+
+pub fn fincat_sieve_pullback(@symlib.FinCat, Int32, Int32) -> Int32?
+
+pub fn fincat_sieves_on(@symlib.FinCat, Int32) -> Array[Int32]?
+
 pub fn fincat_tables_equal(@symlib.FinCat, @symlib.FinCat) -> Bool
 
 pub fn fincat_to_catmath_category(@symlib.FinCat) -> @catmath.Category?
 
 pub fn fincat_to_finalg_category(@symlib.FinCat) -> @vv0101v01/cubical-hermitian/finalg/cat.Category[Int32, Int32]?
 
+pub fn finite_blueprint_add(FiniteBlueprint, Int32, Int32) -> Int32?
+
+pub fn finite_blueprint_free_monoid(Int32, Int32, Int32, Array[Array[Int32]]) -> FiniteBlueprint?
+
+pub fn finite_blueprint_mul(FiniteBlueprint, Int32, Int32) -> Int32?
+
+pub fn finite_blueprint_normalize_sum(FiniteBlueprint, Array[Int32]) -> Array[Int32]?
+
+pub fn finite_blueprint_of_finalg_alg(@finite.FinAlg) -> FiniteBlueprint?
+
+pub fn finite_blueprint_report(FiniteBlueprint) -> FiniteBlueprintReport
+
+pub fn finite_blueprint_sum_element(FiniteBlueprint, Array[Int32]) -> Int32?
+
 pub fn finite_category_federation_report(@symlib.FinCat) -> FiniteCategoryFederationReport
+
+pub fn finite_diamond_lattice_model() -> FiniteLatticeModel
 
 pub fn finite_dynamics_federation_report(@catmath.DynSys) -> FiniteDynamicsFederationReport
 
+pub fn finite_field_blueprint(Int32) -> FiniteBlueprint?
+
 pub fn finite_group_federation_report(@catmath.FinGroup, Int32) -> FiniteGroupFederationReport
+
+pub fn finite_group_restrict_to_monoid(@catmath.FinGroup) -> @catmath.FinMonoid?
+
+pub fn finite_group_theory_restriction_report(@catmath.FinGroup) -> FiniteGroupTheoryRestrictionReport
 
 pub fn finite_gset_federation_report(@catmath.GSet) -> FiniteGSetFederationReport
 
+pub fn finite_heyting_theory_restriction_report(@catmath.FinTop) -> FiniteHeytingTheoryRestrictionReport
+
 pub fn finite_heyting_topology_report(@catmath.FinTop) -> FiniteHeytingTopologyReport
+
+pub fn finite_ideal_lattice_blueprint(@finite.FinAlg) -> FiniteBlueprint?
+
+pub fn finite_lattice_model_of_fintop_opens(@catmath.FinTop) -> FiniteLatticeModel?
+
+pub fn finite_lattice_theory_report(FiniteLatticeModel) -> FiniteLatticeTheoryReport
+
+pub fn finite_monoid_group_reflection_report(@catmath.FinMonoid) -> FiniteMonoidGroupReflectionReport
+
+pub fn finite_presheaf_alexandrov_report(@catmath.FinTop) -> FinitePresheafAlexandrovReport
+
+pub fn finite_presheaf_sieve_report(@symlib.FinCat, Int32) -> FinitePresheafSieveReport
+
+pub fn finite_relation_quantale_report(Array[Array[Bool]], Array[Array[Bool]], Array[Array[Bool]]) -> FiniteRelationQuantaleReport
 
 pub fn finite_spec_federation_report(@finite.FinAlg) -> FiniteSpecFederationReport
 
 pub fn finite_topology_federation_report(@catmath.FinTop) -> FiniteTopologyFederationReport
+
+pub fn finite_topology_open_blueprint(@catmath.FinTop) -> FiniteBlueprint?
+
+pub fn finite_tropical_matrix_quantale_report(Array[Array[Int32]], Array[Array[Int32]], Array[Array[Int32]], Int32) -> FiniteTropicalMatrixQuantaleReport
 
 pub fn fintop_heyting_implication(@catmath.FinTop, Int32, Int32) -> Int32?
 
@@ -276,11 +390,27 @@ pub fn symlib_thin_fincat_to_catmath_fintop(@symlib.FinCat) -> @catmath.FinTop?
 
 pub fn tropical_corner_sample_report(Array[@finalg.Poly], Int32, Int32) -> TropicalCornerSampleReport
 
+pub fn tropical_matrix_compose_bounded(Array[Array[Int32]], Array[Array[Int32]], Int32) -> Array[Array[Int32]]?
+
+pub fn tropical_matrix_residual_after_bounded(Array[Array[Int32]], Array[Array[Int32]], Int32) -> Array[Array[Int32]]?
+
+pub fn tropical_matrix_residual_before_bounded(Array[Array[Int32]], Array[Array[Int32]], Int32) -> Array[Array[Int32]]?
+
+pub fn tropical_matrix_star_bounded(Array[Array[Int32]], Int32) -> Array[Array[Int32]]?
+
 pub fn tropical_matrix_symmetries(Array[Array[Int64]], Int32) -> Array[@symlib.Perm]
 
 pub fn tropical_optimal_assignments(Array[Array[Int64]], Int32) -> Array[@symlib.Perm]
 
 pub fn truth_table_to_cubical_face_dnf(Int32, Array[Int32]) -> @cubical-hermitian.Face?
+
+pub fn valued_initial_form(@vv0101v01/cubical-hermitian/algebra.Poly, Int32, Array[Int32]) -> @vv0101v01/cubical-hermitian/algebra.Poly?
+
+pub fn valued_initial_form_report(@vv0101v01/cubical-hermitian/algebra.Poly, Int32, Array[Int32]) -> ValuedInitialFormReport
+
+pub fn valued_initial_ideal_grid_report(Array[@vv0101v01/cubical-hermitian/algebra.Poly], Int32, Int32, Int32, Int32) -> ValuedInitialIdealGridReport
+
+pub fn valued_initial_residue_form(@vv0101v01/cubical-hermitian/algebra.Poly, Int32, Array[Int32]) -> @finalg.Poly?
 
 pub fn weighted_graph_report(@graph.Graph, Int32) -> WeightedGraphReport
 
@@ -321,6 +451,32 @@ pub(all) struct BridgeCertificate {
   detail : String
 }
 
+pub(all) struct BridgeCertificateEnvelope {
+  version : Int32
+  certificate : BridgeCertificate
+  canonical : String
+  digest : String
+}
+
+pub(all) struct BridgeCertificateEnvelopeReport {
+  valid : Bool
+  version_ok : Bool
+  canonical_ok : Bool
+  digest_ok : Bool
+  registry_ok : Bool
+  certificate_ok : Bool
+}
+
+pub(all) struct BridgeCertificateEnvelopesReport {
+  valid : Bool
+  certificate_count : Int32
+  envelope_count : Int32
+  unique_names_ok : Bool
+  unique_digests_ok : Bool
+  all_envelopes_ok : Bool
+  all_certificates_ok : Bool
+}
+
 pub(all) struct FaceClass {
   bdd : @cubical-hermitian.Bdd
 } derive(Eq)
@@ -357,6 +513,52 @@ pub(all) struct FederationMember {
   source_repository : String
   provenance : String
   summary : String
+}
+
+pub(all) struct FederationMode {
+  id : String
+  owner_member : String
+  native_fragment : String
+  canonical_checker : String
+}
+
+pub(all) struct FederationTheoryModeReport {
+  valid : Bool
+  mode_count : Int32
+  theory_count : Int32
+  morphism_count : Int32
+  covered_member_count : Int32
+  unique_mode_ids_ok : Bool
+  owners_ok : Bool
+  presentations_ok : Bool
+  morphisms_ok : Bool
+  bridge_mode_ok : Bool
+}
+
+pub(all) struct FiniteBlueprint {
+  n : Int32
+  zero : Int32
+  one : Int32
+  mul : Array[Array[Int32]]
+  pair_sum : Array[Array[Int32?]]
+}
+
+pub(all) struct FiniteBlueprintReport {
+  valid : Bool
+  supported : Bool
+  n : Int32
+  complete_pair_sums : Bool
+  small_sum_count : Int32
+  small_relation_class_count : Int32
+  multiplicative_monoid_ok : Bool
+  pair_sum_symmetric_ok : Bool
+  singleton_separation_ok : Bool
+  zero_congruence_ok : Bool
+  local_confluence_ok : Bool
+  additive_congruence_ok : Bool
+  multiplicative_congruence_ok : Bool
+  semiring_shadow_supported : Bool
+  semiring_shadow_ok : Bool
 }
 
 pub(all) struct FiniteCategoryFederationReport {
@@ -429,6 +631,28 @@ pub(all) struct FiniteGroupFederationReport {
   abelianization_ok : Bool
 }
 
+pub(all) struct FiniteGroupTheoryRestrictionReport {
+  valid : Bool
+  supported : Bool
+  theory_morphism : String
+  order : Int32
+  group_ok : Bool
+  restricted_monoid_ok : Bool
+  operation_preserved_ok : Bool
+  free_monoid_adjunction_ok : Bool
+}
+
+pub(all) struct FiniteHeytingTheoryRestrictionReport {
+  valid : Bool
+  supported : Bool
+  theory_morphism : String
+  point_count : Int32
+  open_count : Int32
+  underlying_lattice_ok : Bool
+  distributive : Bool
+  implication_agrees_ok : Bool
+}
+
 pub(all) struct FiniteHeytingTopologyReport {
   valid : Bool
   supported : Bool
@@ -452,6 +676,89 @@ pub(all) struct FiniteHeytingTopologyReport {
   boolean_characterization_ok : Bool
 }
 
+pub(all) struct FiniteLatticeModel {
+  n : Int32
+  bottom : Int32
+  top : Int32
+  meet : Array[Array[Int32]]
+  join : Array[Array[Int32]]
+}
+
+pub(all) struct FiniteLatticeTheoryReport {
+  valid : Bool
+  supported : Bool
+  theory_morphism : String
+  n : Int32
+  lattice_ok : Bool
+  distributive : Bool
+  implication : Array[Array[Int32]]
+  expands_to_heyting : Bool
+  heyting_adjunction_ok : Bool
+}
+
+pub(all) struct FiniteMonoidGroupReflectionReport {
+  valid : Bool
+  supported : Bool
+  theory_morphism : String
+  order : Int32
+  monoid_ok : Bool
+  expands_to_group : Bool
+  inverses : Array[Int32]
+  nonunit_witness : Int32
+  reconstructed_group_ok : Bool
+}
+
+pub(all) struct FinitePresheafAlexandrovReport {
+  valid : Bool
+  supported : Bool
+  n : Int32
+  open_count : Int32
+  sieve_counts_by_object : Array[Int32]
+  total_local_sieves : Int32
+  opposite_category_ok : Bool
+  heyting_reports_ok : Bool
+  open_restrictions_are_sieves_ok : Bool
+  sieve_domains_are_open_ok : Bool
+}
+
+pub(all) struct FinitePresheafSieveReport {
+  valid : Bool
+  supported : Bool
+  nobj : Int32
+  nmor : Int32
+  object : Int32
+  incoming_count : Int32
+  sieves : Array[Int32]
+  sieve_count : Int32
+  category_ok : Bool
+  lattice_closure_ok : Bool
+  implication_is_sieve_ok : Bool
+  implication_adjunction_ok : Bool
+  negation_ok : Bool
+  pullback_ok : Bool
+  pullback_preserves_operations_ok : Bool
+  is_Boolean : Bool
+}
+
+pub(all) struct FiniteRelationQuantaleReport {
+  valid : Bool
+  supported : Bool
+  n : Int32
+  relation_count : Int32
+  exhaustive_supported : Bool
+  lattice_ok : Bool
+  composition_associative_ok : Bool
+  identity_ok : Bool
+  join_distributivity_ok : Bool
+  residual_after : Array[Array[Bool]]
+  residual_before : Array[Array[Bool]]
+  residual_formula_ok : Bool
+  residual_adjunction_ok : Bool
+  star_relation : Array[Array[Bool]]
+  star_fixed_point_ok : Bool
+  semiring_closure_ok : Bool
+}
+
 pub(all) struct FiniteSpecFederationReport {
   valid : Bool
   prime_count : Int32
@@ -466,6 +773,20 @@ pub(all) struct FiniteSpecFederationReport {
   dimension_ok : Bool
   blocks_supported : Bool
   blocks_ok : Bool
+}
+
+pub(all) struct FiniteTheoryMorphism {
+  id : String
+  source_theory : String
+  target_theory : String
+  operation_map : Array[Int32]
+}
+
+pub(all) struct FiniteTheoryPresentation {
+  id : String
+  operation_names : Array[String]
+  operation_arities : Array[Int32]
+  law_names : Array[String]
 }
 
 pub(all) struct FiniteTopologyFederationReport {
@@ -485,6 +806,24 @@ pub(all) struct FiniteTopologyFederationReport {
   identity_homeomorphism_ok : Bool
   open_sets_supported : Bool
   open_sets_ok : Bool
+}
+
+pub(all) struct FiniteTropicalMatrixQuantaleReport {
+  valid : Bool
+  supported : Bool
+  n : Int32
+  bound : Int32
+  candidate_count : Int32
+  exhaustive_supported : Bool
+  residual_after : Array[Array[Int32]]
+  residual_before : Array[Array[Int32]]
+  residual_formula_ok : Bool
+  residual_adjunction_ok : Bool
+  semiring_compose_ok : Bool
+  star_matrix : Array[Array[Int32]]
+  star_fixed_point_ok : Bool
+  semiring_closure_ok : Bool
+  support_reachability_ok : Bool
 }
 
 pub(all) struct FpChainComplexFederationReport {
@@ -635,6 +974,52 @@ pub(all) struct TropicalCornerSampleReport {
   bivariate_balancing_ok : Bool
   bivariate_ties_ok : Bool
   bivariate_area_ok : Bool
+}
+
+pub(all) struct ValuedInitialFormReport {
+  valid : Bool
+  supported : Bool
+  prime : Int32
+  nvars : Int32
+  weight : Array[Int32]
+  term_count : Int32
+  term_weights : Array[Int64]
+  minimum_weight : Int64
+  initial_indices : Array[Int32]
+  initial_exponents : Array[Array[Int32]]
+  initial_residues : Array[Int32]
+  initial_term_count : Int32
+  is_zero : Bool
+  is_monomial : Bool
+  initial_form : @vv0101v01/cubical-hermitian/algebra.Poly
+  residue_form : @finalg.Poly
+  exact_initial_support_ok : Bool
+  residue_initial_support_ok : Bool
+  univariate_supported : Bool
+  univariate_corner_ok : Bool
+  bivariate_supported : Bool
+  bivariate_argmin_ok : Bool
+  bivariate_newton_supported : Bool
+  bivariate_duality_ok : Bool
+  bivariate_balancing_ok : Bool
+  bivariate_ties_ok : Bool
+  bivariate_area_ok : Bool
+}
+
+pub(all) struct ValuedInitialIdealGridReport {
+  valid : Bool
+  supported : Bool
+  prime : Int32
+  nvars : Int32
+  lower_bound : Int32
+  upper_bound : Int32
+  sample_point_count : Int32
+  generator_count : Int32
+  excluded_weights : Array[Array[Int32]]
+  candidate_weights : Array[Array[Int32]]
+  principal_exact : Bool
+  all_initial_reports_ok : Bool
+  partition_ok : Bool
 }
 
 pub(all) struct WeightedGraphReport {

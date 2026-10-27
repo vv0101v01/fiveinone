@@ -20,21 +20,38 @@
 
 因此 golden 的大一統路線維持五成員真身與唯一 `bridge/`：
 每個圖表只在明示的有限共同片段成立，並在報告中保留方向、
-前提、成本和反例。本輪先落地兩條最能由現有 API 精確支撐的
-軸：有限 Heyting 邏輯子型化，以及有界熱帶角點軌跡。
+前提、成本和反例。第三波先落地有限 Heyting 邏輯子型化與
+有界熱帶角點軌跡；本文件後半再記錄同日完成的五個 GU
+有限核心。所謂「完成」始終指已命名的有限可執行核心及其
+差分 oracle，不把一般理論的未竟部分改名結案。
 
 ## 五個成員在大一統中的角色
 
 | 成員 | 理論角色 | 本輪實際接口 |
 |---|---|---|
-| cubical root＋精確 `algebra/` | 計算性同倫／型別語義、Face 命題、精確有理與 p-進賦值來源 | `QPoly` 的 p-進 tropicalization；既有 Face/ROBDD 仍是 Boolean 極限 |
-| symlib | 有限範疇、預層、群作用、圖與範疇不變量 | 有限拓撲的 thin category、skeleton 與分量互校 |
-| semiring | 冪等／熱帶半環、路徑代數、Boolean 閉包、Newton 細分 | Boolean 傳遞閉包；`BPoly` 的對偶與平衡檢查 |
-| finalg | 有限域多項式、理想與 Gröbner 基、有限 Spec | 拓撲的譜實例；理想生成元與 Gröbner 基的角點樣本細化 |
-| catmath | 有限範疇、有限拓撲、同調與型別論模型 | `FinTop` 的開集、內部、連續性與 T0 商 |
-| bridge | 只負責可證偽的共同片段、共同不變量與證書 | 新的 Heyting 與 tropical reports、`check_*`、wbtest 與證書 |
+| cubical root＋精確 `algebra/` | 計算性同倫／型別語義、Face 命題、精確有理與 p-進賦值來源 | `QPoly` 熱帶化；多變量 `Poly` 的 p-進 valued initial form；既有 Face/ROBDD 仍是 Boolean 極限 |
+| symlib | 有限範疇、預層、群作用、圖與範疇不變量 | `FinCat` representable 上的 sieves/`Sub(y(c))`；有限拓撲 thin category、skeleton 與分量互校 |
+| semiring | 冪等／熱帶半環、路徑代數、Boolean 閉包、Newton 細分 | Boolean／有界 tropical 矩陣 residuals 與 star 的原生閉包互校；`BPoly` argmin、對偶與平衡檢查 |
+| finalg | 有限域多項式、理想與 Gröbner 基、有限 Spec | valued initial form 的 `F_p` residue；有限代數與理想格的 blueprint 實例；角點樣本細化 |
+| catmath | 有限範疇、有限拓撲、同調與型別論模型 | `FinTop` 開集與 opposite-thin sieve 退化；有限群／么半群與格模型的 theory-morphism 對照 |
+| bridge | 只負責可證偽的共同片段、共同不變量與證書 | GU-001…GU-005 報告、`check_*`、wbtest、21 項語義證書及 v1 certificate envelopes |
 
-## 去重審計與八成驗收判定（2026-10-27）
+## GU 五個有限核心（2026-10-27 落地）
+
+| ID | 已實作的有限核心 | 差分 oracle／反例 | 明示未竟部分 |
+|---|---|---|---|
+| GU-001 | 精確多變量 `Poly` 在固定素數 `p` 與整數權重下的 initial form、`F_p` residue form、單項式判定；有界格上分 excluded／candidate，principal 時分類精確 | 單變量對 semiring p-進根／角點；雙變量對 `BPoly` argmin、Newton 細分、平衡、ties 與面積 | 一般 Chan–Maclagan valued Gröbner、任意理想 initial ideal 的完備判定與多面體 tropical variety |
+| GU-004 | Boolean 關係 quantale、合成左右 residuals、star；有界非負 tropical 矩陣的 min-plus residuals 與 star | Boolean `n≤2` 全律窮舉、顯示三元組 `n≤3` brute residual；tropical 小域窮舉；semiring 原生矩陣乘法／閉包；Boolean support 可達性 | 無界／一般 quantale 與任意符號 tropical 矩陣的完整理論 |
+| GU-003 | 有限範疇 representable 上以 morphism-mask 表示 sieves，窮舉 `Sub(y(c))` 的 meet/join/implication/negation 與 pullback | Heyting 伴隨窮舉；pullback 保運算；opposite thin category 中 sieve domains 恰與 Alexandrov opens 的局部限制互校 | 任意 presheaf 的全部子物件分類、一般 STLC 語法子型別與 coercion |
+| GU-002 | 有限交換乘法么半群＋成對加法關係的 blueprint presentation、formal-sum normalizer、小和同餘／局部合流檢查與 complete 時的 semiring shadow | 自由么半群、`F_p`、finalg 有限代數與 distributive 理想格、Bool／有界 tropical 與 semiring 原生運算、有限拓撲／Spec opens | 一般 blueprint／band 的概形論、態射與覆蓋 |
+| GU-005 | 有限 theory presentations 與 `monoid→group`、`bounded-lattice→heyting` 兩條可執行 theory morphisms；模型限制與同載體反射判定；五成員 mode 註冊只作治理索引 | 群忘記逆元後對 catmath 自由么半群伴隨；非單位元見證；FinTop Heyting 限制與既有 interior implication；`M3` 非分配反例 | 一般 Lawvere／多類理論、operad／monad 引擎與 cubical dependent modes |
+
+證書層同步加入版本化 envelope：canonical length-prefixed
+序列化、雙 FNV-1a 摘要與向現行 registry 重算核驗。它是
+完整性與重驗接口，不是密碼學簽章，也不另列一項語義證書
+膨脹分母。
+
+## 去重審計與八成驗收判定（2026-10-27，v1 快照）
 
 ### 判定口徑
 
@@ -64,7 +81,7 @@
 | 二元 BPoly 附帶檢查原本只取第一個合資格生成元 | 改為彙總全部合資格生成元，避免欄位名承諾大於實際檢查 |
 | 缺口 `UNI-002`／`BRG-007`、以及 `BRG-005`／`GU-001` 內容重疊 | 分別以 `BRG-007`、`GU-001` 為正本，其餘只保留併入指向 |
 
-去重後 `bridge_certificates()` 是 **16 項跨成員語義證書**。
+GU 施工前的去重快照中，`bridge_certificates()` 是 **16 項跨成員語義證書**。
 原有公共函數沒有因證書去重而刪除，所以這是證據分母收攏，
 不是削弱覆蓋；被包含的 adapter 檢查仍可直接呼叫，也仍在
 wbtest 源碼中。
@@ -118,6 +135,27 @@ blueprints/bands、無限範疇或完整導出／同倫語義，分母亦
 功能互覆蓋當分母，本輪不宣稱八成；該口徑既不需要，也會
 迫使系統抹除已明示的非等價。
 
+### GU 施工後覆核
+
+五個有限核心加入後，證書正本由 16 項增至 **21 項**；這
+只表示多了五個可獨立重算的跨成員語義圖表，不能按
+`21/16` 線性加分。沿用同一分母與同一量表，只調整有新
+可執行證據的分項：
+
+| 分項 | v1 | GU 後 | 調整理由 |
+|---|---:|---:|---|
+| 邏輯與語義子型別 | 9/10 | 10/10 | representable sieves 給出有限 `Sub(y(c))` 的 Heyting 結構與 pullback，並退化到 Alexandrov opens |
+| 熱帶幾何 | 6/10 | 8/10 | 多變量 valued initial forms 與 principal 精確格分類落地；仍缺 valued Gröbner 與多面體簇 |
+| 序半環與路徑語義 | 5/6 | 6/6 | Boolean 與有界 tropical 矩陣 residuals／star 已窮舉伴隨並與原生閉包互校 |
+| 報告與證書模型 | 3/4 | 4/4 | v1 envelope 具版本、canonical 序列化、雙摘要與 registry 重驗；仍非簽章 |
+| 其餘分項 | — | 不變 | blueprint 與 theory/mode 主要補上共同表示與模型對照，未把一般概形或 dependent modes 誇大計分 |
+| **合計** | **82/100** | **87/100** | 運行與外部證據仍計 0/4 |
+
+因此更新判定是 **87/100**：仍在原先估計的有限枚舉上限
+85–90 内，且刻意不把五個有限核心誤作五套一般理論已
+完備。若分母改為五成員全部原生功能互覆蓋，仍不宣稱
+八成。
+
 ## 文獻軸一：內部邏輯、Heyting 代數與邏輯子型化
 
 範疇邏輯的基本事實是：topos 中任一物件的子物件偏序
@@ -158,6 +196,17 @@ Boolean。這正是 Boolean Face 語義與拓撲內部邏輯之間誠實的
 - 聚合範例包含非 Boolean 的三點鏈加孤點、Boolean 離散拓撲，
   以及 finalg 有限 Spec 轉成的 Alexandrov 拓撲。
 
+GU-003 再把同一邏輯軸範疇化到
+`bridge/federation_presheaf_heyting.mbt`：在 symlib
+`FinCat` 的 representable `y(c)` 上以 morphism bitmask
+枚舉 sieves，逐對／逐三元組驗證 meet、join、implication
+的 Heyting 伴隨與 pseudocomplement，並對每條入射態射
+檢查 pullback 保序、meet、join 與 implication。取有限
+Alexandrov 預序的 opposite thin category 時，open 的局部
+限制是 sieve，而每個 sieve 的 domain 集合本身是 open，
+並能由限制重建該 sieve；這是局部退化對照，不把任意
+representable 子物件等同一個全域 open。
+
 這不是替 cubical 或 catmath 的 STLC 宣稱一般子型別系統；
 它是任何此類擴展都必須尊重的有限語義子型別格。真正的
 型別層子型別、型別推斷與相干 coercion 仍未實作。
@@ -197,38 +246,60 @@ tropicalization 極限定理提升到 band schemes。這些是重要
    ideal membership。雙變量時再以 semiring `BPoly` 檢查
    Newton 細分面、對偶 ties、面積與平衡殘差。
 
+GU-001 其後在 `bridge/federation_valued_initial.mbt`
+補上真正的多變量 valued 核心：輸入是精確 `algebra/`
+的 `Poly`、固定素數 `p` 與整數權重（有理權重方向取正
+整數倍代表元），逐項算 `v_p(c_alpha)+alpha·w`，輸出
+精確 initial form 與把係數 unit part 約化後的 finalg
+`F_p` residue form。principal 情形在有界格上的
+candidate/excluded 分類精確；多生成元時只作 sound
+exclusion 與 candidate 外逼近。單變量以既有 p-進根／
+角點報告、雙變量以 semiring `BPoly` 的 argmin 與
+Newton 細分作差分 oracle。GU-002 的有限 blueprint
+則只提供乘法么半群＋有限加法關係的表示層，未把這一步
+升格為概形化。
+
 明示非宣稱：lex Gröbner 基未必是 tropical basis；有限域
 係數的平凡賦值支撐像不是一般賦值域上的完整 tropical
 variety；有限格點交集不是多面體扇、tropical ideal、
 tropical scheme 或 band scheme。一般賦值 Gröbner 基、
-權重初始理想和完整多面體複形列為後續工程缺口。
+任意生成元集合的完整權重初始理想判定和多面體複形仍
+列為後續工程缺口。
 
 ## 其他已查核但本輪不冒充實作的統一角色
 
 | 方向 | 文獻給出的統一機制 | 目前裁決 |
 |---|---|---|
-| Lawvere theories／monads／operads | 以模型範疇與 theory morphisms 比較代數理論；Fujii 的框架再把多種 algebraic theory 表示為 monoidal 範疇中的 monoid objects | 未來可作語法軸；現有 symlib/catmath 只有片段表示，未造共同 theory 物件 |
-| Quantales／residuated relations | Boolean 矩陣對合成也有 residuation；新近工作把 quantales 表示為 residuated relations 的形式概念格 | 目前只有 Boolean 星閉包與 Heyting 的 meet-residual；矩陣左右 residual 未實作 |
-| Presheaf／sieve 子物件 | Ω 在 presheaf topos 中由 sieves 給出，是有限 Heyting 的範疇化版本 | 未來可把開集片語推廣到 symlib presheaves；本輪先做點集 Alexandrov 層 |
-| Blueprints／bands／`F_1` 幾何 | 在環、半環、么半群與 hyperfield 之上建立共同概形論 | 長期幾何軸；需先定義有限 blueprint 的乘法么半群與加法關係，不以現有 Spec 改名冒充 |
-| Cubical modal type theory | 不同 modes 是 cubical type theory 的副本，由 dependent right adjoints 連接 | 可啟發「成員即 mode」的語言，但目前沒有 mode 形成規則、鎖鑰或相干定理 |
+| Lawvere theories／monads／operads | 以模型範疇與 theory morphisms 比較代數理論；Fujii 的框架再把多種 algebraic theory 表示為 monoidal 範疇中的 monoid objects | 已落地有限單類 presentations 兩條 morphisms 與模型限制／反射；一般多類、operad／monad 引擎仍未實作 |
+| Quantales／residuated relations | Boolean 矩陣對合成也有 residuation；新近工作把 quantales 表示為 residuated relations 的形式概念格 | Boolean 與有界非負 tropical 矩陣的左右 residuals、伴隨與 star 已實作；無界一般 quantale 未擴張 |
+| Presheaf／sieve 子物件 | Ω 在 presheaf topos 中由 sieves 給出，是有限 Heyting 的範疇化版本 | representable 上的 sieves、Heyting 運算與 pullback 已實作；任意 presheaf 子物件的統一表示仍未擴張 |
+| Blueprints／bands／`F_1` 幾何 | 在環、半環、么半群與 hyperfield 之上建立共同概形論 | 有限 blueprint presentation 與環／半環／理想格／Spec opens 實例已實作；blueprint/band schemes 仍是長期研究軸 |
+| Cubical modal type theory | 不同 modes 是 cubical type theory 的副本，由 dependent right adjoints 連接 | 本倉 mode 只作五成員原生片段的治理註冊，並由 GU-005 的有限 theory morphisms 提供模型對照；不冒充 cubical dependent modes |
 | Derived／homological 統一 | 以鏈複形、導出函子與同調不變量比較代數表示 | 第二波已有有限秩／SNF 片段；未擴成導出範疇 |
 
 ## 後續施工順序
 
-1. **賦值多變量初始形式**：先為精確整係數多變量表示定義
-   權重與 p-進係數賦值的共同輸入，再做 initial form 是否
-   含單項式的有限權重判定；不可直接把 F_p lex GB 改名。
-2. **有限關係 quantale**：為 Boolean 矩陣合成增加左右
-   residuals，窮舉伴隨律，並與 symlib 可達性、semiring
-   星閉包互校。
-3. **Presheaf Heyting**：在有限範疇的 representable 上以
-   sieves 建子物件格，檢查 pullback 與 Heyting 運算如何
-   退化到本輪 Alexandrov 開集。
-4. **有限 blueprint**：只取有限乘法么半群加有限加法關係，
-   用 finalg 理想與 semiring 半環各給一個可對照的實例。
-5. **Theory/mode 註冊**：在有可執行 theory morphism 前，
-   只保留研究登記，不先增加裝飾性的註冊表欄位。
+原五步已按「valued initial form → relation quantale →
+presheaf sieves → finite blueprint → theory/mode」的次序
+完成有限核心。下一階段若再擴張，優先級應是：
+
+1. **運行證據**：在負責人恢復測試政策後，先實跑 bridge
+   wbtest、showcase 與全倉門檻；任何 GU 報告的運行失敗
+   都應回溯到來源判定器，不可改範例掩蓋。
+2. **賦值 Gröbner**：在精確表示上實作 homogeneous
+   valued Buchberger／initial ideal 的完備有限判定，並
+   與 principal initial-form 分類差分對拍。
+3. **多面體與 tropical ideals**：由 Gröbner fan／正則
+   細分輸出 cones 與 multiplicities，不再以格點樣本代替
+   完整 tropical variety。
+4. **一般 presheaf 子物件**：由 representable sieves
+   擴到任意有限 presheaf 的逐點子物件與自然性檢查。
+5. **Blueprint／band 幾何**：在有限 presentation 上再
+   定義態射、局部化與 Spec；未有覆蓋與黏合定理前不稱
+   scheme。
+6. **一般 theory／mode**：先選多類或 dependent theory
+   的可判定片斷，再談 operad/monad 與 cubical modes；
+   註冊表本身不增加數學分數。
 
 ## 核心書目
 

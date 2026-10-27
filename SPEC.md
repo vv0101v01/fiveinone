@@ -6,7 +6,7 @@
 > `algebra/`）；symlib、semiring、finalg、catmath 的成邦前長文
 > 分別在各自根目錄的 `README.md`，成邦後位置見 `docs/FINALG.md`、
 > `docs/CATMATH.md`，唯一五成員橋見 `docs/BRIDGE.md`。
-> 逐符號附錄覆蓋全倉 **39 個套件、6,330 個公開符號**。
+> 逐符號附錄覆蓋全倉 **39 個套件、6,610 個公開符號**。
 >
 > **現行發布身份**：儲存倉為 <https://github.com/vv0101v01/golden>，
 > MoonBit module 為 `vv0101v01/cubical-hermitian`。全倉現況見

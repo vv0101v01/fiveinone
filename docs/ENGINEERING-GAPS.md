@@ -30,6 +30,9 @@
 | DOC-005 | MoonBit 模組描述與關鍵字已更新為五系統聯邦 | `moon.mod` |
 | INT-000 | algo 的 12 個 packages、algo4 函式庫與兩者全部 test/wbtest 已機械搬入；finalg 以明確 `pub extend` 取代全域 warning 抑制，catmath executable 已拆至 `cmd/catmath`，五系統接口先集中施工，現已併入唯一 `bridge/` | [BRIDGE](BRIDGE.md)、[MIGRATION](MIGRATION.md) |
 
+| GU-001…005（有限核心） | 多變量 valued initial forms、Boolean／有界 tropical relation quantales、representable sieves、finite blueprints 與兩條 theory morphisms 已在唯一 `bridge/` 落地；一般理論餘項留在下方 GU 表，不以有限核心改名結案 | `bridge/federation_valued_initial.mbt`、`federation_relation_quantale.mbt`、`federation_presheaf_heyting.mbt`、`federation_blueprint.mbt`、`federation_theory_modes.mbt`、[GRAND-UNIFICATION](GRAND-UNIFICATION.md) |
+| BRG-007 | bridge 證書已有 v1 envelope、canonical length-prefixed 序列化、雙 FNV-1a 摘要與 registry 重驗 API；envelope 不另列語義證書 | `bridge/certificates.mbt`、[BRIDGE](BRIDGE.md) |
+
 ## 發佈、歷史與儲存倉治理
 
 | ID | 優先級／狀態 | 缺口與影響 | 證據／下一步與驗收 |
@@ -60,8 +63,8 @@
 
 | ID | 優先級／狀態 | 缺口與影響 | 證據／下一步與驗收 |
 |---|---|---|---|
-| API-001 | P1／待實作 | 以 `abort(` 文字計，生產碼約 287 處（finalg 131、symlib 98、semiring 25、bridge 23、catmath 9、cmd 1；`unwrap` 等其他 panic 邊未計）；外部呼叫者對形狀錯誤、上限與前提失敗拿不到結構化錯誤 | 先按「不可恢復不變量／使用者輸入／資源上限」分類，再為 bridge 與新 API 提供 `Result` 版本；不得一次機械改寫 6,330 個符號 |
-| API-002 | P1／待實作 | 上限參數、回傳慣例混雜：`Int32 cap`、`Int64` 計數、Option、Bool 驗證器與 abort 並存；超限是否完整、是否部分結果要逐 API 查文檔 | 定義共用 budget／outcome 形狀和命名規則，優先套用到列舉 API；每個新 API 必須明寫完整、截斷或失敗語義 |
+| API-001 | P1／待實作 | 以 `abort(` 文字計，生產碼約 287 處（finalg 131、symlib 98、semiring 25、bridge 23、catmath 9、cmd 1；`unwrap` 等其他 panic 邊未計）；外部呼叫者對形狀錯誤、上限與前提失敗拿不到結構化錯誤 | 先按「不可恢復不變量／使用者輸入／資源上限」分類，再為 bridge 與新 API 提供 `Result` 版本；不得一次機械改寫 6,610 個符號 |
+| API-002 | P1／待實作 | 上限參數、回傳慣例混雜：`Int32 cap`、`Int64` 計數、Option、Bool 驗證器與 abort 並存；超限是否完整、是否部分結果要逐 API 查文檔 | 定義共用 budget／outcome 形狀和命名規則，優先套用到列舉 API；每個新 API 必須明寫完整、截斷或失敗語義。2026-10-27 新增 GU API 已先統一用 `Option` 或 `valid/supported` 報告並寫明窮舉上限，但全倉共用 budget 型別仍未定 |
 | API-003 | P1／待實作 | 尚無 semantic versioning、deprecation 週期或穩定／實驗 API 分級；逐符號附錄只證明存在，不證明穩定 | 在第一個 tag 前發布相容政策，並在附錄生成器外維護穩定面清單；實驗符號不得默默升格 |
 | API-004 | P2／已接受 | 兩個 `algebra`、兩個 `Graph`、`Rat`、`Mat` 等同名概念造成 alias 負擔 | 聯邦邊界刻意保留；所有跨套件範例必須用完整路徑或 `exact`、`searched`、`weighted` 等語義 alias，索引不可裸寫「algebra」 |
 | API-005 | P2／待實作 | `weighted_graph_report.canonical_encoding` 來自 support 圖與頂點簽名顏色，不是完整加權有向圖標準形；不同邊權結構理論上可碰撞到同一編碼 | 在 [BRIDGE](BRIDGE.md) 已明文降格為診斷鍵；真正 canonical form 需把方向、邊重與缺邊編入顏色／編碼並加差分測試 |
@@ -138,7 +141,7 @@
 
 | ID | 優先級／狀態 | 缺口與影響 | 下一步／驗收方向 |
 |---|---|---|---|
-| UNI-001 | P1／待實作 | 去重後 16 項跨成員語義 bridge 證書已寫成可執行函數，但本階段與 ENG-009 一樣未運行；目前只能宣稱轉換器成功編譯，不能宣稱往返與互校在五成員樹上已通過 | 運行期先單跑 bridge wbtest 與 `cmd/showcase` 保存輸出，再跑全倉；任何失敗先定位到來源表示，不可改證書樣本掩蓋 |
+| UNI-001 | P1／待實作 | 現行 21 項跨成員語義 bridge 證書已寫成可執行函數，但本階段與 ENG-009 一樣未運行；目前只能宣稱轉換器成功編譯，不能宣稱往返與互校在五成員樹上已通過 | 運行期先單跑 bridge wbtest 與 `cmd/showcase` 保存輸出，再跑全倉；任何失敗先定位到來源表示，不可改證書樣本掩蓋 |
 | UNI-002 | P2／已併入 | 與 BRG-007 是同一 certificate envelope 工程債，不再重複維護 | 以 BRG-007 為正本 |
 | UNI-003 | P2／已接受 | 直接橋已覆蓋有限範疇／群／G-集、單變量多項式、整數矩陣、布林函數、有限拓撲／Spec、功能圖、有限同調、S¹ 與窄 STLC；多變量 Q→finalg、一般 finalg scheme/module→catmath derived 等尚無共同資料模型 | 逐項以可逆性、反例、成本與來源判定器設計；不得為了覆蓋率在成員間共用私有表示 |
 | UNI-004 | P2／待實作 | 群列舉、範疇表轉換與律檢查具平方／三次方成本，現以 `cap`／Option／Bool 分散表達，沒有共用 budget 或部分結果形狀 | 納入 API-002 的共用 outcome 設計；新轉接器先明寫大小上限與超限結果 |
@@ -155,7 +158,7 @@
 | BRG-004 | P2／已接受 | 自由範疇橋只接受 DAG，轉換會枚舉全部路徑並物化合成表；有環圖的自由範疇一般有無限多態射 | 有環版本只能採生成元＋關係或截斷長度表示，不能塞入現有 `FinCat` 全表 |
 | BRG-005 | P2／已併入 | 一般有理賦值、多變數熱帶化與 Newton／根賦值 oracle 已由 GU-001 統一追蹤，不再重複維護 | 以 GU-001 為正本 |
 | BRG-006 | P2／待實作 | Face 半環 star 在有限布爾格上恆為 top，尚無胞腔傳播應用；正方形胞腔只是固定展示，沒有一般定向、邊界符號或參數化胞腔複形 | 下一期橋接應先定 cell complex 資料型別與邊界算子，不再增加只含固定例子的符號 |
-| BRG-007 | P2／待實作 | bridge 證書只投影成共同 `source/name/ok/detail`，沒有版本、序列化格式、摘要或重驗 API（吸收原 UNI-002） | 定義版本化 certificate envelope；舊來源的完整證據仍留在各支柱，bridge 只保存可重驗引用 |
+| BRG-007 | P2／已關閉 | bridge 證書現有 v1 envelope：canonical length-prefixed 序列化、雙 FNV-1a 摘要、逐項與全 registry 重驗 API（吸收原 UNI-002） | `BridgeCertificateEnvelope`、`bridge_certificate_envelopes_report`；摘要只作完整性 checksum，不是密碼學簽章，來源完整證據仍留在各支柱 |
 | BRG-008 | P2／待實作 | `weighted_graph_report` 內部重算候選與對稱，且同時做 projector、距離閉包與特徵多項式；大圖時沒有分段 budget 或部分報告 | 拆成可組合階段並共用候選枚舉；report API 明寫每個欄位成本和超限行為 |
 | BRG-009 | P2／已接受 | cubical STLC 的 `quote_eta` 會把任何 `LUnit` 項塌縮為單位值，catmath `eta_long` 不對 `SOne` 中性項作同一塌縮；兩邊 raw normal form 因此不是同一相等 | bridge 報告同時保存 raw equality 與顯式 unit-η completion；若要 raw 相等，必須改 catmath 範形定義或引入型別化商，不可在橋中靜默抹除差異 |
 | BRG-010 | P2／已接受 | 第二波交叉檢查多為小有限窮舉：assignments、子集、Hom、群元素與矩陣形狀在尺寸增大時成本急升，部分 API 只以 `Bool`/Option 匯總失敗原因 | 新報告先加成本欄位與分段 outcome；大規模版本必須換符號或增量算法並與窮舉 oracle 差分對拍 |
@@ -164,12 +167,11 @@
 
 | ID | 優先／狀態 | 目前證據與缺口 | 完成標準 |
 |---|---|---|---|
-| GU-001 | P1／待實作 | 已有 p-進單變量熱帶超曲面與有限域支撐的有界角點樣本；尚無一般有理賦值、多變量初始形式、賦值 Gröbner 基、Newton／根賦值系統差分 oracle 或完整多面體 tropical variety（吸收原 BRG-005） | 先固定賦值域上的精確表示，做權重初始形式與「初始理想含單項式」判定；再逐步對齊 Chan–Maclagan 算法，不得把 lex GB 改名 |
-| GU-002 | P2／待實作 | tropical ideals、半環概形、blueprints 與 bands 目前只有文獻角色地圖，沒有共同表示 | 先實作有限 blueprint（乘法么半群＋有限加法關係）的最小可執行模型，並給 finalg／semiring 兩側可核對實例 |
-| GU-003 | P1／待實作 | Heyting 片段已覆蓋有限 Alexandrov 開集；presheaf sieves、一般 STLC 子型別與 coercion 相干性未實作 | 先在有限範疇 representable 上做 sieves／pullback；型別層子型別另立規格，不把 refinement 包含直接等同語法子型別 |
-| GU-004 | P2／待實作 | Boolean 星閉包與 Heyting meet-residual 已存在；Boolean／熱帶矩陣的左右 residuals 尚未形成有限 quantale 報告 | 窮舉合成與 residual 的伴隨律，並與 symlib 可達性、semiring 星閉包互校 |
-| GU-005 | P2／研究中 | Lawvere theory／monad／operad 與 cubical modes 已形成文獻地圖，但沒有共同 theory 物件或 mode 系統 | 只有在能給可執行 theory morphism 與模型對照時才進 bridge；不得以裝飾性註冊欄位冒充統一 |
-
+| GU-001 | P1／有限核心已實作；完整算法研究級 | 精確多變量 `Poly` 已有固定 p-進賦值與整數權重的 initial/residue forms、單項式判定、principal 精確有界分類、多生成元 sound exclusion／candidate，及單變量根與雙變量 BPoly/Newton oracles；尚無一般 Chan–Maclagan valued Gröbner、任意 initial ideal 完備判定或多面體 tropical variety（吸收原 BRG-005） | 下一步在同一精確表示上做 homogeneous valued Buchberger，並以 principal 分類為差分 oracle；不得把 lex GB 改名 |
+| GU-002 | P2／有限核心已實作；概形化研究級 | 有限交換乘法么半群＋成對加法關係、formal-sum normalizer 與小和同餘／合流報告已落地，並有自由么半群、`F_p`、finalg 有限代數／distributive 理想格、Bool／有界 tropical 與 FinTop/Spec opens 實例 | 一般 blueprint／band 仍需態射、局部化、Spec、覆蓋與黏合；在有這些定理前只稱有限 presentation |
+| GU-003 | P1／有限核心已實作；一般化待實作 | representable 上的 sieves 已窮舉 Heyting 運算、伴隨與 pullback，並與 opposite-thin Alexandrov opens 局部退化互校；任意 presheaf 子物件、一般 STLC 子型別與 coercion 相干性未實作 | 先擴到任意有限 presheaf 的逐點子物件與自然性；型別層子型別另立規格，不把 refinement 包含直接等同語法子型別 |
+| GU-004 | P2／有限核心已實作 | Boolean 關係與有界非負 tropical 矩陣均有左右 residuals、伴隨窮舉（在明示小域）、star 固定點，並與 semiring 原生乘法／閉包及 Boolean support 可達性互校 | 無界、任意符號或一般 quantale 需另定完備格與飽和算術規格；現行報告的 `exhaustive_supported` 不得省略 |
+| GU-005 | P2／有限核心已實作；一般理論研究級 | 已有有限 theory presentations、`monoid→group` 與 `bounded-lattice→heyting` morphisms、模型限制／同載體反射及非單位元／`M3` 反例；mode 註冊只作治理索引 | 一般 Lawvere／多類／dependent theory、operad／monad 與 cubical modes 仍需可執行語法與模型定理，不得以註冊欄位冒充 |
 ## 文檔、雙語與生成物
 
 | ID | 優先級／狀態 | 缺口與影響 | 下一步／驗收方向 |
@@ -194,4 +196,7 @@
    catmath 拆包（CAT-001）只在運行基線後按 SCC 推進。
 6. bridge 優先做精確有向邊色鍵及 canonical form（`BRG-001`、`API-005`），
    不再添加沒有一般資料型別的固定展示。
-7. 理論界限按研究價值逐項開期；沒有新證明或新算法前，保持「已接受」。
+7. GU 有限核心之後，理論界限按 [GRAND-UNIFICATION](GRAND-UNIFICATION.md)
+   的 valued Gröbner、多面體、一般 presheaf、blueprint/band
+   幾何與一般 theory/mode 次序逐項開期；沒有新證明或新
+   算法前，保持「已接受／研究級」。

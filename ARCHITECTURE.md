@@ -297,12 +297,13 @@ semiring/par_host (native-only) ──► moonbitlang/async
 components，全量由 `tools/arch_check.py` 輸出，不在本文手抄檔案明細。
 
 2026-10-27 的大一統研究不引入第六成員或新 package：
-`federation_heyting.mbt`、
-`federation_tropical_varieties.mbt` 與
-`federation_unification_checks.mbt` 仍只屬於 `bridge/`。
-文獻角色、熱帶概形與 blueprint／band 的未實作邊界集中在
+第三波 Heyting／tropical 檔案與第四波 valued initial、
+relation quantale、presheaf sieve、finite blueprint、
+theory/mode 檔案仍只屬於 `bridge/`。文獻角色與一般
+valued Gröbner、tropical variety、blueprint／band scheme
+的未實作邊界集中在
 [docs/GRAND-UNIFICATION.md](docs/GRAND-UNIFICATION.md)，不把
-研究方向登記成已存在的架構層。
+研究方向或有限 presentation 登記成已存在的架構層。
 
 發布後治理另分三層：
 

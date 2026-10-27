@@ -62,7 +62,7 @@
 | 文件 | 分類 | 用途 |
 |---|---|---|
 | [`docs/BRIDGE.md`](BRIDGE.md) | 現行 | 唯一五成員 bridge：疊加／直接之別、相容圖表、推導定理與邊界 |
-| [`docs/GRAND-UNIFICATION.md`](GRAND-UNIFICATION.md) | 現行 | 2026-10-27 聯網文獻研究、五成員角色、Heyting 子型化、熱帶幾何、定理／演算法去重與 82/100 驗收判定 |
+| [`docs/GRAND-UNIFICATION.md`](GRAND-UNIFICATION.md) | 現行 | 2026-10-27 聯網文獻研究、五成員角色、GU 五個有限核心、定理／演算法去重、82/100 v1 判定與 87/100 覆核 |
 | [`docs/FINALG.md`](FINALG.md) | 現行 | finalg 在聯邦內的 package 圖、proof 資產與精確代數分工 |
 | [`docs/CATMATH.md`](CATMATH.md) | 現行 | catmath 在聯邦內的內容分域、單包邊界與 executable 拆分 |
 | [`docs/MIGRATION.md`](MIGRATION.md) | 現行 | 五來源到 golden 的 import 對照、遷移狀態與決策史 |

@@ -222,6 +222,33 @@ fn tropical_points_subset(
 }
 
 ///|
+fn tropical_bpoly_subdivision_flags(
+  bpoly : @strop.BPoly,
+) -> (Bool, Bool, Bool, Bool, Bool) {
+  guard bpoly.terms.length() >= 3 && bpoly.newton_area2() > 0L else {
+    return (false, false, false, false, false)
+  }
+  let faces = bpoly.subdivision()
+  if faces.length() == 0 {
+    return (true, false, false, false, false)
+  }
+  let (dual_ok_count, dual_bad_count) = bpoly.check_duality(faces)
+  let duality_ok = dual_bad_count == 0 && dual_ok_count == faces.length()
+  let edges = bpoly.dual_curve(faces)
+  let residuals = @strop.balancing_residuals(edges, faces.length())
+  let mut balancing_ok = residuals.length() == faces.length()
+  for (_, residual_x, residual_y) in residuals {
+    if residual_x != 0L || residual_y != 0L {
+      balancing_ok = false
+    }
+  }
+  let (_, _, unexplained) = bpoly.check_ties_on_faces(faces, 256, 7717UL)
+  let ties_ok = unexplained == 0
+  let area_ok = bpoly.subdivision_area2(faces) == bpoly.newton_area2()
+  (true, duality_ok, balancing_ok, ties_ok, area_ok)
+}
+
+///|
 fn tropical_bpoly_checks(
   polys : Array[@finalg.Poly],
 ) -> (Bool, Bool, Bool, Bool, Bool) {
@@ -238,35 +265,17 @@ fn tropical_bpoly_checks(
       Some(bpoly) => bpoly
       None => continue
     }
-    guard bpoly.terms.length() >= 3 && bpoly.newton_area2() > 0L else {
+    let (one_supported, duality_ok, balancing_ok, ties_ok, area_ok) = tropical_bpoly_subdivision_flags(
+      bpoly,
+    )
+    if !one_supported {
       continue
     }
     supported = true
-    let faces = bpoly.subdivision()
-    if faces.length() == 0 {
-      all_duality_ok = false
-      all_balancing_ok = false
-      all_ties_ok = false
-      all_area_ok = false
-      continue
-    }
-    let (dual_ok_count, dual_bad_count) = bpoly.check_duality(faces)
-    all_duality_ok = all_duality_ok &&
-      dual_bad_count == 0 &&
-      dual_ok_count == faces.length()
-    let edges = bpoly.dual_curve(faces)
-    let residuals = @strop.balancing_residuals(edges, faces.length())
-    let mut balancing_ok = residuals.length() == faces.length()
-    for (_, residual_x, residual_y) in residuals {
-      if residual_x != 0L || residual_y != 0L {
-        balancing_ok = false
-      }
-    }
+    all_duality_ok = all_duality_ok && duality_ok
     all_balancing_ok = all_balancing_ok && balancing_ok
-    let (_, _, unexplained) = bpoly.check_ties_on_faces(faces, 256, 7717UL)
-    all_ties_ok = all_ties_ok && unexplained == 0
-    all_area_ok = all_area_ok &&
-      bpoly.subdivision_area2(faces) == bpoly.newton_area2()
+    all_ties_ok = all_ties_ok && ties_ok
+    all_area_ok = all_area_ok && area_ok
   }
   if supported {
     (true, all_duality_ok, all_balancing_ok, all_ties_ok, all_area_ok)

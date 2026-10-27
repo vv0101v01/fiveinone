@@ -37,20 +37,22 @@
 跨成員圖表的方向、前提與邊界見 [BRIDGE](BRIDGE.md)，兩個新成員
 在聯邦內的位置另見 [FINALG](FINALG.md) 與 [CATMATH](CATMATH.md)。
 
-2026-10-27 再完成聯網文獻研究與第三波大一統切片，詳見
-[GRAND-UNIFICATION](GRAND-UNIFICATION.md)：有限 Alexandrov
-開集的 Heyting／可觀測子型別格，以及 p-進單變量熱帶超曲面
-與多變量有界 Gröbner-細化角點樣本。完整 tropical variety、
-賦值 Gröbner 基、tropical ideals、blueprints／bands 和
-一般 STLC 子型別仍是明示缺口，沒有以有限片段改名冒充。
+2026-10-27 再完成聯網文獻研究、第三波大一統切片與五個
+GU 有限核心，詳見 [GRAND-UNIFICATION](GRAND-UNIFICATION.md)：
+多變量 p-進 valued initial forms、Boolean／有界 tropical
+矩陣 quantale residuals、representable presheaf sieves、
+有限 blueprints，以及兩條可執行 theory morphisms 的模型
+限制／反射。完整 tropical variety、一般賦值 Gröbner 基、
+tropical ideals、blueprint／band schemes、一般 presheaf
+子物件與一般 STLC 子型別仍是明示缺口，沒有以有限片段
+改名冒充。
 
-同日完成去重與驗收審計：刪除 bridge 內完全同義的私有
-helper，舊 tropical flagship 不再重複第三波 p-進範例，
-證書清單由歷史累計 20 項收攏為 16 項跨成員語義正本。
-按「五成員可相容有限共同片段」作分母、且運行證據分項
-計 0 的 100 分量表，現況為 **82/100**，可作大一統 v1
-收貨；這不是五成員全部原生功能的覆蓋率。詳見
-[GRAND-UNIFICATION](GRAND-UNIFICATION.md)。
+同日先完成去重與 v1 驗收審計（證書收攏為 16 項、82/100），
+其後把五個 GU 定理族各加入一項正本證書，並為全部證書
+加入不另列證的 v1 envelope。現行證書為 **21 項**。按
+「五成員可相容有限共同片段」作分母、且運行證據分項計
+0 的同一量表覆核，現況為 **87/100**；這不是五成員全部
+原生功能的覆蓋率。
 
 ## 目前規模
 
@@ -60,13 +62,14 @@ helper，舊 tropical flagship 不再重複第三波 p-進範例，
 
 - 39 packages
 - 48 components
-- 323 `.mbt` files
-- 130,934 `.mbt` lines
-- 6,330 public symbols
+- 330 `.mbt` files
+- 135,485 `.mbt` lines
+- 6,610 public symbols
 
 逐套件符號數以 [SPEC-APPENDIX](../SPEC-APPENDIX.md) 的生成清單
-為準。bridge 套件現有 456 個分類符號，包含原三支柱橋、直接
-聯邦轉接器、第二波推導報告、第三波大一統切片與去重後 16 項跨成員語義證書入口。
+為準。bridge 套件現有 736 個分類符號，包含原三支柱橋、直接
+聯邦轉接器、第二至第四波推導報告、21 項跨成員語義證書
+與 certificate envelope 入口。
 
 ## 本階段驗證證據：compile-only
 
@@ -85,9 +88,9 @@ wasm-gc 與 native 的 `moon test --build-only --deny-warn`
 native report 的 `moon build`。
 
 完整 `sh tools/check_compile.sh` 已於 2026-10-27 在本輪
-五成員工作樹以 exit 0 完成；推送前另會在重建的 Git 樹重跑，
-以同時核對生成 `.mbti` 無漂移。即使完整閘門通過，也只證明
-compile-only，不是任何測試已通過。
+GU 權威工作樹以 exit 0 完成；封存前另會在重建的 Git 樹
+重跑，以同時核對生成 `.mbti` 無漂移。即使完整閘門通過，
+也只證明 compile-only，不是任何測試已通過。
 
 下列數字是**五成員整合前的舊三系統樹歷史證據**，不能當作目前
 五成員樹已實跑：
@@ -119,6 +122,11 @@ compile-only，不是任何測試已通過。
 - STLC 橋保留一處真實語義差異：cubical 的 unit-η 在 catmath
   raw 範形沒有對應塌縮；報告同時記錄 raw equality 與顯式
   completion，不製造假等價。
+- 第四波 GU 核心只在 `bridge/` 增加 valued initial、
+  relation quantale、presheaf sieve、finite blueprint 與
+  theory/mode 五份報告／檢查／wbtest，並把共用的 BPoly
+  subdivision 檢查抽成單一私有 helper；五成員原生算法
+  本體不作語義改寫。
 - 成員成邦前文檔已回收到各成員根目錄的一份 `README.md`；
   `AGENTS.md`、`SPEC.md`、`GUIDE.md` 只在聯邦首領根目錄保存；
   成邦後事項集中到本文件、BRIDGE、FINALG、CATMATH、MIGRATION

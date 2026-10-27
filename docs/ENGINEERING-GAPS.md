@@ -4,6 +4,25 @@
 > 詳細限制章節。新增已知限制時先在此登記，再連回擁有該限制的文件或程式。
 > [目前狀態](STATUS.md) 只寫已完成與已驗證的事實。
 
+## 🚧 現行重點工程缺口（先看這裏）
+
+- **公共 API 與安全**：`API-001` 結構化錯誤模型、`API-002`
+  共用 budget／outcome、`API-003` 相容與穩定分級，以及
+  `SEC-002` 的 `par_host` 臨時檔安全。
+- **套件與 bridge 實施債**：`CAT-001` 以靜態 SCC 量測推進
+  catmath 拆包；`BRG-001`／`API-005` 完成精確邊色鍵與
+  加權有向圖標準形；其餘按下方分域表處理。
+- **理論擴張**：`GU-001`…`GU-005` 已完成有限核心；一般
+  valued Gröbner、多面體 tropical variety、任意 presheaf
+  子物件、blueprint／band 幾何與一般 theory／mode 仍在
+  GU 分域表，不以有限片段冒充完成。
+- **發佈與外部治理**：`REL-001`、`REL-003`、`REL-004`
+  屬來源倉、版本與 GitHub 管理事項，分列於發佈分域表。
+
+所有測試、smoke、proof、coverage 與 runtime workflow 已
+按負責人決定暫停，集中移到文末「已暫停／非現行優先」；
+不要再把測試未執行列入上述現行工程排序。
+
 ## 狀態與優先級
 
 | 標記 | 意思 |
@@ -13,10 +32,12 @@
 | `待外部` | 需要儲存倉管理員或其他儲存倉操作 |
 | `已接受` | 有意保留的設計／理論邊界；只能擴展範圍，不能靠換說法消除 |
 | `研究級` | 需要新算法、形式化或研究工作，沒有可信的短工期 |
+| `已暫停` | 負責人已決定不執行、不排期；只保存事實紀錄，不列現行優先級 |
 
 優先級：`P0` 會阻止可信發佈；`P1` 應在下一個功能期前處理；`P2` 是
 可維護性／規模工作；`P3` 是研究或長期擴展。目前沒有已知的 P0 正確性
-缺陷；「沒有登記」不等於形式證明了不存在缺陷。
+缺陷；「沒有登記」不等於形式證明了不存在缺陷。`已暫停` 項目不使用
+現行 P 級排序；文末括號內的原 P 級只作歷史對照。
 
 ## 本次已關閉項目
 
@@ -44,20 +65,14 @@
 | REL-005 | P2／待外部 | GitHub 倉庫 description、topics、homepage 與 social preview 未納入版本控制 | 在 Settings 設定五系統描述；把最終文字回填 STATUS，避免倉庫頁面與 README 分叉 |
 | SEC-001 | P2／待實作 | 尚無 `SECURITY.md` 或漏洞披露流程；cubical 工件 checksum 只防意外損壞，不是密碼學簽章 | 決定私密通報渠道後新增 SECURITY；需要可信發行時再引入簽章金鑰管理，不得把一般 checksum 升級宣稱為簽章 |
 
-## CI、測試與可重現性
+## CI 與可重現性（不含測試執行）
 
 | ID | 優先級／狀態 | 缺口與影響 | 證據／下一步與驗收 |
 |---|---|---|---|
-| ENG-001 | P1／待外部驗證 | `.github/workflows/ci.yml` 的 compile-only job 尚需在 GitHub 主機實跑；本機通過不等於 hosted runner、網路依賴與 timeout 設定已證實；runtime/slow workflow 目前只登記為 manual | 首次發布五系統樹後保存 compile job 成功連結；若失敗，先修 workflow 再更新本項。運行期另保存 manual runtime workflow 的完整成功連結，不以 compile job 全綠代替 |
-| ENG-002 | P1／待實作 | 沒有覆蓋率基線或分套件門檻；舊樹 336／340 只表示舊測試全過，五系統新套件尚無運行覆蓋證據，不表示公共 API 或錯誤分支覆蓋充分 | 運行期先取得全倉通過證據，再用 `moon coverage` 產生分套件基線；先登記不設硬門檻，再為 root、bridge、finalg 與 catmath 定不倒退規則 |
 | ENG-003 | P1／待實作 | CI 以官方安裝腳本取得當時最新版 MoonBit，未鎖定完整 toolchain 版本或驗證下載摘要；上游升級可造成非程式碼變動失敗 | 找出可重現的版本參數／摘要流程，固定與本機驗證相同的 `moon`／`moonc` 組合，並保留手動 latest job 監察上游漂移 |
-| ENG-004 | P2／待實作 | 只有 Linux 實跑證據；macOS、Windows native、不同 CPU 的浮點／路徑／async 檔案行為未驗證 | CI 先加 macOS native check；Windows 需先審 `/tmp` 與 shell 腳本假設，不得用跨編譯 type-check 代替平台實跑 |
-| ENG-005 | P2／待實作 | 全套件耗時長且無分片、flaky 測試清單或時間預算；本機參考約為 wasm-gc 3.5 分鐘、native 8.4 分鐘、`cmd/main` 另約 3.8 分鐘 | 輸出逐 package 時間，識別最慢測試；只把統計上穩定的效能錨點入閘門，計時型斷言須有重跑／隔離政策 |
-| ENG-006 | P2／待實作 | 定律抽樣與差分 oracle 很強，但尚無 fuzz、property-based 生成基建、mutation testing 或 benchmark 趨勢資料庫 | 先為 parser／序列化、矩陣形狀、置換輸入加可種子化 fuzz；benchmark 只保存趨勢與硬體欄案，不以單次毫秒數作發佈門檻 |
 | ENG-007 | P2／已接受 | `arch_check.py` 是唯讀源碼近似推導，不是編譯器型別圖；`observer` 組件可合法星形依賴，不能用它證明任意新邊都合理 | 新 package／跨支柱邊仍須人工裁決；若 MoonBit 提供穩定依賴圖 API，再用編譯器輸出取代匯入掃描 |
 | ENG-008 | P2／待實作 | `.mbti` 與逐符號附錄均入庫，雖有 drift 閘門，但沒有 PR 摘要自動列出公共 API 增刪，審查大型生成 diff 成本高 | 產出按 package／kind 分組的 API diff 摘要供 PR 使用；生成檔本身仍不得手改 |
 
-| ENG-009 | P0／待實作 | 目前五系統樹按負責人指示只做 compile-only：全部 test/wbtest 已保留並可編譯，但**尚未執行任何單元測試、bridge 證書、cmd smoke 或慢報告**；因此不能對五系統作運行正確性宣稱 | 取得運行期授權後執行 `GOLDEN_RUN_TESTS=1 sh tools/check_full.sh`，按 wasm-gc／native 分列實數回填 STATUS；慢報告另以 `GOLDEN_RUN_SMOKE=1` 執行。未完成前不得發佈為已驗證版本 |
 
 ## 公共 API、錯誤模型與相容性
 
@@ -119,7 +134,6 @@
 
 | ID | 優先級／狀態 | 缺口與影響 | 下一步／驗收方向 |
 |---|---|---|---|
-| FIN-001 | P1／待外部 | `finalg/verify` 只完成普通型別／合約編譯；八個 proof goals 未在本環境以 `moon prove`、Why3、Z3、cvc5 重證；上游 Why3 config 還記錄特定 prover 版本與原 `/home/user` 前綴（已由 prove script 在臨時副本重基） | 在獲授權的 proof 運行期固定 why3/z3/cvc5 版本，執行 `finalg/prove.sh` 並保存完整輸出；若 prover 版本不同，先重生 config 並審查差異，不把 `moon check` 當 proof 證據 |
 | FIN-002 | P2／已接受 | finalg 核心是 `Int32` 模數、指數與小矩陣正規形；Gröbner、有限枚舉與 SNF/HNF 的實用邊界遠小於任意精度 CAS，多處前提以 abort 表達 | 保持有限小規模定位；若要擴展，先為模數／係數引入 BigInt 路徑並逐算法做差分 oracle，不得只放大型別而沿用未審的複雜度假設 |
 | FIN-003 | P2／已接受 | `finalg/cat` 的閉包 Category 不能一般地枚舉回有限表；finite scheme/HoTT 也只是有限呈現模型，不是一般概形論或完整 HoTT kernel | 轉接只定義表格→閉包方向；新增一般理論主張前必須給出有限化前提或獨立語義證明 |
 | FIN-004 | P2／待實作 | `finalg/testutil` 是公開 package 並進入符號附錄，但定位只是 test fixture；若被生產碼長期依賴，會把確定性測試產生器誤升成穩定 API | 在 API 穩定分級中標為 test-support；`architecture.json`／`moon.pkg` 繼續只允許 test-scope 匯入 |
@@ -131,7 +145,7 @@
 
 | ID | 優先級／狀態 | 缺口與影響 | 下一步／驗收方向 |
 |---|---|---|---|
-| CAT-001 | P1／待實作 | catmath 仍是約 45 檔、逾萬行的單一 MoonBit package；同一編譯單元使增量編譯、主題邊界與 API 審查成本高，但內部互相遞迴尚未有 SCC 量測 | 先取得五系統運行基線，再輸出去除 tests 的宣告依賴圖與 SCC；只有無環或可明示 SCC 的主題才逐一拆包，每拆一包都要維持 `.mbti` 與測試清單不倒退 |
+| CAT-001 | P1／待實作 | catmath 仍是約 45 檔、逾萬行的單一 MoonBit package；同一編譯單元使增量編譯、主題邊界與 API 審查成本高，但內部互相遞迴尚未有 SCC 量測 | 先輸出去除 tests 的靜態宣告依賴圖與 SCC 量測；只有無環或可明示 SCC 的主題才逐一拆包，每拆一包都要維持 `.mbti` 與公開符號清單不倒退 |
 | CAT-002 | P2／已接受 | 眾多 `verify_*` 是有限／抽樣可執行檢查，不是形式證明；公理窮舉的成本可達三次方或更高，函數名本身不記錄樣本域與完備性 | 與 DOC-009 一起在附錄外補逐函數域、複雜度與完備性元資料；引用時必須說清有限範圍 |
 | CAT-003 | P2／待實作 | catmath `snf_int` 會就地改寫入參 `IntMat.data`；不熟悉此慣例的呼叫者可能在求 SNF 後誤用原矩陣（bridge 已以深拷貝構造避開） | 增加不變入參的 `*_copy`／report 變體或在型別／命名上標示 in-place；舊 API 的破壞性語義在相容政策前不得靜默改變 |
 | CAT-004 | P2／待實作 | `canonical_index`／`derived_index` 是手寫敘事登記，未由檔案、宣告或測試自動對賬，新增算法時可靜默漏登 | 以生成介面與檔案清單核對索引覆蓋；手寫的定理敘事仍人工維護，但漏登應令治理工具失敗 |
@@ -141,7 +155,6 @@
 
 | ID | 優先級／狀態 | 缺口與影響 | 下一步／驗收方向 |
 |---|---|---|---|
-| UNI-001 | P1／待實作 | 現行 21 項跨成員語義 bridge 證書已寫成可執行函數，但本階段與 ENG-009 一樣未運行；目前只能宣稱轉換器成功編譯，不能宣稱往返與互校在五成員樹上已通過 | 運行期先單跑 bridge wbtest 與 `cmd/showcase` 保存輸出，再跑全倉；任何失敗先定位到來源表示，不可改證書樣本掩蓋 |
 | UNI-002 | P2／已併入 | 與 BRG-007 是同一 certificate envelope 工程債，不再重複維護 | 以 BRG-007 為正本 |
 | UNI-003 | P2／已接受 | 直接橋已覆蓋有限範疇／群／G-集、單變量多項式、整數矩陣、布林函數、有限拓撲／Spec、功能圖、有限同調、S¹ 與窄 STLC；多變量 Q→finalg、一般 finalg scheme/module→catmath derived 等尚無共同資料模型 | 逐項以可逆性、反例、成本與來源判定器設計；不得為了覆蓋率在成員間共用私有表示 |
 | UNI-004 | P2／待實作 | 群列舉、範疇表轉換與律檢查具平方／三次方成本，現以 `cap`／Option／Bool 分散表達，沒有共用 budget 或部分結果形狀 | 納入 API-002 的共用 outcome 設計；新轉接器先明寫大小上限與超限結果 |
@@ -184,19 +197,35 @@
 
 ## 建議執行順序
 
-1. 運行期獲授權後先關閉 `ENG-009`／`UNI-001`：取得五系統 wasm-gc、
-   native 的實際測試數字與全部 smoke 證據，未完成前不作可信發佈。
-2. 完成 `REL-001`、`REL-004` 與 `ENG-001`，令四個來源倉導流、CI
-   強制度與 hosted compile/runtime 運行都有外部證據。
-3. 在合適的外部工具環境執行 FIN-001 的 proof pipeline；不得把它
-   併入一般單元測試統計。
-4. 建立第一個版本與相容政策（`REL-003`、`API-003`），再開 API 錯誤
-   模型分期遷移（`API-001`、`API-002`）。
-5. 修 `SEC-002`，並建立覆蓋率與工具鏈鎖定（`ENG-002`、`ENG-003`）；
-   catmath 拆包（CAT-001）只在運行基線後按 SCC 推進。
-6. bridge 優先做精確有向邊色鍵及 canonical form（`BRG-001`、`API-005`），
-   不再添加沒有一般資料型別的固定展示。
-7. GU 有限核心之後，理論界限按 [GRAND-UNIFICATION](GRAND-UNIFICATION.md)
+1. 先處理公共 API 與安全實施債：`API-001`、`API-002`、
+   `API-003` 與 `SEC-002`。
+2. 完成 bridge 精確有向邊色鍵及 canonical form
+   （`BRG-001`、`API-005`），並以靜態 SCC 量測推進
+   catmath 拆包（`CAT-001`）。
+3. 發佈與外部治理（`REL-001`、`REL-003`、`REL-004`）
+   只在負責人或管理員需要對外發佈時處理，不與代碼工程
+   缺口混排。
+4. GU 有限核心之後，理論界限按 [GRAND-UNIFICATION](GRAND-UNIFICATION.md)
    的 valued Gröbner、多面體、一般 presheaf、blueprint/band
    幾何與一般 theory/mode 次序逐項開期；沒有新證明或新
    算法前，保持「已接受／研究級」。
+5. 其餘項目按上方分域表的 P1／P2 推進；文末已暫停項目
+   不加入本順序。
+
+## 已暫停／非現行優先（由重要事項移出）
+
+負責人已決定暫停所有測試、smoke、benchmark、slow report、
+proof、coverage 與 runtime workflow。下列項目只保留事實
+紀錄與日後若重新授權時的入口，不排期、不占現行工程優先
+次序，也不應在每輪重提。
+
+| ID | 狀態 | 暫停前記錄 | 現行處理 |
+|---|---|---|---|
+| ENG-001 | 已暫停／非現行優先（原 P1） | `.github/workflows/ci.yml` 的 compile-only job 尚需在 GitHub 主機實跑；本機通過不等於 hosted runner、網路依賴與 timeout 設定已證實；runtime/slow workflow 目前只登記為 manual | 只保留事實紀錄；若負責人日後另行要求，再保存 hosted workflow 結果。 |
+| ENG-002 | 已暫停／非現行優先（原 P1） | 沒有覆蓋率基線或分套件門檻；舊樹 336／340 只表示舊測試全過，五系統新套件尚無運行覆蓋證據，不表示公共 API 或錯誤分支覆蓋充分 | 暫停；不建立 coverage 基線或門檻。 |
+| ENG-004 | 已暫停／非現行優先（原 P2） | 只有 Linux 實跑證據；macOS、Windows native、不同 CPU 的浮點／路徑／async 檔案行為未驗證 | 暫停；不安排跨平台實際運行。 |
+| ENG-005 | 已暫停／非現行優先（原 P2） | 全套件耗時長且無分片、flaky 測試清單或時間預算；本機參考約為 wasm-gc 3.5 分鐘、native 8.4 分鐘、`cmd/main` 另約 3.8 分鐘 | 暫停；不做測試耗時分片、flaky 清單或時間預算。 |
+| ENG-006 | 已暫停／非現行優先（原 P2） | 定律抽樣與差分 oracle 很強，但尚無 fuzz、property-based 生成基建、mutation testing 或 benchmark 趨勢資料庫 | 暫停；不新增 fuzz、mutation 或 benchmark 執行基建。 |
+| ENG-009 | 已暫停／非現行優先（原 P0） | 目前五系統樹按負責人指示只做 compile-only：全部 test/wbtest 已保留並可編譯，但**尚未執行任何單元測試、bridge 證書、cmd smoke 或慢報告**；因此不能對五系統作運行正確性宣稱 | 依負責人決定不執行全倉測試；本項只記錄現行樹未實跑的事實，不作現行施工排序條件。 |
+| FIN-001 | 已暫停／非現行優先（原 P1） | `finalg/verify` 只完成普通型別／合約編譯；八個 proof goals 未在本環境以 `moon prove`、Why3、Z3、cvc5 重證；上游 Why3 config 還記錄特定 prover 版本與原 `/home/user` 前綴（已由 prove script 在臨時副本重基） | 暫停；不執行 `moon prove`／Why3 proof pipeline。 |
+| UNI-001 | 已暫停／非現行優先（原 P1） | 現行 21 項跨成員語義 bridge 證書已寫成可執行函數，但本階段與 ENG-009 一樣未運行；目前只能宣稱轉換器成功編譯，不能宣稱往返與互校在五成員樹上已通過 | 暫停；不實跑 bridge wbtest、showcase 或全倉。 |

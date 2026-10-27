@@ -46,6 +46,9 @@ Git tag 或 GitHub Release；見 [工程缺口 REL-003](docs/ENGINEERING-GAPS.md
   39 packages／48 components／330 個 `.mbt`／135,485 行／
   6,610 個公開符號；finalg 以明確 `pub extend` 取代上游的
   module-level warning 抑制。
+- 工程缺口入口已置頂至根 README、文檔索引與 STATUS；
+  所有測試、proof、coverage 與 runtime workflow 改列
+  「已暫停／非現行優先」，集中移到工程缺口表文末。
 - 檢查政策維持 compile-only：`tools/check_compile.sh` 編譯全部
   測試源碼但不執行；`check_full.sh` 須 `GOLDEN_RUN_TESTS=1`
   才真正執行測試與 smoke，`check_slow.sh` 須

@@ -96,8 +96,10 @@ GOLDEN_RUN_TESTS=1 sh tools/check_full.sh
 GOLDEN_RUN_SMOKE=1 sh tools/check_slow.sh > /tmp/REPORT.generated.md
 ```
 
-The owner has explicitly deferred executing tests and smoke programs
-for the five-system integration stage.  Preserve/import test sources
+The owner has explicitly paused all test and smoke execution; it is
+non-priority work and must not be proposed as the next step.  For
+docs-only rearrangements, do not spend a turn on Moon gates unless the
+owner asks.  Preserve/import test sources
 and compile them with `moon test --build-only`, but do not run
 `moon test` without `--build-only`, `moon run`, benchmarks,
 `moon prove`, or the slow report until a later runtime-stage

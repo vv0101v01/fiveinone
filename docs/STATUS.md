@@ -2,7 +2,7 @@
 
 > 最後全面盤點：2026-10-27。本文只記錄「現在這棵工作樹已經有什麼、
 > 已驗證到哪裏」；成員 README、上游數字與舊期證據不能取代本文。
-> 未完成事項集中在 [工程缺口與待辦登記](ENGINEERING-GAPS.md)。
+> 🚧 **工程缺口正本：[工程缺口與待辦登記](ENGINEERING-GAPS.md)**；先看該表頂部「現行重點工程缺口」。所有測試執行已暫停並移至該表文末，不列現行優先次序。
 
 ## 儲存倉與模組身份
 
@@ -71,11 +71,13 @@ tropical ideals、blueprint／band schemes、一般 presheaf
 聯邦轉接器、第二至第四波推導報告、21 項跨成員語義證書
 與 certificate envelope 入口。
 
-## 本階段驗證證據：compile-only
+## 驗證紀錄與測試暫停政策
 
-依負責人的明確指示，本階段保留／搬入全部新舊測試源碼，但
-**不執行**單元測試、showcase、demo、benchmark、慢報告或 proof。
-現行完整驗收命令是：
+依負責人決定，全部新舊測試源碼繼續保留，但**所有測試執行
+暫停**：不執行單元測試、showcase、demo、benchmark、慢報告、
+proof、coverage 或 runtime workflow。這是已決定的非現行
+優先事項，不再列作下一期重要待辦。2026-10-27 最近一次
+compile-only 紀錄使用：
 
 ```bash
 sh tools/check_compile.sh
@@ -103,9 +105,9 @@ GU 權威工作樹以 exit 0 完成；封存前另會在重建的 Git 樹
 | 舊 `cmd/showcase` | 5 / 5 橋接驗收 |
 | `cmd/symdemo`、`cmd/symbench` | exit 0 |
 
-兩個 target 的歷史測試總數不可相加。進入運行期的唯一入口是
-未來獲授權後執行 `GOLDEN_RUN_TESTS=1 sh tools/check_full.sh`；
-慢報告同樣需要 `GOLDEN_RUN_SMOKE=1`。
+兩個 target 的歷史測試總數不可相加。本節只保存歷史與政策
+紀錄；除非負責人日後明確重新授權，否則不安排全倉測試，
+也不把測試未執行列入現行工程優先清單。
 
 ## 本次整合落地內容
 
@@ -132,17 +134,22 @@ GU 權威工作樹以 exit 0 完成；封存前另會在重建的 Git 樹
   成邦後事項集中到本文件、BRIDGE、FINALG、CATMATH、MIGRATION
   與工程缺口登記。
 
-## 尚未完成的最重要事項
+## 工程缺口摘要
 
-1. 目前五成員樹尚未執行任何單元或 smoke 測試；這是下一期的
-   明確待辦，不可以編譯成功代替。
-2. `finalg/verify` 尚未在本環境執行 `moon prove`／Why3；普通
-   編譯不等於 proof goals 已重證。
-3. `algorithm01`、`algorithm03`、`algo`、`algo4` 的遷移告示
-   與 GitHub Archive 均屬外部待辦；本工作樹只更新 golden。
-4. Hosted CI 必須以實際 workflow run 證明，不能只憑 workflow
-   檔在本機存在便宣稱綠燈。
-5. 尚未建立版本 tag、Release、簽章或 SBOM。
-6. catmath 仍為單一大 package；是否拆包必須在取得五成員運行
-   基線後另行以依賴量測決定。
-7. 其餘理論、規模、API 與跨平台限制詳見工程缺口登記。
+詳細 ID、影響與下一步以置頂的
+[ENGINEERING-GAPS](ENGINEERING-GAPS.md) 為準。現行實施面
+先看 API／錯誤模型與相容政策（`API-001`…`API-003`）、
+`par_host` 臨時檔安全（`SEC-002`）、catmath 靜態拆包
+量測（`CAT-001`）、bridge 精確色鍵／標準形
+（`BRG-001`／`API-005`），以及 `GU-001`…`GU-005`
+的一般理論擴張。本文不另建第二份優先清單。
+
+## 已暫停／非現行優先事項
+
+- 所有單元測試、bridge 證書實跑、smoke、demo、benchmark、
+  slow report、proof、coverage 與 runtime workflow，均按
+  負責人決定暫停；只在工程缺口表文末保留事實紀錄，不排期、
+  不占現行工程優先次序。
+- 來源倉遷移告示／Archive、版本 tag／Release／簽章／SBOM
+  與 GitHub 管理設定屬外部或發佈治理事項，詳列於工程缺口
+  表，不在本文重複排序。

@@ -115,7 +115,7 @@ wbtest 源碼中。
 | 熱帶幾何 | 10 | 6 | 單變量 p-進角點、指派、BPoly 細分與有界多變量樣本；缺賦值 Gröbner、完整多面體簇、tropical ideals 與概形化 |
 | 序半環與路徑語義 | 6 | 5 | Boolean 星閉包、Face 半環與熱帶路徑已接通；矩陣 residuals／一般 quantale 未實作 |
 | 報告與證書模型 | 4 | 3 | 16 項正本語義證書與分欄報告；尚無版本、序列化、摘要與離線重驗 envelope |
-| 本樹運行與外證據 | 4 | 0 | 本階段嚴格 compile-only；沒有現行五成員樹的測試執行、proof 或 hosted CI 證據 |
+| 本樹運行與外證據 | 4 | 0 | 本階段嚴格 compile-only；沒有現行五成員樹的測試執行、proof 或 hosted CI 證據（只作證據口徑記錄；已暫停，不列施工優先次序） |
 | **合計** | **100** | **82** |  |
 
 ### 驗收結論
@@ -281,23 +281,22 @@ tropical scheme 或 band scheme。一般賦值 Gröbner 基、
 
 原五步已按「valued initial form → relation quantale →
 presheaf sieves → finite blueprint → theory/mode」的次序
-完成有限核心。下一階段若再擴張，優先級應是：
+完成有限核心。測試與運行證據已按負責人決定暫停，移至
+[ENGINEERING-GAPS](ENGINEERING-GAPS.md) 文末，不列入
+以下施工順序。下一階段若再擴張，優先級應是：
 
-1. **運行證據**：在負責人恢復測試政策後，先實跑 bridge
-   wbtest、showcase 與全倉門檻；任何 GU 報告的運行失敗
-   都應回溯到來源判定器，不可改範例掩蓋。
-2. **賦值 Gröbner**：在精確表示上實作 homogeneous
+1. **賦值 Gröbner**：在精確表示上實作 homogeneous
    valued Buchberger／initial ideal 的完備有限判定，並
    與 principal initial-form 分類差分對拍。
-3. **多面體與 tropical ideals**：由 Gröbner fan／正則
+2. **多面體與 tropical ideals**：由 Gröbner fan／正則
    細分輸出 cones 與 multiplicities，不再以格點樣本代替
    完整 tropical variety。
-4. **一般 presheaf 子物件**：由 representable sieves
+3. **一般 presheaf 子物件**：由 representable sieves
    擴到任意有限 presheaf 的逐點子物件與自然性檢查。
-5. **Blueprint／band 幾何**：在有限 presentation 上再
+4. **Blueprint／band 幾何**：在有限 presentation 上再
    定義態射、局部化與 Spec；未有覆蓋與黏合定理前不稱
    scheme。
-6. **一般 theory／mode**：先選多類或 dependent theory
+5. **一般 theory／mode**：先選多類或 dependent theory
    的可判定片斷，再談 operad/monad 與 cubical modes；
    註冊表本身不增加數學分數。
 

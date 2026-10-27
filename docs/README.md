@@ -3,6 +3,10 @@
 本索引是找文件的唯一入口。每份 Markdown 都必須在此歸類，否則
 `python3 tools/doc_check.py` 會失敗。
 
+> 🚧 **工程缺口在這裏：[ENGINEERING-GAPS](ENGINEERING-GAPS.md)**。
+> 先看該表頂部的「現行重點工程缺口」；所有測試執行已移至該表
+> 文末的「已暫停／非現行優先」。
+
 ## 文檔分工（直接 3＋2 後的硬規則）
 
 1. **每個成員一份 `README.md`**，放在該成員根目錄，只保存成邦前
@@ -26,8 +30,8 @@
 | 文件 | 分類 | 用途 |
 |---|---|---|
 | [`README.md`](../README.md) | 現行＋首領 README | GitHub 門面、五成員總覽、直接 3＋2 理由與 compile-only 快速開始 |
+| [`docs/ENGINEERING-GAPS.md`](ENGINEERING-GAPS.md) | 現行 | **置頂工程缺口總表**：現行重點缺口、限制、待辦與驗收方向 |
 | [`docs/STATUS.md`](STATUS.md) | 現行 | 權威現況：倉庫身份、規模、已驗證編譯證據 |
-| [`docs/ENGINEERING-GAPS.md`](ENGINEERING-GAPS.md) | 現行 | 所有已知缺口、限制、待辦與驗收方向 |
 | [`CHANGELOG.md`](../CHANGELOG.md) | 現行 | 面向使用者的發布與重要治理變更 |
 | [`CONTRIBUTING.md`](../CONTRIBUTING.md) | 現行 | 建置、閘門、生成檔與文檔維護流程 |
 | [`AGENTS.md`](../AGENTS.md) | 現行 | 自動化代理／維護者的全倉工作邊界 |

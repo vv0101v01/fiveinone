@@ -4,6 +4,10 @@
 import 身份刻意維持 `vv0101v01/cubical-hermitian`；倉庫名 `golden`
 不改寫套件身份。
 
+> 🚧 **工程缺口總表（置頂）：[docs/ENGINEERING-GAPS.md](docs/ENGINEERING-GAPS.md)**
+> 未完成事項、限制與優先級先看該表頂部摘要。所有測試執行已按
+> 負責人決定暫停，移至該表文末，不列現行優先待辦。
+
 本文件同時是儲存倉門面與聯邦首領 cubical 成員的 `README.md`。
 cubical 成邦前的長篇技術正本保存在根目錄唯一的
 [SPEC.md](SPEC.md) 與 [GUIDE.md](GUIDE.md)；其餘四個成員各在自己的
@@ -80,7 +84,7 @@ showcase、demo、benchmark、慢報告或 proof。真正的運行期閘門須
 
 早期已公開的三系統樹曾實測 wasm-gc 336/336、native 340/340、
 `cmd/main` 90/90 與舊 bridge showcase 5/5；這些是舊樹歷史證據，
-不是現行五成員樹的運行期證明。現行樹的測試執行仍待下一階段授權。
+不是現行五成員樹的運行期證明。現行樹所有測試執行已暫停，不列現行優先事項；非負責人另行要求，不安排恢復。
 
 ## 聯邦首領：cubical 成員概覽
 

@@ -1,6 +1,6 @@
 # Bridge：唯一的五成員聯邦核心
 
-`bridge/` 是 `golden` 內唯一的跨成員整合層。它由原三支柱橋
+`bridge/` 是 fiveinone 內唯一的跨成員整合層。它由原三支柱橋
 **就地擴張**而成：cubical、symlib、semiring 的既有橋保留原位，
 再以 `federation_*.mbt` 直接加入 finalg 與 catmath。已刪除的
 `unified/` 疊加層不再存在，也沒有第二套註冊表、證書或展示入口。
@@ -56,7 +56,7 @@ wbtest，但不重複列作大一統語義證書。
 | 橋 | 輸入 → 輸出 | 誠實邊界 |
 |---|---|---|
 | 置換／wiring | `symlib.Perm ↔ cubical.Wiring/Equiv`、`CMat` 置換矩陣與群平均 | 帶號 wiring 的底置換與每輸出號列分開讀回；S4 全 24 元及 16 個 Bool 值逐一核驗 |
-| 加權有向圖 | semiring CSR 圖 → support＋頂點簽名顏色 → symlib colored 搜尋 → 雙權重逐邊精確過濾 | 顏色只剪候選，從不取代精確權重檢查；群平均只在枚舉完整時可宣稱投影器；`canonical_encoding` 只是診斷鍵，不是完整加權有向標準形 |
+| 加權有向圖 | semiring CSR 圖 → support＋無雜湊、方向分離的權重多重集顏色 → symlib colored 搜尋 → 雙權重逐邊精確過濾 | 顏色只剪候選，從不取代精確權重檢查；群平均只在枚舉完整時可宣稱投影器。`canonical_encoding` 現由 source/target port 有色 incidence graph 與精確權重 palette 構成完整的有向雙權重 canonical key；每條輸入邊增三個 incidence 節點，現有簡單圖 canonicalizer 的平方記憶體成本使大圖需另定 budget。`canonical_colors` 仍只是 support-search 診斷色列 |
 | 複矩陣 | cubical `CMat` → 非零支撐色圖 → 候選置換 → 逐元近似保存 | 浮點保存沿用 cubical 既有容差，不包裝成精確證明 |
 | 自由範疇 | semiring DAG 路徑 → symlib `FinCat` | 非 DAG 直接拒絕，不截斷無限路徑集 |
 | 熱帶指派 | `trop_det`／Hungarian 最佳值 ↔ symlib 全置換 | 枚舉設 cap；只核有限枚舉片段 |
@@ -173,9 +173,12 @@ tropicalization functor 命名有限格點輸出。
 - 大量交叉檢查是窮舉式：全 assignments、全 Hom、全群元素或
   `2^n` 子集只適合小有限片段。報告的 `Bool` 欄位只對該輸入
   與明示 cap／前提負責。
-- `weighted_graph_report` 仍會重算候選、對稱、投影、閉包與
-  特徵多項式；逐段 budget、部分報告、無碰撞精確簽名與一般
-  胞腔複形仍在工程缺口登記。新的 GU API 一律以
+- `weighted_graph_report` 已在單次報告內共用候選群、加權對稱
+  過濾結果與 projector，並先檢查 cap；incidence canonicalization、
+  APSP 與特徵多項式仍各自消耗資源，尚無逐段 budget 或部分報告。
+  一般胞腔複形仍在工程缺口登記。精確顏色鍵與完整加權圖
+  canonical key 已實作，
+  但尚未 runtime 驗收。新的 GU API 一律以
   `Option` 或 `valid/supported` 報告明示形狀、上限與窮舉
   片段，沒有在新生產碼加入 `abort`/`unwrap` 邊。
 

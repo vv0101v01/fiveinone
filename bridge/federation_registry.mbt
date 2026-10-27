@@ -24,7 +24,7 @@ pub fn federation_members() -> Array[FederationMember] {
       display_name: "Cubical/Hermitian kernel and exact algebra",
       package_namespace: "(root) + algebra/",
       source_repository: "https://github.com/vv0101v01/algorithms02",
-      provenance: "cubical-hermitian phase-13 worktree; first federated publication golden 9452cb94a441ffe17b082c09cd8ee351c4c96c89",
+      provenance: "cubical-hermitian phase-13 worktree",
       summary: "Executable cubical semantics, Hermitian/projector models and exact rational algebra.",
     },
     {

@@ -8,7 +8,7 @@
 > `docs/CATMATH.md`，唯一五成員橋見 `docs/BRIDGE.md`。
 > 逐符號附錄覆蓋全倉 **39 個套件、6,610 個公開符號**。
 >
-> **現行發布身份**：儲存倉為 <https://github.com/vv0101v01/golden>，
+> **現行發布身份**：儲存倉為 <https://github.com/vv0101v01/fiveinone>，
 > MoonBit module 為 `vv0101v01/cubical-hermitian`。全倉現況見
 > `docs/STATUS.md`；本文第四章仍是 cubical 理論邊界正本，全倉待辦索引在
 > `docs/ENGINEERING-GAPS.md`。規格列出符號只證明介面存在且已分類，尚不等於

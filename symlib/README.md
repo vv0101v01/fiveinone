@@ -4,7 +4,7 @@
 > 不回寫本成邦前正本。
 
 > **合併後位置**：本文由 algorithm03（`05232fd`）原 README 遷移而來，
-> 現行正本隨 <https://github.com/vv0101v01/golden> 維護。程式碼位於
+> 現行正本隨 <https://github.com/vv0101v01/fiveinone> 維護。程式碼位於
 > `symlib/`，套件路徑為 `vv0101v01/cubical-hermitian/symlib`；
 > 演示與基準分別為 `cmd/symdemo`、`cmd/symbench`。文中的「單子」指
 > **monad（單子函子）**，不要與 semiring 支柱的 **monoid（么半群）**混淆。

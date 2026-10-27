@@ -5,7 +5,7 @@
 > `catmath/`；逐符號現行接口以 `catmath/pkg.generated.mbti` 與
 > [SPEC-APPENDIX](../SPEC-APPENDIX.md) 為準。本文所述 `verify_*`
 > 多為有限／抽樣可執行檢查而非形式證明，邊界見
-> [ENGINEERING-GAPS 的 CAT-002](../docs/ENGINEERING-GAPS.md)。golden
+> [ENGINEERING-GAPS 的 CAT-002](../docs/ENGINEERING-GAPS.md)。fiveinone
 > 五系統本期只編譯這些檢查與測試源碼，未重新執行。
 
 

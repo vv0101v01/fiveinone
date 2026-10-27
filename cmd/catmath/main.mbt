@@ -1,7 +1,7 @@
 ///|
 /// catmath executable entry point, split out of the upstream root file
 /// during the five-system federation.  The upstream algo4 package was
-/// simultaneously a library and an executable; in golden the library
+/// simultaneously a library and an executable; here the library
 /// lives in `catmath/` and this package only hosts `main`.
 fn main {
   println("catmath: category-theoretic algorithms on MoonBit")

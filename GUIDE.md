@@ -3,7 +3,7 @@
 語言：**中文正本** · [English](GUIDE.en.md) · [規格](SPEC.md) · [Specification](SPEC.en.md) · [架構](ARCHITECTURE.md) · [目前狀態](docs/STATUS.md) · [工程缺口](docs/ENGINEERING-GAPS.md)
 
 > 本文只導覽 cubical 支柱。全倉現已發布為
-> <https://github.com/vv0101v01/golden>（MoonBit module 仍是
+> <https://github.com/vv0101v01/fiveinone>（MoonBit module 仍是
 > `vv0101v01/cubical-hermitian`）；`symlib`、`semiring/*`、`finalg`、
 > `catmath` 與唯一五成員 `bridge` 分別見其專門文件。文中「本次升級」
 > 及分期段落保留開發演進脈絡，

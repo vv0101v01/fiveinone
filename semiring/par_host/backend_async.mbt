@@ -51,10 +51,9 @@ pub fn par_for(chunks : Int32, f : (Int32) -> Unit) -> Unit {
 ///|
 async fn read_shard(path : String) -> Bytes {
   let f = @fs.open(path, mode=@fs.ReadOnly)
+  defer f.close()
   let n = f.size()
-  let bytes = f.read_exactly_at(n.to_int(), position=0L)
-  f.close()
-  bytes
+  f.read_exactly_at(n.to_int(), position=0L)
 }
 
 ///|
@@ -68,11 +67,16 @@ pub fn shard_io_bench(payload : String, files : Int32) -> @par.ShardIO {
   let seq_store : Array[Array[Bytes]] = Array::make(1, [])
   let par_store : Array[Array[Bytes]] = Array::make(1, [])
   @async.run_async_main(async fn() -> Unit {
+    // Atomically allocate a private per-call directory in the platform's
+    // temporary area. `CreateNew` prevents accidental file reuse; all I/O
+    // failures propagate, and the defer removes the directory on every exit.
+    let tmp_dir = @fs.tmpdir(prefix="semiring-shard")
+    defer @fs.rmdir(tmp_dir, recursive=true)
     let paths : Array[String] = Array::makei(files, fn(k) {
-      "/tmp/semiring_shard_\{k}.txt"
+      "\{tmp_dir}/shard_\{k}.txt"
     })
     for p in paths {
-      @fs.write_file(p, payload) |> ignore
+      @fs.write_file(p, payload, create_mode=@fs.CreateNew, permission=0o600)
     }
     let t0 = @bench.monotonic_clock_start()
     let seq : Array[Bytes] = []

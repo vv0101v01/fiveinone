@@ -6,7 +6,7 @@
 [English guide](GUIDE.en.md) · [中文符號附錄](SPEC-APPENDIX.md) ·
 [English appendix](SPEC-APPENDIX.en.md)
 
-> 目前發布倉為 <https://github.com/vv0101v01/golden>；MoonBit module
+> 目前發布倉為 <https://github.com/vv0101v01/fiveinone>；MoonBit module
 > 仍是 `vv0101v01/cubical-hermitian`。本文 §1–§11 詳細保存 cubical
 > 支柱形成目前 DAG 的歷史與理由；全倉即時清單以 `architecture.json`
 > 與 checker 輸出為準。`tools/doc_check.py` 與 GitHub Actions 只執行

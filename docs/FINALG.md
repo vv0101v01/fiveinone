@@ -2,7 +2,7 @@
 
 `finalg/` 是上游 <https://github.com/vv0101v01/algo> 在
 `427135faf8492f5433baba8077d4dc139282291f` 的 namespace 搬入。
-上游 module 名是 `moon-algebra`；在 golden 內的根 package 是：
+上游 module 名是 `moon-algebra`；在 fiveinone 內的根 package 是：
 
 ```text
 vv0101v01/cubical-hermitian/finalg
@@ -56,7 +56,7 @@ Hensel 單根候選；本文件不宣稱 `F_m[x]` 可以同態提升到 `Q[x]`�
 - `finalg/why3-user.conf`
 - `finalg/prove.sh`
 
-`prove.sh` 已重基到 golden 根目錄與 `finalg/verify`，並在臨時
+`prove.sh` 已重基到 fiveinone 根目錄與 `finalg/verify`，並在臨時
 副本中把上游 Why3 config 的字面 `/home/user` 前綴換成執行者的
 `$HOME`。本階段沒有執行 `moon prove`；一般 `moon check` 通過
 不等於八個 proof goals 已在本環境重證。這項外部工具鏈工作

@@ -1,6 +1,6 @@
 > **人工快照橫幅（重生成時須保留）**：以下正文已在首次公開的三方聯邦樹
 > 以 `moon run cmd/semiringreport --target native` 重新產生；該樹已發布至
-> <https://github.com/vv0101v01/golden>（首次提交 `9452cb9`）。數值是該次
+> 數值是早期三成員整合期的
 > 執行快照，時間會隨機器浮動；報告產生器尚未記錄 CPU、OS、commit 與完整
 > 工具鏈欄案，見 `../docs/ENGINEERING-GAPS.md` 的 SEM-007。它屬手動慢閘門，
 > 不納入快速 CI；重新產生須在未來運行期用

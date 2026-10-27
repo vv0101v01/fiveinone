@@ -9,15 +9,15 @@
 - **公共 API 與安全**：`API-001` 結構化錯誤模型、`API-002`
   共用 budget／outcome、`API-003` 相容與穩定分級，以及
   `SEC-002` 的 `par_host` 臨時檔安全。
-- **套件與 bridge 實施債**：`CAT-001` 以靜態 SCC 量測推進
-  catmath 拆包；`BRG-001`／`API-005` 完成精確邊色鍵與
-  加權有向圖標準形；其餘按下方分域表處理。
+- **套件與 bridge 實施債**：`CAT-001` 已新增 catmath 靜態 SCC
+  量測；實際拆包仍受 runtime 驗收暫停約束。`BRG-001`／`API-005`
+  已改用無雜湊有向加權精確顏色及完整 canonical encoding；尚待
+  runtime 差分／碰撞驗收。其餘按下方分域表處理。
 - **理論擴張**：`GU-001`…`GU-005` 已完成有限核心；一般
   valued Gröbner、多面體 tropical variety、任意 presheaf
   子物件、blueprint／band 幾何與一般 theory／mode 仍在
   GU 分域表，不以有限片段冒充完成。
-- **發佈與外部治理**：`REL-001`、`REL-003`、`REL-004`
-  屬來源倉、版本與 GitHub 管理事項，分列於發佈分域表。
+- **發佈與外部治理**：`REL-001`、`REL-003`、`REL-004` 屬來源倉遷移、版本與 GitHub 管理事項，分列於發佈分域表。
 
 所有測試、smoke、proof、coverage 與 runtime workflow 已
 按負責人決定暫停，集中移到文末「已暫停／非現行優先」；
@@ -28,6 +28,7 @@
 | 標記 | 意思 |
 |---|---|
 | `已關閉` | 本次更新已落地並有本倉證據 |
+| `部分完成` | 可實作部分已落地；明確列出尚待驗收或外部決策的部分 |
 | `待實作` | 可在本倉內完成，但尚未完成 |
 | `待外部` | 需要儲存倉管理員或其他儲存倉操作 |
 | `已接受` | 有意保留的設計／理論邊界；只能擴展範圍，不能靠換說法消除 |
@@ -58,8 +59,7 @@
 
 | ID | 優先級／狀態 | 缺口與影響 | 證據／下一步與驗收 |
 |---|---|---|---|
-| REL-001 | P1／待外部 | `algorithm01`、`algorithm03` 尚未加入遷移告示，也未在 GitHub Archive；`algo`、`algo4` 亦未貼五系統遷移告示，使用者仍可能在來源倉取得過時入口 | 四倉告示均已在 [LEGACY-ARCHIVE](LEGACY-ARCHIVE.md) 定稿；發布五系統樹後把告示提交四倉，再由管理員決定／執行 Archive，驗收是各倉頂部顯示 `golden` 連結且（若封存）為 read-only |
-| REL-002 | P2／已接受 | `golden` 首次公開是一棵匯出樹的單一 squash 提交；三個來源倉與合併期的細粒度提交史沒有 graft 進來，`git blame` 不能還原完整演進 | provenance 已記來源 SHA；如需可稽核歷史，另建 history-import 方案，不得改寫已公開 `main` 來假裝歷史一向存在 |
+| REL-001 | P1／待外部 | `algorithm01`、`algorithm03` 尚未加入遷移告示，也未在 GitHub Archive；`algo`、`algo4` 亦未貼五系統遷移告示，使用者仍可能在來源倉取得過時入口 | 四倉告示草案已改指向目前五成員主線 [fiveinone](https://github.com/vv0101v01/fiveinone)；仍須管理員提交四倉告示，再決定是否封存。驗收是四倉首頁告示可見且連結正確；封存需額外確認為 read-only |
 | REL-003 | P1／待實作 | 尚無版本 tag、GitHub Release、簽章、SBOM 或來源 attestation；module 仍是 `0.0.1` | 先定版號策略並發第一個 tag；Release 至少附 commit、工具鏈、測試數字與已知限制，簽章／SBOM 在有外部使用者後再升級 |
 | REL-004 | P1／待外部 | workflow 已入倉，但 branch protection、required checks、Actions 權限、Dependabot 與私密漏洞通報均不在程式碼可控制範圍 | 管理員啟用 required checks 後，以一個故意失敗的 PR 驗證不能合併；未驗證前不得宣稱 CI 是強制閘門 |
 | REL-005 | P2／待外部 | GitHub 倉庫 description、topics、homepage 與 social preview 未納入版本控制 | 在 Settings 設定五系統描述；把最終文字回填 STATUS，避免倉庫頁面與 README 分叉 |
@@ -69,7 +69,7 @@
 
 | ID | 優先級／狀態 | 缺口與影響 | 證據／下一步與驗收 |
 |---|---|---|---|
-| ENG-003 | P1／待實作 | CI 以官方安裝腳本取得當時最新版 MoonBit，未鎖定完整 toolchain 版本或驗證下載摘要；上游升級可造成非程式碼變動失敗 | 找出可重現的版本參數／摘要流程，固定與本機驗證相同的 `moon`／`moonc` 組合，並保留手動 latest job 監察上游漂移 |
+| ENG-003 | P2／部分完成 | 固定 CI 使用 `tools/install_moonbit.sh`，從 `.moon-toolchain` 固定 Moonc release，對 Linux x86_64 MoonBit 和 core archive 做 SHA-256 pin；compile gate 同時檢查 moon/moonc 完整版本。尚無 separate latest-canary job，且目前只有 Linux x86_64 pinned installer | Linux x86_64 下載完整性及重現版本已落地；如增加 runner 平台，需各自記錄 archive digest；可再加非阻斷 latest canary，但不得取代固定閘門 |
 | ENG-007 | P2／已接受 | `arch_check.py` 是唯讀源碼近似推導，不是編譯器型別圖；`observer` 組件可合法星形依賴，不能用它證明任意新邊都合理 | 新 package／跨支柱邊仍須人工裁決；若 MoonBit 提供穩定依賴圖 API，再用編譯器輸出取代匯入掃描 |
 | ENG-008 | P2／待實作 | `.mbti` 與逐符號附錄均入庫，雖有 drift 閘門，但沒有 PR 摘要自動列出公共 API 增刪，審查大型生成 diff 成本高 | 產出按 package／kind 分組的 API diff 摘要供 PR 使用；生成檔本身仍不得手改 |
 
@@ -80,10 +80,10 @@
 |---|---|---|---|
 | API-001 | P1／待實作 | 以 `abort(` 文字計，生產碼約 287 處（finalg 131、symlib 98、semiring 25、bridge 23、catmath 9、cmd 1；`unwrap` 等其他 panic 邊未計）；外部呼叫者對形狀錯誤、上限與前提失敗拿不到結構化錯誤 | 先按「不可恢復不變量／使用者輸入／資源上限」分類，再為 bridge 與新 API 提供 `Result` 版本；不得一次機械改寫 6,610 個符號 |
 | API-002 | P1／待實作 | 上限參數、回傳慣例混雜：`Int32 cap`、`Int64` 計數、Option、Bool 驗證器與 abort 並存；超限是否完整、是否部分結果要逐 API 查文檔 | 定義共用 budget／outcome 形狀和命名規則，優先套用到列舉 API；每個新 API 必須明寫完整、截斷或失敗語義。2026-10-27 新增 GU API 已先統一用 `Option` 或 `valid/supported` 報告並寫明窮舉上限，但全倉共用 budget 型別仍未定 |
-| API-003 | P1／待實作 | 尚無 semantic versioning、deprecation 週期或穩定／實驗 API 分級；逐符號附錄只證明存在，不證明穩定 | 在第一個 tag 前發布相容政策，並在附錄生成器外維護穩定面清單；實驗符號不得默默升格 |
+| API-003 | P1／部分完成 | [API-STABILITY](API-STABILITY.md) 已定義 0.x/1.0.0 前相容原則、Stable/Experimental/Test-support 級別及變更要求；目前仍沒有逐符號 Stable allowlist，也未實際發出 tag/Release | 在首個穩定版前由維護者核准 allowlist 與棄用期限；每次公開符號變更更新 changelog 和生成介面。此政策不等於已發佈 1.0 或已承諾所有 6,610 個符號穩定 |
 | API-004 | P2／已接受 | 兩個 `algebra`、兩個 `Graph`、`Rat`、`Mat` 等同名概念造成 alias 負擔 | 聯邦邊界刻意保留；所有跨套件範例必須用完整路徑或 `exact`、`searched`、`weighted` 等語義 alias，索引不可裸寫「algebra」 |
-| API-005 | P2／待實作 | `weighted_graph_report.canonical_encoding` 來自 support 圖與頂點簽名顏色，不是完整加權有向圖標準形；不同邊權結構理論上可碰撞到同一編碼 | 在 [BRIDGE](BRIDGE.md) 已明文降格為診斷鍵；真正 canonical form 需把方向、邊重與缺邊編入顏色／編碼並加差分測試 |
-| SEC-002 | P1／待實作 | `semiring/par_host` 以可預測 `/tmp/semiring_shard_{k}.txt` 寫分片並忽略寫入結果；並行程序可碰撞，Unix 慣例也不適合 Windows | 改唯一臨時目錄／檔案、傳播 IO 錯誤並清理；驗收包括兩個程序並行運行不互相覆寫 |
+| API-005 | P2／部分完成 | `weighted_graph_report.canonical_encoding` 已改為完整加權有向圖鍵：以 source/target port 有色 incidence gadget 保留方向、邊存在、兩個精確權重通道及自環，並把 exact weight palette 加入序列化前綴；欄位名為相容性保留 | 算法與 relabel／方向／權重／自環回歸案例已加入並 compile-only 驗證；尚待 runtime 差分驗收。Incidence graph 每條邊增三頂點，而目前 canonicalizer 使用近似平方記憶體的簡單圖表示；需另定 size/budget 後才可宣稱適合大圖。`canonical_colors` 仍是 support-search 診斷色列，不等同完整圖鍵 |
+| SEC-002 | P1／部分完成 | `semiring/par_host` 已改用 `@fs.tmpdir` 原子建立 per-call 私有目錄、`CreateNew` 建立權限 `0600` 檔案、傳播 I/O 失敗並以 defer 清理；不再使用固定 `/tmp` 名稱或忽略寫入結果。compile-only 已覆蓋程式碼與 wbtest 編譯，但因目前停跑 runtime 尚未實際做雙程序併行驗收 | 下次獲准運行 native I/O 驗收時確認兩程序互不覆寫、失敗路徑清理及 Windows 支援；在 runtime 證據前維持「部分完成」 |
 
 ## cubical 根套件與精確 `algebra/`
 
@@ -145,10 +145,10 @@
 
 | ID | 優先級／狀態 | 缺口與影響 | 下一步／驗收方向 |
 |---|---|---|---|
-| CAT-001 | P1／待實作 | catmath 仍是約 45 檔、逾萬行的單一 MoonBit package；同一編譯單元使增量編譯、主題邊界與 API 審查成本高，但內部互相遞迴尚未有 SCC 量測 | 先輸出去除 tests 的靜態宣告依賴圖與 SCC 量測；只有無環或可明示 SCC 的主題才逐一拆包，每拆一包都要維持 `.mbti` 與公開符號清單不倒退 |
+| CAT-001 | P1／部分完成 | 已新增 `tools/catmath_scc.py`；啟發式掃描 22 個 production `.mbt` 得 44 條檔案依賴邊、22 個 singleton SCC、0 cyclic SCC。這不是 MoonBit compiler 依賴圖，method dispatch／動態名稱仍可能漏邊 | `python3 tools/catmath_scc.py --list-edges` 可重現量測並列出 witness；每個拆包候選仍需人工核對真實型別／method 邊。實際拆包受 `AGENTS.md` 的 runtime evidence 要求與目前 runtime 暫停所阻，不得以此近似圖宣稱可安全拆分 |
 | CAT-002 | P2／已接受 | 眾多 `verify_*` 是有限／抽樣可執行檢查，不是形式證明；公理窮舉的成本可達三次方或更高，函數名本身不記錄樣本域與完備性 | 與 DOC-009 一起在附錄外補逐函數域、複雜度與完備性元資料；引用時必須說清有限範圍 |
 | CAT-003 | P2／待實作 | catmath `snf_int` 會就地改寫入參 `IntMat.data`；不熟悉此慣例的呼叫者可能在求 SNF 後誤用原矩陣（bridge 已以深拷貝構造避開） | 增加不變入參的 `*_copy`／report 變體或在型別／命名上標示 in-place；舊 API 的破壞性語義在相容政策前不得靜默改變 |
-| CAT-004 | P2／待實作 | `canonical_index`／`derived_index` 是手寫敘事登記，未由檔案、宣告或測試自動對賬，新增算法時可靜默漏登 | 以生成介面與檔案清單核對索引覆蓋；手寫的定理敘事仍人工維護，但漏登應令治理工具失敗 |
+| CAT-004 | P2／部分完成 | `canonical_index`／`derived_index` 仍是手寫數學敘事，不能由治理腳本證明內容正確 | 已新增 `tools/catmath_index_check.py` 並掛入 compile-only gate：核對 production topic file/module 覆蓋、derived source labels 與 canonical entries/明示 aliases、derived theorem 名稱重複；深層宣告／測試語義仍須人工維護 |
 | CAT-005 | P2／已接受 | 部分 catmath 群 API 實質假設單位元索引 `e=0`，`FinTop` 建構也會把關係自反化及傳遞閉包；bridge 只在明示小片段使用，原始 API 名稱本身不攜帶這些前提 | 增加 checked wrapper 或把前提進型別／命名，並為非零單位元與非閉包輸入加反例；在此之前 bridge 報告不得把片段結果推廣到任意標號 |
 
 ## 直接聯邦擴展（沿用原 UNI 編號）
@@ -165,14 +165,14 @@
 
 | ID | 優先級／狀態 | 缺口與影響 | 下一步／驗收方向 |
 |---|---|---|---|
-| BRG-001 | P1／待實作 | 加權有向圖對稱採 support＋頂點簽名顏色作候選，再逐邊精確驗證；簽名雜湊碰撞只降剪枝不損精確性，但性能可退化接近全列舉 | 把方向與邊權多重集改成無雜湊的精確顏色鍵，或完成 SYM-002 的原生邊色搜尋；加入人造碰撞壓力測試 |
+| BRG-001 | P1／部分完成 | 候選群仍以 support graph＋精確無雜湊 one-hop 顏色（out/in 有序權重對多重集）搜尋，再逐邊精確驗證；顏色 key 不會因 hash collision 合併不同局部簽名，但仍可能留下大候選群 | 已完成精確顏色鍵；加入人造舊雜湊碰撞案例與大型候選 budget／性能處理，須待 runtime 測試重新授權後驗收；不可把候選縮小誤稱為完整邊色搜尋 |
 | BRG-002 | P2／已接受 | 熱帶最優指派與完整對稱群需要列舉置換，具有 `n!` 本質成本與 cap；只接受有限橋接範圍的 `Int64` | 大規模入口應改回傳 generating set 或單一最優解；完整群 API 保留小 `n` 誠實版 |
 | BRG-003 | P2／待實作 | 任意實／複浮點矩陣對稱只作 `eps` 近似檢查，沒有區間或譜誤差證書；projector 也繼承列舉上限 | 為可精確化的 0／1、置換與有理矩陣增加精確路徑；浮點路徑在名稱／回傳中保留 tolerance |
 | BRG-004 | P2／已接受 | 自由範疇橋只接受 DAG，轉換會枚舉全部路徑並物化合成表；有環圖的自由範疇一般有無限多態射 | 有環版本只能採生成元＋關係或截斷長度表示，不能塞入現有 `FinCat` 全表 |
 | BRG-005 | P2／已併入 | 一般有理賦值、多變數熱帶化與 Newton／根賦值 oracle 已由 GU-001 統一追蹤，不再重複維護 | 以 GU-001 為正本 |
 | BRG-006 | P2／待實作 | Face 半環 star 在有限布爾格上恆為 top，尚無胞腔傳播應用；正方形胞腔只是固定展示，沒有一般定向、邊界符號或參數化胞腔複形 | 下一期橋接應先定 cell complex 資料型別與邊界算子，不再增加只含固定例子的符號 |
 | BRG-007 | P2／已關閉 | bridge 證書現有 v1 envelope：canonical length-prefixed 序列化、雙 FNV-1a 摘要、逐項與全 registry 重驗 API（吸收原 UNI-002） | `BridgeCertificateEnvelope`、`bridge_certificate_envelopes_report`；摘要只作完整性 checksum，不是密碼學簽章，來源完整證據仍留在各支柱 |
-| BRG-008 | P2／待實作 | `weighted_graph_report` 內部重算候選與對稱，且同時做 projector、距離閉包與特徵多項式；大圖時沒有分段 budget 或部分報告 | 拆成可組合階段並共用候選枚舉；report API 明寫每個欄位成本和超限行為 |
+| BRG-008 | P2／部分完成 | `weighted_graph_report` 已在單次報告內共用 candidate group、精確對稱過濾結果與 projector，並於昂貴 APSP 前先檢查 cap；但同時仍會做 incidence canonicalization、距離閉包與特徵多項式，沒有分段 budget 或部分報告 | 已消除報告路徑上的候選群重複計算；剩餘工作是可組合階段／共用 budget/outcome，並明寫每欄位成本和超限行為 |
 | BRG-009 | P2／已接受 | cubical STLC 的 `quote_eta` 會把任何 `LUnit` 項塌縮為單位值，catmath `eta_long` 不對 `SOne` 中性項作同一塌縮；兩邊 raw normal form 因此不是同一相等 | bridge 報告同時保存 raw equality 與顯式 unit-η completion；若要 raw 相等，必須改 catmath 範形定義或引入型別化商，不可在橋中靜默抹除差異 |
 | BRG-010 | P2／已接受 | 第二波交叉檢查多為小有限窮舉：assignments、子集、Hom、群元素與矩陣形狀在尺寸增大時成本急升，部分 API 只以 `Bool`/Option 匯總失敗原因 | 新報告先加成本欄位與分段 outcome；大規模版本必須換符號或增量算法並與窮舉 oracle 差分對拍 |
 

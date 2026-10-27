@@ -1,9 +1,9 @@
 # Repository Guide for Agents and Maintainers
 
-This is the public `golden` repository
-(<https://github.com/vv0101v01/golden>). Its MoonBit module deliberately
-remains `vv0101v01/cubical-hermitian`; do not rename imports to match the
-GitHub repository name.
+This is the five-system `fiveinone` project
+(<https://github.com/vv0101v01/fiveinone>). Its MoonBit module remains
+`vv0101v01/cubical-hermitian`; do not rename imports to match the
+repository name.
 
 ## Read first
 
@@ -96,16 +96,9 @@ GOLDEN_RUN_TESTS=1 sh tools/check_full.sh
 GOLDEN_RUN_SMOKE=1 sh tools/check_slow.sh > /tmp/REPORT.generated.md
 ```
 
-The owner has explicitly paused all test and smoke execution; it is
-non-priority work and must not be proposed as the next step.  For
-docs-only rearrangements, do not spend a turn on Moon gates unless the
-owner asks.  Preserve/import test sources
-and compile them with `moon test --build-only`, but do not run
-`moon test` without `--build-only`, `moon run`, benchmarks,
-`moon prove`, or the slow report until a later runtime-stage
-instruction.  Without the environment switches, `check_full.sh`
-refuses before execution and `check_slow.sh` only builds the report.
-Report compile-only evidence as compile-only, never as tests passing.
+Due to the fact that the proxy code lines have exceeded 10K white-box testing takes a very long time and occasionally times out. With each round of testing already taking nearly half an hour, the costs far outweigh the benefits. Therefore, unit, smoke, white-box, and black-box testing will be temporarily suspended and will only be executed once before pushing.
+
+Until that single pre-push test pass, preserve test sources and compile them with `moon test --build-only`; do not execute test or smoke programs. At the pre-push pass, run the authorized unit, smoke, white-box, and black-box checks once only. If a check fails or times out, do not rerun it without the owner's explicit approval. Benchmarks, `moon prove`, and the slow report remain separately prohibited unless explicitly authorized. Without the environment switches, `check_full.sh` refuses before execution and `check_slow.sh` only builds the report. Report compile-only evidence as compile-only, never as tests passing.
 
 GitHub workflow files existing in the tree do not prove a hosted run is
 green, and branch protection is an external repository setting. None of the four

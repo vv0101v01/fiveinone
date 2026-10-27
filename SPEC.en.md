@@ -11,7 +11,7 @@ Language: **English** · [中文正本](SPEC.md) · [English appendix](SPEC-APPE
 > cover all **39 packages and 6,610 public symbols**.
 >
 > **Current publication identity.** The repository is
-> <https://github.com/vv0101v01/golden>; the MoonBit module remains
+> <https://github.com/vv0101v01/fiveinone>; the MoonBit module remains
 > `vv0101v01/cubical-hermitian`. Current repository state is in
 > `docs/STATUS.md`. Section 4 remains the authoritative cubical boundary,
 > while `docs/ENGINEERING-GAPS.md` indexes work across the whole

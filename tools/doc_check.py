@@ -130,8 +130,34 @@ def main() -> int:
                 errors.append(f"{name}: stale {label}; expected text {needle!r}")
 
     moon_mod = (ROOT / "moon.mod").read_text(errors="ignore")
-    if 'repository = "https://github.com/vv0101v01/golden"' not in moon_mod:
-        errors.append("moon.mod: repository does not point at vv0101v01/golden")
+    repository_match = re.search(
+        r'^repository\s*=\s*"(https://github\.com/[^"\s]+)"',
+        moon_mod,
+        re.M,
+    )
+    if not repository_match:
+        errors.append("moon.mod: missing canonical HTTPS GitHub repository")
+    else:
+        canonical_repository = repository_match.group(1).rstrip("/")
+        for name in ("README.md", "AGENTS.md", "CONTRIBUTING.md", "docs/STATUS.md", "docs/MIGRATION.md"):
+            path = ROOT / name
+            if path.exists() and canonical_repository not in path.read_text(errors="ignore"):
+                errors.append(f"{name}: missing canonical repository URL {canonical_repository!r}")
+
+    toolchain_path = ROOT / ".moon-toolchain"
+    if not toolchain_path.exists():
+        errors.append(".moon-toolchain: missing pinned MoonBit toolchain file")
+    else:
+        toolchain = toolchain_path.read_text(errors="ignore")
+        if not re.search(r"^moon=\d+\.\d+\.\d+$", toolchain, re.M):
+            errors.append(".moon-toolchain: expected moon=<version>")
+        if not re.search(r"^moonc=v[0-9A-Za-z.+-]+$", toolchain, re.M):
+            errors.append(".moon-toolchain: expected moonc=<version>")
+        if not re.search(r"^release=[0-9A-Za-z.+-]+$", toolchain, re.M):
+            errors.append(".moon-toolchain: expected release=<installer version>")
+        for key in ("linux_x86_64_archive_sha256", "linux_core_archive_sha256"):
+            if not re.search(rf"^{key}=[0-9a-f]{{64}}$", toolchain, re.M):
+                errors.append(f".moon-toolchain: invalid SHA-256 for {key}")
 
     for rel in sorted(CURRENT_DOCS):
         path = ROOT / rel

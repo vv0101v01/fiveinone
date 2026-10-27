@@ -15,7 +15,7 @@ version = "0.0.1"
 
 readme = "README.md"
 
-repository = "https://github.com/vv0101v01/golden"
+repository = "https://github.com/vv0101v01/fiveinone"
 
 license = "Apache-2.0"
 

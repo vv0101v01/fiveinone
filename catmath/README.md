@@ -7,10 +7,10 @@
 
 > **合併後位置**：本文由 algo4（`3b3deaa9706ee5a3543c0fe0ac897167669e26a4`）
 > 原 README 遷移而來，現行正本隨
-> <https://github.com/vv0101v01/golden> 維護。函式庫位於倉庫根的
+> <https://github.com/vv0101v01/fiveinone> 維護。函式庫位於倉庫根的
 > `catmath/`，執行入口位於 `cmd/catmath/`，套件路徑為
 > `vv0101v01/cubical-hermitian/catmath`。本文的 185 項測試與效能
-> 數字是上游快照；golden 五系統本期只編譯、未重跑，現況見
+> 數字是上游快照；fiveinone 五系統本期只編譯、未重跑，現況見
 > [STATUS](../docs/STATUS.md)，限制見
 > [ENGINEERING-GAPS 的 CAT 區](../docs/ENGINEERING-GAPS.md)。
 
@@ -23,17 +23,17 @@
 ## 安裝
 
 ```bash
-curl -fsSL https://cli.moonbitlang.com/install/unix.sh | bash
+sh tools/install_moonbit.sh
 export PATH="$HOME/.moon/bin:$PATH"
-git clone https://github.com/vv0101v01/golden.git
-cd golden
+git clone https://github.com/vv0101v01/fiveinone.git
+cd fiveinone
 moon update
 ```
 
 ## 使用
 
 ```bash
-# 本期在 golden 根目錄只做 compile-only：
+# 本期在 fiveinone 根目錄只做 compile-only：
 sh tools/check_compile.sh
 
 # 窄範圍編譯 catmath 與其展示：
@@ -70,7 +70,7 @@ GOLDEN_RUN_TESTS=1 sh tools/check_full.sh
 | `zerocost.mbt` | 零成本抽象示範 | trait 單態化、`#inline` |
 | `canonical.mbt` | **規範形式總彙（五大範疇）** | Smith 範形、βη-長範式、骨架、core、Read 樹規範化、特徵標分解 |
 
-## 複雜度降低（上游基準快照；golden 本期未重測）
+## 複雜度降低（上游基準快照；fiveinone 本期未重測）
 
 ```
 pow_mod_refined           55 ns     pow_mod_naive        374 µs   (≈6800×)

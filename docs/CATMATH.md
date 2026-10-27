@@ -2,18 +2,21 @@
 
 `catmath/` 是上游 <https://github.com/vv0101v01/algo4> 在
 `3b3deaa9706ee5a3543c0fe0ac897167669e26a4` 的 namespace 搬入，
-golden 內完整 package 路徑為：
+fiveinone 內完整 package 路徑為：
 
 ```text
 vv0101v01/cubical-hermitian/catmath
 ```
 
 上游是單一大型 MoonBit package。本次不按主題硬拆成多個
-package：它內部檔案共享大量型別與輔助函數，先保留單包邊界，
-以一次可校驗的機械搬移換取最低改寫風險。日後若要拆包，應先
-以 `architecture.json` 的 component 邊與生成介面量測循環依賴，
-另開一期處理；缺口已在
-[ENGINEERING-GAPS](ENGINEERING-GAPS.md) 登記。
+package：先保留單包邊界，以降低改寫風險。現已加入
+`python3 tools/catmath_scc.py` 的生產源碼靜態近似圖；目前 22 個
+production `.mbt` 有 44 條跨檔依賴邊，形成 22 個 singleton SCC、
+0 個 cyclic SCC。這不是 MoonBit compiler 的依賴圖，且可能漏掉
+method dispatch 等隱式依賴，只能協助挑選拆包候選，不能作為安全
+拆分證明。依 `AGENTS.md` 的 runtime evidence 要求，實際拆包待
+runtime 驗收重新授權後再做；缺口見
+[ENGINEERING-GAPS](ENGINEERING-GAPS.md)。
 
 ## 內容分域
 
@@ -27,12 +30,12 @@ package：它內部檔案共享大量型別與輔助函數，先保留單包邊�
 | `systems.mbt`、`topology.mbt`、`zerocost.mbt` | 動力系統、有限拓撲與編譯期求值展示 |
 
 上游導覽與數學定義／定理長文見 [catmath/README](../catmath/README.md) 與 [catmath/MATH](../catmath/MATH.md)。逐符號接口以 [SPEC-APPENDIX](../SPEC-APPENDIX.md) 與
-`catmath/pkg.generated.mbti` 為準。
+`catmath/pkg.generated.mbti` 為準。`tools/catmath_index_check.py` 會在 compile-only 閘門核對 canonical／derived 索引與 production topic files 的覆蓋及來源標籤；它是治理檢查，不驗證數學敘事真偽。
 
 ## 搬移時的唯一結構改動
 
 上游 root package 同時是 library 與 executable，唯一的
-`fn main` 位於根檔 `catmath.mbt`。golden 中：
+`fn main` 位於根檔 `catmath.mbt`。fiveinone 中：
 
 - 21 份上游 production 檔案與 23 份 test/wbtest 檔案搬入
   `catmath/`；

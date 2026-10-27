@@ -6,17 +6,19 @@
 
 ## 本地環境
 
-已驗證組合：
+固定組合與 Linux x86_64 壓縮檔 SHA-256 記錄於 [`.moon-toolchain`](.moon-toolchain)：
 
 - `moon 0.1.20261023`
 - `moonc v0.10.17+d971670cd`
 - Python 3（文檔、架構與規格審計工具）
 
+乾淨 Linux x86_64 環境可執行 `sh tools/install_moonbit.sh`；安裝器先驗證 MoonBit 與 core archive 的 pinned SHA-256，再安裝和 bundle。CI 使用同一腳本；`check_compile.sh` 會拒絕不符版本的 moon/moonc。其他平台尚無此 pinned archive installer。
+
 首次取得第三方依賴：
 
 ```bash
-git clone https://github.com/vv0101v01/golden.git
-cd golden
+git clone https://github.com/vv0101v01/fiveinone.git
+cd fiveinone
 moon update
 ```
 

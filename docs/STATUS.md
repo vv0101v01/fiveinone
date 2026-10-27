@@ -1,6 +1,6 @@
 # 目前狀態（權威快照）
 
-> 最後全面盤點：2026-10-27。本文只記錄「現在這棵工作樹已經有什麼、
+> 最後全面盤點：2026-10-28。本文只記錄「現在這棵工作樹已經有什麼、
 > 已驗證到哪裏」；成員 README、上游數字與舊期證據不能取代本文。
 > 🚧 **工程缺口正本：[工程缺口與待辦登記](ENGINEERING-GAPS.md)**；先看該表頂部「現行重點工程缺口」。所有測試執行已暫停並移至該表文末，不列現行優先次序。
 
@@ -8,24 +8,19 @@
 
 | 項目 | 目前值 |
 |---|---|
-| GitHub 儲存倉 | <https://github.com/vv0101v01/golden> |
+| GitHub 儲存倉 | <https://github.com/vv0101v01/fiveinone> |
 | 預設分支 | `main` |
-| 已公開的遠端 `main` | `9452cb94a441ffe17b082c09cd8ee351c4c96c89`（三系統首次公開樹；本輪五成員樹以推送後遠端回讀為準） |
 | 本工作樹 | 直接 3＋2 五成員聯邦；原 `bridge/` 就地擴張，獨立 `unified/` 疊加層已刪除 |
 | MoonBit module | `vv0101v01/cubical-hermitian` |
 | module 版本 | `0.0.1`（尚未建立 Git tag／GitHub Release） |
-| 已驗證工具鏈 | `moon 0.1.20261023`、`moonc v0.10.17+d971670cd` |
+| 固定工具鏈 | `.moon-toolchain`：`moon 0.1.20261023`、`moonc v0.10.17+d971670cd`；Linux x86_64 MoonBit/core archive digest pin，見 `tools/install_moonbit.sh` |
 | 第三方依賴 | 只有 `moonbitlang/async@0.22.5`，且只供 native-only `semiring/par_host` |
-
-儲存倉名是 `golden`，但 import 身份刻意保留
-`vv0101v01/cubical-hermitian`，避免為改倉名或加入新成員而重寫
-全部 package 路徑。
 
 ## 五個成員與唯一整合層
 
-| 成員 | 來源／provenance | golden namespace | 成邦前文檔 |
+| 成員 | 來源／provenance | MoonBit namespace | 成邦前文檔 |
 |---|---|---|---|
-| cubical/Hermitian 與精確代數 | 既有 golden 根套件 | 根套件、`algebra/` | 根 [README](../README.md)；長文根 SPEC／GUIDE |
+| cubical/Hermitian 與精確代數 | cubical-hermitian 原始根套件 | 根套件、`algebra/` | 根 [README](../README.md)；長文根 SPEC／GUIDE |
 | 有限對稱 | algorithm03 `05232fd` | `symlib/` | [`symlib/README.md`](../symlib/README.md) |
 | 半環實驗室 | algorithm01 `6a208f4` | `semiring/*` | [`semiring/README.md`](../semiring/README.md) |
 | moon-algebra | algo `427135faf8492f5433baba8077d4dc139282291f` | `finalg/`、`finalg/*` | [`finalg/README.md`](../finalg/README.md) |
@@ -63,7 +58,7 @@ tropical ideals、blueprint／band schemes、一般 presheaf
 - 39 packages
 - 48 components
 - 330 `.mbt` files
-- 135,485 `.mbt` lines
+- 135,683 `.mbt` lines
 - 6,610 public symbols
 
 逐套件符號數以 [SPEC-APPENDIX](../SPEC-APPENDIX.md) 的生成清單
@@ -76,8 +71,8 @@ tropical ideals、blueprint／band schemes、一般 presheaf
 依負責人決定，全部新舊測試源碼繼續保留，但**所有測試執行
 暫停**：不執行單元測試、showcase、demo、benchmark、慢報告、
 proof、coverage 或 runtime workflow。這是已決定的非現行
-優先事項，不再列作下一期重要待辦。2026-10-27 最近一次
-compile-only 紀錄使用：
+優先事項，不再列作下一期重要待辦。2026-10-28 本次 checkout
+compile-only 紀錄使用固定工具鏈：
 
 ```bash
 sh tools/check_compile.sh
@@ -89,10 +84,13 @@ wasm-gc 與 native 的 `moon test --build-only --deny-warn`
 （只編譯測試源碼，不跑 test block），以及 portable 執行檔和
 native report 的 `moon build`。
 
-完整 `sh tools/check_compile.sh` 已於 2026-10-27 在本輪
-GU 權威工作樹以 exit 0 完成；封存前另會在重建的 Git 樹
-重跑，以同時核對生成 `.mbti` 無漂移。即使完整閘門通過，
-也只證明 compile-only，不是任何測試已通過。
+完整 `sh tools/check_compile.sh` 已於 2026-10-28 在本次更新後的
+工作樹以 exit 0 完成，工具鏈為 `.moon-toolchain` 鎖定組合；該閘門
+包含 fmt、生成介面 drift、文檔／架構／規格審計、四個 target 的
+`moon check --deny-warn`、wasm-gc/native `moon test --build-only`，及
+所有指定執行檔的 `moon build`。本次結果只對含本輪修改的本地工作樹有效；
+沒有更新 GitHub 遠端，也不是 hosted CI 結果。`--build-only` 只編譯 test/wbtest 源碼，
+沒有執行任何測試、showcase、smoke、benchmark 或 proof；不可寫成測試通過。
 
 下列數字是**五成員整合前的舊三系統樹歷史證據**，不能當作目前
 五成員樹已實跑：

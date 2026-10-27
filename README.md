@@ -1,8 +1,7 @@
-# golden — cubical-hermitian 五成員 MoonBit 聯邦
+# fiveinone — cubical-hermitian 五成員 MoonBit 聯邦
 
-儲存倉：<https://github.com/vv0101v01/golden>。MoonBit module 與全部
-import 身份刻意維持 `vv0101v01/cubical-hermitian`；倉庫名 `golden`
-不改寫套件身份。
+五成員 MoonBit 專案，程式與文件位於 <https://github.com/vv0101v01/fiveinone>。
+MoonBit module 與 import 身份為 `vv0101v01/cubical-hermitian`。
 
 > 🚧 **工程缺口總表（置頂）：[docs/ENGINEERING-GAPS.md](docs/ENGINEERING-GAPS.md)**
 > 未完成事項、限制與優先級先看該表頂部摘要。所有測試執行已按
@@ -44,7 +43,7 @@ blueprint／band schemes 與一般子型別系統仍屬後續缺口。
 
 ## 五個成員
 
-| 成員 | golden namespace | 成邦前正本 | 主要內容 |
+| 成員 | MoonBit namespace | 成邦前正本 | 主要內容 |
 |---|---|---|---|
 | cubical／Hermitian 與精確代數（聯邦首領） | 根套件、`algebra/` | 本文件；長文 [SPEC](SPEC.md)、[GUIDE](GUIDE.md) | 依賴 cubical 核心、Kan 操作、計算性 univalence、精確 BigInt 代數與 Hermitian 譜證書 |
 | 有限對稱 symlib | `symlib/` | [symlib/README.md](symlib/README.md) | 圖規範形、自同構群、有限範疇、預層、G-集與可執行證書 |
@@ -60,8 +59,8 @@ blueprint／band schemes 與一般子型別系統仍屬後續缺口。
 ## 快速開始（本階段只編譯）
 
 ```bash
-git clone https://github.com/vv0101v01/golden.git
-cd golden
+git clone https://github.com/vv0101v01/fiveinone.git
+cd fiveinone
 export PATH="$HOME/.moon/bin:$PATH"
 moon update
 sh tools/check_compile.sh
@@ -75,7 +74,7 @@ showcase、demo、benchmark、慢報告或 proof。真正的運行期閘門須
 ## 治理快照
 
 機器清單目前包含 **39 packages、48 components、330 `.mbt` files、
-135,485 `.mbt` lines、6,610 public symbols**；數字由
+135,683 `.mbt` lines、6,610 public symbols**；數字由
 `tools/arch_check.py`、`tools/doc_check.py` 與
 `tools/audit_spec.py --check` 交叉核對。架構正本是
 [architecture.json](architecture.json) 與

@@ -11,12 +11,27 @@ set -eu
 cd "$(dirname "$0")/.."
 export PATH="$HOME/.moon/bin:$PATH"
 
+expected_moon="$(sed -n 's/^moon=//p' .moon-toolchain)"
+expected_moonc="$(sed -n 's/^moonc=//p' .moon-toolchain)"
+test -n "$expected_moon" && test -n "$expected_moonc"
+moon version | grep -F "moon $expected_moon " >/dev/null || {
+  echo "Expected Moon $expected_moon from .moon-toolchain" >&2
+  exit 1
+}
+moonc -v | grep -F "$expected_moonc " >/dev/null || {
+  echo "Expected Moonc $expected_moonc from .moon-toolchain" >&2
+  exit 1
+}
+
 moon fmt --check
 moon info
 if [ -d .git ]; then
   git diff --exit-code -- ':(glob)**/pkg.generated.mbti' pkg.generated.mbti
 fi
+python3 -m py_compile tools/catmath_scc.py tools/catmath_index_check.py
 python3 tools/doc_check.py
+python3 tools/catmath_scc.py >/dev/null
+python3 tools/catmath_index_check.py
 python3 tools/arch_check.py
 python3 tools/audit_spec.py --check
 for target in wasm wasm-gc js native; do

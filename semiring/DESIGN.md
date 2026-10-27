@@ -1,5 +1,5 @@
 > **合併後位置**：本文由 algorithm01 `docs/DESIGN.md` 遷移而來，現行正本
-> 隨 <https://github.com/vv0101v01/golden> 維護；套件路徑均應加上
+> 隨 <https://github.com/vv0101v01/fiveinone> 維護；套件路徑均應加上
 > `semiring/` 前綴解讀。量測報告見同目錄 `REPORT.md`，由
 > `GOLDEN_RUN_SMOKE=1 sh tools/check_slow.sh` 重生成（未來運行期的
 > 慢閘門；目前只建置，不執行）。

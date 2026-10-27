@@ -4,7 +4,7 @@
 > 不回寫本成邦前正本。
 
 > **合併後位置**：本文由 algorithm01（`6a208f4`）原 README 遷移而來，
-> 現行正本隨 <https://github.com/vv0101v01/golden> 維護。套件位於
+> 現行正本隨 <https://github.com/vv0101v01/fiveinone> 維護。套件位於
 > `semiring/<name>`，例如文中 `algebra/` 指 `semiring/algebra/`，套件路徑為
 > `vv0101v01/cubical-hermitian/semiring/algebra`。這與 cubical 的精確
 > `algebra/` 是兩個不同套件。文中的 monoid 一律譯作**么半群**；

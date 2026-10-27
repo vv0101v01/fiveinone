@@ -3,7 +3,12 @@
 本檔只記錄使用者可見的發佈與治理變更。模組目前仍為 `0.0.1`，尚無
 Git tag 或 GitHub Release；見 [工程缺口 REL-003](docs/ENGINEERING-GAPS.md)。
 
-## Unreleased — 直接 3＋2 五成員聯邦與文檔治理（2026-10-27）
+## Unreleased — 直接 3＋2 五成員聯邦與文檔治理（2026-10-27；2026-10-28 維護更新）
+
+- 新增 `.moon-toolchain` 與 `tools/install_moonbit.sh`：CI 固定安裝 `moon 0.1.20261023`/`moonc v0.10.17+d971670cd`，並在 Linux x86_64 安裝前驗證 MoonBit/core archives SHA-256；compile gate 另檢查實際 moon/moonc 版本。跨平台固定安裝及 latest canary 仍是 ENG-003 後續事項。
+- 新增 `docs/API-STABILITY.md`，先定義 0.x 期間 Experimental 預設、Test-support 範圍與 1.0 Stable allowlist 前置條件；未把現有 API 宣稱穩定。
+- `semiring/par_host` 改以原子建立的專用 temp directory、CreateNew/0600 分片檔，錯誤不再忽略，並在 defer 清理；runtime 雙程序驗收仍因暫停政策未執行。
+- 把 weighted graph 欄位 `canonical_encoding` 的文檔界定為 support-graph 診斷鍵，不是完整加權有向圖的 canonical form。
 
 - 把 `algo`（`moon-algebra`）的 12 個 packages 組合為第四成員
   `finalg/`，連同全部 test/wbtest 與 `finalg/verify` 的 Why3 proof
@@ -63,13 +68,10 @@ Git tag 或 GitHub Release；見 [工程缺口 REL-003](docs/ENGINEERING-GAPS.md
 
 ## 首次公開三合一聯邦體（2026-10-27）
 
-- 推送至 <https://github.com/vv0101v01/golden>，首次公開提交：
-  `9452cb94a441ffe17b082c09cd8ee351c4c96c89`。
 - 內容包括 cubical root、精確 `algebra/`、`symlib/`、`semiring/*`、
   單向 `bridge/` 與五個 `cmd/*` 入口。
 - 治理基線：25 個 MoonBit 套件、34 個組件、215 個 `.mbt`、
   101,847 行、5,054 個公共符號。
 - 實跑基線：wasm-gc 336/336、native 340/340、`cmd/main` 90/90、
   `cmd/showcase` 5/5。
-- MoonBit module 名維持 `vv0101v01/cubical-hermitian`；GitHub 倉名
-  `golden` 不改變 import 路徑。
+- MoonBit module 名維持 `vv0101v01/cubical-hermitian`，不改變 import 路徑。

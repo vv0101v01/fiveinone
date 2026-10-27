@@ -31,6 +31,7 @@
 |---|---|---|
 | [`README.md`](../README.md) | 現行＋首領 README | GitHub 門面、五成員總覽、直接 3＋2 理由與 compile-only 快速開始 |
 | [`docs/ENGINEERING-GAPS.md`](ENGINEERING-GAPS.md) | 現行 | **置頂工程缺口總表**：現行重點缺口、限制、待辦與驗收方向 |
+| [`docs/API-STABILITY.md`](API-STABILITY.md) | 現行 | 公開 API 級別、SemVer 與相容政策 |
 | [`docs/STATUS.md`](STATUS.md) | 現行 | 權威現況：倉庫身份、規模、已驗證編譯證據 |
 | [`CHANGELOG.md`](../CHANGELOG.md) | 現行 | 面向使用者的發布與重要治理變更 |
 | [`CONTRIBUTING.md`](../CONTRIBUTING.md) | 現行 | 建置、閘門、生成檔與文檔維護流程 |
@@ -69,7 +70,7 @@
 | [`docs/GRAND-UNIFICATION.md`](GRAND-UNIFICATION.md) | 現行 | 2026-10-27 聯網文獻研究、五成員角色、GU 五個有限核心、定理／演算法去重、82/100 v1 判定與 87/100 覆核 |
 | [`docs/FINALG.md`](FINALG.md) | 現行 | finalg 在聯邦內的 package 圖、proof 資產與精確代數分工 |
 | [`docs/CATMATH.md`](CATMATH.md) | 現行 | catmath 在聯邦內的內容分域、單包邊界與 executable 拆分 |
-| [`docs/MIGRATION.md`](MIGRATION.md) | 現行 | 五來源到 golden 的 import 對照、遷移狀態與決策史 |
+| [`docs/MIGRATION.md`](MIGRATION.md) | 現行 | 五來源到 fiveinone 的 import 對照、遷移狀態與決策史 |
 | [`docs/LEGACY-ARCHIVE.md`](LEGACY-ARCHIVE.md) | 現行待辦 | 來源倉告示定稿、封存程序與尚未執行的外部步驟 |
 
 ## 工具文件

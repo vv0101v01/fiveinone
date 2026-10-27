@@ -3,7 +3,7 @@
 Language: **English** · [中文](GUIDE.md) · [中文規格](SPEC.md) · [Specification](SPEC.en.md) · [Architecture](ARCHITECTURE.md) · [Status](docs/STATUS.md) · [Engineering gaps](docs/ENGINEERING-GAPS.md)
 
 > This guide covers only the cubical pillar. The repository is published as
-> <https://github.com/vv0101v01/golden>, while the MoonBit module remains
+> <https://github.com/vv0101v01/fiveinone>, while the MoonBit module remains
 > `vv0101v01/cubical-hermitian`. See the dedicated documents for `symlib`,
 > `semiring/*`, `finalg`, `catmath`, the single five-member `bridge`. The phase
 > narrative is retained development

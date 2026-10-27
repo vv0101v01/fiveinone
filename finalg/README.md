@@ -7,7 +7,7 @@
 
 > **合併後位置**：本文由 algo（`427135faf8492f5433baba8077d4dc139282291f`）
 > 原 `README.mbt.md` 遷移而來，現行正本隨
-> <https://github.com/vv0101v01/golden> 維護。程式碼位於倉庫根的
+> <https://github.com/vv0101v01/fiveinone> 維護。程式碼位於倉庫根的
 > `finalg/`，套件主前綴為 `vv0101v01/cubical-hermitian/finalg`；文中
 > 未帶前綴的 `num/`、`modules/`、`verify/` 等路徑均相對 `finalg/`。
 > 上游 module 的全域 warning 抑制沒有搬入，改以明確 `pub extend`
@@ -16,7 +16,7 @@
 > [BRIDGE](../docs/BRIDGE.md)。
 
 
-以 **MoonBit** 寫成（上游來源期工具鏈為 moon 0.1.20261012；golden 現行工具鏈以 STATUS 為準）的代數結構庫：由 `Ring`/`Field` 特質起步，
+以 **MoonBit** 寫成（上游來源期工具鏈為 moon 0.1.20261012；fiveinone 現行工具鏈以 STATUS 為準）的代數結構庫：由 `Ring`/`Field` 特質起步，
 沿 `num → linalg → root → finite → modules → geometry → scheme → verify` 依賴鏈
 構築 **投射模・循環模・層・凝聚層・剩餘理想・半單/單純/半素理想・坐標環・落特環・
 仿射代數簇・概形・局部環・冪等元・正則局部環** 等結構；再附 **規範形式**
@@ -54,16 +54,16 @@ import {
 零成本：所有 trait 實現、特化、有限枚舉都喺編譯期決定；`@num.IntMod`、
 `Poly`、`FinAlg` 等皆係 `struct`/`trait` 直譯，運行時無 dictionary boxing。
 
-## 2. 驗證資產（上游證據與 golden 本期邊界）
+## 2. 驗證資產（上游證據與 fiveinone 本期邊界）
 
 | 類型 | 位置 | 數量 |
 |------|------|------|
-| 斷言測試（源碼已搬入） | 各 package `*_wbtest.mbt` / `*_test.mbt` | 上游文件記錄 **113**；golden 本期只編譯、未重跑 |
+| 斷言測試（源碼已搬入） | 各 package `*_wbtest.mbt` / `*_test.mbt` | 上游文件記錄 **113**；fiveinone 本期只編譯、未重跑 |
 | 屬性測試（源碼已搬入） | `@quickcheck.check`（root 12・finite 4・modules 3・geometry 1・scheme 2・hott 4・port 3・cat 5・num/linalg） | 含於 113 |
-| 形式化證明資產 | `verify/`（`proof_enabled = true` + `.mbtp` 謂詞/引理） | 上游記錄 **8 goals**；golden 尚未執行 `moon prove`（FIN-001） |
+| 形式化證明資產 | `verify/`（`proof_enabled = true` + `.mbtp` 謂詞/引理） | 上游記錄 **8 goals**；fiveinone 尚未執行 `moon prove`（FIN-001） |
 
 ```bash
-# 在 golden 根目錄；本期只編譯，不執行任何 test block：
+# 在 fiveinone 根目錄；本期只編譯，不執行任何 test block：
 sh tools/check_compile.sh
 
 # 未來運行期（須先獲專案負責人指示）：
@@ -311,7 +311,7 @@ finalg/prove.sh
 
 ---
 
-## 5. 測試資產一覽（上游記錄 113 tests + 8 proof goals；golden 本期未重跑）
+## 5. 測試資產一覽（上游記錄 113 tests + 8 proof goals；fiveinone 本期未重跑）
 
 - **num** 8：`mod_pos` 值域、冪、CRT 基元。
 - **linalg** 8：rref/rank/nullspace/solve、子空間枚舉。
@@ -355,4 +355,4 @@ num ─→ linalg ─→ root(ring/poly/groebner/ideal + normal規範形式) ─
 - HoTT Book：Equiv、univalence、HIT、截斷層；Rijke *Introduction to HoTT*（π₁(S¹)）
 - Wedderburn–Artin、Atiyah–MacDonald Ch.1–3（socle、Ann、局部化）
 
-License: Apache-2.0　|　上游來源期 toolchain: moon 0.1.20261012, moonc-prove + why3 1.8 + z3 4.13.3 + cvc5 1.1.2；golden 現行工具鏈見 STATUS。
+License: Apache-2.0　|　上游來源期 toolchain: moon 0.1.20261012, moonc-prove + why3 1.8 + z3 4.13.3 + cvc5 1.1.2；fiveinone 現行工具鏈見 STATUS。

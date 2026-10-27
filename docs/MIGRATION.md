@@ -1,10 +1,9 @@
 # 五系統合併遷移指南
 
-首次公開的三系統樹位於 <https://github.com/vv0101v01/golden>，
-遠端 `main` 為 `9452cb94a441ffe17b082c09cd8ee351c4c96c89`。本工作樹
-在其上擴展為五系統；MoonBit module 與 import 身份維持
-`vv0101v01/cubical-hermitian`，克隆後不需要把 import 改成倉名。
-整體現況見 [STATUS](STATUS.md)。
+本倉庫 <https://github.com/vv0101v01/fiveinone> 是目前五成員 MoonBit
+專案。MoonBit module/import 身份為 `vv0101v01/cubical-hermitian`，
+不需要將 package 路徑改成 GitHub 倉庫名稱。整體現況見
+[STATUS](STATUS.md)。
 
 本倉庫以聯邦方式合併五個 MoonBit 系統：
 
@@ -75,7 +74,7 @@
 
 `modules`、`geometry`、`scheme`、`port`、`testutil` 依同一通則。
 上游 module-level `warnings = "-implicit_impl_as_method"` 沒有搬入；
-golden 改以 finalg 套件內的明確 `pub extend` 保留方法面。
+本 module 改以 finalg 套件內的明確 `pub extend` 保留方法面。
 
 ### algo4 / catmath
 
@@ -86,7 +85,7 @@ golden 改以 finalg 套件內的明確 `pub extend` 保留方法面。
 | 同包 struct literal 建構 `Arrow`／`FinGroup`／`FinMonoid`／`FreeMonoid`／`IntMat` | `arrow_of`／`fin_group_of`／`fin_monoid_of`／`free_monoid_of`／`int_mat_of` |
 
 Algo4 上游 `preferred_target="native"` 是其獨立 module 的偏好；
-併入後由 golden module 的 `preferred_target="wasm"` 管轄。catmath
+併入後由本 module 的 `preferred_target="wasm"` 管轄。catmath
 package 本身不宣告 native-only；本階段以四 target `moon check`
 作可攜性編譯邊界。
 
@@ -110,7 +109,7 @@ package 本身不宣告 native-only；本階段以四 target `moon check`
 ## Target 與依賴
 
 - 主 module 的 `preferred_target` 保持 `wasm`，延續 cubical/symlib／
-  moon-algebra；algo4 的獨立 native 偏好不沿用作 golden 邊界。
+  moon-algebra；algo4 的獨立 native 偏好不沿用作本 module 的邊界。
 - `semiring/par_host` 與 `cmd/semiringreport` 以
   `supported_targets: "native"` 隔離；其他 target 會整包跳過。
 - 主 module 在 Phase T5 起只有一個外部依賴
@@ -124,8 +123,8 @@ package 本身不宣告 native-only；本階段以四 target `moon check`
 任何 test block 或 smoke 程式：
 
 ```bash
-git clone https://github.com/vv0101v01/golden.git
-cd golden
+git clone https://github.com/vv0101v01/fiveinone.git
+cd fiveinone
 moon update
 sh tools/check_compile.sh
 ```
@@ -153,7 +152,7 @@ GOLDEN_RUN_SMOKE=1 sh tools/check_slow.sh > /tmp/REPORT.generated.md
 
 早期研究與施工文件曾分別保存為兩方、三方、五方研究快照。為免
 同一決策在多份文件中漂移，現只保留下列權威摘要；原始量測仍可
-由來源倉與 golden 的 Git 歷史追溯，不再在工作樹維持平行正本。
+來源 SHA 記錄於成員 provenance 與相關遷移文件。
 
 1. **兩方／三方階段採「同 module、成員真身、單向橋」方案**：
    cubical 保持根套件，symlib 與 semiring 保持獨立 namespace，
@@ -176,4 +175,4 @@ GOLDEN_RUN_SMOKE=1 sh tools/check_slow.sh > /tmp/REPORT.generated.md
 遷移告示也尚未貼到來源倉。現有兩倉的告示定稿與操作順序在
 [`LEGACY-ARCHIVE.md`](LEGACY-ARCHIVE.md)，並登記為缺口 REL-001；在兩倉
 頁面出現告示且變為 read-only 前，不得宣稱已封存。cubical 來源不再作為
-獨立發布入口，現行維護只在 `golden`。
+目前五成員專案入口為 `fiveinone`。

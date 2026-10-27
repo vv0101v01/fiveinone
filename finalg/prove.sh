@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # finalg — formal proof runner (moon prove + Why3 + Z3/cvc5)
 #
-# Imported from algo/moon-algebra; paths below are rebased to the golden
+# Imported from algo/moon-algebra; paths below are rebased to this repository
 # repository root and the `finalg/` namespace.  This script is not part of
 # the current compile-only gate: run it only in an environment with why3,
 # z3 and cvc5 installed, and only when proof execution is requested.

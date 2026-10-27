@@ -1,0 +1,18 @@
+import {
+  "vv0101v01/cubical-hermitian/semiring/algebra" @alg,
+  "vv0101v01/cubical-hermitian/semiring/graph",
+  "vv0101v01/cubical-hermitian/semiring/matrix" @mat,
+  "vv0101v01/cubical-hermitian/semiring/monoid" @mon,
+  "vv0101v01/cubical-hermitian/semiring/par",
+  "vv0101v01/cubical-hermitian/semiring/ratelimit" @rl,
+  "vv0101v01/cubical-hermitian/semiring/spline",
+  "vv0101v01/cubical-hermitian/semiring/trop",
+  "vv0101v01/cubical-hermitian/semiring/nf",
+  "vv0101v01/cubical-hermitian/semiring/cat",
+  "vv0101v01/cubical-hermitian/semiring/app",
+  "vv0101v01/cubical-hermitian/semiring/bp",
+}
+
+import {
+  "vv0101v01/cubical-hermitian/semiring/examples" @self,
+} for "wbtest"

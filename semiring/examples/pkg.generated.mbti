@@ -1,0 +1,54 @@
+// Generated using `moon info`, DON'T EDIT IT
+package "vv0101v01/cubical-hermitian/semiring/examples"
+
+import {
+  "vv0101v01/cubical-hermitian/semiring/algebra",
+  "vv0101v01/cubical-hermitian/semiring/matrix",
+  "vv0101v01/cubical-hermitian/semiring/ratelimit",
+  "vv0101v01/cubical-hermitian/semiring/trop",
+}
+
+// Values
+pub fn example_aggregates() -> (Int64, Int64, Int64)
+
+pub fn example_app_five_semirings() -> (Bool, Int32, Int32)
+
+pub fn example_belief() -> (Double, Int64)
+
+pub fn example_blocking() -> Int32
+
+pub fn example_counting_paths(Int32) -> @matrix.Mat[@algebra.Counting]
+
+pub fn example_csr(Int32) -> (@algebra.Trop, Int32, Bool)
+
+pub fn example_float_minplus() -> Double
+
+pub fn example_free_category() -> Int64
+
+pub fn example_min_dfa_states() -> Int32
+
+pub fn example_parallel(Int32) -> (String, Int64)
+
+pub fn example_pareto(Int32) -> (Int32, Bool)
+
+pub fn example_ratelimit(UInt64, Int64) -> @ratelimit.Decision
+
+pub fn example_regex_equiv() -> Bool
+
+pub fn example_shortest_path() -> (Double, Bool)
+
+pub fn example_spline(Array[Double]) -> (Array[Double], Array[Double], Double)
+
+pub fn example_tropical_curve() -> (Int32, Int32, Int64)
+
+pub fn example_tropical_det() -> Int64
+
+pub fn example_tropical_roots() -> Array[@trop.Rat]
+
+// Errors
+
+// Types and methods
+
+// Type aliases
+
+// Traits
